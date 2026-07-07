@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اتحاد ميار للضيافة الفاخرة | Mayyar United</title>
-    <!-- استدعاء خطوط جوجل لإعطاء التوقيع الخطي مظهر توقيع المدير التنفيذي الفخم -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Reenie+Beanie&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
@@ -31,7 +30,6 @@
             transition: all 0.3s ease;
         }
 
-        /* تنسيقات اتجاهات اللغة */
         html[dir="rtl"] .en-only { display: none !important; }
         html[dir="ltr"] .ar-only { display: none !important; }
 
@@ -68,11 +66,11 @@
             background-size: cover;
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             transition: background 0.3s ease;
         }
         header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; }
-        header h1 { font-size: 2.5rem; margin: 10px 0 20px; }
+        header h1 { font-size: 2.7rem; margin: 10px 0 20px; }
 
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
@@ -91,7 +89,8 @@
         .border-sharp { border-radius: 0px; }
         .border-gold { border-radius: 8px; border: 4px solid var(--accent-color); box-shadow: 0 0 20px rgba(181, 148, 16, 0.5); }
 
-        .job-img-box { width: 100%; height: 260px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; display: none; }
+        .job-block { margin-bottom: 60px; padding-bottom: 40px; border-bottom: 2px dashed #eee; }
+        .job-img-box { width: 100%; height: 280px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
 
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
@@ -105,30 +104,27 @@
         html[dir="ltr"] .card { border-right: none; border-left: 5px solid var(--accent-color); }
         ul { padding-right: 20px; padding-left: 20px; }
 
-        .btn-form-container { max-width: 500px; margin: 40px auto 0; text-align: center; }
-        .btn-go-to-form {
+        .btn-job-container { text-align: center; margin-top: 20px; }
+        .btn-job-form {
             display: inline-block;
             background: linear-gradient(135deg, var(--accent-color), #d4af37);
             color: white;
             text-decoration: none;
-            padding: 18px 45px;
-            font-size: 1.3rem;
+            padding: 12px 35px;
+            font-size: 1.1rem;
             font-weight: bold;
             border-radius: 50px;
-            box-shadow: 0 6px 20px rgba(181, 148, 16, 0.4);
+            box-shadow: 0 4px 15px rgba(181, 148, 16, 0.3);
             transition: all 0.3s ease;
-            border: 2px solid white;
         }
-        .btn-go-to-form:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(181, 148, 16, 0.6);
-            background: linear-gradient(135deg, #967a0d, var(--accent-color));
+        .btn-job-form:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(181, 148, 16, 0.5);
         }
 
-        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; position: relative; }
-        .secret-word-trigger { cursor: default; user-select: none; font-weight: normal; }
+        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; position: relative; margin-top: 60px; }
+        .secret-word-trigger { cursor: pointer; text-decoration: underline; }
 
-        /* توقيع ومستند المدير التنفيذي الشبه مخفي والأنيق بأسفل الموقع */
         .executive-signature-box {
             margin-top: 40px;
             padding-top: 20px;
@@ -136,53 +132,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 0.55;
-            transition: opacity 0.3s ease;
+            opacity: 0.6;
         }
-        .executive-signature-box:hover {
-            opacity: 1;
-        }
-        .sig-block {
-            text-align: center;
-            min-width: 200px;
-        }
-        .sig-title {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .sig-line {
-            width: 140px;
-            height: 1px;
-            background: rgba(255,255,255,0.3);
-            margin: 8px auto;
-        }
-        .handwritten-signature {
-            font-family: 'Caveat', 'Reenie Beanie', cursive;
-            font-size: 2.3rem;
-            color: #ffffff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            transform: rotate(-2deg);
-            display: inline-block;
-        }
+        .sig-block { text-align: center; min-width: 200px; }
+        .sig-title { font-size: 0.85rem; color: var(--accent-color); font-weight: bold; }
+        .sig-line { width: 140px; height: 1px; background: rgba(255,255,255,0.3); margin: 8px auto; }
+        .handwritten-signature { font-family: 'Caveat', cursive; font-size: 2.3rem; color: #ffffff; }
 
         /* لوحة التحكم المتقدمة */
         .admin-panel {
-            display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 900px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
         .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
         @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
         
         .admin-panel h3 { margin-top: 0; color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; text-align: center; }
         .admin-panel label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9rem; color: var(--primary-color); }
-        .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; font-size: 0.95rem; }
-        .admin-panel textarea { height: 110px; resize: vertical; }
-        .admin-panel button { background: var(--accent-color); color: white; border: none; padding: 16px; margin-top: 30px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; transition: background 0.2s; }
-        .admin-panel button:hover { background: var(--primary-color); }
-        .admin-section-title { background: #e9ecef; padding: 10px 12px; margin-top: 30px; border-radius: 4px; font-weight: bold; color: var(--primary-color); font-size: 1.05rem; border-left: 5px solid var(--accent-color); text-align: center; }
-        .admin-col { background: #fafafa; padding: 15px; border-radius: 6px; border: 1px solid #eee; }
+        .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+        .admin-panel textarea { height: 80px; resize: vertical; }
+        
+        .admin-section-title { background: #e9ecef; padding: 10px 12px; margin-top: 30px; border-radius: 4px; font-weight: bold; color: var(--primary-color); border-left: 5px solid var(--accent-color); text-align: center; }
+        
+        .admin-job-card { background: #fdfdfd; border: 1px dashed var(--accent-color); padding: 15px; margin-bottom: 15px; border-radius: 6px; position: relative; }
+        .remove-job-btn { background: #e74c3c; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 0.8rem; position: absolute; top: 15px; left: 15px; }
+        html[dir="ltr"] .remove-job-btn { left: auto; right: 15px; }
+
+        .admin-panel .main-save-btn { background: #2ecc71; color: white; border: none; padding: 16px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; }
+        .admin-panel .add-job-btn { background: var(--primary-color); color: white; border: none; padding: 12px; margin-top: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
     </style>
 </head>
 <body>
@@ -215,203 +191,97 @@
         </div>
     </section>
 
-    <section>
-        <!-- وظيفة 1 -->
-        <h2 id="job1-title"></h2>
-        <div class="job-img-box" id="imgBoxJob1"><img id="imgJob1" class="img-fluid" src=""></div>
-        
-        <div class="grid-2">
-            <div class="card">
-                <h3 id="tasks-title1"></h3>
-                <ul id="job1-tasks"></ul>
-            </div>
-            <div class="card">
-                <h3 id="reqs-title1"></h3>
-                <ul id="job1-reqs"></ul>
-            </div>
-        </div>
-
-        <!-- وظيفة 2 -->
-        <h2 id="job2-title"></h2>
-        <div class="job-img-box" id="imgBoxJob2"><img id="imgJob2" class="img-fluid" src=""></div>
-
-        <div class="grid-2">
-            <div class="card">
-                <h3 id="tasks-title2"></h3>
-                <ul id="job2-tasks"></ul>
-            </div>
-            <div class="card">
-                <h3 id="reqs-title2"></h3>
-                <ul id="job2-reqs"></ul>
-            </div>
-        </div>
-    </section>
+    <!-- مكان توليد الوظائف التلقائي -->
+    <section id="jobsContainer"></section>
 
     <section class="cta-section">
         <h2 style="color:white; border:none;" id="cta-title"></h2>
         <p id="cta-desc"></p>
         
-        <div class="btn-form-container">
-            <a href="" target="_blank" class="btn-go-to-form" id="mainFormBtn"></a>
-        </div>
-
-        <div style="margin-top: 50px; text-align:center; font-size: 0.95rem; opacity: 0.85;">
+        <div style="margin-top: 40px; text-align:center; font-size: 0.95rem; opacity: 0.85;">
             <span class="ar-only">شركة اتحاد ميار للضيافة - </span>
             <span class="en-only">Mayyar United Hospitality - </span>
-            <span class="secret-word-trigger" onclick="handleSecretClick()" style="text-decoration: underline; cursor: pointer;">المملكة العربية السعودية / KSA</span>
+            <span class="secret-word-trigger" onclick="handleSecretClick()">المملكة العربية السعودية / KSA</span>
         </div>
 
-        <!-- البصمة الموثقة الشبه مخفية -->
         <div class="executive-signature-box">
             <div class="sig-block">
                 <div class="sig-title">AUTHORIZED SIGNATURE</div>
                 <div class="handwritten-signature">Majed AlDajani</div>
                 <div class="sig-line"></div>
-                <div style="font-size:0.75rem; opacity:0.7; letter-spacing: 0.5px;">CHIEF TECHNOLOGY DEVELOPER • ALL RIGHTS RESERVED ©</div>
+                <div style="font-size:0.75rem; opacity:0.7;">CHIEF TECHNOLOGY DEVELOPER • ALL RIGHTS RESERVED ©</div>
             </div>
         </div>
         
-        <!-- لوحة التحكم الاحترافية الشاملة -->
+        <!-- لوحة التحكم الذكية والمطورة -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
-            <h3>🎛️ لوحة التحكم الذكية المتقدمة باللغتين | Dual-Language Admin Panel</h3>
+            <h3>🎛️ لوحة التحكم الذكية: إضافة وإدارة الوظائف اللامحدودة</h3>
 
-            <div class="admin-section-title">🔗 التحكم بالروابط الأساسية | Global Links</div>
-            <label>رابط موقع اتحاد ميار الرئيسي (Main Website URL):</label>
+            <div class="admin-section-title">🔗 التحكم بالروابط العامة والإطارات</div>
+            <label>رابط موقع اتحاد ميار الرئيسي:</label>
             <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
-            <label>رابط نموذج طلبات جوجل (Google Form URL):</label>
-            <input type="text" id="inputGoogleFormUrl" value="https://forms.gle/YwYyPx9LJXbnnz1MA">
+            
+            <label>نوع وشكل إطارات الصور في الموقع:</label>
+            <select id="inputFrameStyle">
+                <option value="border-rounded">زوايا منحنية ناعمة (Rounded Corners)</option>
+                <option value="border-circle">إطار دائري هندسي (Circular Shape)</option>
+                <option value="border-sharp">حواف حادة كلاسيكية (Sharp Edges)</option>
+                <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
+            </select>
 
-            <div class="admin-section-title">🖼️ معرض إدارة الصور وتحديد أماكنها ونوع الإطارات | Dynamic Images Manager</div>
-            <div class="admin-grid">
-                <div class="admin-col">
-                    <strong>إعدادات روابط وتوزيع الصور:</strong>
-                    <label>1. رابط صورة غلاف الهيدر العلوي (Header Background):</label>
-                    <input type="text" id="img_header_url">
-                    
-                    <label>2. رابط صورة قسم "عن توجه الشركة" الجانبي (About Section):</label>
-                    <input type="text" id="img_about_url">
-                    
-                    <label>3. رابط صورة وظيفة مدير المشروع (Job 1 Image):</label>
-                    <input type="text" id="img_job1_url" placeholder="اتركه فارغاً لإخفائها">
-                    
-                    <label>4. رابط صورة وظيفة مساعد مدير المشروع (Job 2 Image):</label>
-                    <input type="text" id="img_job2_url" placeholder="اتركه فارغاً لإخفائها">
-                </div>
-                <div class="admin-col">
-                    <strong>نمط الإطارات (Frames Styles):</strong>
-                    <label>نوع وشكل إطارات وحواف الصور في الموقع بالكامل:</label>
-                    <select id="inputFrameStyle">
-                        <option value="border-rounded">زوايا منحنية ناعمة (Rounded Corners)</option>
-                        <option value="border-circle">إطار دائري هندسي (Circular Shape)</option>
-                        <option value="border-sharp">حواف حادة كلاسيكية (Sharp Edges)</option>
-                        <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
-                    </select>
-                    <small style="display:block; margin-top:10px; color:#666;">* ملاحظة: يمكنك وضع روابط مختلفة لجميع الخانات السابقة لعرض أكثر من صورة حسب رغبتك بالصفحة.</small>
-                </div>
-            </div>
+            <div class="admin-section-title">🖼️ روابط الصور الأساسية</div>
+            <label>رابط صورة غلاف الهيدر العلوي (Header):</label>
+            <input type="text" id="img_header_url">
+            <label>رابط صورة قسم "توجه الشركة" (About):</label>
+            <input type="text" id="img_about_url">
 
-            <div class="admin-section-title">🖼️ إعدادات غلاف الصفحة العلوي | Header Section</div>
+            <div class="admin-section-title">🏢 معلومات الواجهة الرئيسية وقسم "عن الشركة"</div>
             <div class="admin-grid">
-                <div class="admin-col">
-                    <strong>النسخة العربية (Arabic)</strong>
-                    <label>العنوان الفرعي العلوي:</label> <input type="text" id="ar_heroSub">
-                    <label>العنوان الرئيسي للموقع:</label> <input type="text" id="ar_heroMain">
-                    <label>وصف الإعلان الأساسي:</label> <input type="text" id="ar_heroDesc">
-                    <label>المدن المستهدفة:</label> <input type="text" id="ar_heroCities">
+                <div>
+                    <strong>النسخة العربية</strong>
+                    <label>العنوان الفرعي للهيدر:</label> <input type="text" id="ar_heroSub">
+                    <label>العنوان الرئيسي للهيدر:</label> <input type="text" id="ar_heroMain">
+                    <label>الوصف:</label> <input type="text" id="ar_heroDesc">
+                    <label>المدن:</label> <input type="text" id="ar_heroCities">
+                    <label>عنوان عن الشركة:</label> <input type="text" id="ar_aboutTitle">
+                    <label>العنوان الفرعي:</label> <input type="text" id="ar_aboutSubtitle">
+                    <label>نقاط بيئة العمل (سطر جديد لكل نقطة):</label> <textarea id="ar_aboutTxt"></textarea>
                 </div>
-                <div class="admin-col" dir="ltr" style="text-align: left;">
+                <div dir="ltr" style="text-align: left;">
                     <strong>English Version</strong>
                     <label>Hero Sub-title:</label> <input type="text" id="en_heroSub">
                     <label>Hero Main Title:</label> <input type="text" id="en_heroMain">
-                    <label>Hero Description:</label> <input type="text" id="en_heroDesc">
-                    <label>Target Cities:</label> <input type="text" id="en_heroCities">
+                    <label>Description:</label> <input type="text" id="en_heroDesc">
+                    <label>Cities:</label> <input type="text" id="en_heroCities">
+                    <label>About Title:</label> <input type="text" id="en_aboutTitle">
+                    <label>About Subtitle:</label> <input type="text" id="en_aboutSubtitle">
+                    <label>About Items (New line per item):</label> <textarea id="en_aboutTxt"></textarea>
                 </div>
             </div>
 
-            <div class="admin-section-title">🏢 توجه الشركة وبيئتها العامة | About Company</div>
+            <div class="admin-section-title" style="background: #1a252f; color: #fff;">💼 إدارة وإضافة إعلانات الوظائف الحالية</div>
+            <div id="adminJobsList"></div>
+            <button class="add-job-btn" type="button" onclick="addNewJobField()">➕ إضافة إعلان وظيفي جديد</button>
+
+            <div class="admin-section-title">🎯 تذييل الصفحة</div>
             <div class="admin-grid">
-                <div class="admin-col">
-                    <strong>النسخة العربية (Arabic)</strong>
-                    <label>العنوان الرئيسي للقسم:</label> <input type="text" id="ar_aboutTitle">
-                    <label>العنوان الفرعي للقسم:</label> <input type="text" id="ar_aboutSubtitle">
-                    <label>شرح بيئة العمل (سطر جديد لكل عنصر):</label> <textarea id="ar_aboutTxt"></textarea>
+                <div>
+                    <label>العنوان:</label> <input type="text" id="ar_ctaTitle">
+                    <label>الوصف:</label> <input type="text" id="ar_ctaDesc">
                 </div>
-                <div class="admin-col" dir="ltr" style="text-align: left;">
-                    <strong>English Version</strong>
-                    <label>Section Title:</label> <input type="text" id="en_aboutTitle">
-                    <label>Section Subtitle:</label> <input type="text" id="en_aboutSubtitle">
-                    <label>Company Features (New line per item):</label> <textarea id="en_aboutTxt"></textarea>
+                <div dir="ltr" style="text-align: left;">
+                    <label>CTA Title:</label> <input type="text" id="en_ctaTitle">
+                    <label>CTA Desc:</label> <input type="text" id="en_ctaDesc">
                 </div>
             </div>
 
-            <div class="admin-section-title">💼 وظيفة 1: مدير المشروع | Job 1: Project Manager</div>
-            <div class="admin-grid">
-                <div class="admin-col">
-                    <strong>النسخة العربية (Arabic)</strong>
-                    <label>مسمى الوظيفة:</label> <input type="text" id="ar_j1Title">
-                    <label>عنوان بوكس المهام:</label> <input type="text" id="ar_j1TaskHead">
-                    <label>المهام (سطر جديد لكل مهمة):</label> <textarea id="ar_j1Tasks"></textarea>
-                    <label>عنوان بوكس الشروط:</label> <input type="text" id="ar_j1ReqHead">
-                    <label>الشروط (سطر جديد لكل شرط):</label> <textarea id="ar_j1Reqs"></textarea>
-                </div>
-                <div class="admin-col" dir="ltr" style="text-align: left;">
-                    <strong>English Version</strong>
-                    <label>Job Title:</label> <input type="text" id="en_j1Title">
-                    <label>Tasks Header:</label> <input type="text" id="en_j1TaskHead">
-                    <label>Tasks (New line per item):</label> <textarea id="en_j1Tasks"></textarea>
-                    <label>Requirements Header:</label> <input type="text" id="en_j1ReqHead">
-                    <label>Requirements (New line per item):</label> <textarea id="en_j1Reqs"></textarea>
-                </div>
-            </div>
-
-            <div class="admin-section-title">💼 وظيفة 2: مساعد مدير المشروع | Job 2: Assistant PM</div>
-            <div class="admin-grid">
-                <div class="admin-col">
-                    <strong>النسخة العربية (Arabic)</strong>
-                    <label>مسمى الوظيفة:</label> <input type="text" id="ar_j2Title">
-                    <label>عنوان بوكس المهام:</label> <input type="text" id="ar_j2TaskHead">
-                    <label>المهام (سطر جديد لكل مهمة):</label> <textarea id="ar_j2Tasks"></textarea>
-                    <label>عنوان بوكس الشروط:</label> <input type="text" id="ar_j2ReqHead">
-                    <label>الشروط (سطر جديد لكل شرط):</label> <textarea id="ar_j2Reqs"></textarea>
-                </div>
-                <div class="admin-col" dir="ltr" style="text-align: left;">
-                    <strong>English Version</strong>
-                    <label>Job Title:</label> <input type="text" id="en_j2Title">
-                    <label>Tasks Header:</label> <input type="text" id="en_j2TaskHead">
-                    <label>Tasks (New line per item):</label> <textarea id="en_j2Tasks"></textarea>
-                    <label>Requirements Header:</label> <input type="text" id="en_j2ReqHead">
-                    <label>Requirements (New line per item):</label> <textarea id="en_j2Reqs"></textarea>
-                </div>
-            </div>
-
-            <div class="admin-section-title">🎯 قسم نداء التقديم وزر التحويل | Call To Action Button</div>
-            <div class="admin-grid">
-                <div class="admin-col">
-                    <strong>النسخة العربية (Arabic)</strong>
-                    <label>عنوان قسم التقديم الكبير:</label> <input type="text" id="ar_ctaTitle">
-                    <label>الوصف الفرعي لنداء التقديم:</label> <input type="text" id="ar_ctaDesc">
-                    <label>النص داخل زر الضغط للنموذج:</label> <input type="text" id="ar_btnText">
-                </div>
-                <div class="admin-col" dir="ltr" style="text-align: left;">
-                    <strong>English Version</strong>
-                    <label>CTA Section Title:</label> <input type="text" id="en_ctaTitle">
-                    <label>CTA Sub-description:</label> <input type="text" id="en_ctaDesc">
-                    <label>Text Inside Button:</label> <input type="text" id="en_btnText">
-                </div>
-            </div>
-
-            <button onclick="saveAllSettings()">حفظ وتحديث كامل إعدادات اللغتين والمنصة فوراً</button>
+            <button class="main-save-btn" onclick="saveAllSettings()">💾 حفظ ونشر جميع التعديلات والوظائف فوراً</button>
         </div>
     </section>
 
     <script>
-        console.log(
-            "%c Developed & Signed By: MAJED ALDAJANI %c All Rights Reserved © ",
-            "background: #b59410; color: #fff; padding: 5px 10px; font-weight: bold; border-radius: 4px 0 0 4px;",
-            "background: #1a252f; color: #fff; padding: 5px 10px; font-weight: bold; border-radius: 0 4px 4px 0;"
-        );
-
         let currentLang = localStorage.getItem('site_lang') || 'ar';
+        let jobsData = [];
 
         function textToHtmlList(text) {
             if (!text || !text.trim()) return '';
@@ -427,52 +297,54 @@
             en_heroDesc: "Mayyar United Company announces the opening of leadership recruitment for the luxury hospitality sector",
             ar_heroCities: "المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها",
             en_heroCities: "Target Cities: Jeddah | Makkah | Jazan | Abha",
-            
             ar_aboutTitle: "البيئة والتوجه العام للشركة",
             en_aboutTitle: "Company Culture & Core Direction",
             ar_aboutSubtitle: "الريادة في تشغيل المشاريع الراقية",
             en_aboutSubtitle: "Leadership in Operating High-End Projects",
             ar_aboutTxt: "نهدف في اتحاد ميار لاستقطاب كفاءات شغوفة للانضمام إلى فريقنا النخبوي لإدارة وتشغيل أحد مشاريعنا بقطاع الفنادق الفاخرة.\nفرصة للمساهمة في تقديم بروتوكولات خدمة الـ VIP وتحقيق أعلى مستويات الفخامة.\nنلتزم بتقديم بيئة عمل احترافية، حوافز استثنائية، ومسار مهني واضح.",
             en_aboutTxt: "We aim at Mayyar United to attract passionate talents to join our elite team for managing high-end hotel projects.\nAn opportunity to contribute to VIP service protocols and achieve maximum luxury.\nWe commit to providing a professional workspace, exceptional incentives, and a clear career path.",
-            
-            ar_j1Title: "المسمى الوظيفي: مدير مشروع (Project Manager)",
-            en_j1Title: "Job Title: Project Manager (PM)",
-            ar_j1TaskHead: "المهام والمسؤوليات التشغيلية",
-            en_j1TaskHead: "Operational Duties & Responsibilities",
-            ar_j1Tasks: "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة.\nرصد وضبط الامتثال الكامل مع معايير السلامة والجودة العالمية.",
-            en_j1Tasks: "Comprehensive operational planning and on-site field supervision.\nPreparing operational budgets and ensuring higher standard productivity.\nMonitoring absolute compliance with global safety and quality standards.",
-            ar_j1ReqHead: "الشروط والمؤهلات المطلوبة",
-            en_j1ReqHead: "Required Conditions & Qualifications",
-            ar_j1Reqs: "مؤهل تعليمي بكالوريوس في إدارة الفنادق أو إدارة الأعمال.\nخبرة عملية لا تقل عن 5 سنوات في تشغيل الفنادق الفاخرة.\nإتقان تام للغتين العربية والإنجليزية.",
-            en_j1Reqs: "Bachelor's degree in Hotel Management or Business Administration.\nMinimum 5 years of experience in luxury hospitality operations.\nFluent in both Arabic and English.",
-
-            ar_j2Title: "المسمى الوظيفي: مساعد مدير مشروع (Assistant PM)",
-            en_j2Title: "Job Title: Assistant Project Manager (APM)",
-            ar_j2TaskHead: "المهام والمسؤوليات التشغيلية",
-            en_j2TaskHead: "Operational Duties & Responsibilities",
-            ar_j2Tasks: "دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة اليومية.\nالإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة.\nتجهيز وإرسال تقارير الأداء والإنتاجية التشغيلية اليومية.",
-            en_j2Tasks: "Supporting the Project Manager directly in daily operations.\nDirect on-field monitoring of appearance and readiness of floor staff.\nPreparing and submitting daily performance and productivity reports.",
-            ar_j2ReqHead: "الشروط والمؤهلات المطلوبة",
-            en_j2ReqHead: "Required Conditions & Qualifications",
-            ar_j2Reqs: "شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة.\nخبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة.\nالمظهر والبروتوكول المهني الراقي.",
-            en_j2Reqs: "Bachelor's degree or Diploma in Hospitality and Hotel Management.\nMinimum 3 years of field experience in hospitality operations.\nProfessional elegant presentation and protocol.",
-
             ar_ctaTitle: "هل تجد في نفسك الشغف والريادة؟",
             en_ctaTitle: "Do You Possess Passion and Leadership?",
             ar_ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك",
-            en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team",
-            ar_btnText: "اضغط هنا للانتقال إلى نموذج التقديم",
-            en_btnText: "Click Here to Proceed to Application Form"
+            en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team"
         };
 
+        // تم تحديث روابط الصور الافتراضية هنا لتناسب طلبك مباشرة
         const defaultImages = {
-            img_header: "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill",
-            img_about: "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
-            img_job1: "",
-            img_job2: ""
+            img_header: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80",
+            img_about: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&h=600&q=80"
         };
+
+        const defaultJobs = [
+            {
+                ar_title: "المسمى الوظيفي: مدير مشروع (Project Manager)",
+                en_title: "Job Title: Project Manager (PM)",
+                ar_tasksHead: "المهام والمسؤوليات التشغيلية",
+                en_tasksHead: "Operational Duties & Responsibilities",
+                ar_tasks: "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة.",
+                en_tasks: "Comprehensive operational planning and on-site field supervision.\nPreparing operational budgets and ensuring higher standard productivity.",
+                ar_reqsHead: "الشروط والمؤهلات المطلوبة",
+                en_reqsHead: "Required Conditions & Qualifications",
+                ar_reqs: "مؤهل تعليمي بكالوريوس في إدارة الفنادق أو إدارة الأعمال.\nخبرة عملية لا تقل عن 5 سنوات في تشغيل الفنادق الفاخرة.",
+                en_reqs: "Bachelor's degree in Hotel Management or Business Administration.\nMinimum 5 years of experience in luxury hospitality operations.",
+                img_url: "",
+                form_url: "https://forms.gle/YwYyPx9LJXbnnz1MA",
+                ar_btnText: "التقديم على وظيفة مدير مشروع",
+                en_btnText: "Apply for Project Manager Position"
+            }
+        ];
+
+        function loadJobs() {
+            let saved = localStorage.getItem('cfg_dynamic_jobs');
+            if (saved) {
+                jobsData = JSON.parse(saved);
+            } else {
+                jobsData = JSON.parse(JSON.stringify(defaultJobs));
+            }
+        }
 
         function renderInterface() {
+            loadJobs();
             if (currentLang === 'ar') {
                 document.documentElement.lang = "ar";
                 document.documentElement.dir = "rtl";
@@ -494,93 +366,142 @@
             let aboutTxt = localStorage.getItem('cfg_' + pfx + 'aboutTxt') || defaults[pfx + 'aboutTxt'];
             document.getElementById('about-list').innerHTML = textToHtmlList(aboutTxt);
 
-            // وظيفة 1
-            document.getElementById('job1-title').innerText = localStorage.getItem('cfg_' + pfx + 'j1Title') || defaults[pfx + 'j1Title'];
-            document.getElementById('tasks-title1').innerText = localStorage.getItem('cfg_' + pfx + 'j1TaskHead') || defaults[pfx + 'j1TaskHead'];
-            let j1Tasks = localStorage.getItem('cfg_' + pfx + 'j1Tasks') || defaults[pfx + 'j1Tasks'];
-            document.getElementById('job1-tasks').innerHTML = textToHtmlList(j1Tasks);
-            document.getElementById('reqs-title1').innerText = localStorage.getItem('cfg_' + pfx + 'j1ReqHead') || defaults[pfx + 'j1ReqHead'];
-            let j1Reqs = localStorage.getItem('cfg_' + pfx + 'j1Reqs') || defaults[pfx + 'j1Reqs'];
-            document.getElementById('job1-reqs').innerHTML = textToHtmlList(j1Reqs);
-
-            // وظيفة 2
-            document.getElementById('job2-title').innerText = localStorage.getItem('cfg_' + pfx + 'j2Title') || defaults[pfx + 'j2Title'];
-            document.getElementById('tasks-title2').innerText = localStorage.getItem('cfg_' + pfx + 'j2TaskHead') || defaults[pfx + 'j2TaskHead'];
-            let j2Tasks = localStorage.getItem('cfg_' + pfx + 'j2Tasks') || defaults[pfx + 'j2Tasks'];
-            document.getElementById('job2-tasks').innerHTML = textToHtmlList(j2Tasks);
-            document.getElementById('reqs-title2').innerText = localStorage.getItem('cfg_' + pfx + 'j2ReqHead') || defaults[pfx + 'j2ReqHead'];
-            let j2Reqs = localStorage.getItem('cfg_' + pfx + 'j2Reqs') || defaults[pfx + 'j2Reqs'];
-            document.getElementById('job2-reqs').innerHTML = textToHtmlList(j2Reqs);
-
             document.getElementById('cta-title').innerText = localStorage.getItem('cfg_' + pfx + 'ctaTitle') || defaults[pfx + 'ctaTitle'];
             document.getElementById('cta-desc').innerText = localStorage.getItem('cfg_' + pfx + 'ctaDesc') || defaults[pfx + 'ctaDesc'];
-            document.getElementById('mainFormBtn').innerText = localStorage.getItem('cfg_' + pfx + 'btnText') || defaults[pfx + 'btnText'];
 
-            let mainWeb = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
-            document.getElementById('mainWebBtn').href = mainWeb;
-            let googleForm = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
-            document.getElementById('mainFormBtn').href = googleForm;
+            document.getElementById('mainWebBtn').href = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
 
             let imgHeader = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
-            let imgJob1 = localStorage.getItem('cfg_img_job1') || defaultImages.img_job1;
-            let imgJob2 = localStorage.getItem('cfg_img_job2') || defaultImages.img_job2;
             let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
 
             document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
-            document.getElementById('imgBoxJob1').className = "job-img-box " + frameStyle;
-            document.getElementById('imgBoxJob2').className = "job-img-box " + frameStyle;
-
             document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${imgHeader}')`;
             document.getElementById('aboutImg').src = imgAbout;
 
-            if (imgJob1 && imgJob1.trim() !== "") {
-                document.getElementById('imgBoxJob1').style.display = 'block';
-                document.getElementById('imgJob1').src = imgJob1;
-            } else { document.getElementById('imgBoxJob1').style.display = 'none'; }
+            // توليد الوظائف بشكل ديناميكي كامل
+            let container = document.getElementById('jobsContainer');
+            container.innerHTML = "";
 
-            if (imgJob2 && imgJob2.trim() !== "") {
-                document.getElementById('imgBoxJob2').style.display = 'block';
-                document.getElementById('imgJob2').src = imgJob2;
-            } else { document.getElementById('imgBoxJob2').style.display = 'none'; }
+            jobsData.forEach((job) => {
+                let html = `
+                    <div class="job-block">
+                        <h2>${job[pfx + 'title'] || ''}</h2>
+                `;
+                if (job.img_url && job.img_url.trim() !== "") {
+                    html += `
+                        <div class="job-img-box ${frameStyle}">
+                            <img class="img-fluid" src="${job.img_url}">
+                        </div>
+                    `;
+                }
+                html += `
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>${job[pfx + 'tasksHead'] || ''}</h3>
+                                <ul>${textToHtmlList(job[pfx + 'tasks'])}</ul>
+                            </div>
+                            <div class="card">
+                                <h3>${job[pfx + 'reqsHead'] || ''}</h3>
+                                <ul>${textToHtmlList(job[pfx + 'reqs'])}</ul>
+                            </div>
+                        </div>
+                        <div class="btn-job-container">
+                            <a href="${job.form_url || '#'}" target="_blank" class="btn-go-to-form">${job[pfx + 'btnText'] || 'Apply'}</a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderAdminJobs() {
+            let container = document.getElementById('adminJobsList');
+            container.innerHTML = "";
+            jobsData.forEach((job, index) => {
+                container.innerHTML += `
+                    <div class="admin-job-card">
+                        <button class="remove-job-btn" onclick="removeJobField(${index})">🗑️ حذف هذه الوظيفة</button>
+                        <h4 style="margin:0 0 10px 0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
+                        
+                        <label>رابط الصورة المخصصة لهذه الوظيفة (اختياري):</label>
+                        <input type="text" value="${job.img_url || ''}" onchange="updateJobData(${index}, 'img_url', this.value)">
+                        
+                        <label>رابط Google Form الخاص بهذه الوظيفة تلقائياً:</label>
+                        <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
+
+                        <div class="admin-grid">
+                            <div>
+                                <strong>البيانات بالعربية</strong>
+                                <label>مسمى الوظيفة:</label><input type="text" value="${job.ar_title || ''}" onchange="updateJobData(${index}, 'ar_title', this.value)">
+                                <label>عنوان بوكس المهام:</label><input type="text" value="${job.ar_tasksHead || ''}" onchange="updateJobData(${index}, 'ar_tasksHead', this.value)">
+                                <label>المهام (سطر جديد لكل مهمة):</label><textarea onchange="updateJobData(${index}, 'ar_tasks', this.value)">${job.ar_tasks || ''}</textarea>
+                                <label>عنوان بوكس الشروط:</label><input type="text" value="${job.ar_reqsHead || ''}" onchange="updateJobData(${index}, 'ar_reqsHead', this.value)">
+                                <label>الشروط (سطر جديد لكل شرط):</label><textarea onchange="updateJobData(${index}, 'ar_reqs', this.value)">${job.ar_reqs || ''}</textarea>
+                                <label>نص زر التقديم:</label><input type="text" value="${job.ar_btnText || ''}" onchange="updateJobData(${index}, 'ar_btnText', this.value)">
+                            </div>
+                            <div dir="ltr" style="text-align:left;">
+                                <strong>English Version</strong>
+                                <label>Job Title:</label><input type="text" value="${job.en_title || ''}" onchange="updateJobData(${index}, 'en_title', this.value)">
+                                <label>Tasks Header:</label><input type="text" value="${job.en_tasksHead || ''}" onchange="updateJobData(${index}, 'en_tasksHead', this.value)">
+                                <label>Tasks (New line):</label><textarea onchange="updateJobData(${index}, 'en_tasks', this.value)">${job.en_tasks || ''}</textarea>
+                                <label>Reqs Header:</label><input type="text" value="${job.en_reqsHead || ''}" onchange="updateJobData(${index}, 'en_reqsHead', this.value)">
+                                <label>Reqs (New line):</label><textarea onchange="updateJobData(${index}, 'en_reqs', this.value)">${job.en_reqs || ''}</textarea>
+                                <label>Button Text:</label><input type="text" value="${job.en_btnText || ''}" onchange="updateJobData(${index}, 'en_btnText', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function updateJobData(index, field, value) {
+            jobsData[index][field] = value;
+        }
+
+        function addNewJobField() {
+            jobsData.push({
+                ar_title: "وظيفة جديدة", en_title: "New Job",
+                ar_tasksHead: "المهام", en_tasksHead: "Tasks", ar_tasks: "", en_tasks: "",
+                ar_reqsHead: "الشروط", en_reqsHead: "Requirements", ar_reqs: "", en_reqs: "",
+                img_url: "", form_url: "", ar_btnText: "تقديم الآن", en_btnText: "Apply Now"
+            });
+            renderAdminJobs();
+        }
+
+        function removeJobField(index) {
+            if (confirm("هل أنت متأكد من رغبتك في حذف هذا الإعلان الوظيفي نهائياً؟")) {
+                jobsData.splice(index, 1);
+                renderAdminJobs();
+            }
         }
 
         function loadPanelInputs() {
             document.getElementById('inputMainWebsite').value = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
-            document.getElementById('inputGoogleFormUrl').value = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
             document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
-
             document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
-            document.getElementById('img_job1_url').value = localStorage.getItem('cfg_img_job1') || defaultImages.img_job1;
-            document.getElementById('img_job2_url').value = localStorage.getItem('cfg_img_job2') || defaultImages.img_job2;
 
             for (let key in defaults) {
                 let input = document.getElementById(key);
-                if (input) {
-                    input.value = localStorage.getItem('cfg_' + key) || defaults[key];
-                }
+                if (input) input.value = localStorage.getItem('cfg_' + key) || defaults[key];
             }
+            renderAdminJobs();
         }
 
         function saveAllSettings() {
             localStorage.setItem('cfg_mainWeb', document.getElementById('inputMainWebsite').value);
-            localStorage.setItem('cfg_googleForm', document.getElementById('inputGoogleFormUrl').value);
             localStorage.setItem('cfg_frameStyle', document.getElementById('inputFrameStyle').value);
-
             localStorage.setItem('cfg_img_header', document.getElementById('img_header_url').value);
             localStorage.setItem('cfg_img_about', document.getElementById('img_about_url').value);
-            localStorage.setItem('cfg_img_job1', document.getElementById('img_job1_url').value);
-            localStorage.setItem('cfg_img_job2', document.getElementById('img_job2_url').value);
+            localStorage.setItem('cfg_dynamic_jobs', JSON.stringify(jobsData));
 
             for (let key in defaults) {
                 let input = document.getElementById(key);
-                if (input) {
-                    localStorage.setItem('cfg_' + key, input.value);
-                }
+                if (input) localStorage.setItem('cfg_' + key, input.value);
             }
 
-            alert("تم حفظ وتحديث الإعدادات بنجاح في المتصفح الحالي!");
+            alert("تم حفظ ونشر جميع الوظائف والإعلانات بنجاح في المتصفح!");
             renderInterface();
         }
 
@@ -601,7 +522,6 @@
             }
         }
 
-        // تشغيل أولي عند التحميل
         window.onload = function() {
             renderInterface();
         };
