@@ -1,7 +1,7 @@
 <!-- 
-    ============================================================
-    DEVELOPED & SIGNED BY: MAJED ALDJAIN (ALL RIGHTS RESERVED) ©
-    ============================================================
+    =============================================================
+    DEVELOPED & SIGNED BY: MAJED ALDAJANI (ALL RIGHTS RESERVED) ©
+    =============================================================
 -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -9,6 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اتحاد ميار للضيافة الفاخرة | Mayyar United</title>
+    <!-- استدعاء خطوط جوجل لإعطاء التوقيع الخطي مظهر توقيع المدير التنفيذي الفخم -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Reenie+Beanie&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #1a252f;
@@ -18,7 +22,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             color: var(--text-color);
@@ -121,8 +125,58 @@
             background: linear-gradient(135deg, #967a0d, var(--accent-color));
         }
 
-        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; }
+        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; position: relative; }
         .secret-word-trigger { cursor: default; user-select: none; font-weight: normal; }
+
+        /* تـوقيع ومستند المدير التنفيذي الشبه مخفي والأنيق بأسفل الموقع */
+        .executive-signature-box {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            opacity: 0.65; /* يجعله شبه مخفي ويندمج بهدوء مع الفوتر */
+            transition: opacity 0.3s ease;
+        }
+        .executive-signature-box:hover {
+            opacity: 1; /* يظهر بوضوح كامل عند تمرير الماوس فوقه لإثبات الملكية */
+        }
+        .sig-block {
+            text-align: center;
+            min-width: 150px;
+        }
+        .sig-title {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .sig-line {
+            width: 100px;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+            margin: 8px auto;
+        }
+        /* تأثير الخط اليدوي لتوقيع المدير التنفيذي */
+        .handwritten-signature {
+            font-family: 'Caveat', 'Reenie Beanie', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+        .arabic-signature {
+            font-family: 'Tajawal', sans-serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: bold;
+        }
 
         /* لوحة التحكم المتقدمة */
         .admin-panel {
@@ -215,6 +269,22 @@
             <span class="ar-only">شركة اتحاد ميار للضيافة - </span>
             <span class="en-only">Mayyar United Hospitality - </span>
             <span class="secret-word-trigger" onclick="handleSecretClick()" style="text-decoration: underline; cursor: pointer;">المملكة العربية السعودية / KSA</span>
+        </div>
+
+        <!-- البصمة الموثقة الشبه مخفية (توقيع مستند المدير التنفيذي) -->
+        <div class="executive-signature-box">
+            <div class="sig-block">
+                <div class="sig-title">AUTHORIZED SIGNATURE</div>
+                <div class="handwritten-signature">Majed AlDajani</div>
+                <div class="sig-line"></div>
+                <div style="font-size:0.75rem; opacity:0.7;">CHIEF TECHNOLOGY DEVELOPER</div>
+            </div>
+            <div class="sig-block">
+                <div class="sig-title">توقيع المطور المعتمد</div>
+                <div class="arabic-signature">ماجد الدعجاني</div>
+                <div class="sig-line"></div>
+                <div style="font-size:0.75rem; opacity:0.7;">جميع الحقوق البرمجية محفوظة ©</div>
+            </div>
         </div>
         
         <!-- لوحة التحكم الاحترافية الشاملة -->
@@ -351,9 +421,9 @@
     </section>
 
     <script>
-        // بصمة التوقيع الرقمي في الكونسول لـ MAJED ALDJAIN
+        // بصمة التوقيع الرقمي الخفية في لوحة المطورين (Console Signature) لـ ماجد الدعجاني
         console.log(
-            "%c Developed & Signed By: MAJED ALDJAIN %c All Rights Reserved © ",
+            "%c Developed & Signed By: MAJED ALDAJANI %c All Rights Reserved © ",
             "background: #b59410; color: #fff; padding: 5px 10px; font-weight: bold; border-radius: 4px 0 0 4px;",
             "background: #1a252f; color: #fff; padding: 5px 10px; font-weight: bold; border-radius: 0 4px 4px 0;"
         );
@@ -404,7 +474,7 @@
             ar_j2Reqs: "شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة.\nخبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة.\nالمظهر والبروتوكول المهني الراقي.",
             en_j2Reqs: "Bachelor's degree or Diploma in Hospitality and Hotel Management.\nMinimum 3 years of field experience in hospitality operations.\nProfessional elegant presentation and protocol.",
 
-            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة？",
+            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة؟",
             en_ctaTitle: "Do You Possess Passion and Leadership?",
             ar_ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك",
             en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team",
@@ -523,7 +593,7 @@
             });
 
             renderInterface();
-            alert("تم حفظ التعديلات وتحديث نظام معرض الصور المتعددة بنجاح تـام!");
+            alert("تم حفظ التعديلات وتحديث نظام معرض الصور بنجاح تـام!");
         }
 
         function toggleLanguage() {
