@@ -1,3 +1,8 @@
+<!-- 
+    ============================================================
+    DEVELOPED & SIGNED BY: MAJED ALDJAIN (ALL RIGHTS RESERVED) ©
+    ============================================================
+-->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -346,6 +351,13 @@
     </section>
 
     <script>
+        // بصمة التوقيع الرقمي في الكونسول لـ MAJED ALDJAIN
+        console.log(
+            "%c Developed & Signed By: MAJED ALDJAIN %c All Rights Reserved © ",
+            "background: #b59410; color: #fff; padding: 5px 10px; font-weight: bold; border-radius: 4px 0 0 4px;",
+            "background: #1a252f; color: #fff; padding: 5px 10px; font-weight: bold; border-radius: 0 4px 4px 0;"
+        );
+
         let currentLang = localStorage.getItem('site_lang') || 'ar';
 
         function textToHtmlList(text) {
@@ -392,7 +404,7 @@
             ar_j2Reqs: "شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة.\nخبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة.\nالمظهر والبروتوكول المهني الراقي.",
             en_j2Reqs: "Bachelor's degree or Diploma in Hospitality and Hotel Management.\nMinimum 3 years of field experience in hospitality operations.\nProfessional elegant presentation and protocol.",
 
-            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة؟",
+            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة？",
             en_ctaTitle: "Do You Possess Passion and Leadership?",
             ar_ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك",
             en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team",
@@ -456,19 +468,17 @@
             let googleForm = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
             document.getElementById('mainFormBtn').href = googleForm;
 
-            // تطبيق نظام توزيع الصور المتعددة الجديد
+            // تطبيق نظام توزيع الصور المتعددة
             let imgHeader = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
             let imgJob1 = localStorage.getItem('cfg_img_job1') || defaultImages.img_job1;
             let imgJob2 = localStorage.getItem('cfg_img_job2') || defaultImages.img_job2;
             let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
 
-            // تعيين إطارات الحواف لجميع الصور في الصفحة
             document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
             document.getElementById('imgBoxJob1').className = "job-img-box " + frameStyle;
             document.getElementById('imgBoxJob2').className = "job-img-box " + frameStyle;
 
-            // تطبيق الصور في أماكنها المحددة
             document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${imgHeader}')`;
             document.getElementById('aboutImg').src = imgAbout;
 
@@ -488,7 +498,6 @@
             document.getElementById('inputGoogleFormUrl').value = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
             document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
 
-            // تحميل روابط الصور الأربعة المستقلة في اللوحة
             document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
             document.getElementById('img_job1_url').value = localStorage.getItem('cfg_img_job1') || defaultImages.img_job1;
@@ -504,7 +513,6 @@
             localStorage.setItem('cfg_googleForm', document.getElementById('inputGoogleFormUrl').value);
             localStorage.setItem('cfg_frameStyle', document.getElementById('inputFrameStyle').value);
 
-            // حفظ روابط معرض الصور الأربعة المستقلة
             localStorage.setItem('cfg_img_header', document.getElementById('img_header_url').value);
             localStorage.setItem('cfg_img_about', document.getElementById('img_about_url').value);
             localStorage.setItem('cfg_img_job1', document.getElementById('img_job1_url').value);
