@@ -134,11 +134,9 @@
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            opacity: 0.65; /* يجعله شبه مخفي ويندمج بهدوء مع الفوتر */
+            opacity: 0.55; /* يجعله شبه مخفي ويندمج بهدوء مع الفوتر */
             transition: opacity 0.3s ease;
         }
         .executive-signature-box:hover {
@@ -146,7 +144,7 @@
         }
         .sig-block {
             text-align: center;
-            min-width: 150px;
+            min-width: 200px;
         }
         .sig-title {
             font-size: 0.85rem;
@@ -156,7 +154,7 @@
             font-weight: bold;
         }
         .sig-line {
-            width: 100px;
+            width: 140px;
             height: 1px;
             background: rgba(255,255,255,0.3);
             margin: 8px auto;
@@ -164,18 +162,11 @@
         /* تأثير الخط اليدوي لتوقيع المدير التنفيذي */
         .handwritten-signature {
             font-family: 'Caveat', 'Reenie Beanie', cursive;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: #ffffff;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            transform: rotate(-3deg);
+            transform: rotate(-2deg);
             display: inline-block;
-        }
-        .arabic-signature {
-            font-family: 'Tajawal', sans-serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: bold;
         }
 
         /* لوحة التحكم المتقدمة */
@@ -271,19 +262,13 @@
             <span class="secret-word-trigger" onclick="handleSecretClick()" style="text-decoration: underline; cursor: pointer;">المملكة العربية السعودية / KSA</span>
         </div>
 
-        <!-- البصمة الموثقة الشبه مخفية (توقيع مستند المدير التنفيذي) -->
+        <!-- البصمة الموثقة الشبه مخفية (توقيع مستند المدير التنفيذي بالإنجليزي فقط) -->
         <div class="executive-signature-box">
             <div class="sig-block">
                 <div class="sig-title">AUTHORIZED SIGNATURE</div>
                 <div class="handwritten-signature">Majed AlDajani</div>
                 <div class="sig-line"></div>
-                <div style="font-size:0.75rem; opacity:0.7;">CHIEF TECHNOLOGY DEVELOPER</div>
-            </div>
-            <div class="sig-block">
-                <div class="sig-title">توقيع المطور المعتمد</div>
-                <div class="arabic-signature">ماجد الدعجاني</div>
-                <div class="sig-line"></div>
-                <div style="font-size:0.75rem; opacity:0.7;">جميع الحقوق البرمجية محفوظة ©</div>
+                <div style="font-size:0.75rem; opacity:0.7; letter-spacing: 0.5px;">CHIEF TECHNOLOGY DEVELOPER • ALL RIGHTS RESERVED ©</div>
             </div>
         </div>
         
