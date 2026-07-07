@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرص قيادية في إدارة المشاريع - شركة اتحاد ميار</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
+        :root {
+            --gold: #c5a059;
+            --navy: #111e2e;
+            --bg-creme: #fcfbfa; /* اللون البيج الفاتح جداً نفس الصور */
+            --white: #ffffff;
+            --text-gray: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-creme);
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        /* الإطار الخارجي الرفيع باللون الذهبي على اليمين واليسار لمحاكاة التصميم */
+        .page-wrapper {
+            border-right: 8px solid var(--gold);
+            border-left: 8px solid var(--gold);
+            min-height: 100vh;
+        }
+
+        /* الأقسام الكبيرة المقسمة كشرائح العرض */
+        .slide-section {
+            padding: 80px 10%;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* الشريحة الأولى: الهيدر الرئيسي */
+        .hero-slide {
+            text-align: center;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .top-sub-title {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .main-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .company-announcement {
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .target-cities {
+            font-size: 1.15rem;
+            color: #777;
+            font-weight: 600;
+        }
+
+        /* الشريحة الثانية: البيئة والتوجه (نظام عمودين) */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: left;
+            border-bottom: 1px solid #ebdcb9;
+            padding-bottom: 15px;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .image-box {
+            flex: 1;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .content-box {
+            flex: 1.2;
+        }
+
+        .gold-sub {
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* القوائم المجهزة بالرمز الماسي الذهبي المنتصف للصور */
+        ul.diamond-list {
+            list-style: none;
+        }
+
+        ul.diamond-list li {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            text-align: justify;
+        }
+
+        ul.diamond-list li::before {
+            content: "✦";
+            color: var(--gold);
+            position: absolute;
+            right: 0;
+            font-size: 1.1rem;
+            top: 2px;
+        }
+
+        /* شريحة المسميات الوظيفية (البطاقات المتجاورة) */
+        .job-main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #ebdcb9;
+            padding-bottom: 15px;
+        }
+
+        .cards-grid {
+            display: flex;
+            gap: 30px;
+        }
+
+        .info-card {
+            flex: 1;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 35px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+            border: 1px solid #eee;
+        }
+
+        .card-header-title {
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #f5f5f5;
+            padding-bottom: 10px;
+        }
+
+        /* شريحة النداء الأخير والتقديم */
+        .cta-slide {
+            text-align: center;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .cta-slide h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-slide p {
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .btn-apply-now {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            padding: 18px 60px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 6px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(17, 30, 46, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-apply-now:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        .footer-tags {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #999;
+        }
+
+        /* التوافق التام مع الجوال */
+        @media (max-width: 992px) {
+            .flex-container { flex-direction: column; }
+            .cards-grid { flex-direction: column; }
+            .slide-section { padding: 40px 20px; }
+            .main-hero-title { font-size: 2.3rem; }
+            .cta-slide h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- الشريحة 1: الهيدر الرئيسي للموقع -->
+        <section class="slide-section hero-slide">
+            <div class="top-sub-title">شراكة متميزة للارتقاء بفرص التوظيف</div>
+            <h1 class="main-hero-title">فرص قيادية في إدارة المشاريع</h1>
+            <div class="company-announcement">تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة</div>
+            <div class="target-cities">المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها</div>
+        </section>
+
+        <!-- الشريحة 2: البيئة والتوجه العام للشركة -->
+        <section class="slide-section">
+            <h2 class="section-title">البيئة والتوجه العام للشركة</h2>
+            <div class="flex-container">
+                <div class="image-box">
+                    <!-- الصورة الفندقية الحقيقية المأخوذة من إعلانك الأصلي -->
+                    <img src="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill" alt="اتحاد ميار للضيافة الفاخرة">
+                </div>
+                <div class="content-box">
+                    <div class="gold-sub">الريادة في تشغيل المشاريع الراقية</div>
+                    <ul class="diamond-list">
+                        <li>نهدف في <strong>اتحاد ميار</strong> لاستقطاب كفاءات شغوفة للانضمام إلى فريقنا النخبوي لإدارة وتشغيل أحد مشاريعنا بقطاع الفنادق الفاخرة والمطاعم الفخمة.</li>
+                        <li>فرصة للمساهمة في تقديم بروتوكولات خدمة الـ VIP وتحقيق أعلى مستويات الفخامة والانسيابية الميدانية.</li>
+                        <li>نلتزم بتقديم بيئة عمل احترافية، حوافز استثنائية، ومسار مهني واضح في أرقى قطاعات الضيافة العالمية.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- الشريحة 3: مدير المشروع (Project Manager) -->
+        <section class="slide-section">
+            <h2 class="job-main-title">المسمى الوظيفي: مدير مشروع (Project Manager)</h2>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <div class="card-header-title">المهام والمسؤوليات التشغيلية</div>
+                    <ul class="diamond-list">
+                        <li>التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي ومرافقه.</li>
+                        <li>إعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة في الأداء والخدمة.</li>
+                        <li>رصد وضبط الامتثال الكامل لمعايير السلامة والجودة العالمية والخدمة الراقية.</li>
+                        <li>قيادة الكوادر البشرية وتدريبهم على بروتوكولات الفنادق الفاخرة والـ VIP.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <div class="card-header-title">الشروط والمؤهلات المطلوبة</div>
+                    <ul class="diamond-list">
+                        <li>مؤهل تعليمي بكالوريوس في إدارة الفنادق، إدارة الأعمال، أو الهندسة.</li>
+                        <li>خبرة عملية لا تقل عن 5 سنوات في إدارة وتشغيل الفنادق أو مطاعم الـ Fine Dining.</li>
+                        <li>إتقان تام للغتين العربية والإنجليزية (كتابة وتحدثاً).</li>
+                        <li>مهارات قيادية استثنائية والقدرة على إدارة الأزمات والتعامل مع كبار الشخصيات.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- الشريحة 4: مساعد مدير المشروع (Assistant PM) -->
+        <section class="slide-section">
+            <h2 class="job-main-title">المسمى الوظيفي: مساعد مدير مشروع (Assistant PM)</h2>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <div class="card-header-title">المهام والمسؤوليات التشغيلية</div>
+                    <ul class="diamond-list">
+                        <li>دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة والضيافة اليومية.</li>
+                        <li>الإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة والاستقبال.</li>
+                        <li>إعداد الجداول التشغيلية للمناوبات (Shifts) وحل المشكلات الفورية للضيوف بذكاء وسرعة.</li>
+                        <li>تجهيز وإرسال تقارير الأداء والإنتاجية اليومية للمتابعة المباشرة مع القيادة.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <div class="card-header-title">الشروط والمؤهلات المطلوبة</div>
+                    <ul class="diamond-list">
+                        <li>شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة، أو إدارة الأعمال.</li>
+                        <li>خبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة الفخمة.</li>
+                        <li>المظهر والبروتوكول المهني الراقي مع معرفة تامة بإتيكيت الخدمة.</li>
+                        <li>مهارات تواصل عالية ودقة فريدة في مراقبة التفاصيل وتعديل مسارات العمل.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- الشريحة 5: التقديم الفوري النهائي -->
+        <section class="slide-section cta-slide">
+            <h2>هل تجد في نفسك الشغف والريادة؟</h2>
+            <p>يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك</p>
+            
+            <a href="https://forms.gle/hgK4v5FW8KHdVN889" class="btn-apply-now" target="_blank">
+                اضغط هنا لتقديم طلبك الآن
+            </a>
+
+            <div style="margin-top: 30px; font-weight: 600; color: var(--navy);">
+                موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها
+            </div>
+
+            <div class="footer-tags">
+                #وظائف_السعودية #اتحاد_ميار #إدارة_مشاريع #توظيف_مكة_جدة #وظائف_جازان_أبها #Hospitality_Management
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
