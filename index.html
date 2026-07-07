@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتحاد ميار للضيافة الفاخرة | Mayar Union</title>
+    <title>اتحاد ميار للضيافة الفاخرة | Mayyar United</title>
     <style>
         :root {
             --primary-color: #1a252f;
@@ -21,36 +21,44 @@
             line-height: 1.6;
         }
 
-        /* زر تغيير اللغة */
-        .lang-switcher {
+        /* أزرار التحكم العلوية */
+        .top-controls {
             position: fixed;
             top: 20px;
             left: 20px;
             z-index: 10000;
+            display: flex;
+            gap: 10px;
         }
-        html[dir="ltr"] .lang-switcher {
+        html[dir="ltr"] .top-controls {
             left: auto;
             right: 20px;
         }
-        .lang-btn {
+        .control-btn {
             background-color: var(--accent-color);
             color: white;
             border: 2px solid white;
-            padding: 12px 24px;
-            font-size: 16px;
+            padding: 10px 20px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
         }
-        .lang-btn:hover {
+        .control-btn:hover {
             background-color: var(--primary-color);
             transform: scale(1.05);
         }
 
         header {
-            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill') no-repeat center center/cover;
+            background-image: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
             color: white;
             text-align: center;
             padding: 100px 20px;
@@ -60,7 +68,20 @@
 
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
-        .img-fluid { width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        .img-container {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .img-fluid { 
+            width: 100%; 
+            height: 100%;
+            object-fit: cover;
+        }
+
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
         .card {
@@ -79,17 +100,20 @@
         .btn-apply { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 30px; margin: 20px 0; transition: all 0.2s; }
         .btn-apply:hover { transform: scale(1.05); background-color: #c9a414; }
         .tags { font-size: 0.9rem; color: #888; margin-top: 20px; }
-
-        /* ستايل لوحة التحكم الموسعة */
-        .admin-login-btn {
-            background: none; border: none; color: #eee; font-size: 0.8rem; cursor: pointer; margin-top: 30px; text-decoration: underline;
+        
+        /* جعل الهاشتاج يبدو كأنه نص عادي لكنه قابل للضغط سرياً */
+        .secret-trigger {
+            cursor: default;
+            user-select: none;
         }
+
+        /* ستايل لوحة التحكم */
         .admin-panel {
             display: none; background: #fff; color: #333; border: 2px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 700px; margin: 20px auto; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .admin-panel h3 { margin-top: 0; color: var(--primary-color); }
         .admin-panel label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; color: var(--primary-color); }
-        .admin-panel input, .admin-panel textarea { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+        .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
         .admin-panel textarea { height: 100px; resize: vertical; }
         .admin-panel button { background: var(--primary-color); color: white; border: none; padding: 12px 15px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
         .admin-panel button:hover { background: var(--accent-color); }
@@ -98,13 +122,14 @@
 </head>
 <body>
 
-    <!-- زر تبديل اللغة للمستخدمين -->
-    <div class="lang-switcher">
-        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
+    <!-- أزرار التحكم العلوية الثابتة للمستخدمين -->
+    <div class="top-controls">
+        <a href="https://www.mayyarunited.com/ar" target="_blank" class="control-btn" id="mainWebBtn">الموقع الرئيسي</a>
+        <button class="control-btn" id="langBtn" onclick="toggleLanguage()">English</button>
     </div>
 
     <!-- الهيدر -->
-    <header>
+    <header id="mainHeader">
         <p id="sub-title">شراكة متميزة للارتقاء بفرص التوظيف</p>
         <h1 id="main-title">فرص قيادية في إدارة المشاريع</h1>
         <div id="hero-desc">تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة</div>
@@ -113,8 +138,8 @@
 
     <!-- عن الشركة -->
     <section class="grid-2">
-        <div>
-            <img alt="اتحاد ميار للضيافة الفاخرة" src="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill" class="img-fluid">
+        <div class="img-container">
+            <img id="aboutImg" alt="اتحاد ميار للضيافة الفاخرة" src="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill" class="img-fluid">
         </div>
         <div>
             <h2 id="about-title">البيئة والتوجه العام للشركة</h2>
@@ -184,42 +209,72 @@
         <a href="https://forms.gle/hgK4v5FW8KHdVN889" target="_blank" class="btn-apply" id="cta-btn">اضغط هنا لتقديم طلبك الآن</a>
 
         <div style="margin-top: 15px;" id="cities-footer">موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها</div>
-
-        <!-- زر مخفي لفتح لوحة التحكم السرية الشاملة -->
-        <button class="admin-login-btn" onclick="openAdminPanel()">لوحة تحكم تعديل المسميات والأوصاف الوظيفية</button>
         
         <!-- لوحة تحكم تعديل المحتوى الشاملة -->
         <div class="admin-panel" id="adminPanel">
-            <h3>لوحة التحكم الشاملة لتعديل محتوى الوظائف</h3>
-            <p style="font-size:0.85rem; color:#666;">ملاحظة: بالنسبة للمهام والشروط، اكتب كل نقطة في سطر منفصل ليظهر كقائمة منقطة بشكل جميل.</p>
+            <h3>لوحة التحكم الشاملة والمطورة للموقع</h3>
+
+            <!-- قسم تعديل رابط الموقع الرئيسي الجديد -->
+            <div class="admin-section-title" style="background:#d1ecf1; color:#0c5460;">🌐 إعدادات رابط الموقع الرئيسي للشركة</div>
+            <label>رابط موقع اتحاد ميار الرئيسي (يفتح في نافذة أخرى):</label>
+            <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
+
+            <!-- قسم تعديل الصور وطرق العرض -->
+            <div class="admin-section-title" style="background:#e2e3e5; color:#383d41;">🖼️ تعديل وإدارة صور الموقع ومظهرها</div>
+            <label>رابط صورة الخلفية العلوية (Header Image URL):</label>
+            <input type="text" id="inputHeaderImg" value="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill">
+            
+            <label>طريقة عرض صورة الخلفية العلوية:</label>
+            <select id="inputHeaderSize">
+                <option value="cover">ممتدة بالكامل ومتناسقة تلقائياً (Cover - مستحسن)</option>
+                <option value="contain">احتواء كامل بدون قص (Contain)</option>
+                <option value="auto">الحجم الطبيعي للصورة الأصلي (Auto)</option>
+            </select>
+
+            <label>رابط صورة قسم "عن الشركة" (About Image URL):</label>
+            <input type="text" id="inputAboutImg" value="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill">
+            
+            <label>طريقة عرض صورة قسم "عن الشركة":</label>
+            <select id="inputAboutFit">
+                <option value="cover">قص ذكي لملء المربع بالكامل (Cover - مستحسن)</option>
+                <option value="contain">عرض كامل الصورة مع الحفاظ على أبعادها (Contain)</option>
+                <option value="fill">تعبئة المربع قسرياً حتى لو تم تمديد ملامح الصورة (Fill)</option>
+            </select>
+            
+            <!-- قسم تعديل روابط التقديم -->
+            <div class="admin-section-title" style="background:#d4edda; color:#155724;">🔗 تعديل روابط التقديم والاستمارات</div>
+            <label>رابط التقديم للنسخة العربية (URL):</label>
+            <input type="text" id="inputLinkAr" value="https://forms.gle/hgK4v5FW8KHdVN889">
+            
+            <label>رابط التقديم للنسخة الإنجليزية (URL):</label>
+            <input type="text" id="inputLinkEn" value="https://forms.gle/hgK4v5FW8KHdVN889">
             
             <!-- الوظيفة الأولى -->
             <div class="admin-section-title">تعديل الوظيفة الأولى (مدير المشروع)</div>
-            
             <label>المسمى الوظيفي (عربي):</label>
             <input type="text" id="inputJob1Ar" value="مدير مشروع (Project Manager)">
             <label>المسمى الوظيفي (إنجليزي):</label>
             <input type="text" id="inputJob1En" value="Project Manager (PM)">
             
-            <label>المهام والمسؤوليات (عربي - كل نقطة في سطر):</label>
+            <label>المهام والمسؤوليات (عربي):</label>
             <textarea id="inputTasks1Ar">التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي ومرافقه.
 إعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة في الأداء والخدمة.
 رصد وضبط الامتثال الكامل لمعايير السلامة والجودة العالمية والخدمة الراقية.
 قيادة الكوادر البشرية وتدريبهم على بروتوكولات الفنادق الفاخرة والـ VIP.</textarea>
             
-            <label>المهام والمسؤوليات (إنجليزي - كل نقطة في سطر):</label>
+            <label>المهام والمسؤوليات (إنجليزي):</label>
             <textarea id="inputTasks1En">Comprehensive planning and field supervision of the operation path of the hotel project and its facilities.
 Preparing operational budgets and ensuring increased productivity and efficiency in performance and service.
 Monitoring and ensuring full compliance with international safety, quality standards, and luxury service.
 Leading human resources and training them on luxury hotel and VIP protocols.</textarea>
             
-            <label>الشروط والمؤهلات (عربي - كل نقطة في سطر):</label>
+            <label>الشروط والمؤهلات (عربي):</label>
             <textarea id="inputReqs1Ar">مؤهل تعليمي بكالوريوس في إدارة الفنادق، إدارة الأعمال، أو الهندسة.
 خبرة عملية لا تقل عن 5 سنوات في إدارة وتشغيل الفنادق أو مطاعم الـ Fine Dining.
 إتقان تام للغتين العربية والإنجليزية (كتابة وتحدثاً).
 مهارات قيادية استثنائية والقدرة على إدارة الأزمات والتعامل مع كبار الشخصيات.</textarea>
             
-            <label>الشروط والمؤهلات (إنجليزي - كل نقطة في سطر):</label>
+            <label>الشروط والمؤهلات (إنجليزي):</label>
             <textarea id="inputReqs1En">Bachelor's degree in Hotel Management, Business Administration, or Engineering.
 Practical experience of no less than 5 years in managing and operating hotels or Fine Dining restaurants.
 Full fluency in both Arabic and English (written and spoken).
@@ -227,51 +282,54 @@ Exceptional leadership skills and the ability to manage crises and handle VIPs.<
 
             <!-- الوظيفة الثانية -->
             <div class="admin-section-title">تعديل الوظيفة الثانية (مساعد مدير المشروع)</div>
-            
             <label>المسمى الوظيفي (عربي):</label>
             <input type="text" id="inputJob2Ar" value="مساعد مدير مشروع (Assistant PM)">
             <label>المسمى الوظيفي (إنجليزي):</label>
             <input type="text" id="inputJob2En" value="Assistant Project Manager (Assistant PM)">
             
-            <label>المهام والمسؤوليات (عربي - كل نقطة في سطر):</label>
+            <label>المهام والمسؤوليات (عربي):</label>
             <textarea id="inputTasks2Ar">دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة والضيافة اليومية.
 الإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة والاستقبال.
 إعداد الجداول التشغيلية للمناوبات (Shifts) وحل المشكلات الفورية للضيوف بذكاء وسرعة.
 تجهيز وإرسال تقارير الأداء والإنتاجية اليومية للمتابعة المباشرة مع القيادة.</textarea>
             
-            <label>المهام والمسؤوليات (إنجليزي - كل نقطة في سطر):</label>
+            <label>المهام والمسؤوليات (إنجليزي):</label>
             <textarea id="inputTasks2En">Supporting the Project Manager directly in following up on the progress of daily service and hospitality work.
 Direct field supervision over the appearance and readiness of the floor and reception teams.
 Preparing operational shift schedules and resolving immediate guest issues intelligently and quickly.
 Preparing and sending daily performance and productivity reports for direct follow-up with leadership.</textarea>
             
-            <label>الشروط والمؤهلات (عربي - كل نقطة في سطر):</label>
+            <label>الشروط والمؤهلات (عربي):</label>
             <textarea id="inputReqs2Ar">شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة، أو إدارة الأعمال.
 خبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة الفخمة.
 المظهر والبروتوكول المهني الراقي مع معرفة تامة بإتيكيت الخدمة.
 مهارات تواصل عالية ودقة فريدة في مراقبة التفاصيل وتعديل مسارات العمل.</textarea>
             
-            <label>الشروط والمؤهلات (إنجليزي - كل نقطة في سطر):</label>
+            <label>الشروط والمؤهلات (إنجليزي):</label>
             <textarea id="inputReqs2En">Bachelor's degree or diploma in Hotel & Hospitality Management, or Business Administration.
 No less than 3 years of experience in the field operation of luxury hospitality sectors.
 Elegant professional appearance and protocol with full knowledge of service etiquette.
 High communication skills and unique accuracy in monitoring details and adjusting work paths.</textarea>
             
-            <button onclick="saveAllData()">تحديث وحفظ كل الأوصاف والمسميات فوراً</button>
+            <button onclick="saveAllData()">تحديث وحفظ كل التغييرات فوراً</button>
         </div>
 
+        <!-- قسم التاجات أسفل الصفحة (يتضمن المدخل المخفي) -->
         <div class="tags" style="margin-top: 30px;">
-            #وظائف_السعودية #اتحاد_ميار #إدارة_مشاريع #توظيف_مكة_جدة #وظائف_جازان_أبها #Hospitality_Management
+            <span>#وظائف_السعودية #اتحاد_ميار #إدارة_مشاريع #توظيف_مكة_جدة #وظائف_جازان_أبها </span>
+            <span class="secret-trigger" onclick="handleSecretClick()">#Hospitality_Management</span>
         </div>
     </section>
 
     <script>
         let currentLang = 'ar';
+        let clickCount = 0;
 
         // القاموس الأساسي للموقع
         const data = {
             ar: {
                 btn: "English",
+                mainWebBtn: "الموقع الرئيسي",
                 subTitle: "شراكة متميزة للارتقاء بفرص التوظيف",
                 mainTitle: "فرص قيادية في إدارة المشاريع",
                 heroDesc: "تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة",
@@ -289,13 +347,15 @@ High communication skills and unique accuracy in monitoring details and adjustin
                 job2Tasks: `<li>دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة والضيافة اليومية.</li><li>الإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة والاستقبال.</li><li>إعداد الجداول التشغيلية للمناوبات (Shifts) وحل المشكلات الفورية للضيوف بذكاء وسرعة.</li><li>تجهيز وإرسال تقارير الأداء والإنتاجية اليومية للمتابعة المباشرة مع القيادة.</li>`,
                 reqsTitle2: "الشروط والمؤهلات المطلوبة",
                 job2Reqs: `<li>شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة، أو إدارة الأعمال.</li><li>خبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة الفخمة.</li><li>المظهر والبروتوكول المهني الراقي مع معرفة تامة بإتيكيت الخدمة.</li><li>مهارات تواصل عالية ودقة فريدة في مراقبة التفاصيل وتعديل مسارات العمل.</li>`,
-                ctaTitle: "هل تجد في نفسك الشغف والريادة؟",
+                ctaTitle: "هل تجد في نفسك الشغف والريادة？",
                 ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك",
                 ctaBtn: "اضغط هنا لتقديم طلبك الآن",
+                ctaLink: "https://forms.gle/hgK4v5FW8KHdVN889",
                 citiesFooter: "موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها"
             },
             en: {
                 btn: "العربية",
+                mainWebBtn: "Main Website",
                 subTitle: "A Distinguished Partnership to Advance Career Opportunities",
                 mainTitle: "Leadership Opportunities in Project Management",
                 heroDesc: "Mayar Union Company announces the opening of applications for leadership recruitment in the luxury hospitality projects sector.",
@@ -316,18 +376,58 @@ High communication skills and unique accuracy in monitoring details and adjustin
                 ctaTitle: "Do you see passion and leadership in yourself?",
                 ctaDesc: "We are pleased to receive your immediate application to join the elite Mayar Union team in your region.",
                 ctaBtn: "Click here to submit your application now",
+                ctaLink: "https://forms.gle/hgK4v5FW8KHdVN889",
                 citiesFooter: "Available Work Locations: Jeddah | Makkah | Jazan | Abha"
             }
         };
 
-        // دالة لتحويل النص العادي إلى قائمة HTML منقطة
         function textToBulletedList(text) {
             if (!text.trim()) return '';
             return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
         }
 
-        // استرجاع البيانات المخزنة بالكامل إن وجدت
+        // استرجاع البيانات المخزنة
         function loadStoredData() {
+            // رابط الموقع الرئيسي الجديد المحدث
+            let savedMainWeb = localStorage.getItem('mainWebsiteUrl');
+            if (savedMainWeb) {
+                document.getElementById('inputMainWebsite').value = savedMainWeb;
+                document.getElementById('mainWebBtn').href = savedMainWeb;
+            } else {
+                // القيمة الافتراضية للرابط الجديد
+                document.getElementById('mainWebBtn').href = "https://www.mayyarunited.com/ar";
+            }
+
+            // استرجاع الصور وإعداداتها
+            let savedHeaderImg = localStorage.getItem('headerImgUrl');
+            if (savedHeaderImg) {
+                document.getElementById('inputHeaderImg').value = savedHeaderImg;
+                document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${savedHeaderImg}')`;
+            }
+            let savedHeaderSize = localStorage.getItem('headerImgSize');
+            if (savedHeaderSize) {
+                document.getElementById('inputHeaderSize').value = savedHeaderSize;
+                document.getElementById('mainHeader').style.backgroundSize = savedHeaderSize;
+            }
+
+            let savedAboutImg = localStorage.getItem('aboutImgUrl');
+            if (savedAboutImg) {
+                document.getElementById('inputAboutImg').value = savedAboutImg;
+                document.getElementById('aboutImg').src = savedAboutImg;
+            }
+            let savedAboutFit = localStorage.getItem('aboutImgFit');
+            if (savedAboutFit) {
+                document.getElementById('inputAboutFit').value = savedAboutFit;
+                document.getElementById('aboutImg').style.objectFit = savedAboutFit;
+            }
+
+            // استرجاع الروابط
+            let savedLinkAr = localStorage.getItem('applyLinkAr');
+            if (savedLinkAr) { document.getElementById('inputLinkAr').value = savedLinkAr; data.ar.ctaLink = savedLinkAr; }
+            let savedLinkEn = localStorage.getItem('applyLinkEn');
+            if (savedLinkEn) { document.getElementById('inputLinkEn').value = savedLinkEn; data.en.ctaLink = savedLinkEn; }
+
+            // استرجاع النصوص والوظائف
             const fields = [
                 { key: 'job1Ar', id: 'inputJob1Ar', dict: data.ar, prop: 'job1Title', prefix: 'المسمى الوظيفي: ' },
                 { key: 'job1En', id: 'inputJob1En', dict: data.en, prop: 'job1Title', prefix: 'Job Title: ' },
@@ -368,6 +468,7 @@ High communication skills and unique accuracy in monitoring details and adjustin
 
         function updateDOM() {
             document.getElementById('langBtn').innerText = data[currentLang].btn;
+            document.getElementById('mainWebBtn').innerText = data[currentLang].mainWebBtn;
             document.getElementById('sub-title').innerText = data[currentLang].subTitle;
             document.getElementById('main-title').innerText = data[currentLang].mainTitle;
             document.getElementById('hero-desc').innerText = data[currentLang].heroDesc;
@@ -391,11 +492,22 @@ High communication skills and unique accuracy in monitoring details and adjustin
             document.getElementById('cta-title').innerText = data[currentLang].ctaTitle;
             document.getElementById('cta-desc').innerText = data[currentLang].ctaDesc;
             document.getElementById('cta-btn').innerText = data[currentLang].ctaBtn;
+            document.getElementById('cta-btn').href = data[currentLang].ctaLink;
             document.getElementById('cities-footer').innerText = data[currentLang].citiesFooter;
         }
 
+        // دالة تتبع الضغطات المتتالية السحرية للوحة التحكم المخفية
+        function handleSecretClick() {
+            clickCount++;
+            if (clickCount === 3) {
+                clickCount = 0; 
+                openAdminPanel();
+            }
+            setTimeout(() => { clickCount = 0; }, 1500);
+        }
+
         function openAdminPanel() {
-            let password = prompt("الرجاء إدخال كلمة المرور لفتح لوحة التحكم الشاملة:");
+            let password = prompt("الرجاء إدخال كلمة المرور لفتح لوحة التحكم المتقدمة:");
             if (password === "1234") {
                 document.getElementById('adminPanel').style.display = 'block';
                 window.scrollTo(0, document.body.scrollHeight);
@@ -405,6 +517,20 @@ High communication skills and unique accuracy in monitoring details and adjustin
         }
 
         function saveAllData() {
+            // حفظ رابط الموقع الرئيسي
+            localStorage.setItem('mainWebsiteUrl', document.getElementById('inputMainWebsite').value);
+
+            // حفظ روابط وإعدادات الصور
+            localStorage.setItem('headerImgUrl', document.getElementById('inputHeaderImg').value);
+            localStorage.setItem('headerImgSize', document.getElementById('inputHeaderSize').value);
+            localStorage.setItem('aboutImgUrl', document.getElementById('inputAboutImg').value);
+            localStorage.setItem('aboutImgFit', document.getElementById('inputAboutFit').value);
+
+            // حفظ روابط الاستبيانات
+            localStorage.setItem('applyLinkAr', document.getElementById('inputLinkAr').value);
+            localStorage.setItem('applyLinkEn', document.getElementById('inputLinkEn').value);
+
+            // حفظ باقي المكونات والنصوص
             const keys = [
                 'job1Ar', 'job1En', 'job2Ar', 'job2En',
                 'tasks1Ar', 'tasks1En', 'reqs1Ar', 'reqs1En',
@@ -422,7 +548,7 @@ High communication skills and unique accuracy in monitoring details and adjustin
 
             loadStoredData();
             updateDOM();
-            alert("تم تحديث وحفظ كافة الأوصاف، المهام، الشروط، والمسميات الوظيفية بنجاح!");
+            alert("تم حفظ كافة التحديثات والرابط الجديد للموقع الرئيسي بنجاح!");
         }
     </script>
 </body>
