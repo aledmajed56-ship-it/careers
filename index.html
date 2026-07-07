@@ -54,7 +54,6 @@
         .control-btn:hover { background-color: var(--primary-color); transform: scale(1.05); }
 
         header {
-            background-image: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -83,7 +82,7 @@
         .border-sharp { border-radius: 0px; }
         .border-gold { border-radius: 8px; border: 4px solid var(--accent-color); box-shadow: 0 0 20px rgba(181, 148, 16, 0.5); }
 
-        .job-img-box { width: 100%; height: 200px; margin-bottom: 15px; display: none; overflow: hidden; transition: all 0.3s ease; }
+        .job-img-box { width: 100%; height: 260px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; display: none; }
 
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
@@ -120,7 +119,7 @@
         .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; }
         .secret-word-trigger { cursor: default; user-select: none; font-weight: normal; }
 
-        /* لوحة التحكم ثنائية اللغة المتقدمة */
+        /* لوحة التحكم المتقدمة */
         .admin-panel {
             display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 900px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
@@ -213,7 +212,7 @@
             <span class="secret-word-trigger" onclick="handleSecretClick()" style="text-decoration: underline; cursor: pointer;">المملكة العربية السعودية / KSA</span>
         </div>
         
-        <!-- لوحة التحكم ثنائية اللغة المتكاملة والكاملة -->
+        <!-- لوحة التحكم الاحترافية الشاملة -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
             <h3>🎛️ لوحة التحكم الذكية المتقدمة باللغتين | Dual-Language Admin Panel</h3>
 
@@ -222,6 +221,35 @@
             <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
             <label>رابط نموذج طلبات جوجل (Google Form URL):</label>
             <input type="text" id="inputGoogleFormUrl" value="https://forms.gle/YwYyPx9LJXbnnz1MA">
+
+            <div class="admin-section-title">🖼️ معرض إدارة الصور وتحديد أماكنها ونوع الإطارات | Dynamic Images Manager</div>
+            <div class="admin-grid">
+                <div class="admin-col">
+                    <strong>إعدادات روابط وتوزيع الصور:</strong>
+                    <label>1. رابط صورة غلاف الهيدر العلوي (Header Background):</label>
+                    <input type="text" id="img_header_url">
+                    
+                    <label>2. رابط صورة قسم "عن توجه الشركة" الجانبي (About Section):</label>
+                    <input type="text" id="img_about_url">
+                    
+                    <label>3. رابط صورة وظيفة مدير المشروع (Job 1 Image):</label>
+                    <input type="text" id="img_job1_url" placeholder="اتركه فارغاً لإخفائها">
+                    
+                    <label>4. رابط صورة وظيفة مساعد مدير المشروع (Job 2 Image):</label>
+                    <input type="text" id="img_job2_url" placeholder="اتركه فارغاً لإخفائها">
+                </div>
+                <div class="admin-col">
+                    <strong>نمط الإطارات (Frames Styles):</strong>
+                    <label>نوع وشكل إطارات وحواف الصور في الموقع بالكامل:</label>
+                    <select id="inputFrameStyle">
+                        <option value="border-rounded">زوايا منحنية ناعمة (Rounded Corners)</option>
+                        <option value="border-circle">إطار دائري هندسي (Circular Shape)</option>
+                        <option value="border-sharp">حواف حادة كلاسيكية (Sharp Edges)</option>
+                        <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
+                    </select>
+                    <small style="display:block; margin-top:10px; color:#666;">* ملاحظة: يمكنك وضع روابط مختلفة لجميع الخانات السابقة لعرض أكثر من صورة حسب رغبتك بالصفحة.</small>
+                </div>
+            </div>
 
             <div class="admin-section-title">🖼️ إعدادات غلاف الصفحة العلوي | Header Section</div>
             <div class="admin-grid">
@@ -256,24 +284,6 @@
                     <label>Company Features (New line per item):</label> <textarea id="en_aboutTxt"></textarea>
                 </div>
             </div>
-
-            <div class="admin-section-title">📐 نظام إطارات ومواضع الصور الديناميكية | Image Framework</div>
-            <label>رابط ملف الصورة المستهدفة (Image URL):</label>
-            <input type="text" id="inputDynamicImgUrl" value="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill">
-            <label>مكان ظهور الصورة في الصفحة:</label>
-            <select id="inputImgPosition">
-                <option value="header">خلفية غلاف الهيدر العلوي (Header Background)</option>
-                <option value="about">مربع قسم "عن توجه الشركة" الجانبي</option>
-                <option value="job1">أعلى مربع وظيفة (مدير المشروع)</option>
-                <option value="job2">أعلى مربع وظيفة (مساعد مدير مشروع)</option>
-            </select>
-            <label>نوع الإطار وشكل حواف الصورة (Border Frame Style):</label>
-            <select id="inputFrameStyle">
-                <option value="border-rounded">زوايا منحنية ناعمة (Rounded Corners)</option>
-                <option value="border-circle">إطار دائري هندسي (Circular Shape)</option>
-                <option value="border-sharp">حواف حادة كلاسيكية (Sharp Edges)</option>
-                <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
-            </select>
 
             <div class="admin-section-title">💼 وظيفة 1: مدير المشروع | Job 1: Project Manager</div>
             <div class="admin-grid">
@@ -343,7 +353,6 @@
             return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
         }
 
-        // البيانات الافتراضية للموقع باللغتين في حال عدم وجود حفظ مسبق
         const defaults = {
             ar_heroSub: "شراكة متميزة للارتقاء بفرص التوظيف",
             en_heroSub: "An Outstanding Partnership to Enhance Employment Opportunities",
@@ -391,8 +400,14 @@
             en_btnText: "Click Here to Proceed to Application Form"
         };
 
+        const defaultImages = {
+            img_header: "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill",
+            img_about: "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+            img_job1: "",
+            img_job2: ""
+        };
+
         function renderInterface() {
-            // تحديث اتجاه لغة الصفحة والـ DOM الهيكلي
             if (currentLang === 'ar') {
                 document.documentElement.lang = "ar";
                 document.documentElement.dir = "rtl";
@@ -403,7 +418,6 @@
                 document.getElementById('langBtn').innerText = "العربية";
             }
 
-            // عرض النصوص بناءً على اللغة المحددة حالياً
             const pfx = currentLang + "_";
             document.getElementById('sub-title').innerText = localStorage.getItem('cfg_' + pfx + 'heroSub') || defaults[pfx + 'heroSub'];
             document.getElementById('main-title').innerText = localStorage.getItem('cfg_' + pfx + 'heroMain') || defaults[pfx + 'heroMain'];
@@ -433,70 +447,75 @@
             let j2Reqs = localStorage.getItem('cfg_' + pfx + 'j2Reqs') || defaults[pfx + 'j2Reqs'];
             document.getElementById('job2-reqs').innerHTML = textToHtmlList(j2Reqs);
 
-            // نداء التقديم والزر
             document.getElementById('cta-title').innerText = localStorage.getItem('cfg_' + pfx + 'ctaTitle') || defaults[pfx + 'ctaTitle'];
             document.getElementById('cta-desc').innerText = localStorage.getItem('cfg_' + pfx + 'ctaDesc') || defaults[pfx + 'ctaDesc'];
             document.getElementById('mainFormBtn').innerText = localStorage.getItem('cfg_' + pfx + 'btnText') || defaults[pfx + 'btnText'];
 
-            // روابط أساسية لا تتأثر باللغة ولكن يتم تفعيلها ديناميكياً
             let mainWeb = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
             document.getElementById('mainWebBtn').href = mainWeb;
             let googleForm = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
             document.getElementById('mainFormBtn').href = googleForm;
 
-            // تطبيق التحكم بالصورة والإطار
-            let imgUrl = localStorage.getItem('cfg_imgUrl') || "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill";
-            let imgPos = localStorage.getItem('cfg_imgPos') || "about";
+            // تطبيق نظام توزيع الصور المتعددة الجديد
+            let imgHeader = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
+            let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
+            let imgJob1 = localStorage.getItem('cfg_img_job1') || defaultImages.img_job1;
+            let imgJob2 = localStorage.getItem('cfg_img_job2') || defaultImages.img_job2;
             let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
 
-            document.getElementById('imgBoxJob1').style.display = 'none';
-            document.getElementById('imgBoxJob2').style.display = 'none';
+            // تعيين إطارات الحواف لجميع الصور في الصفحة
             document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
             document.getElementById('imgBoxJob1').className = "job-img-box " + frameStyle;
             document.getElementById('imgBoxJob2').className = "job-img-box " + frameStyle;
 
-            if (imgPos === 'header') {
-                document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${imgUrl}')`;
-            } else if (imgPos === 'about') {
-                document.getElementById('aboutImg').src = imgUrl;
-            } else if (imgPos === 'job1') {
+            // تطبيق الصور في أماكنها المحددة
+            document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${imgHeader}')`;
+            document.getElementById('aboutImg').src = imgAbout;
+
+            if (imgJob1 && imgJob1.trim() !== "") {
                 document.getElementById('imgBoxJob1').style.display = 'block';
-                document.getElementById('imgJob1').src = imgUrl;
-            } else if (imgPos === 'job2') {
+                document.getElementById('imgJob1').src = imgJob1;
+            } else { document.getElementById('imgBoxJob1').style.display = 'none'; }
+
+            if (imgJob2 && imgJob2.trim() !== "") {
                 document.getElementById('imgBoxJob2').style.display = 'block';
-                document.getElementById('imgJob2').src = imgUrl;
-            }
+                document.getElementById('imgJob2').src = imgJob2;
+            } else { document.getElementById('imgBoxJob2').style.display = 'none'; }
         }
 
         function loadPanelInputs() {
-            // تعبئة كامل حقول لوحة التحكم باللغتين معاً فوراً من الذاكرة أو الافتراضيات
             document.getElementById('inputMainWebsite').value = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
             document.getElementById('inputGoogleFormUrl').value = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
-            document.getElementById('inputDynamicImgUrl').value = localStorage.getItem('cfg_imgUrl') || "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill";
-            document.getElementById('inputImgPosition').value = localStorage.getItem('cfg_imgPos') || "about";
             document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
 
-            // مصفوفة الحقول لتعبئتها بشكل تكراري ذكي للجهتين
+            // تحميل روابط الصور الأربعة المستقلة في اللوحة
+            document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
+            document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
+            document.getElementById('img_job1_url').value = localStorage.getItem('cfg_img_job1') || defaultImages.img_job1;
+            document.getElementById('img_job2_url').value = localStorage.getItem('cfg_img_job2') || defaultImages.img_job2;
+
             Object.keys(defaults).forEach(key => {
                 document.getElementById(key).value = localStorage.getItem('cfg_' + key) || defaults[key];
             });
         }
 
         function saveAllSettings() {
-            // حفظ الروابط والصور العامة
             localStorage.setItem('cfg_mainWeb', document.getElementById('inputMainWebsite').value);
             localStorage.setItem('cfg_googleForm', document.getElementById('inputGoogleFormUrl').value);
-            localStorage.setItem('cfg_imgUrl', document.getElementById('inputDynamicImgUrl').value);
-            localStorage.setItem('cfg_imgPos', document.getElementById('inputImgPosition').value);
             localStorage.setItem('cfg_frameStyle', document.getElementById('inputFrameStyle').value);
 
-            // حفظ جميع الحقول النصية للغتين من اللوحة إلى الذاكرة المتصفحية
+            // حفظ روابط معرض الصور الأربعة المستقلة
+            localStorage.setItem('cfg_img_header', document.getElementById('img_header_url').value);
+            localStorage.setItem('cfg_img_about', document.getElementById('img_about_url').value);
+            localStorage.setItem('cfg_img_job1', document.getElementById('img_job1_url').value);
+            localStorage.setItem('cfg_img_job2', document.getElementById('img_job2_url').value);
+
             Object.keys(defaults).forEach(key => {
                 localStorage.setItem('cfg_' + key, document.getElementById(key).value);
             });
 
             renderInterface();
-            alert("تم حفظ وتحديث كامل إعدادات المنصة للغتين بنجاح تام!");
+            alert("تم حفظ التعديلات وتحديث نظام معرض الصور المتعددة بنجاح تـام!");
         }
 
         function toggleLanguage() {
@@ -520,7 +539,6 @@
             setTimeout(() => { clickCount = 0; }, 2000);
         }
 
-        // تشغيل نظام الواجهات المتكامل فور التحميل والتشغيل
         renderInterface();
     </script>
 </body>
