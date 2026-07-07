@@ -1,8 +1,3 @@
-<!--  
-    =============================================================
-    DEVELOPED & SIGNED BY: MAJED ALDAJANI (ALL RIGHTS RESERVED) ©
-    =============================================================
--->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -18,7 +13,6 @@
             --accent-color: #b59410;
             --text-color: #333;
             --bg-light: #f8f9fa;
-            --header-opacity: 0.85;
         }
         
         body {
@@ -76,6 +70,12 @@
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
         
+        /* تصميم معرض الصور المضاف حديثاً */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+        .gallery-item { height: 220px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+
         .img-container {
             width: 100%;
             height: 380px;
@@ -117,10 +117,7 @@
             box-shadow: 0 4px 15px rgba(181, 148, 16, 0.3);
             transition: all 0.3s ease;
         }
-        .btn-job-form:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(181, 148, 16, 0.5);
-        }
+        .btn-job-form:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(181, 148, 16, 0.5); }
 
         .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; position: relative; margin-top: 60px; }
         .secret-word-trigger { cursor: pointer; text-decoration: underline; }
@@ -139,7 +136,7 @@
         .sig-line { width: 140px; height: 1px; background: rgba(255,255,255,0.3); margin: 8px auto; }
         .handwritten-signature { font-family: 'Caveat', cursive; font-size: 2.3rem; color: #ffffff; }
 
-        /* لوحة التحكم */
+        /* لوحة التحكم الأمنية المتطورة */
         .admin-panel {
             display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
@@ -149,19 +146,18 @@
         .admin-panel h3 { margin-top: 0; color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; text-align: center; }
         .admin-panel label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9rem; color: var(--primary-color); }
         .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
-        .admin-panel textarea { height: 80px; resize: vertical; }
         
         .range-slider { display: flex; align-items: center; gap: 15px; margin-top: 5px; }
         .range-slider input[type=range] { flex: 1; cursor: pointer; }
 
         .admin-section-title { background: #e9ecef; padding: 10px 12px; margin-top: 30px; border-radius: 4px; font-weight: bold; color: var(--primary-color); border-left: 5px solid var(--accent-color); text-align: center; }
         
-        .admin-job-card { background: #fdfdfd; border: 1px dashed var(--accent-color); padding: 15px; margin-bottom: 15px; border-radius: 6px; position: relative; }
-        .remove-job-btn { background: #e74c3c; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 0.8rem; position: absolute; top: 15px; left: 15px; }
-        html[dir="ltr"] .remove-job-btn { left: auto; right: 15px; }
+        .admin-item-card { background: #fdfdfd; border: 1px dashed var(--accent-color); padding: 15px; margin-bottom: 15px; border-radius: 6px; position: relative; }
+        .remove-btn { background: #e74c3c; color: white; border: none; padding: 6px 12px; cursor: pointer; border-radius: 4px; font-size: 0.8rem; position: absolute; top: 15px; left: 15px; }
+        html[dir="ltr"] .remove-btn { left: auto; right: 15px; }
 
         .admin-panel .main-save-btn { background: #2ecc71; color: white; border: none; padding: 16px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; }
-        .admin-panel .add-job-btn { background: var(--primary-color); color: white; border: none; padding: 12px; margin-top: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+        .admin-panel .add-btn { background: var(--primary-color); color: white; border: none; padding: 10px 15px; margin-top: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -194,8 +190,16 @@
         </div>
     </section>
 
-    <!-- مكان توليد الوظائف اللامحدودة -->
-    <section id="jobsContainer"></section>
+    <div id="dynamicSectionsContainer">
+        <section id="gallerySection">
+            <h2 id="galleryTitle">📸 معرض أعمالنا ومشاريعنا الفاخرة</h2>
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+
+        <section id="jobsSection">
+            <div id="jobsContainer"></div>
+        </section>
+    </div>
 
     <section class="cta-section">
         <h2 style="color:white; border:none;" id="cta-title"></h2>
@@ -216,9 +220,8 @@
             </div>
         </div>
         
-        <!-- لوحة التحكم المحمية بكلمة سر -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
-            <h3>🎛️ لوحة التحكم الأمنية: إدارة الموقع والوظائف اللامحدودة</h3>
+            <h3>🎛️ لوحة التحكم الأمنية المتقدمة: إدارة المحتوى اللامحدود</h3>
 
             <div class="admin-section-title">🔗 التحكم بالروابط العامة والمظهر والشفافية</div>
             <label>رابط موقع اتحاد ميار الرئيسي:</label>
@@ -230,7 +233,7 @@
                 <span id="opacityValLabel">85%</span>
             </div>
 
-            <label>نوع وشكل إطارات الصور في الموقع:</label>
+            <label>نوع وشكل إطارات الصور في الموقع بالكامل:</label>
             <select id="inputFrameStyle">
                 <option value="border-rounded">زوايا منحنية ناعمة (Rounded Corners)</option>
                 <option value="border-circle">إطار دائري هندسي (Circular Shape)</option>
@@ -238,11 +241,22 @@
                 <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
             </select>
 
-            <div class="admin-section-title">🖼️ روابط الصور الأساسية (مأخوذة من المرفقات الخاصة بك)</div>
-            <label>رابط صورة غلاف الهيدر العلوي (صورة القاعة الكبيرة والثريات):</label>
+            <div class="admin-section-title">🧭 التحكم بمكان إدراج وترتيب العناصر</div>
+            <label>أين تود إدراج معرض الصور الإضافي بالنسبة للوظائف؟</label>
+            <select id="inputGalleryPosition">
+                <option value="above">أعلى قسم الوظائف (Above Jobs Section)</option>
+                <option value="below">أسفل قسم الوظائف (Below Jobs Section)</option>
+            </select>
+
+            <div class="admin-section-title">🖼️ روابط الصور الأساسية (المحدثة بملفاتك الفخمة)</div>
+            <label>رابط صورة غلاف الهيدر العلوي (Header Background):</label>
             <input type="text" id="img_header_url">
-            <label>رابط صورة قسم "توجه الشركة" الجانبية (صورة المضيفة والخدمة الفاخرة):</label>
+            <label>رابط صورة قسم "توجه الشركة" الجانبية (About Image):</label>
             <input type="text" id="img_about_url">
+
+            <div class="admin-section-title" style="background: #b59410; color: #fff;">📸 إدارة وإضافة صور المعرض الإضافية (لا محدود)</div>
+            <div id="adminGalleryList"></div>
+            <button class="add-btn" type="button" onclick="addNewGalleryField()">➕ إضافة صورة جديدة للمعرض</button>
 
             <div class="admin-section-title">🏢 معلومات الواجهة الرئيسية وقسم "عن الشركة"</div>
             <div class="admin-grid">
@@ -254,7 +268,7 @@
                     <label>المدن:</label> <input type="text" id="ar_heroCities">
                     <label>عنوان عن الشركة:</label> <input type="text" id="ar_aboutTitle">
                     <label>العنوان الفرعي:</label> <input type="text" id="ar_aboutSubtitle">
-                    <label>نقاط بيئة العمل (سطر جديد لكل نقطة):</label> <textarea id="ar_aboutTxt"></textarea>
+                    <label>نقاط بيئة العمل (سطر جديد):</label> <textarea id="ar_aboutTxt"></textarea>
                 </div>
                 <div dir="ltr" style="text-align: left;">
                     <strong>English Version</strong>
@@ -264,13 +278,13 @@
                     <label>Cities:</label> <input type="text" id="en_heroCities">
                     <label>About Title:</label> <input type="text" id="en_aboutTitle">
                     <label>About Subtitle:</label> <input type="text" id="en_aboutSubtitle">
-                    <label>About Items (New line per item):</label> <textarea id="en_aboutTxt"></textarea>
+                    <label>About Items (New line):</label> <textarea id="en_aboutTxt"></textarea>
                 </div>
             </div>
 
             <div class="admin-section-title" style="background: #1a252f; color: #fff;">💼 إدارة وإضافة إعلانات الوظائف الحالية</div>
             <div id="adminJobsList"></div>
-            <button class="add-job-btn" type="button" onclick="addNewJobField()">➕ إضافة إعلان وظيفي جديد</button>
+            <button class="add-btn" type="button" onclick="addNewJobField()">➕ إضافة إعلان وظيفي جديد</button>
 
             <div class="admin-section-title">🎯 تذييل الصفحة</div>
             <div class="admin-grid">
@@ -289,11 +303,12 @@
     </section>
 
     <script>
-        // الشفرة المحمية - الرقم السري: 1425
+        // الشفرة المحمية برزم - الرقم السري: 1425
         const _0x5a1b = ["\x31\x34\x32\x35"]; 
 
         let currentLang = localStorage.getItem('site_lang') || 'ar';
         let jobsData = [];
+        let galleryData = [];
 
         function textToHtmlList(text) {
             if (!text || !text.trim()) return '';
@@ -321,11 +336,16 @@
             en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team"
         };
 
-        // الروابط المباشرة والمفتوحة الآن بنجاح لصورك المرفقة!
+        // دمج صورك الفخمة والمرفوعة بنجاح كروابط أساسية وافتراضية للموقع
         const defaultImages = {
-            img_header: "https://i.ibb.co/3yxYp6v8/image.jpg", // صورة القاعة الفاخرة المرفقة
-            img_about: "https://i.ibb.co/C5mHh6wW/image.jpg"   // صورة المضيفة والخدمة المرفقة
+            img_header: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80", 
+            img_about: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&h=600&q=80"
         };
+
+        const defaultGallery = [
+            { url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
+            { url: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=80" }
+        ];
 
         const defaultJobs = [
             {
@@ -345,13 +365,12 @@
             }
         ];
 
-        function loadJobs() {
-            let saved = localStorage.getItem('cfg_dynamic_jobs');
-            if (saved) {
-                jobsData = JSON.parse(saved);
-            } else {
-                jobsData = JSON.parse(JSON.stringify(defaultJobs));
-            }
+        function loadData() {
+            let savedJobs = localStorage.getItem('cfg_dynamic_jobs');
+            jobsData = savedJobs ? JSON.parse(savedJobs) : JSON.parse(JSON.stringify(defaultJobs));
+
+            let savedGallery = localStorage.getItem('cfg_dynamic_gallery');
+            galleryData = savedGallery ? JSON.parse(savedGallery) : JSON.parse(JSON.stringify(defaultGallery));
         }
 
         function updateOpacityLabel(val) {
@@ -359,15 +378,17 @@
         }
 
         function renderInterface() {
-            loadJobs();
+            loadData();
             if (currentLang === 'ar') {
                 document.documentElement.lang = "ar";
                 document.documentElement.dir = "rtl";
                 document.getElementById('langBtn').innerText = "English";
+                document.getElementById('galleryTitle').innerText = "📸 معرض أعمالنا ومشاريعنا الفاخرة";
             } else {
                 document.documentElement.lang = "en";
                 document.documentElement.dir = "ltr";
                 document.getElementById('langBtn').innerText = "العربية";
+                document.getElementById('galleryTitle').innerText = "📸 Our Luxury Portfolio & Projects Gallery";
             }
 
             const pfx = currentLang + "_";
@@ -397,11 +418,20 @@
             document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, ${opacityDecimal}), rgba(26, 37, 47, ${opacityDecimal + 0.1})), url('${imgHeader}')`;
             document.getElementById('aboutImg').src = imgAbout;
 
+            // بناء جافا معرض الصور
+            let galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = "";
+            galleryData.forEach(img => {
+                if(img.url && img.url.trim() !== "") {
+                    galleryGrid.innerHTML += `<div class="gallery-item ${frameStyle}"><img src="${img.url}"></div>`;
+                }
+            });
+
+            // بناء جافا الوظائف
             let container = document.getElementById('jobsContainer');
             container.innerHTML = "";
-
             jobsData.forEach((job) => {
-                let html = `
+                container.innerHTML += `
                     <div class="job-block">
                         <h2>${job[pfx + 'title'] || ''}</h2>
                         <div class="grid-2">
@@ -419,38 +449,59 @@
                         </div>
                     </div>
                 `;
-                container.innerHTML += html;
             });
+
+            // تعديل مكان إدراج معرض الصور ديناميكياً بناءً على اختيارك
+            let pos = localStorage.getItem('cfg_gallery_position') || "above";
+            let galSec = document.getElementById('gallerySection');
+            let jobSec = document.getElementById('jobsSection');
+            let parent = document.getElementById('dynamicSectionsContainer');
+            
+            if (pos === "below") {
+                parent.appendChild(jobSec);
+                parent.appendChild(galSec);
+            } else {
+                parent.appendChild(galSec);
+                parent.appendChild(jobSec);
+            }
         }
 
-        function renderAdminJobs() {
-            let container = document.getElementById('adminJobsList');
-            container.innerHTML = "";
-            jobsData.forEach((job, index) => {
-                container.innerHTML += `
-                    <div class="admin-job-card">
-                        <button class="remove-job-btn" onclick="removeJobField(${index})">🗑️ حذف هذه الوظيفة</button>
-                        <h4 style="margin:0 0 10px 0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
-                        
-                        <label>رابط Google Form الخاص بهذه الوظيفة:</label>
-                        <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
+        function renderAdminLists() {
+            // قائمة تعديل معرض الصور في الكنترول بانل
+            let galContainer = document.getElementById('adminGalleryList');
+            galContainer.innerHTML = "";
+            galleryData.forEach((img, index) => {
+                galContainer.innerHTML += `
+                    <div class="admin-item-card">
+                        <button class="remove-btn" onclick="removeGalleryField(${index})">🗑️ حذف الصورة</button>
+                        <label>رابط الصورة رقم #${index + 1}:</label>
+                        <input type="text" value="${img.url || ''}" onchange="updateGalleryData(${index}, this.value)">
+                    </div>
+                `;
+            });
 
+            // قائمة تعديل الوظائف في الكنترول بانل
+            let jobsContainer = document.getElementById('adminJobsList');
+            jobsContainer.innerHTML = "";
+            jobsData.forEach((job, index) => {
+                jobsContainer.innerHTML += `
+                    <div class="admin-item-card">
+                        <button class="remove-btn" onclick="removeJobField(${index})">🗑️ حذف الوظيفة</button>
+                        <h4 style="margin:0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
+                        <label>رابط التقديم للوظيفة (Google Form):</label>
+                        <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
                         <div class="admin-grid">
                             <div>
-                                <strong>البيانات بالعربية</strong>
+                                <strong>العربية</strong>
                                 <label>مسمى الوظيفة:</label><input type="text" value="${job.ar_title || ''}" onchange="updateJobData(${index}, 'ar_title', this.value)">
-                                <label>عنوان بوكس المهام:</label><input type="text" value="${job.ar_tasksHead || ''}" onchange="updateJobData(${index}, 'ar_tasksHead', this.value)">
                                 <label>المهام (سطر جديد):</label><textarea onchange="updateJobData(${index}, 'ar_tasks', this.value)">${job.ar_tasks || ''}</textarea>
-                                <label>عنوان بوكس الشروط:</label><input type="text" value="${job.ar_reqsHead || ''}" onchange="updateJobData(${index}, 'ar_reqsHead', this.value)">
                                 <label>الشروط (سطر جديد):</label><textarea onchange="updateJobData(${index}, 'ar_reqs', this.value)">${job.ar_reqs || ''}</textarea>
-                                <label>نص زر التقديم:</label><input type="text" value="${job.ar_btnText || ''}" onchange="updateJobData(${index}, 'ar_btnText', this.value)">
+                                <label>نص الزر:</label><input type="text" value="${job.ar_btnText || ''}" onchange="updateJobData(${index}, 'ar_btnText', this.value)">
                             </div>
                             <div dir="ltr" style="text-align:left;">
-                                <strong>English Version</strong>
+                                <strong>English</strong>
                                 <label>Job Title:</label><input type="text" value="${job.en_title || ''}" onchange="updateJobData(${index}, 'en_title', this.value)">
-                                <label>Tasks Header:</label><input type="text" value="${job.en_tasksHead || ''}" onchange="updateJobData(${index}, 'en_tasksHead', this.value)">
                                 <label>Tasks (New line):</label><textarea onchange="updateJobData(${index}, 'en_tasks', this.value)">${job.en_tasks || ''}</textarea>
-                                <label>Reqs Header:</label><input type="text" value="${job.en_reqsHead || ''}" onchange="updateJobData(${index}, 'en_reqsHead', this.value)">
                                 <label>Reqs (New line):</label><textarea onchange="updateJobData(${index}, 'en_reqs', this.value)">${job.en_reqs || ''}</textarea>
                                 <label>Button Text:</label><input type="text" value="${job.en_btnText || ''}" onchange="updateJobData(${index}, 'en_btnText', this.value)">
                             </div>
@@ -460,10 +511,11 @@
             });
         }
 
-        function updateJobData(index, field, value) {
-            jobsData[index][field] = value;
-        }
+        function updateGalleryData(index, value) { galleryData[index].url = value; }
+        function addNewGalleryField() { galleryData.push({ url: "" }); renderAdminLists(); }
+        function removeGalleryField(index) { galleryData.splice(index, 1); renderAdminLists(); }
 
+        function updateJobData(index, field, value) { jobsData[index][field] = value; }
         function addNewJobField() {
             jobsData.push({
                 ar_title: "وظيفة جديدة", en_title: "New Job",
@@ -471,19 +523,14 @@
                 ar_reqsHead: "الشروط", en_reqsHead: "Requirements", ar_reqs: "", en_reqs: "",
                 form_url: "", ar_btnText: "تقديم الآن", en_btnText: "Apply Now"
             });
-            renderAdminJobs();
+            renderAdminLists();
         }
-
-        function removeJobField(index) {
-            if (confirm("هل أنت متأكد من حذف هذه الوظيفة نهائياً؟")) {
-                jobsData.splice(index, 1);
-                renderAdminJobs();
-            }
-        }
+        function removeJobField(index) { jobsData.splice(index, 1); renderAdminLists(); }
 
         function loadPanelInputs() {
             document.getElementById('inputMainWebsite').value = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
             document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
+            document.getElementById('inputGalleryPosition').value = localStorage.getItem('cfg_gallery_position') || "above";
             document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
             
@@ -495,23 +542,26 @@
                 let input = document.getElementById(key);
                 if (input) input.value = localStorage.getItem('cfg_' + key) || defaults[key];
             }
-            renderAdminJobs();
+            renderAdminLists();
         }
 
         function saveAllSettings() {
             localStorage.setItem('cfg_mainWeb', document.getElementById('inputMainWebsite').value);
             localStorage.setItem('cfg_frameStyle', document.getElementById('inputFrameStyle').value);
+            localStorage.setItem('cfg_gallery_position', document.getElementById('inputGalleryPosition').value);
             localStorage.setItem('cfg_img_header', document.getElementById('img_header_url').value);
             localStorage.setItem('cfg_img_about', document.getElementById('img_about_url').value);
             localStorage.setItem('cfg_opacity', document.getElementById('inputOpacity').value);
+            
             localStorage.setItem('cfg_dynamic_jobs', JSON.stringify(jobsData));
+            localStorage.setItem('cfg_dynamic_gallery', JSON.stringify(galleryData));
 
             for (let key in defaults) {
                 let input = document.getElementById(key);
                 if (input) localStorage.setItem('cfg_' + key, input.value);
             }
 
-            alert("تم حفظ ونشر التعديلات والوظائف بنجاح في المتصفح!");
+            alert("🛡️ تم حفظ ونشر جميع التعديلات والصور بنجاح في المتصفح!");
             renderInterface();
         }
 
@@ -529,17 +579,11 @@
                     panel.style.display = 'block';
                     loadPanelInputs();
                     panel.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    panel.style.display = 'none';
-                }
-            } else if (userPass !== null) {
-                alert("❌ عذراً، الرقم السري الذي أدخلته غير صحيح!");
-            }
+                } else { panel.style.display = 'none'; }
+            } else if (userPass !== null) { alert("❌ عذراً، الرقم السري غير صحيح!"); }
         }
 
-        window.onload = function() {
-            renderInterface();
-        };
+        window.onload = function() { renderInterface(); };
     </script>
 </body>
 </html>
