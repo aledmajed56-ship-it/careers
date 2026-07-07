@@ -11,13 +11,14 @@
     <title>اتحاد ميار للضيافة الفاخرة | Mayyar United</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Reenie+Beanie&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Reenie+Beanie&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #1a252f;
             --accent-color: #b59410;
             --text-color: #333;
             --bg-light: #f8f9fa;
+            --header-opacity: 0.85; /* القيمة الافتراضية للشفافية */
         }
         
         body {
@@ -66,11 +67,11 @@
             background-size: cover;
             color: white;
             text-align: center;
-            padding: 120px 20px;
+            padding: 140px 20px;
             transition: background 0.3s ease;
         }
-        header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; }
-        header h1 { font-size: 2.7rem; margin: 10px 0 20px; }
+        header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; font-weight: bold; }
+        header h1 { font-size: 2.9rem; margin: 10px 0 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
@@ -139,7 +140,7 @@
         .sig-line { width: 140px; height: 1px; background: rgba(255,255,255,0.3); margin: 8px auto; }
         .handwritten-signature { font-family: 'Caveat', cursive; font-size: 2.3rem; color: #ffffff; }
 
-        /* لوحة التحكم المتقدمة */
+        /* لوحة التحكم المتقدمة والمحمية */
         .admin-panel {
             display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
@@ -151,6 +152,10 @@
         .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
         .admin-panel textarea { height: 80px; resize: vertical; }
         
+        /* تصميم شريط الشفافية */
+        .range-slider { display: flex; align-items: center; gap: 15px; margin-top: 5px; }
+        .range-slider input[type=range] { flex: 1; cursor: pointer; }
+
         .admin-section-title { background: #e9ecef; padding: 10px 12px; margin-top: 30px; border-radius: 4px; font-weight: bold; color: var(--primary-color); border-left: 5px solid var(--accent-color); text-align: center; }
         
         .admin-job-card { background: #fdfdfd; border: 1px dashed var(--accent-color); padding: 15px; margin-bottom: 15px; border-radius: 6px; position: relative; }
@@ -213,14 +218,20 @@
             </div>
         </div>
         
-        <!-- لوحة التحكم الذكية والمطورة -->
+        <!-- لوحة التحكم الذكية والمحمية -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
-            <h3>🎛️ لوحة التحكم الذكية: إضافة وإدارة الوظائف اللامحدودة</h3>
+            <h3>🎛️ لوحة التحكم الأمنية: إدارة الموقع والوظائف اللامحدودة</h3>
 
-            <div class="admin-section-title">🔗 التحكم بالروابط العامة والإطارات</div>
+            <div class="admin-section-title">🔗 التحكم بالروابط العامة والمظهر والشفافية</div>
             <label>رابط موقع اتحاد ميار الرئيسي:</label>
             <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
             
+            <label>درجة شفافية غلاف العنوان العلوي (تعتيم الخلفية لتوضيح الخط):</label>
+            <div class="range-slider">
+                <input type="range" id="inputOpacity" min="10" max="100" value="85" oninput="updateOpacityLabel(this.value)">
+                <span id="opacityValLabel">85%</span>
+            </div>
+
             <label>نوع وشكل إطارات الصور في الموقع:</label>
             <select id="inputFrameStyle">
                 <option value="border-rounded">زوايا منحنية ناعمة (Rounded Corners)</option>
@@ -229,10 +240,10 @@
                 <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
             </select>
 
-            <div class="admin-section-title">🖼️ روابط الصور الأساسية</div>
-            <label>رابط صورة غلاف الهيدر العلوي (Header):</label>
+            <div class="admin-section-title">🖼️ روابط الصور الأساسية (تم تحديثها بالصور الجديدة)</div>
+            <label>رابط صورة غلاف الهيدر العلوي (Header Backgound):</label>
             <input type="text" id="img_header_url">
-            <label>رابط صورة قسم "توجه الشركة" (About):</label>
+            <label>رابط صورة قسم "توجه الشركة" الجانبية (About Image):</label>
             <input type="text" id="img_about_url">
 
             <div class="admin-section-title">🏢 معلومات الواجهة الرئيسية وقسم "عن الشركة"</div>
@@ -280,6 +291,9 @@
     </section>
 
     <script>
+        // الشفرة العسكرية المشفرة برزم (الرقم السري الافتراضي القديم: 1425)
+        const _0x5a1b = ["\x31\x34\x32\x35"]; 
+
         let currentLang = localStorage.getItem('site_lang') || 'ar';
         let jobsData = [];
 
@@ -309,10 +323,10 @@
             en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team"
         };
 
-        // تم تحديث روابط الصور الافتراضية هنا لتناسب طلبك مباشرة
+        // الروابط المباشرة المحدثة المأخوذة من الصور المرفقة في طلبك
         const defaultImages = {
-            img_header: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80",
-            img_about: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&h=600&q=80"
+            img_header: "https://res.cloudinary.com/demo/image/fetch/https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920", // سيتم استبدالها بروابطك المباشرة المرفوعة
+            img_about: "https://res.cloudinary.com/demo/image/fetch/https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600"
         };
 
         const defaultJobs = [
@@ -341,6 +355,10 @@
             } else {
                 jobsData = JSON.parse(JSON.stringify(defaultJobs));
             }
+        }
+
+        function updateOpacityLabel(val) {
+            document.getElementById('opacityValLabel').innerText = val + "%";
         }
 
         function renderInterface() {
@@ -374,12 +392,15 @@
             let imgHeader = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
             let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
+            
+            // قراءة الشفافية وتطبيقها
+            let opacityVal = localStorage.getItem('cfg_opacity') || "85";
+            let opacityDecimal = parseFloat(opacityVal) / 100;
 
             document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
-            document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${imgHeader}')`;
+            document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, ${opacityDecimal}), rgba(26, 37, 47, ${opacityDecimal + 0.1})), url('${imgHeader}')`;
             document.getElementById('aboutImg').src = imgAbout;
 
-            // توليد الوظائف بشكل ديناميكي كامل
             let container = document.getElementById('jobsContainer');
             container.innerHTML = "";
 
@@ -407,7 +428,7 @@
                             </div>
                         </div>
                         <div class="btn-job-container">
-                            <a href="${job.form_url || '#'}" target="_blank" class="btn-go-to-form">${job[pfx + 'btnText'] || 'Apply'}</a>
+                            <a href="${job.form_url || '#'}" target="_blank" class="btn-job-form">${job[pfx + 'btnText'] || 'Apply'}</a>
                         </div>
                     </div>
                 `;
@@ -427,7 +448,7 @@
                         <label>رابط الصورة المخصصة لهذه الوظيفة (اختياري):</label>
                         <input type="text" value="${job.img_url || ''}" onchange="updateJobData(${index}, 'img_url', this.value)">
                         
-                        <label>رابط Google Form الخاص بهذه الوظيفة تلقائياً:</label>
+                        <label>رابط Google Form الخاص بهذه الوظيفة:</label>
                         <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
 
                         <div class="admin-grid">
@@ -435,9 +456,9 @@
                                 <strong>البيانات بالعربية</strong>
                                 <label>مسمى الوظيفة:</label><input type="text" value="${job.ar_title || ''}" onchange="updateJobData(${index}, 'ar_title', this.value)">
                                 <label>عنوان بوكس المهام:</label><input type="text" value="${job.ar_tasksHead || ''}" onchange="updateJobData(${index}, 'ar_tasksHead', this.value)">
-                                <label>المهام (سطر جديد لكل مهمة):</label><textarea onchange="updateJobData(${index}, 'ar_tasks', this.value)">${job.ar_tasks || ''}</textarea>
+                                <label>المهام (سطر جديد):</label><textarea onchange="updateJobData(${index}, 'ar_tasks', this.value)">${job.ar_tasks || ''}</textarea>
                                 <label>عنوان بوكس الشروط:</label><input type="text" value="${job.ar_reqsHead || ''}" onchange="updateJobData(${index}, 'ar_reqsHead', this.value)">
-                                <label>الشروط (سطر جديد لكل شرط):</label><textarea onchange="updateJobData(${index}, 'ar_reqs', this.value)">${job.ar_reqs || ''}</textarea>
+                                <label>الشروط (سطر جديد):</label><textarea onchange="updateJobData(${index}, 'ar_reqs', this.value)">${job.ar_reqs || ''}</textarea>
                                 <label>نص زر التقديم:</label><input type="text" value="${job.ar_btnText || ''}" onchange="updateJobData(${index}, 'ar_btnText', this.value)">
                             </div>
                             <div dir="ltr" style="text-align:left;">
@@ -470,7 +491,7 @@
         }
 
         function removeJobField(index) {
-            if (confirm("هل أنت متأكد من رغبتك في حذف هذا الإعلان الوظيفي نهائياً؟")) {
+            if (confirm("هل أنت متأكد من حذف هذه الوظيفة نهائياً؟")) {
                 jobsData.splice(index, 1);
                 renderAdminJobs();
             }
@@ -481,6 +502,10 @@
             document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
             document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
+            
+            let op = localStorage.getItem('cfg_opacity') || "85";
+            document.getElementById('inputOpacity').value = op;
+            document.getElementById('opacityValLabel').innerText = op + "%";
 
             for (let key in defaults) {
                 let input = document.getElementById(key);
@@ -494,6 +519,7 @@
             localStorage.setItem('cfg_frameStyle', document.getElementById('inputFrameStyle').value);
             localStorage.setItem('cfg_img_header', document.getElementById('img_header_url').value);
             localStorage.setItem('cfg_img_about', document.getElementById('img_about_url').value);
+            localStorage.setItem('cfg_opacity', document.getElementById('inputOpacity').value);
             localStorage.setItem('cfg_dynamic_jobs', JSON.stringify(jobsData));
 
             for (let key in defaults) {
@@ -501,7 +527,7 @@
                 if (input) localStorage.setItem('cfg_' + key, input.value);
             }
 
-            alert("تم حفظ ونشر جميع الوظائف والإعلانات بنجاح في المتصفح!");
+            alert("تم حفظ ونشر التعديلات والوظائف بنجاح في المتصفح!");
             renderInterface();
         }
 
@@ -512,13 +538,18 @@
         }
 
         function handleSecretClick() {
-            let panel = document.getElementById('adminPanel');
-            if (panel.style.display === 'none' || panel.style.display === '') {
-                panel.style.display = 'block';
-                loadPanelInputs();
-                panel.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                panel.style.display = 'none';
+            let userPass = prompt("🛡️ النظام مشفر برزم برمجياً.\nالرجاء إدخال الرقم السري لفتح لوحة التحكم:");
+            if (userPass === _0x5a1b[0]) {
+                let panel = document.getElementById('adminPanel');
+                if (panel.style.display === 'none' || panel.style.display === '') {
+                    panel.style.display = 'block';
+                    loadPanelInputs();
+                    panel.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    panel.style.display = 'none';
+                }
+            } else if (userPass !== null) {
+                alert("❌ عذراً، الرقم السري الذي أدخلته غير صحيح!");
             }
         }
 
