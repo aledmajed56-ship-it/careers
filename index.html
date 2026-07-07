@@ -80,18 +80,20 @@
         .btn-apply:hover { transform: scale(1.05); background-color: #c9a414; }
         .tags { font-size: 0.9rem; color: #888; margin-top: 20px; }
 
-        /* ستايل لوحة التحكم السرية للمسميات الوظيفية */
+        /* ستايل لوحة التحكم الموسعة */
         .admin-login-btn {
             background: none; border: none; color: #eee; font-size: 0.8rem; cursor: pointer; margin-top: 30px; text-decoration: underline;
         }
         .admin-panel {
-            display: none; background: #fff; color: #333; border: 2px solid var(--accent-color); border-radius: 8px; padding: 20px; max-width: 500px; margin: 20px auto; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none; background: #fff; color: #333; border: 2px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 700px; margin: 20px auto; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .admin-panel h3 { margin-top: 0; color: var(--primary-color); }
-        .admin-panel label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
-        .admin-panel input { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        .admin-panel button { background: var(--primary-color); color: white; border: none; padding: 10px 15px; margin-top: 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+        .admin-panel label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; color: var(--primary-color); }
+        .admin-panel input, .admin-panel textarea { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+        .admin-panel textarea { height: 100px; resize: vertical; }
+        .admin-panel button { background: var(--primary-color); color: white; border: none; padding: 12px 15px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
         .admin-panel button:hover { background: var(--accent-color); }
+        .admin-section-title { background: #f0f0f0; padding: 5px 10px; margin-top: 25px; border-radius: 4px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -183,28 +185,79 @@
 
         <div style="margin-top: 15px;" id="cities-footer">موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها</div>
 
-        <!-- زر مخفي لفتح لوحة التحكم السرية لتغيير المسميات -->
-        <button class="admin-login-btn" onclick="openAdminPanel()">لوحة تحكم تعديل المسميات الوظيفية</button>
+        <!-- زر مخفي لفتح لوحة التحكم السرية الشاملة -->
+        <button class="admin-login-btn" onclick="openAdminPanel()">لوحة تحكم تعديل المسميات والأوصاف الوظيفية</button>
         
-        <!-- لوحة تحكم تعديل المسميات الوظيفية -->
+        <!-- لوحة تحكم تعديل المحتوى الشاملة -->
         <div class="admin-panel" id="adminPanel">
-            <h3>تعديل المسميات الوظيفية فوراً</h3>
+            <h3>لوحة التحكم الشاملة لتعديل محتوى الوظائف</h3>
+            <p style="font-size:0.85rem; color:#666;">ملاحظة: بالنسبة للمهام والشروط، اكتب كل نقطة في سطر منفصل ليظهر كقائمة منقطة بشكل جميل.</p>
             
-            <label>المسمى الوظيفي الأول (بالعربي):</label>
+            <!-- الوظيفة الأولى -->
+            <div class="admin-section-title">تعديل الوظيفة الأولى (مدير المشروع)</div>
+            
+            <label>المسمى الوظيفي (عربي):</label>
             <input type="text" id="inputJob1Ar" value="مدير مشروع (Project Manager)">
-            
-            <label>المسمى الوظيفي الأول (بالإنجليزي):</label>
+            <label>المسمى الوظيفي (إنجليزي):</label>
             <input type="text" id="inputJob1En" value="Project Manager (PM)">
             
-            <hr style="margin-top:20px; border:1px solid #eee;">
-
-            <label>المسمى الوظيفي الثاني (بالعربي):</label>
-            <input type="text" id="inputJob2Ar" value="مساعد مدير مشروع (Assistant PM)">
+            <label>المهام والمسؤوليات (عربي - كل نقطة في سطر):</label>
+            <textarea id="inputTasks1Ar">التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي ومرافقه.
+إعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة في الأداء والخدمة.
+رصد وضبط الامتثال الكامل لمعايير السلامة والجودة العالمية والخدمة الراقية.
+قيادة الكوادر البشرية وتدريبهم على بروتوكولات الفنادق الفاخرة والـ VIP.</textarea>
             
-            <label>المسمى الوظيفي الثاني (بالإنجليزي):</label>
+            <label>المهام والمسؤوليات (إنجليزي - كل نقطة في سطر):</label>
+            <textarea id="inputTasks1En">Comprehensive planning and field supervision of the operation path of the hotel project and its facilities.
+Preparing operational budgets and ensuring increased productivity and efficiency in performance and service.
+Monitoring and ensuring full compliance with international safety, quality standards, and luxury service.
+Leading human resources and training them on luxury hotel and VIP protocols.</textarea>
+            
+            <label>الشروط والمؤهلات (عربي - كل نقطة في سطر):</label>
+            <textarea id="inputReqs1Ar">مؤهل تعليمي بكالوريوس في إدارة الفنادق، إدارة الأعمال، أو الهندسة.
+خبرة عملية لا تقل عن 5 سنوات في إدارة وتشغيل الفنادق أو مطاعم الـ Fine Dining.
+إتقان تام للغتين العربية والإنجليزية (كتابة وتحدثاً).
+مهارات قيادية استثنائية والقدرة على إدارة الأزمات والتعامل مع كبار الشخصيات.</textarea>
+            
+            <label>الشروط والمؤهلات (إنجليزي - كل نقطة في سطر):</label>
+            <textarea id="inputReqs1En">Bachelor's degree in Hotel Management, Business Administration, or Engineering.
+Practical experience of no less than 5 years in managing and operating hotels or Fine Dining restaurants.
+Full fluency in both Arabic and English (written and spoken).
+Exceptional leadership skills and the ability to manage crises and handle VIPs.</textarea>
+
+            <!-- الوظيفة الثانية -->
+            <div class="admin-section-title">تعديل الوظيفة الثانية (مساعد مدير المشروع)</div>
+            
+            <label>المسمى الوظيفي (عربي):</label>
+            <input type="text" id="inputJob2Ar" value="مساعد مدير مشروع (Assistant PM)">
+            <label>المسمى الوظيفي (إنجليزي):</label>
             <input type="text" id="inputJob2En" value="Assistant Project Manager (Assistant PM)">
             
-            <button onclick="saveJobTitles()">تحديث وحفظ التعديلات فوراً</button>
+            <label>المهام والمسؤوليات (عربي - كل نقطة في سطر):</label>
+            <textarea id="inputTasks2Ar">دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة والضيافة اليومية.
+الإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة والاستقبال.
+إعداد الجداول التشغيلية للمناوبات (Shifts) وحل المشكلات الفورية للضيوف بذكاء وسرعة.
+تجهيز وإرسال تقارير الأداء والإنتاجية اليومية للمتابعة المباشرة مع القيادة.</textarea>
+            
+            <label>المهام والمسؤوليات (إنجليزي - كل نقطة في سطر):</label>
+            <textarea id="inputTasks2En">Supporting the Project Manager directly in following up on the progress of daily service and hospitality work.
+Direct field supervision over the appearance and readiness of the floor and reception teams.
+Preparing operational shift schedules and resolving immediate guest issues intelligently and quickly.
+Preparing and sending daily performance and productivity reports for direct follow-up with leadership.</textarea>
+            
+            <label>الشروط والمؤهلات (عربي - كل نقطة في سطر):</label>
+            <textarea id="inputReqs2Ar">شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة، أو إدارة الأعمال.
+خبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة الفخمة.
+المظهر والبروتوكول المهني الراقي مع معرفة تامة بإتيكيت الخدمة.
+مهارات تواصل عالية ودقة فريدة في مراقبة التفاصيل وتعديل مسارات العمل.</textarea>
+            
+            <label>الشروط والمؤهلات (إنجليزي - كل نقطة في سطر):</label>
+            <textarea id="inputReqs2En">Bachelor's degree or diploma in Hotel & Hospitality Management, or Business Administration.
+No less than 3 years of experience in the field operation of luxury hospitality sectors.
+Elegant professional appearance and protocol with full knowledge of service etiquette.
+High communication skills and unique accuracy in monitoring details and adjusting work paths.</textarea>
+            
+            <button onclick="saveAllData()">تحديث وحفظ كل الأوصاف والمسميات فوراً</button>
         </div>
 
         <div class="tags" style="margin-top: 30px;">
@@ -267,25 +320,43 @@
             }
         };
 
-        // استرجاع المسميات المعدلة إذا كانت محفوظة بالمتصفح
-        if(localStorage.getItem('job1Ar')) {
-            data.ar.job1Title = "المسمى الوظيفي: " + localStorage.getItem('job1Ar');
-            document.getElementById('inputJob1Ar').value = localStorage.getItem('job1Ar');
-        }
-        if(localStorage.getItem('job1En')) {
-            data.en.job1Title = "Job Title: " + localStorage.getItem('job1En');
-            document.getElementById('inputJob1En').value = localStorage.getItem('job1En');
-        }
-        if(localStorage.getItem('job2Ar')) {
-            data.ar.job2Title = "المسمى الوظيفي: " + localStorage.getItem('job2Ar');
-            document.getElementById('inputJob2Ar').value = localStorage.getItem('job2Ar');
-        }
-        if(localStorage.getItem('job2En')) {
-            data.en.job2Title = "Job Title: " + localStorage.getItem('job2En');
-            document.getElementById('inputJob2En').value = localStorage.getItem('job2En');
+        // دالة لتحويل النص العادي إلى قائمة HTML منقطة
+        function textToBulletedList(text) {
+            if (!text.trim()) return '';
+            return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
         }
 
-        // تطبيق نصوص البداية عند فتح الصفحة لأول مرة
+        // استرجاع البيانات المخزنة بالكامل إن وجدت
+        function loadStoredData() {
+            const fields = [
+                { key: 'job1Ar', id: 'inputJob1Ar', dict: data.ar, prop: 'job1Title', prefix: 'المسمى الوظيفي: ' },
+                { key: 'job1En', id: 'inputJob1En', dict: data.en, prop: 'job1Title', prefix: 'Job Title: ' },
+                { key: 'job2Ar', id: 'inputJob2Ar', dict: data.ar, prop: 'job2Title', prefix: 'المسمى الوظيفي: ' },
+                { key: 'job2En', id: 'inputJob2En', dict: data.en, prop: 'job2Title', prefix: 'Job Title: ' },
+                { key: 'tasks1Ar', id: 'inputTasks1Ar', dict: data.ar, prop: 'job1Tasks', isList: true },
+                { key: 'tasks1En', id: 'inputTasks1En', dict: data.en, prop: 'job1Tasks', isList: true },
+                { key: 'reqs1Ar', id: 'inputReqs1Ar', dict: data.ar, prop: 'job1Reqs', isList: true },
+                { key: 'reqs1En', id: 'inputReqs1En', dict: data.en, prop: 'job1Reqs', isList: true },
+                { key: 'tasks2Ar', id: 'inputTasks2Ar', dict: data.ar, prop: 'job2Tasks', isList: true },
+                { key: 'tasks2En', id: 'inputTasks2En', dict: data.en, prop: 'job2Tasks', isList: true },
+                { key: 'reqs2Ar', id: 'inputReqs2Ar', dict: data.ar, prop: 'job2Reqs', isList: true },
+                { key: 'reqs2En', id: 'inputReqs2En', dict: data.en, prop: 'job2Reqs', isList: true }
+            ];
+
+            fields.forEach(field => {
+                let savedValue = localStorage.getItem(field.key);
+                if (savedValue) {
+                    document.getElementById(field.id).value = savedValue;
+                    if (field.isList) {
+                        field.dict[field.prop] = textToBulletedList(savedValue);
+                    } else {
+                        field.dict[field.prop] = field.prefix + savedValue;
+                    }
+                }
+            });
+        }
+
+        loadStoredData();
         updateDOM();
 
         function toggleLanguage() {
@@ -323,9 +394,8 @@
             document.getElementById('cities-footer').innerText = data[currentLang].citiesFooter;
         }
 
-        // دالة حماية وفتح لوحة التحكم السرية للمشرف (كلمة المرور الافتراضية 1234)
         function openAdminPanel() {
-            let password = prompt("الرجاء إدخال كلمة المرور لفتح لوحة التحكم:");
+            let password = prompt("الرجاء إدخال كلمة المرور لفتح لوحة التحكم الشاملة:");
             if (password === "1234") {
                 document.getElementById('adminPanel').style.display = 'block';
                 window.scrollTo(0, document.body.scrollHeight);
@@ -334,25 +404,25 @@
             }
         }
 
-        // دالة حفظ المسميات الوظيفية الجديدة في المتصفح وتحديث الصفحة فوراً
-        function saveJobTitles() {
-            let j1Ar = document.getElementById('inputJob1Ar').value;
-            let j1En = document.getElementById('inputJob1En').value;
-            let j2Ar = document.getElementById('inputJob2Ar').value;
-            let j2En = document.getElementById('inputJob2En').value;
+        function saveAllData() {
+            const keys = [
+                'job1Ar', 'job1En', 'job2Ar', 'job2En',
+                'tasks1Ar', 'tasks1En', 'reqs1Ar', 'reqs1En',
+                'tasks2Ar', 'tasks2En', 'reqs2Ar', 'reqs2En'
+            ];
+            const ids = [
+                'inputJob1Ar', 'inputJob1En', 'inputJob2Ar', 'inputJob2En',
+                'inputTasks1Ar', 'inputTasks1En', 'inputReqs1Ar', 'inputReqs1En',
+                'inputTasks2Ar', 'inputTasks2En', 'inputReqs2Ar', 'inputReqs2En'
+            ];
 
-            localStorage.setItem('job1Ar', j1Ar);
-            localStorage.setItem('job1En', j1En);
-            localStorage.setItem('job2Ar', j2Ar);
-            localStorage.setItem('job2En', j2En);
+            keys.forEach((key, index) => {
+                localStorage.setItem(key, document.getElementById(ids[index]).value);
+            });
 
-            data.ar.job1Title = "المسمى الوظيفي: " + j1Ar;
-            data.en.job1Title = "Job Title: " + j1En;
-            data.ar.job2Title = "المسمى الوظيفي: " + j2Ar;
-            data.en.job2Title = "Job Title: " + j2En;
-
+            loadStoredData();
             updateDOM();
-            alert("تم تحديث وحفظ المسميات الوظيفية الجديدة بنجاح للمتصفح الحالي!");
+            alert("تم تحديث وحفظ كافة الأوصاف، المهام، الشروط، والمسميات الوظيفية بنجاح!");
         }
     </script>
 </body>
