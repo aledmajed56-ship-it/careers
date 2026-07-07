@@ -64,7 +64,6 @@
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
         
-        /* إطارات الصور الديناميكية قابلة للتحكم */
         .img-container {
             width: 100%;
             height: 380px;
@@ -74,7 +73,6 @@
         }
         .img-fluid { width: 100%; height: 100%; object-fit: cover; }
 
-        /* أنماط الإطارات مسبقة الصنع */
         .border-rounded { border-radius: 12px; }
         .border-circle { border-radius: 50%; max-width: 380px; margin: 0 auto; }
         .border-sharp { border-radius: 0px; }
@@ -96,23 +94,38 @@
         html[dir="ltr"] ul { padding-right: 0; padding-left: 20px; }
         li { margin-bottom: 10px; }
 
-        .internal-form-card {
-            background: #fff;
-            padding: 10px;
-            border-radius: 12px;
-            max-width: 750px;
-            margin: 30px auto 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
+        /* تنسيق كرت الزر الجديد بدلاً من الآيفريم المكسور */
+        .btn-form-container {
+            max-width: 500px;
+            margin: 40px auto 0;
+            text-align: center;
         }
 
-        .cta-section { background: var(--primary-color); color: white; padding: 50px 20px; border-radius: 8px; }
+        .btn-go-to-form {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #d4af37);
+            color: white;
+            text-decoration: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(181, 148, 16, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        .btn-go-to-form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(181, 148, 16, 0.6);
+            background: linear-gradient(135deg, #967a0d, var(--accent-color));
+        }
+
+        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; }
         
         .secret-word-trigger { cursor: default; user-select: none; font-weight: normal; }
 
-        /* لوحة التحكم الاحترافية الشاملة */
         .admin-panel {
-            display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 850px; margin: 30px auto; text-align: right; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 850px; margin: 40px auto; text-align: right; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
         html[dir="ltr"] .admin-panel { text-align: left; }
         .admin-panel h3 { margin-top: 0; color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; }
@@ -122,7 +135,6 @@
         .admin-panel button { background: var(--accent-color); color: white; border: none; padding: 14px; margin-top: 25px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem; transition: background 0.2s; }
         .admin-panel button:hover { background: var(--primary-color); }
         .admin-section-title { background: #e9ecef; padding: 10px 12px; margin-top: 30px; border-radius: 4px; font-weight: bold; color: var(--primary-color); font-size: 1.05rem; border-left: 5px solid var(--accent-color); }
-        html[dir="ltr"] .admin-section-title { border-left: none; border-right: 5px solid var(--accent-color); }
     </style>
 </head>
 <body>
@@ -188,16 +200,16 @@
         </div>
     </section>
 
-    <!-- قسم نموذج طلبات جوجل المدمج بالكامل -->
+    <!-- قسم التحويل المباشر للنموذج بواسطة زر الضغط المباشر -->
     <section class="cta-section">
-        <h2 style="color:white; border:none; text-align:center;" id="cta-title">هل تجد في نفسك الشغف والريادة؟</h2>
-        <p style="text-align:center;" id="cta-desc">يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك</p>
+        <h2 style="color:white; border:none;" id="cta-title">هل تجد في نفسك الشغف والريادة؟</h2>
+        <p id="cta-desc">يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك</p>
         
-        <div class="internal-form-card">
-            <iframe id="googleFormIframe" src="https://forms.gle/YwYyPx9LJXbnnz1MA" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" style="border:none; border-radius: 8px;">جاري التحميل...</iframe>
+        <div class="btn-form-container">
+            <a href="https://forms.gle/YwYyPx9LJXbnnz1MA" target="_blank" class="btn-go-to-form" id="mainFormBtn">اضغط هنا للانتقال إلى نموذج التقديم</a>
         </div>
 
-        <div style="margin-top: 40px; text-align:center; font-size: 0.95rem; opacity: 0.85; letter-spacing: 0.5px;">
+        <div style="margin-top: 50px; text-align:center; font-size: 0.95rem; opacity: 0.85; letter-spacing: 0.5px;">
             <span>شركة اتحاد ميار للضيافة - </span>
             <span class="secret-word-trigger" onclick="handleSecretClick()">المملكة العربية السعودية</span>
         </div>
@@ -206,14 +218,16 @@
         <div class="admin-panel" id="adminPanel">
             <h3>🎛️ لوحة إدارة الإعدادات المتقدمة والمحتوى والديناميكيات</h3>
 
-            <div class="admin-section-title">🔗 التحكم بالروابط الأساسية (نموذج جوجل والموقع)</div>
+            <div class="admin-section-title">🔗 التحكم بالروابط الأساسية (رابط النموذج والموقع الرسمي)</div>
             <label>رابط موقع اتحاد ميار الرئيسي:</label>
             <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
             
-            <label>رابط نموذج طلبات جوجل (Google Form URL):</label>
+            <label>رابط زر التقديم (Google Form URL):</label>
             <input type="text" id="inputGoogleFormUrl" value="https://forms.gle/YwYyPx9LJXbnnz1MA">
 
-            <div class="admin-section-title">🖼️ إدارة نصوص العناوين الرئيسية وشرح الشركة</div>
+            <div class="admin-section-title">🖼 "تعديل نص الزر والعناوين"</div>
+            <label>النص المكتوب داخل زر التقديم:</label>
+            <input type="text" id="inputBtnText" value="اضغط هنا للانتقال إلى نموذج التقديم">
             <label>العنوان العلوي الصغير (Sub-title):</label>
             <input type="text" id="inputHeroSubTitle" value="شراكة متميزة للارتقاء بفرص التوظيف">
             <label>العنوان الرئيسي للموقع (Main Title):</label>
@@ -249,7 +263,7 @@
             <div class="admin-section-title">📝 تعديل نصوص، مهام وشروط الوظائف المتاحة</div>
             <strong style="color:var(--accent-color); display:block; margin-top:10px;">[1] وظيفة مدير المشروع:</strong>
             <label>مسمى الوظيفة الأولى:</label> <input type="text" id="inputJob1Title" value="المسمى الوظيفي: مدير مشروع (Project Manager)">
-            <label>المهام والمسؤوليات (سطر جديد لكل مهمة):</label> <textarea id="inputJob1Tasks"></textarea>
+            <label>المهام والمسؤوليات (سطر جديد لكلمهمة):</label> <textarea id="inputJob1Tasks"></textarea>
             <label>الشروط والمؤهلات (سطر جديد لكل شرط):</label> <textarea id="inputJob1Reqs"></textarea>
 
             <strong style="color:var(--accent-color); display:block; margin-top:20px;">[2] وظيفة مساعد مدير مشروع:</strong>
@@ -262,33 +276,28 @@
     </section>
 
     <script>
-        let currentLang = 'ar';
-        let clickCount = 0;
-
         function textToHtmlList(text) {
             if (!text || !text.trim()) return '';
             return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
         }
 
         function loadConfiguration() {
-            // 1. الروابط والعناوين الأساسية
             document.getElementById('sub-title').innerText = localStorage.getItem('cfg_heroSub') || "شراكة متميزة للارتقاء بفرص التوظيف";
             document.getElementById('main-title').innerText = localStorage.getItem('cfg_heroMain') || "فرص قيادية في إدارة المشاريع";
             document.getElementById('hero-desc').innerText = localStorage.getItem('cfg_heroDesc') || "تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة";
             document.getElementById('cities-target').innerText = localStorage.getItem('cfg_heroCities') || "المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها";
+            document.getElementById('mainFormBtn').innerText = localStorage.getItem('cfg_btnText') || "اضغط هنا للانتقال إلى نموذج التقديم";
             
-            // تعبئة حقول المدخلات في لوحة التحكم تلقائياً
             document.getElementById('inputHeroSubTitle').value = document.getElementById('sub-title').innerText;
             document.getElementById('inputHeroMainTitle').value = document.getElementById('main-title').innerText;
             document.getElementById('inputHeroDesc').value = document.getElementById('hero-desc').innerText;
             document.getElementById('inputHeroCities').value = document.getElementById('cities-target').innerText;
+            document.getElementById('inputBtnText').value = document.getElementById('mainFormBtn').innerText;
 
-            // توجه وبيئة الشركة
             let aboutTxt = localStorage.getItem('cfg_aboutTxt') || "نهدف في اتحاد ميار لاستقطاب كفاءات شغوفة للانضمام إلى فريقنا النخبوي.\nفرصة للمساهمة في تقديم بروتوكولات خدمة الـ VIP.\nنلتزم بتقديم بيئة عمل احترافية وحوافز استثنائية.";
             document.getElementById('inputAboutCompanyText').value = aboutTxt;
             document.getElementById('about-list').innerHTML = textToHtmlList(aboutTxt);
 
-            // 2. إدارة وتحديث الصور والإطارات
             let imgUrl = localStorage.getItem('cfg_imgUrl') || "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill";
             let imgPos = localStorage.getItem('cfg_imgPos') || "about";
             let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
@@ -297,7 +306,6 @@
             document.getElementById('inputImgPosition').value = imgPos;
             document.getElementById('inputFrameStyle').value = frameStyle;
 
-            // ريست لجميع حاويات الصور
             document.getElementById('imgBoxJob1').style.display = 'none';
             document.getElementById('imgBoxJob2').style.display = 'none';
             document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
@@ -316,20 +324,18 @@
                 document.getElementById('imgJob2').src = imgUrl;
             }
 
-            // 3. روابط الخدمات
             let mainWeb = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
             document.getElementById('inputMainWebsite').value = mainWeb;
             document.getElementById('mainWebBtn').href = mainWeb;
 
             let googleForm = localStorage.getItem('cfg_googleForm') || "https://forms.gle/YwYyPx9LJXbnnz1MA";
             document.getElementById('inputGoogleFormUrl').value = googleForm;
-            document.getElementById('googleFormIframe').src = googleForm;
+            document.getElementById('mainFormBtn').href = googleForm;
 
-            // 4. نصوص وبيانات الوظائف والشروحات
             document.getElementById('job1-title').innerText = localStorage.getItem('cfg_j1Title') || "المسمى الوظيفي: مدير مشروع (Project Manager)";
             document.getElementById('inputJob1Title').value = document.getElementById('job1-title').innerText;
             
-            let j1Tasks = localStorage.getItem('cfg_j1Tasks') || "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة.\nرصد وضبط الامتثال الكامل معمعايير السلامة والجودة.";
+            let j1Tasks = localStorage.getItem('cfg_j1Tasks') || "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع فندقي.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة.\nرصد وضبط الامتثال الكامل لمعايير السلامة والجودة.";
             document.getElementById('inputJob1Tasks').value = j1Tasks;
             document.getElementById('job1-tasks').innerHTML = textToHtmlList(j1Tasks);
 
@@ -337,7 +343,6 @@
             document.getElementById('inputJob1Reqs').value = j1Reqs;
             document.getElementById('job1-reqs').innerHTML = textToHtmlList(j1Reqs);
 
-            // الوظيفة الثانية
             document.getElementById('job2-title').innerText = localStorage.getItem('cfg_j2Title') || "المسمى الوظيفي: مساعد مدير مشروع (Assistant PM)";
             document.getElementById('inputJob2Title').value = document.getElementById('job2-title').innerText;
 
@@ -356,6 +361,7 @@
             localStorage.setItem('cfg_heroDesc', document.getElementById('inputHeroDesc').value);
             localStorage.setItem('cfg_heroCities', document.getElementById('inputHeroCities').value);
             localStorage.setItem('cfg_aboutTxt', document.getElementById('inputAboutCompanyText').value);
+            localStorage.setItem('cfg_btnText', document.getElementById('inputBtnText').value);
 
             localStorage.setItem('cfg_imgUrl', document.getElementById('inputDynamicImgUrl').value);
             localStorage.setItem('cfg_imgPos', document.getElementById('inputImgPosition').value);
@@ -373,9 +379,10 @@
             localStorage.setItem('cfg_j2Reqs', document.getElementById('inputJob2Reqs').value);
 
             loadConfiguration();
-            alert("تم تحديث وحفظ كامل المنظومة البرمجة بنجاح!");
+            alert("تم تحديث وحفظ كامل الإعدادات وحل مشكلة التضمين كلياً!");
         }
 
+        let clickCount = 0;
         function handleSecretClick() {
             clickCount++;
             if (clickCount === 3) {
@@ -384,18 +391,15 @@
                 if (pwd === "123456") {
                     document.getElementById('adminPanel').style.display = 'block';
                     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                } else {
-                    alert("عذراً، الرقم السري خاطئ!");
-                }
+                } else { alert("عذراً، الرقم السري خاطئ!"); }
             }
             setTimeout(() => { clickCount = 0; }, 2000);
         }
 
         function toggleLanguage() {
-            alert("تم تعطيل التنقل المؤقت للغات أثناء تنشيط وضع تعديل الاستمارات المباشرة.");
+            alert("تم تعطيل لغات العرض مؤقتاً لثبات التحديث المباشر للنموذج.");
         }
 
-        // تشغيل البنية التحتية فور التحميل
         loadConfiguration();
     </script>
 </body>
