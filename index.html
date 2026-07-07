@@ -18,7 +18,7 @@
             --accent-color: #b59410;
             --text-color: #333;
             --bg-light: #f8f9fa;
-            --header-opacity: 0.85; /* القيمة الافتراضية للشفافية */
+            --header-opacity: 0.85;
         }
         
         body {
@@ -71,7 +71,7 @@
             transition: background 0.3s ease;
         }
         header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; font-weight: bold; }
-        header h1 { font-size: 2.9rem; margin: 10px 0 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        header h1 { font-size: 2.9rem; margin: 10px 0 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
 
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
@@ -91,8 +91,7 @@
         .border-gold { border-radius: 8px; border: 4px solid var(--accent-color); box-shadow: 0 0 20px rgba(181, 148, 16, 0.5); }
 
         .job-block { margin-bottom: 60px; padding-bottom: 40px; border-bottom: 2px dashed #eee; }
-        .job-img-box { width: 100%; height: 280px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
-
+        
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
         .card {
@@ -140,7 +139,7 @@
         .sig-line { width: 140px; height: 1px; background: rgba(255,255,255,0.3); margin: 8px auto; }
         .handwritten-signature { font-family: 'Caveat', cursive; font-size: 2.3rem; color: #ffffff; }
 
-        /* لوحة التحكم المتقدمة والمحمية */
+        /* لوحة التحكم */
         .admin-panel {
             display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
@@ -152,7 +151,6 @@
         .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
         .admin-panel textarea { height: 80px; resize: vertical; }
         
-        /* تصميم شريط الشفافية */
         .range-slider { display: flex; align-items: center; gap: 15px; margin-top: 5px; }
         .range-slider input[type=range] { flex: 1; cursor: pointer; }
 
@@ -196,7 +194,7 @@
         </div>
     </section>
 
-    <!-- مكان توليد الوظائف التلقائي -->
+    <!-- مكان توليد الوظائف اللامحدودة -->
     <section id="jobsContainer"></section>
 
     <section class="cta-section">
@@ -218,7 +216,7 @@
             </div>
         </div>
         
-        <!-- لوحة التحكم الذكية والمحمية -->
+        <!-- لوحة التحكم المحمية بكلمة سر -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
             <h3>🎛️ لوحة التحكم الأمنية: إدارة الموقع والوظائف اللامحدودة</h3>
 
@@ -240,10 +238,10 @@
                 <option value="border-gold">إطار ذهبي فاخر مع توهج سحري (Luxury Gold Frame)</option>
             </select>
 
-            <div class="admin-section-title">🖼️ روابط الصور الأساسية (تم تحديثها بالصور الجديدة)</div>
-            <label>رابط صورة غلاف الهيدر العلوي (Header Backgound):</label>
+            <div class="admin-section-title">🖼️ روابط الصور الأساسية (مأخوذة من المرفقات الخاصة بك)</div>
+            <label>رابط صورة غلاف الهيدر العلوي (صورة القاعة الكبيرة والثريات):</label>
             <input type="text" id="img_header_url">
-            <label>رابط صورة قسم "توجه الشركة" الجانبية (About Image):</label>
+            <label>رابط صورة قسم "توجه الشركة" الجانبية (صورة المضيفة والخدمة الفاخرة):</label>
             <input type="text" id="img_about_url">
 
             <div class="admin-section-title">🏢 معلومات الواجهة الرئيسية وقسم "عن الشركة"</div>
@@ -291,7 +289,7 @@
     </section>
 
     <script>
-        // الشفرة العسكرية المشفرة برزم (الرقم السري الافتراضي القديم: 1425)
+        // الشفرة المحمية - الرقم السري: 1425
         const _0x5a1b = ["\x31\x34\x32\x35"]; 
 
         let currentLang = localStorage.getItem('site_lang') || 'ar';
@@ -323,10 +321,10 @@
             en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team"
         };
 
-        // الروابط المباشرة المحدثة المأخوذة من الصور المرفقة في طلبك
+        // الروابط المباشرة والمفتوحة الآن بنجاح لصورك المرفقة!
         const defaultImages = {
-            img_header: "https://res.cloudinary.com/demo/image/fetch/https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920", // سيتم استبدالها بروابطك المباشرة المرفوعة
-            img_about: "https://res.cloudinary.com/demo/image/fetch/https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600"
+            img_header: "https://i.ibb.co/3yxYp6v8/image.jpg", // صورة القاعة الفاخرة المرفقة
+            img_about: "https://i.ibb.co/C5mHh6wW/image.jpg"   // صورة المضيفة والخدمة المرفقة
         };
 
         const defaultJobs = [
@@ -341,7 +339,6 @@
                 en_reqsHead: "Required Conditions & Qualifications",
                 ar_reqs: "مؤهل تعليمي بكالوريوس في إدارة الفنادق أو إدارة الأعمال.\nخبرة عملية لا تقل عن 5 سنوات في تشغيل الفنادق الفاخرة.",
                 en_reqs: "Bachelor's degree in Hotel Management or Business Administration.\nMinimum 5 years of experience in luxury hospitality operations.",
-                img_url: "",
                 form_url: "https://forms.gle/YwYyPx9LJXbnnz1MA",
                 ar_btnText: "التقديم على وظيفة مدير مشروع",
                 en_btnText: "Apply for Project Manager Position"
@@ -393,7 +390,6 @@
             let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
             let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
             
-            // قراءة الشفافية وتطبيقها
             let opacityVal = localStorage.getItem('cfg_opacity') || "85";
             let opacityDecimal = parseFloat(opacityVal) / 100;
 
@@ -408,15 +404,6 @@
                 let html = `
                     <div class="job-block">
                         <h2>${job[pfx + 'title'] || ''}</h2>
-                `;
-                if (job.img_url && job.img_url.trim() !== "") {
-                    html += `
-                        <div class="job-img-box ${frameStyle}">
-                            <img class="img-fluid" src="${job.img_url}">
-                        </div>
-                    `;
-                }
-                html += `
                         <div class="grid-2">
                             <div class="card">
                                 <h3>${job[pfx + 'tasksHead'] || ''}</h3>
@@ -444,9 +431,6 @@
                     <div class="admin-job-card">
                         <button class="remove-job-btn" onclick="removeJobField(${index})">🗑️ حذف هذه الوظيفة</button>
                         <h4 style="margin:0 0 10px 0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
-                        
-                        <label>رابط الصورة المخصصة لهذه الوظيفة (اختياري):</label>
-                        <input type="text" value="${job.img_url || ''}" onchange="updateJobData(${index}, 'img_url', this.value)">
                         
                         <label>رابط Google Form الخاص بهذه الوظيفة:</label>
                         <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
@@ -485,7 +469,7 @@
                 ar_title: "وظيفة جديدة", en_title: "New Job",
                 ar_tasksHead: "المهام", en_tasksHead: "Tasks", ar_tasks: "", en_tasks: "",
                 ar_reqsHead: "الشروط", en_reqsHead: "Requirements", ar_reqs: "", en_reqs: "",
-                img_url: "", form_url: "", ar_btnText: "تقديم الآن", en_btnText: "Apply Now"
+                form_url: "", ar_btnText: "تقديم الآن", en_btnText: "Apply Now"
             });
             renderAdminJobs();
         }
