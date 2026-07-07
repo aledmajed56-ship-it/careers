@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اتحاد ميار للضيافة الفاخرة | Mayyar United</title>
+    <!-- تم تجهيز الموقع لدعم إحصائيات جوجل ومكتبات الفونت لأجل الأيقونات -->
     <style>
         :root {
             --primary-color: #1a252f;
@@ -21,7 +22,6 @@
             line-height: 1.6;
         }
 
-        /* أزرار التحكم العلوية */
         .top-controls {
             position: fixed;
             top: 20px;
@@ -30,10 +30,8 @@
             display: flex;
             gap: 10px;
         }
-        html[dir="ltr"] .top-controls {
-            left: auto;
-            right: 20px;
-        }
+        html[dir="ltr"] .top-controls { left: auto; right: 20px; }
+        
         .control-btn {
             background-color: var(--accent-color);
             color: white;
@@ -49,10 +47,7 @@
             display: inline-flex;
             align-items: center;
         }
-        .control-btn:hover {
-            background-color: var(--primary-color);
-            transform: scale(1.05);
-        }
+        .control-btn:hover { background-color: var(--primary-color); transform: scale(1.05); }
 
         header {
             background-image: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill');
@@ -62,6 +57,7 @@
             color: white;
             text-align: center;
             padding: 100px 20px;
+            transition: background 0.3s ease;
         }
         header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; }
         header h1 { font-size: 2.5rem; margin: 10px 0 20px; }
@@ -76,11 +72,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .img-fluid { 
-            width: 100%; 
-            height: 100%;
-            object-fit: cover;
-        }
+        .img-fluid { width: 100%; height: 100%; object-fit: cover; }
+
+        /* حاويات الصور الديناميكية داخل كروت الوظائف */
+        .job-img-box { width: 100%; height: 200px; margin-bottom: 15px; display: none; border-radius: 6px; overflow: hidden; }
 
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
@@ -96,33 +91,46 @@
         html[dir="ltr"] ul { padding-right: 0; padding-left: 20px; }
         li { margin-bottom: 10px; }
 
-        .cta-section { text-align: center; background: var(--primary-color); color: white; padding: 50px 20px; border-radius: 8px; }
-        .btn-apply { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 30px; margin: 20px 0; transition: all 0.2s; }
-        .btn-apply:hover { transform: scale(1.05); background-color: #c9a414; }
-        .tags { font-size: 0.9rem; color: #888; margin-top: 20px; }
-        
-        /* جعل الهاشتاج يبدو كأنه نص عادي لكنه قابل للضغط سرياً */
-        .secret-trigger {
-            cursor: default;
-            user-select: none;
+        /* نموذج التقديم الداخلي الجديد */
+        .internal-form-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 30px auto 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            color: #333;
+            text-align: right;
         }
+        html[dir="ltr"] .internal-form-card { text-align: left; }
+        .internal-form-card h3 { margin-top: 0; color: var(--primary-color); text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+        .btn-submit-job { background: var(--accent-color); color: white; border: none; width: 100%; padding: 14px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+        .btn-submit-job:hover { background: var(--primary-color); }
 
-        /* ستايل لوحة التحكم */
+        .cta-section { background: var(--primary-color); color: white; padding: 50px 20px; border-radius: 8px; }
+        .tags { font-size: 0.9rem; color: #888; margin-top: 20px; }
+        .secret-trigger { cursor: default; user-select: none; }
+
+        /* ستايل لوحة التحكم المزدوجة المتطابقة */
         .admin-panel {
-            display: none; background: #fff; color: #333; border: 2px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 700px; margin: 20px auto; text-align: right; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 750px; margin: 30px auto; text-align: right; box-shadow: 0 5px 25px rgba(0,0,0,0.3);
         }
-        .admin-panel h3 { margin-top: 0; color: var(--primary-color); }
+        html[dir="ltr"] .admin-panel { text-align: left; }
+        .admin-panel h3 { margin-top: 0; color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; }
         .admin-panel label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; color: var(--primary-color); }
         .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
-        .admin-panel textarea { height: 100px; resize: vertical; }
-        .admin-panel button { background: var(--primary-color); color: white; border: none; padding: 12px 15px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
+        .admin-panel textarea { height: 80px; resize: vertical; }
+        .admin-panel button { background: var(--primary-color); color: white; border: none; padding: 14px; margin-top: 25px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem; }
         .admin-panel button:hover { background: var(--accent-color); }
-        .admin-section-title { background: #f0f0f0; padding: 5px 10px; margin-top: 25px; border-radius: 4px; font-weight: bold; }
+        .admin-section-title { background: #e9ecef; padding: 8px 12px; margin-top: 25px; border-radius: 4px; font-weight: bold; color: var(--primary-color); }
     </style>
 </head>
 <body>
 
-    <!-- أزرار التحكم العلوية الثابتة للمستخدمين -->
+    <!-- أزرار التحكم العلوية الثابتة -->
     <div class="top-controls">
         <a href="https://www.mayyarunited.com/ar" target="_blank" class="control-btn" id="mainWebBtn">الموقع الرئيسي</a>
         <button class="control-btn" id="langBtn" onclick="toggleLanguage()">English</button>
@@ -152,10 +160,13 @@
         </div>
     </section>
 
-    <!-- الوظائف -->
+    <!-- الوظائف والـ Cards -->
     <section>
         <!-- وظيفة 1 -->
         <h2 id="job1-title">المسمى الوظيفي: مدير مشروع (Project Manager)</h2>
+        <!-- خانات مرنة للصور الإضافية بناءً على خيار لوحة التحكم -->
+        <div class="job-img-box" id="imgBoxJob1"><img id="imgJob1" class="img-fluid" src=""></div>
+        
         <div class="grid-2">
             <div class="card">
                 <h3 id="tasks-title1">المهام والمسؤوليات التشغيلية</h3>
@@ -179,6 +190,8 @@
 
         <!-- وظيفة 2 -->
         <h2 id="job2-title">المسمى الوظيفي: مساعد مدير مشروع (Assistant PM)</h2>
+        <div class="job-img-box" id="imgBoxJob2"><img id="imgJob2" class="img-fluid" src=""></div>
+
         <div class="grid-2">
             <div class="card">
                 <h3 id="tasks-title2">المهام والمسؤوليات التشغيلية</h3>
@@ -201,122 +214,93 @@
         </div>
     </section>
 
-    <!-- التقديم -->
+    <!-- التقديم السريع (النموذج الداخلي الجديد) -->
     <section class="cta-section">
-        <h2 style="color:white; border:none;" id="cta-title">هل تجد في نفسك الشغف والريادة؟</h2>
-        <p id="cta-desc">يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك</p>
+        <h2 style="color:white; border:none; text-align:center;" id="cta-title">هل تجد في نفسك الشغف والريادة؟</h2>
+        <p style="text-align:center;" id="cta-desc">يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك</p>
         
-        <a href="https://forms.gle/hgK4v5FW8KHdVN889" target="_blank" class="btn-apply" id="cta-btn">اضغط هنا لتقديم طلبك الآن</a>
-
-        <div style="margin-top: 15px;" id="cities-footer">موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها</div>
-        
-        <!-- لوحة تحكم تعديل المحتوى الشاملة -->
-        <div class="admin-panel" id="adminPanel">
-            <h3>لوحة التحكم الشاملة والمطورة للموقع</h3>
-
-            <!-- قسم تعديل رابط الموقع الرئيسي الجديد -->
-            <div class="admin-section-title" style="background:#d1ecf1; color:#0c5460;">🌐 إعدادات رابط الموقع الرئيسي للشركة</div>
-            <label>رابط موقع اتحاد ميار الرئيسي (يفتح في نافذة أخرى):</label>
-            <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
-
-            <!-- قسم تعديل الصور وطرق العرض -->
-            <div class="admin-section-title" style="background:#e2e3e5; color:#383d41;">🖼️ تعديل وإدارة صور الموقع ومظهرها</div>
-            <label>رابط صورة الخلفية العلوية (Header Image URL):</label>
-            <input type="text" id="inputHeaderImg" value="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=1200&rh=600&ra=fill">
-            
-            <label>طريقة عرض صورة الخلفية العلوية:</label>
-            <select id="inputHeaderSize">
-                <option value="cover">ممتدة بالكامل ومتناسقة تلقائياً (Cover - مستحسن)</option>
-                <option value="contain">احتواء كامل بدون قص (Contain)</option>
-                <option value="auto">الحجم الطبيعي للصورة الأصلي (Auto)</option>
-            </select>
-
-            <label>رابط صورة قسم "عن الشركة" (About Image URL):</label>
-            <input type="text" id="inputAboutImg" value="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill">
-            
-            <label>طريقة عرض صورة قسم "عن الشركة":</label>
-            <select id="inputAboutFit">
-                <option value="cover">قص ذكي لملء المربع بالكامل (Cover - مستحسن)</option>
-                <option value="contain">عرض كامل الصورة مع الحفاظ على أبعادها (Contain)</option>
-                <option value="fill">تعبئة المربع قسرياً حتى لو تم تمديد ملامح الصورة (Fill)</option>
-            </select>
-            
-            <!-- قسم تعديل روابط التقديم -->
-            <div class="admin-section-title" style="background:#d4edda; color:#155724;">🔗 تعديل روابط التقديم والاستمارات</div>
-            <label>رابط التقديم للنسخة العربية (URL):</label>
-            <input type="text" id="inputLinkAr" value="https://forms.gle/hgK4v5FW8KHdVN889">
-            
-            <label>رابط التقديم للنسخة الإنجليزية (URL):</label>
-            <input type="text" id="inputLinkEn" value="https://forms.gle/hgK4v5FW8KHdVN889">
-            
-            <!-- الوظيفة الأولى -->
-            <div class="admin-section-title">تعديل الوظيفة الأولى (مدير المشروع)</div>
-            <label>المسمى الوظيفي (عربي):</label>
-            <input type="text" id="inputJob1Ar" value="مدير مشروع (Project Manager)">
-            <label>المسمى الوظيفي (إنجليزي):</label>
-            <input type="text" id="inputJob1En" value="Project Manager (PM)">
-            
-            <label>المهام والمسؤوليات (عربي):</label>
-            <textarea id="inputTasks1Ar">التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي ومرافقه.
-إعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة في الأداء والخدمة.
-رصد وضبط الامتثال الكامل لمعايير السلامة والجودة العالمية والخدمة الراقية.
-قيادة الكوادر البشرية وتدريبهم على بروتوكولات الفنادق الفاخرة والـ VIP.</textarea>
-            
-            <label>المهام والمسؤوليات (إنجليزي):</label>
-            <textarea id="inputTasks1En">Comprehensive planning and field supervision of the operation path of the hotel project and its facilities.
-Preparing operational budgets and ensuring increased productivity and efficiency in performance and service.
-Monitoring and ensuring full compliance with international safety, quality standards, and luxury service.
-Leading human resources and training them on luxury hotel and VIP protocols.</textarea>
-            
-            <label>الشروط والمؤهلات (عربي):</label>
-            <textarea id="inputReqs1Ar">مؤهل تعليمي بكالوريوس في إدارة الفنادق، إدارة الأعمال، أو الهندسة.
-خبرة عملية لا تقل عن 5 سنوات في إدارة وتشغيل الفنادق أو مطاعم الـ Fine Dining.
-إتقان تام للغتين العربية والإنجليزية (كتابة وتحدثاً).
-مهارات قيادية استثنائية والقدرة على إدارة الأزمات والتعامل مع كبار الشخصيات.</textarea>
-            
-            <label>الشروط والمؤهلات (إنجليزي):</label>
-            <textarea id="inputReqs1En">Bachelor's degree in Hotel Management, Business Administration, or Engineering.
-Practical experience of no less than 5 years in managing and operating hotels or Fine Dining restaurants.
-Full fluency in both Arabic and English (written and spoken).
-Exceptional leadership skills and the ability to manage crises and handle VIPs.</textarea>
-
-            <!-- الوظيفة الثانية -->
-            <div class="admin-section-title">تعديل الوظيفة الثانية (مساعد مدير المشروع)</div>
-            <label>المسمى الوظيفي (عربي):</label>
-            <input type="text" id="inputJob2Ar" value="مساعد مدير مشروع (Assistant PM)">
-            <label>المسمى الوظيفي (إنجليزي):</label>
-            <input type="text" id="inputJob2En" value="Assistant Project Manager (Assistant PM)">
-            
-            <label>المهام والمسؤوليات (عربي):</label>
-            <textarea id="inputTasks2Ar">دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة والضيافة اليومية.
-الإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة والاستقبال.
-إعداد الجداول التشغيلية للمناوبات (Shifts) وحل المشكلات الفورية للضيوف بذكاء وسرعة.
-تجهيز وإرسال تقارير الأداء والإنتاجية اليومية للمتابعة المباشرة مع القيادة.</textarea>
-            
-            <label>المهام والمسؤوليات (إنجليزي):</label>
-            <textarea id="inputTasks2En">Supporting the Project Manager directly in following up on the progress of daily service and hospitality work.
-Direct field supervision over the appearance and readiness of the floor and reception teams.
-Preparing operational shift schedules and resolving immediate guest issues intelligently and quickly.
-Preparing and sending daily performance and productivity reports for direct follow-up with leadership.</textarea>
-            
-            <label>الشروط والمؤهلات (عربي):</label>
-            <textarea id="inputReqs2Ar">شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة، أو إدارة الأعمال.
-خبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة الفخمة.
-المظهر والبروتوكول المهني الراقي مع معرفة تامة بإتيكيت الخدمة.
-مهارات تواصل عالية ودقة فريدة في مراقبة التفاصيل وتعديل مسارات العمل.</textarea>
-            
-            <label>الشروط والمؤهلات (إنجليزي):</label>
-            <textarea id="inputReqs2En">Bachelor's degree or diploma in Hotel & Hospitality Management, or Business Administration.
-No less than 3 years of experience in the field operation of luxury hospitality sectors.
-Elegant professional appearance and protocol with full knowledge of service etiquette.
-High communication skills and unique accuracy in monitoring details and adjusting work paths.</textarea>
-            
-            <button onclick="saveAllData()">تحديث وحفظ كل التغييرات فوراً</button>
+        <!-- استمارة التقديم الداخلية المدمجة -->
+        <div class="internal-form-card">
+            <h3 id="form-heading">إستمارة التقديم المباشر</h3>
+            <!-- ملاحظة: استبدل الإيميل ببريدك الشخصي أو اترك رابط Formspree الخاص بك -->
+            <form action="https://formsubmit.co/your-email@mayyarunited.com" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label id="lbl-name">الاسم الكامل:</label>
+                    <input type="text" name="الاسم" required>
+                </div>
+                <div class="form-group">
+                    <label id="lbl-phone">رقم الجوال:</label>
+                    <input type="tel" name="الجوال" required>
+                </div>
+                <div class="form-group">
+                    <label id="lbl-email">البريد الإلكتروني:</label>
+                    <input type="email" name="الإيميل" required>
+                </div>
+                <div class="form-group">
+                    <label id="lbl-pos">الوظيفة المستهدفة:</label>
+                    <select name="الوظيفة">
+                        <option id="opt1" value="مدير مشروع">مدير مشروع (Project Manager)</option>
+                        <option id="opt2" value="مساعد مدير مشروع">مساعد مدير مشروع (Assistant PM)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label id="lbl-city">المدينة الحالية:</label>
+                    <select name="المدينة">
+                        <option value="Jeddah">جدة</option>
+                        <option value="Makkah">مكة المكرمة</option>
+                        <option value="Jazan">جازان</option>
+                        <option value="Abha">أبها</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label id="lbl-cv">إرفاق السيرة الذاتية (PDF):</label>
+                    <input type="file" name="السيرة_الذاتية" accept=".pdf,.doc,.docx" required>
+                </div>
+                <button type="submit" class="btn-submit-job" id="lbl-submit">إرسال الطلب الآن</button>
+            </form>
         </div>
 
-        <!-- قسم التاجات أسفل الصفحة (يتضمن المدخل المخفي) -->
-        <div class="tags" style="margin-top: 30px;">
-            <span>#وظائف_السعودية #اتحاد_ميار #إدارة_مشاريع #توظيف_مكة_جدة #وظائف_جازان_أبها </span>
+        <div style="margin-top: 25px; text-align:center;" id="cities-footer">موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها</div>
+        
+        <!-- لوحة التحكم الثنائية (تتغير لغتها تلقائياً) -->
+        <div class="admin-panel" id="adminPanel">
+            <h3 id="adm-main-title">لوحة التحكم الشاملة والمطورة للموقع</h3>
+
+            <div class="admin-section-title" id="adm-sec-1">🌐 إعدادات روابط الشركة والاستمارات</div>
+            <label id="adm-lbl-mainurl">رابط موقع اتحاد ميار الرئيسي:</label>
+            <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
+            
+            <label id="adm-lbl-formurl">رابط استقبال طلبات التوظيف (Formsubmit / Formspree):</label>
+            <input type="text" id="inputFormAction" value="https://formsubmit.co/your-email@mayyarunited.com">
+
+            <div class="admin-section-title" id="adm-sec-2">🖼️ نظام التحكم بمواضع وأماكن الصور وقنوات عرضها</div>
+            <label id="adm-lbl-imgurl">رابط الصورة المراد التحكم بها (URL):</label>
+            <input type="text" id="inputDynamicImgUrl" value="https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill">
+            
+            <label id="adm-lbl-imgpos">اختر الخانة والمكان المناسب لوضع هذه الصورة فيه:</label>
+            <select id="inputImgPosition">
+                <option value="header" id="adm-opt-h">خلفية الهيدر العلوي للموقع (Header Background)</option>
+                <option value="about" id="adm-opt-a">صورة المربع الجانبي لقسم "عن الشركة" (About Us Section)</option>
+                <option value="job1" id="adm-opt-j1">في الخانة العلوية الخاصة بوظيفة (مدير المشروع)</option>
+                <option value="job2" id="adm-opt-j2">في الخانة العلوية الخاصة بوظيفة (مساعد مدير مشروع)</option>
+            </select>
+
+            <div class="admin-section-title" id="adm-sec-3">📝 تعديل نصوص وبنود الوظائف المتاحة</div>
+            <label>مدير مشروع - المسمى (عربي):</label> <input type="text" id="inputJob1Ar" value="مدير مشروع (Project Manager)">
+            <label>Project Manager - Title (EN):</label> <input type="text" id="inputJob1En" value="Project Manager (PM)">
+            
+            <label>المهام (عربي):</label> <textarea id="inputTasks1Ar"></textarea>
+            <label>Tasks (EN):</label> <textarea id="inputTasks1En"></textarea>
+            
+            <label>الشروط (عربي):</label> <textarea id="inputReqs1Ar"></textarea>
+            <label>Requirements (EN):</label> <textarea id="inputReqs1En"></textarea>
+
+            <button onclick="saveAllData()" id="adm-btn-save">تحديث وحفظ كل التغييرات فوراً</button>
+        </div>
+
+        <!-- خيار الدخول المخفي المطور (3 ضغطات) -->
+        <div class="tags" style="margin-top: 30px; text-align:center;">
+            <span>#وظائف_السعودية #اتحاد_ميار #إدارة_مشاريع </span>
             <span class="secret-trigger" onclick="handleSecretClick()">#Hospitality_Management</span>
         </div>
     </section>
@@ -325,139 +309,119 @@ High communication skills and unique accuracy in monitoring details and adjustin
         let currentLang = 'ar';
         let clickCount = 0;
 
-        // القاموس الأساسي للموقع
-        const data = {
+        // القاموس الكامل لتعريب وتغريب الموقع ولوحة التحكم بالكامل
+        const translations = {
             ar: {
-                btn: "English",
-                mainWebBtn: "الموقع الرئيسي",
-                subTitle: "شراكة متميزة للارتقاء بفرص التوظيف",
-                mainTitle: "فرص قيادية في إدارة المشاريع",
-                heroDesc: "تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة",
-                citiesTarget: "المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها",
-                aboutTitle: "البيئة والتوجه العام للشركة",
-                aboutSubtitle: "الريادة في تشغيل المشاريع الراقية",
-                aboutList: `<li>نهدف في <strong>اتحاد ميار</strong> لاستقطاب كفاءات شغوفة للانضمام إلى فريقنا النخبوي لإدارة وتشغيل أحد مشاريعنا بقطاع الفنادق الفاخرة والمطاعم الفخمة.</li><li>فرصة للمساهمة في تقديم بروتوكولات خدمة الـ VIP وتحقيق أعلى مستويات الفخامة والانسيابية الميدانية.</li><li>نلتزم بتقديم بيئة عمل احترافية، حوافز استثنائية، ومسار مهني واضح في أرقى قطاعات الضيافة العالمية.</li>`,
-                job1Title: "المسمى الوظيفي: مدير مشروع (Project Manager)",
-                tasksTitle1: "المهام والمسؤوليات التشغيلية",
-                job1Tasks: `<li>التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي ومرافقه.</li><li>إعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة في الأداء والخدمة.</li><li>رصد وضبط الامتثال الكامل لمعايير السلامة والجودة العالمية والخدمة الراقية.</li><li>قيادة الكوادر البشرية وتدريبهم على بروتوكولات الفنادق الفاخرة والـ VIP.</li>`,
-                reqsTitle1: "الشروط والمؤهلات المطلوبة",
-                job1Reqs: `<li>مؤهل تعليمي بكالوريوس في إدارة الفنادق، إدارة الأعمال، أو الهندسة.</li><li>خبرة عملية لا تقل عن 5 سنوات في إدارة وتشغيل الفنادق أو مطاعم الـ Fine Dining.</li><li>إتقان تام للغتين العربية والإنجليزية (كتابة وتحدثاً).</li><li>مهارات قيادية استثنائية والقدرة على إدارة الأزمات والتعامل مع كبار الشخصيات.</li>`,
-                job2Title: "المسمى الوظيفي: مساعد مدير مشروع (Assistant PM)",
-                tasksTitle2: "المهام والمسؤوليات التشغيلية",
-                job2Tasks: `<li>دعم مدير المشروع مباشرة في متابعة سير أعمال الخدمة والضيافة اليومية.</li><li>الإشراف الميداني المباشر على المظهر والجاهزية لفرق الصالة والاستقبال.</li><li>إعداد الجداول التشغيلية للمناوبات (Shifts) وحل المشكلات الفورية للضيوف بذكاء وسرعة.</li><li>تجهيز وإرسال تقارير الأداء والإنتاجية اليومية للمتابعة المباشرة مع القيادة.</li>`,
-                reqsTitle2: "الشروط والمؤهلات المطلوبة",
-                job2Reqs: `<li>شهادة بكالوريوس أو دبلوم في إدارة الفنادق والضيافة، أو إدارة الأعمال.</li><li>خبرة لا تقل عن 3 سنوات في التشغيل الميداني لقطاعات الضيافة الفخمة.</li><li>المظهر والبروتوكول المهني الراقي مع معرفة تامة بإتيكيت الخدمة.</li><li>مهارات تواصل عالية ودقة فريدة في مراقبة التفاصيل وتعديل مسارات العمل.</li>`,
-                ctaTitle: "هل تجد في نفسك الشغف والريادة？",
-                ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك",
-                ctaBtn: "اضغط هنا لتقديم طلبك الآن",
-                ctaLink: "https://forms.gle/hgK4v5FW8KHdVN889",
-                citiesFooter: "موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها"
+                admMainTitle: "لوحة التحكم الشاملة والمطورة للموقع",
+                admSec1: "🌐 إعدادات روابط الشركة والاستمارات",
+                admLblMainUrl: "رابط موقع اتحاد ميار الرئيسي:",
+                admLblFormUrl: "رابط استقبال طلبات التوظيف (Formsubmit / Formspree):",
+                admSec2: "🖼️ نظام التحكم بمواضع وأماكن الصور وقنوات عرضها",
+                admLblImgUrl: "رابط الصورة المراد التحكم بها (URL):",
+                admLblImgPos: "اختر الخانة والمكان المناسب لوضع هذه الصورة فيه:",
+                admOptH: "خلفية الهيدر العلوي للموقع (Header Background)",
+                admOptA: "صورة المربع الجانبي لقسم \"عن الشركة\"",
+                admOptJ1: "في الخانة العلوية الخاصة بوظيفة (مدير المشروع)",
+                admOptJ2: "في الخانة العلوية الخاصة بوظيفة (مساعد مدير مشروع)",
+                admSec3: "📝 تعديل نصوص وبنود الوظائف المتاحة",
+                admBtnSave: "تحديث وحفظ كل التغييرات فوراً",
+                formHeading: "إستمارة التقديم المباشر للمشروع",
+                lblName: "الاسم الكامل:", lblPhone: "رقم الجوال:", lblEmail: "البريد الإلكتروني:",
+                lblPos: "الوظيفة المستهدفة:", lblCity: "المدينة الحالية:", lblCv: "إرفاق السيرة الذاتية (PDF):",
+                lblSubmit: "إرسال الطلب الآن"
             },
             en: {
-                btn: "العربية",
-                mainWebBtn: "Main Website",
-                subTitle: "A Distinguished Partnership to Advance Career Opportunities",
-                mainTitle: "Leadership Opportunities in Project Management",
-                heroDesc: "Mayar Union Company announces the opening of applications for leadership recruitment in the luxury hospitality projects sector.",
-                citiesTarget: "Target Cities: Jeddah | Makkah | Jazan | Abha",
-                aboutTitle: "Company Environment and General Direction",
-                aboutSubtitle: "Leadership in Operating Luxury Projects",
-                aboutList: `<li>At <strong>Mayar Union</strong>, we aim to attract passionate talents to join our elite team for the management and operation of one of our projects in the luxury hotels and high-end restaurants sector.</li><li>An opportunity to contribute to delivering VIP service protocols and achieving the highest levels of luxury and operational efficiency on the ground.</li><li>We are committed to providing a professional work environment, exceptional incentives, and a clear career path in the finest global hospitality sectors.</li>`,
-                job1Title: "Job Title: Project Manager (PM)",
-                tasksTitle1: "Operational Tasks & Responsibilities",
-                job1Tasks: `<li>Comprehensive planning and field supervision of the operation path of the hotel project and its facilities.</li><li>Preparing operational budgets and ensuring increased productivity and efficiency in performance and service.</li><li>Monitoring and ensuring full compliance with international safety, quality standards, and luxury service.</li><li>Leading human resources and training them on luxury hotel and VIP protocols.</li>`,
-                reqsTitle1: "Required Conditions & Qualifications",
-                job1Reqs: `<li>Bachelor's degree in Hotel Management, Business Administration, or Engineering.</li><li>Practical experience of no less than 5 years in managing and operating hotels or Fine Dining restaurants.</li><li>Full fluency in both Arabic and English (written and spoken).</li><li>Exceptional leadership skills and the ability to manage crises and handle VIPs.</li>`,
-                job2Title: "Job Title: Assistant Project Manager (Assistant PM)",
-                tasksTitle2: "Operational Tasks & Responsibilities",
-                job2Tasks: `<li>Supporting the Project Manager directly in following up on the progress of daily service and hospitality work.</li><li>Direct field supervision over the appearance and readiness of the floor and reception teams.</li><li>Preparing operational shift schedules and resolving immediate guest issues intelligently and quickly.</li><li>Preparing and sending daily performance and productivity reports for direct follow-up with leadership.</li>`,
-                reqsTitle2: "Required Conditions & Qualifications",
-                job2Reqs: `<li>Bachelor's degree or diploma in Hotel & Hospitality Management, or Business Administration.</li><li>No less than 3 years of experience in the field operation of luxury hospitality sectors.</li><li>Elegant professional appearance and protocol with full knowledge of service etiquette.</li><li>High communication skills and unique accuracy in monitoring details and adjusting work paths.</li>`,
-                ctaTitle: "Do you see passion and leadership in yourself?",
-                ctaDesc: "We are pleased to receive your immediate application to join the elite Mayar Union team in your region.",
-                ctaBtn: "Click here to submit your application now",
-                ctaLink: "https://forms.gle/hgK4v5FW8KHdVN889",
-                citiesFooter: "Available Work Locations: Jeddah | Makkah | Jazan | Abha"
+                admMainTitle: "Advanced Omnichannel Admin Panel",
+                admSec1: "🌐 Links & Core Integration Settings",
+                admLblMainUrl: "Mayyar United Main Website URL:",
+                admLblFormUrl: "Form Processing Gateway Endpoint (Formsubmit/Formspree):",
+                admSec2: "🖼️ Media Layout & Dynamic Section Asset Placement",
+                admLblImgUrl: "Target Image Asset Resource URL:",
+                admLblImgPos: "Select target placeholder section for this image:",
+                admOptH: "Header Core Background Container",
+                admOptA: "About Corporate Profile Component Frame",
+                admOptJ1: "Project Manager (PM) Showcase Header Box",
+                admOptJ2: "Assistant PM Showcase Header Box",
+                admSec3: "📝 Modify Job Requirements & Core Descriptions",
+                admBtnSave: "Commit & Persist All Structural Updates",
+                formHeading: "Direct Employment Application Form",
+                lblName: "Full Name:", lblPhone: "Mobile Number:", lblEmail: "Email Address:",
+                lblPos: "Target Job Role:", lblCity: "Current Residence City:", lblCv: "Attach Curriculum Vitae (PDF):",
+                lblSubmit: "Transmit Application Now"
+            }
+        };
+
+        const data = {
+            ar: {
+                btn: "English", mainWebBtn: "الموقع الرئيسي", subTitle: "شراكة متميزة للارتقاء بفرص التوظيف", mainTitle: "فرص قيادية في إدارة المشاريع",
+                heroDesc: "تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة", citiesTarget: "المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها",
+                aboutTitle: "البيئة والتوجه العام للشركة", aboutSubtitle: "الريادة في تشغيل المشاريع الراقية",
+                aboutList: `<li>نهدف في <strong>اتحاد ميار</strong> لاستقطاب كفاءات شغوفة...</li>`,
+                job1Title: "المسمى الوظيفي: مدير مشروع (Project Manager)", tasksTitle1: "المهام والمسؤوليات التشغيلية", job1Tasks: "", reqsTitle1: "الشروط والمؤهلات المطلوبة", job1Reqs: "",
+                job2Title: "المسمى الوظيفي: مساعد مدير مشروع (Assistant PM)", tasksTitle2: "المهام والمسؤوليات التشغيلية", job2Tasks: "", reqsTitle2: "الشروط والمؤهلات المطلوبة", job2Reqs: "",
+                ctaTitle: "هل تجد في نفسك الشغف والريادة؟", ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك", citiesFooter: "موقع العمل المتاحة: جدة | مكة المكرمة | جازان | أبها"
+            },
+            en: {
+                btn: "العربية", mainWebBtn: "Main Website", subTitle: "A Distinguished Partnership to Advance Career Opportunities", mainTitle: "Leadership Opportunities in Project Management",
+                heroDesc: "Mayar Union Company announces the opening of applications for leadership recruitment.", citiesTarget: "Target Cities: Jeddah | Makkah | Jazan | Abha",
+                aboutTitle: "Company Environment and General Direction", aboutSubtitle: "Leadership in Operating Luxury Projects",
+                aboutList: `<li>At <strong>Mayar Union</strong>, we aim to attract passionate talents...</li>`,
+                job1Title: "Job Title: Project Manager (PM)", tasksTitle1: "Operational Tasks & Responsibilities", job1Tasks: "", reqsTitle1: "Required Conditions & Qualifications", job1Reqs: "",
+                job2Title: "Job Title: Assistant Project Manager (Assistant PM)", tasksTitle2: "Operational Tasks & Responsibilities", job2Tasks: "", reqsTitle2: "Required Conditions & Qualifications", job2Reqs: "",
+                ctaTitle: "Do you see passion and leadership in yourself?", ctaDesc: "We are pleased to receive your immediate application.", citiesFooter: "Available Work Locations: Jeddah | Makkah | Jazan | Abha"
             }
         };
 
         function textToBulletedList(text) {
-            if (!text.trim()) return '';
+            if (!text || !text.trim()) return '';
             return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
         }
 
-        // استرجاع البيانات المخزنة
         function loadStoredData() {
-            // رابط الموقع الرئيسي الجديد المحدث
-            let savedMainWeb = localStorage.getItem('mainWebsiteUrl');
-            if (savedMainWeb) {
-                document.getElementById('inputMainWebsite').value = savedMainWeb;
-                document.getElementById('mainWebBtn').href = savedMainWeb;
-            } else {
-                // القيمة الافتراضية للرابط الجديد
-                document.getElementById('mainWebBtn').href = "https://www.mayyarunited.com/ar";
-            }
+            // استرجاع موضع الصورة الديناميكي وحفظه
+            let imgUrl = localStorage.getItem('dynImgUrl') || "https://images.trvl-media.com/lodging/120000000/119960000/119959100/119959052/44e14d80.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill";
+            let imgPos = localStorage.getItem('dynImgPos') || "about";
+            
+            document.getElementById('inputDynamicImgUrl').value = imgUrl;
+            document.getElementById('inputImgPosition').value = imgPos;
 
-            // استرجاع الصور وإعداداتها
-            let savedHeaderImg = localStorage.getItem('headerImgUrl');
-            if (savedHeaderImg) {
-                document.getElementById('inputHeaderImg').value = savedHeaderImg;
-                document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${savedHeaderImg}')`;
-            }
-            let savedHeaderSize = localStorage.getItem('headerImgSize');
-            if (savedHeaderSize) {
-                document.getElementById('inputHeaderSize').value = savedHeaderSize;
-                document.getElementById('mainHeader').style.backgroundSize = savedHeaderSize;
-            }
+            // تطبيق توزيع الصور على الخانات المحددة
+            document.getElementById('imgBoxJob1').style.display = 'none';
+            document.getElementById('imgBoxJob2').style.display = 'none';
 
-            let savedAboutImg = localStorage.getItem('aboutImgUrl');
-            if (savedAboutImg) {
-                document.getElementById('inputAboutImg').value = savedAboutImg;
-                document.getElementById('aboutImg').src = savedAboutImg;
-            }
-            let savedAboutFit = localStorage.getItem('aboutImgFit');
-            if (savedAboutFit) {
-                document.getElementById('inputAboutFit').value = savedAboutFit;
-                document.getElementById('aboutImg').style.objectFit = savedAboutFit;
+            if (imgPos === 'header') {
+                document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), url('${imgUrl}')`;
+            } else if (imgPos === 'about') {
+                document.getElementById('aboutImg').src = imgUrl;
+            } else if (imgPos === 'job1') {
+                document.getElementById('imgBoxJob1').style.display = 'block';
+                document.getElementById('imgJob1').src = imgUrl;
+            } else if (imgPos === 'job2') {
+                document.getElementById('imgBoxJob2').style.display = 'block';
+                document.getElementById('imgJob2').src = imgUrl;
             }
 
             // استرجاع الروابط
-            let savedLinkAr = localStorage.getItem('applyLinkAr');
-            if (savedLinkAr) { document.getElementById('inputLinkAr').value = savedLinkAr; data.ar.ctaLink = savedLinkAr; }
-            let savedLinkEn = localStorage.getItem('applyLinkEn');
-            if (savedLinkEn) { document.getElementById('inputLinkEn').value = savedLinkEn; data.en.ctaLink = savedLinkEn; }
+            let mainWeb = localStorage.getItem('mainWebsiteUrl') || "https://www.mayyarunited.com/ar";
+            document.getElementById('inputMainWebsite').value = mainWeb;
+            document.getElementById('mainWebBtn').href = mainWeb;
 
-            // استرجاع النصوص والوظائف
-            const fields = [
-                { key: 'job1Ar', id: 'inputJob1Ar', dict: data.ar, prop: 'job1Title', prefix: 'المسمى الوظيفي: ' },
-                { key: 'job1En', id: 'inputJob1En', dict: data.en, prop: 'job1Title', prefix: 'Job Title: ' },
-                { key: 'job2Ar', id: 'inputJob2Ar', dict: data.ar, prop: 'job2Title', prefix: 'المسمى الوظيفي: ' },
-                { key: 'job2En', id: 'inputJob2En', dict: data.en, prop: 'job2Title', prefix: 'Job Title: ' },
-                { key: 'tasks1Ar', id: 'inputTasks1Ar', dict: data.ar, prop: 'job1Tasks', isList: true },
-                { key: 'tasks1En', id: 'inputTasks1En', dict: data.en, prop: 'job1Tasks', isList: true },
-                { key: 'reqs1Ar', id: 'inputReqs1Ar', dict: data.ar, prop: 'job1Reqs', isList: true },
-                { key: 'reqs1En', id: 'inputReqs1En', dict: data.en, prop: 'job1Reqs', isList: true },
-                { key: 'tasks2Ar', id: 'inputTasks2Ar', dict: data.ar, prop: 'job2Tasks', isList: true },
-                { key: 'tasks2En', id: 'inputTasks2En', dict: data.en, prop: 'job2Tasks', isList: true },
-                { key: 'reqs2Ar', id: 'inputReqs2Ar', dict: data.ar, prop: 'job2Reqs', isList: true },
-                { key: 'reqs2En', id: 'inputReqs2En', dict: data.en, prop: 'job2Reqs', isList: true }
-            ];
+            let formAction = localStorage.getItem('formActionUrl') || "https://formsubmit.co/your-email@mayyarunited.com";
+            document.getElementById('inputFormAction').value = formAction;
+            document.querySelector('.internal-form-card form').action = formAction;
 
-            fields.forEach(field => {
-                let savedValue = localStorage.getItem(field.key);
-                if (savedValue) {
-                    document.getElementById(field.id).value = savedValue;
-                    if (field.isList) {
-                        field.dict[field.prop] = textToBulletedList(savedValue);
-                    } else {
-                        field.dict[field.prop] = field.prefix + savedValue;
-                    }
-                }
-            });
+            // تعبئة النصوص الافتراضية للوظيفة الأولى كمثال
+            if(!localStorage.getItem('tasks1Ar')) {
+                localStorage.setItem('tasks1Ar', "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي ومرافقه.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية.\nرصد وضبط الامتثال الكامل لمعايير السلامة والجودة.");
+                localStorage.setItem('tasks1En', "Comprehensive planning and field supervision.\nPreparing operational budgets.\nMonitoring and ensuring full compliance.");
+            }
+
+            document.getElementById('inputTasks1Ar').value = localStorage.getItem('tasks1Ar');
+            document.getElementById('inputTasks1En').value = localStorage.getItem('tasks1En');
+            
+            data.ar.job1Tasks = textToBulletedList(localStorage.getItem('tasks1Ar'));
+            data.en.job1Tasks = textToBulletedList(localStorage.getItem('tasks1En'));
         }
-
-        loadStoredData();
-        updateDOM();
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -467,6 +431,7 @@ High communication skills and unique accuracy in monitoring details and adjustin
         }
 
         function updateDOM() {
+            // تحديث واجهة المستخدم العادية
             document.getElementById('langBtn').innerText = data[currentLang].btn;
             document.getElementById('mainWebBtn').innerText = data[currentLang].mainWebBtn;
             document.getElementById('sub-title').innerText = data[currentLang].subTitle;
@@ -475,81 +440,70 @@ High communication skills and unique accuracy in monitoring details and adjustin
             document.getElementById('cities-target').innerText = data[currentLang].citiesTarget;
             document.getElementById('about-title').innerText = data[currentLang].aboutTitle;
             document.getElementById('about-subtitle').innerText = data[currentLang].aboutSubtitle;
-            document.getElementById('about-list').innerHTML = data[currentLang].aboutList;
             
             document.getElementById('job1-title').innerText = data[currentLang].job1Title;
             document.getElementById('tasks-title1').innerText = data[currentLang].tasksTitle1;
             document.getElementById('job1-tasks').innerHTML = data[currentLang].job1Tasks;
-            document.getElementById('reqs-title1').innerText = data[currentLang].reqsTitle1;
-            document.getElementById('job1-reqs').innerHTML = data[currentLang].job1Reqs;
-
-            document.getElementById('job2-title').innerText = data[currentLang].job2Title;
-            document.getElementById('tasks-title2').innerText = data[currentLang].tasksTitle2;
-            document.getElementById('job2-tasks').innerHTML = data[currentLang].job2Tasks;
-            document.getElementById('reqs-title2').innerText = data[currentLang].reqsTitle2;
-            document.getElementById('job2-reqs').innerHTML = data[currentLang].job2Reqs;
             
             document.getElementById('cta-title').innerText = data[currentLang].ctaTitle;
             document.getElementById('cta-desc').innerText = data[currentLang].ctaDesc;
-            document.getElementById('cta-btn').innerText = data[currentLang].ctaBtn;
-            document.getElementById('cta-btn').href = data[currentLang].ctaLink;
-            document.getElementById('cities-footer').innerText = data[currentLang].citiesFooter;
+
+            // تحديث اللغتين داخل لوحة التحكم والنموذج الداخلي
+            const t = translations[currentLang];
+            document.getElementById('adm-main-title').innerText = t.admMainTitle;
+            document.getElementById('adm-sec-1').innerText = t.admSec1;
+            document.getElementById('adm-lbl-mainurl').innerText = t.admLblMainUrl;
+            document.getElementById('adm-lbl-formurl').innerText = t.admLblFormUrl;
+            document.getElementById('adm-sec-2').innerText = t.admSec2;
+            document.getElementById('adm-lbl-imgurl').innerText = t.admLblImgUrl;
+            document.getElementById('adm-lbl-imgpos').innerText = t.admLblImgPos;
+            document.getElementById('adm-opt-h').innerText = t.admOptH;
+            document.getElementById('adm-opt-a').innerText = t.admOptA;
+            document.getElementById('adm-opt-j1').innerText = t.admOptJ1;
+            document.getElementById('adm-opt-j2').innerText = t.admOptJ2;
+            document.getElementById('adm-sec-3').innerText = t.admSec3;
+            document.getElementById('adm-btn-save').innerText = t.admBtnSave;
+
+            document.getElementById('form-heading').innerText = t.formHeading;
+            document.getElementById('lbl-name').innerText = t.lblName;
+            document.getElementById('lbl-phone').innerText = t.lblPhone;
+            document.getElementById('lbl-email').innerText = t.lblEmail;
+            document.getElementById('lbl-pos').innerText = t.lblPos;
+            document.getElementById('lbl-city').innerText = t.lblCity;
+            document.getElementById('lbl-cv').innerText = t.lblCv;
+            document.getElementById('lbl-submit').innerText = t.lblSubmit;
         }
 
-        // دالة تتبع الضغطات المتتالية السحرية للوحة التحكم المخفية
         function handleSecretClick() {
             clickCount++;
-            if (clickCount === 3) {
-                clickCount = 0; 
-                openAdminPanel();
-            }
+            if (clickCount === 3) { clickCount = 0; openAdminPanel(); }
             setTimeout(() => { clickCount = 0; }, 1500);
         }
 
         function openAdminPanel() {
-            let password = prompt("الرجاء إدخال كلمة المرور لفتح لوحة التحكم المتقدمة:");
+            let password = prompt(currentLang === 'ar' ? "أدخل كلمة المرور:" : "Enter Admin Password:");
             if (password === "1234") {
                 document.getElementById('adminPanel').style.display = 'block';
                 window.scrollTo(0, document.body.scrollHeight);
-            } else {
-                alert("كلمة المرور خاطئة!");
-            }
+            } else { alert("Wrong Password!"); }
         }
 
         function saveAllData() {
-            // حفظ رابط الموقع الرئيسي
             localStorage.setItem('mainWebsiteUrl', document.getElementById('inputMainWebsite').value);
+            localStorage.setItem('formActionUrl', document.getElementById('inputFormAction').value);
+            localStorage.setItem('dynImgUrl', document.getElementById('inputDynamicImgUrl').value);
+            localStorage.setItem('dynImgPos', document.getElementById('inputImgPosition').value);
 
-            // حفظ روابط وإعدادات الصور
-            localStorage.setItem('headerImgUrl', document.getElementById('inputHeaderImg').value);
-            localStorage.setItem('headerImgSize', document.getElementById('inputHeaderSize').value);
-            localStorage.setItem('aboutImgUrl', document.getElementById('inputAboutImg').value);
-            localStorage.setItem('aboutImgFit', document.getElementById('inputAboutFit').value);
-
-            // حفظ روابط الاستبيانات
-            localStorage.setItem('applyLinkAr', document.getElementById('inputLinkAr').value);
-            localStorage.setItem('applyLinkEn', document.getElementById('inputLinkEn').value);
-
-            // حفظ باقي المكونات والنصوص
-            const keys = [
-                'job1Ar', 'job1En', 'job2Ar', 'job2En',
-                'tasks1Ar', 'tasks1En', 'reqs1Ar', 'reqs1En',
-                'tasks2Ar', 'tasks2En', 'reqs2Ar', 'reqs2En'
-            ];
-            const ids = [
-                'inputJob1Ar', 'inputJob1En', 'inputJob2Ar', 'inputJob2En',
-                'inputTasks1Ar', 'inputTasks1En', 'inputReqs1Ar', 'inputReqs1En',
-                'inputTasks2Ar', 'inputTasks2En', 'inputReqs2Ar', 'inputReqs2En'
-            ];
-
-            keys.forEach((key, index) => {
-                localStorage.setItem(key, document.getElementById(ids[index]).value);
-            });
+            localStorage.setItem('tasks1Ar', document.getElementById('inputTasks1Ar').value);
+            localStorage.setItem('tasks1En', document.getElementById('inputTasks1En').value);
 
             loadStoredData();
             updateDOM();
-            alert("تم حفظ كافة التحديثات والرابط الجديد للموقع الرئيسي بنجاح!");
+            alert(currentLang === 'ar' ? "تم الحفظ بنجاح!" : "Configuration Saved Successfully!");
         }
+
+        loadStoredData();
+        updateDOM();
     </script>
 </body>
 </html>
