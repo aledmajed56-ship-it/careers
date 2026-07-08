@@ -3,85 +3,704 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>م د للتوظيف | MD Recruitment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title id="siteHtmlTitle">م د للتوظيف | MD Recruitment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #1a252f; --accent-color: #b59410; }
-        body { font-family: 'Tajawal', sans-serif; margin: 0; background: #f8f9fa; }
-        .job-card { background: white; padding: 20px; margin: 15px; border-radius: 10px; border-right: 5px solid var(--accent-color); }
-        .admin-panel { display: none; background: #fff; padding: 20px; border: 2px solid var(--accent-color); margin: 20px; }
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: var(--primary-color); color: white; padding: 10px; cursor: pointer; border-radius: 5px; }
-        .delete-btn { background: #e74c3c; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        :root {
+            --primary-color: #1a252f;
+            --accent-color: #b59410;
+            --text-color: #333;
+            --bg-light: #f8f9fa;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        html[dir="rtl"] .en-only { display: none !important; }
+        html[dir="ltr"] .ar-only { display: none !important; }
+
+        /* أزرار التحكم العلوية */
+        .top-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10000;
+            display: flex;
+            gap: 10px;
+        }
+        html[dir="ltr"] .top-controls {
+            left: auto;
+            right: 20px;
+        }
+        .control-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.2s, background 0.2s;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .control-btn:hover {
+            transform: scale(1.05);
+            background-color: #94790d;
+        }
+
+        /* الهيدر الرئيسي الفخم */
+        header {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            overflow: hidden;
+            transition: background-image 0.5s ease;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.95));
+            z-index: 1;
+        }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header-content h2 {
+            font-family: 'Caveat', cursive;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+        .header-content h1 {
+            font-size: 3rem;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .header-content p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin: 0 auto 30px auto;
+            max-width: 700px;
+        }
+        .cities-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .city-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* قسـم عن الشركة وبيئة العمل */
+        .about-section {
+            padding: 80px 20px;
+            background-color: var(--bg-light);
+        }
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .about-container { grid-template-columns: 1fr; gap: 30px; }
+        }
+        .about-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            object-fit: cover;
+            height: 380px;
+            transition: src 0.5s ease;
+        }
+        .about-content h3 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+        }
+        .about-content h4 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin: 0 0 25px 0;
+            font-weight: normal;
+        }
+        .environment-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .environment-list li {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        html[dir="ltr"] .environment-list li {
+            padding-right: 0;
+            padding-left: 30px;
+        }
+        .environment-list li::before {
+            content: '✦';
+            position: absolute;
+            right: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        html[dir="ltr"] .environment-list li::before {
+            right: auto;
+            left: 0;
+        }
+
+        /* قسم الوظائف المتاحة حياً */
+        .jobs-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-right: 5px solid var(--accent-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        html[dir="ltr"] .job-card {
+            border-right: none;
+            border-left: 5px solid var(--accent-color);
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        .job-card h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        .job-card p {
+            color: #555;
+            font-size: 1.05rem;
+            margin: 0 0 25px 0;
+            flex-grow: 1;
+        }
+        .btn-apply {
+            display: block;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-apply:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* لوحة التحكم الاحترافية المدمجة */
+        .admin-panel {
+            display: none;
+            background: #fff;
+            padding: 40px;
+            border: 3px solid var(--accent-color);
+            margin: 40px auto;
+            max-width: 1100px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .admin-header {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-header h2 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+        .admin-section-title {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            border-radius: 6px;
+        }
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+            margin-top: 10px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(181, 148, 16, 0.3);
+        }
+        
+        .admin-job-item {
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .btn-delete-job {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            float: left;
+            font-weight: bold;
+        }
+        html[dir="ltr"] .btn-delete-job { float: right; }
+
+        .admin-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        .btn-save { background-color: var(--success-color); color: white; flex: 2; font-size: 1.2rem; }
+        .btn-add-job { background-color: #2980b9; color: white; flex: 1; }
+
+        /* الفوتر المتناسق */
+        footer {
+            background-color: var(--primary-color);
+            color: #999;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.95rem;
+            border-top: 4px solid var(--accent-color);
+        }
+        .secret-lock {
+            cursor: pointer;
+            opacity: 0.4;
+            margin-right: 8px;
+            transition: opacity 0.2s;
+        }
+        .secret-lock:hover { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <header style="background: #1a252f; color: white; padding: 40px; text-align: center;">
-        <h1>م د للتوظيف</h1>
-    </header>
-
-    <div id="jobsContainer">جاري تحميل الوظائف...</div>
-
-    <div id="adminPanel" class="admin-panel">
-        <h3>🛠️ لوحة تحكم الإدارة</h3>
-        <input type="text" id="jobTitle" placeholder="عنوان الوظيفة">
-        <input type="text" id="jobLink" placeholder="رابط التقديم">
-        <button onclick="addNewJob()">إضافة وظيفة</button>
-        <hr>
-        <div id="adminJobsList"></div>
+    <div class="top-controls">
+        <button class="control-btn" onclick="toggleLanguage()">English / العربية</button>
     </div>
 
-    <div class="admin-btn" onclick="handleSecretClick()">⚙️</div>
+    <header id="mainHeader">
+        <div class="header-content">
+            <h2 id="heroSub"></h2>
+            <h1 id="heroMain"></h1>
+            <p id="heroDesc"></p>
+            <div class="cities-tags" id="heroCitiesContainer"></div>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="about-container">
+            <img id="aboutImage" src="" alt="About Company" class="about-img">
+            <div class="about-content">
+                <h3 id="aboutTitle"></h3>
+                <h4 id="aboutSubtitle"></h4>
+                <ul class="environment-list" id="aboutPointsContainer"></ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="jobs-section">
+        <div class="section-title">
+            <h2 class="ar-only">الفرص الوظيفية المتاحة حياً</h2>
+            <h2 class="en-only">Live Available Careers</h2>
+            <p class="ar-only">انضم إلينا اليوم وابدأ رحلتك المهنية المتميزة معنا</p>
+            <p class="en-only">Join us today and kickstart your outstanding career journey</p>
+        </div>
+        <div class="jobs-grid" id="jobsContainer">
+            </div>
+    </section>
+
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2>🛡️ لوحة التحكم وإدارة المنصة المتكاملة</h2>
+            <button class="control-btn" style="background:#7f8c8d" onclick="document.getElementById('adminPanel').style.display='none'">إغلاق اللوحة</button>
+        </div>
+
+        <label>رابط صورة الخلفية للهيدر الرئيسي (Header Image URL):</label>
+        <input type="text" id="input_img_header_url">
+        
+        <label>رابط الصورة الجانبية لقسم "عن الشركة" (About Image URL):</label>
+        <input type="text" id="input_img_about_url">
+
+        <div class="admin-section-title">🏢 إدارة نصوص الواجهات بالكامل</div>
+        <div class="admin-grid">
+            <div>
+                <strong style="color:var(--accent-color)">النسخة العربية (Arabic View)</strong>
+                <label>العنوان الفرعي للهيدر:</label> <input type="text" id="input_ar_heroSub">
+                <label>العنوان الرئيسي للهيدر:</label> <input type="text" id="input_ar_heroMain">
+                <label>وصف الهيدر الترحيبي:</label> <textarea id="input_ar_heroDesc" rows="2"></textarea>
+                <label>المدن المتوفرة (افصل بينها بـ ،):</label> <input type="text" id="input_ar_heroCities">
+                <label>عنوان قسم عن الشركة:</label> <input type="text" id="input_ar_aboutTitle">
+                <label>العنوان الفرعي لقسم الشركة:</label> <input type="text" id="input_ar_aboutSubtitle">
+                <label>مزايا بيئة العمل (ضع كل نقطة في سطر مستقل):</label> <textarea id="input_ar_aboutTxt" rows="4"></textarea>
+            </div>
+            <div>
+                <strong style="color:var(--accent-color)">English Version (النسخة الإنجليزية)</strong>
+                <label>Hero Sub-title:</label> <input type="text" id="input_en_heroSub">
+                <label>Hero Main-title:</label> <input type="text" id="input_en_heroMain">
+                <label>Hero Description:</label> <textarea id="input_en_heroDesc" rows="2"></textarea>
+                <label>Available Cities (Separate with ,):</label> <input type="text" id="input_en_heroCities">
+                <label>About Section Title:</label> <input type="text" id="input_en_aboutTitle">
+                <label>About Section Subtitle:</label> <input type="text" id="input_en_aboutSubtitle">
+                <label>Work Culture Points (Each point in a new line):</label> <textarea id="input_en_aboutTxt" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="admin-section-title">💼 إدارة الإعلانات والوظائف الشاغرة حياً</div>
+        <div id="adminJobsList"></div>
+        
+        <div class="admin-actions">
+            <button class="control-btn btn-add-job" type="button" onclick="addNewJobField()">➕ إضافة وظيفة شاغرة جديدة</button>
+            <button class="control-btn btn-save" type="button" onclick="saveAllPlatformData()">💾 حفظ ونشر التحديثات للموقع فوراً</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            &copy; <span id="footerYear"></span> مجموعة م د للتوظيف والحلول الذكية. جميع الحقوق محفوظة برمجياً برزم.
+            <span class="secret-lock" onclick="handleSecretClick()">🔒</span>
+        </p>
+    </footer>
 
     <script type="module">
-        import { db } from './firebase-config.js';
-        import { collection, onSnapshot, query, orderBy, addDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // 1. عرض الوظائف للزوار
-        const jobsRef = collection(db, "jobs");
-        const q = query(jobsRef, orderBy("timestamp", "desc"));
+        // إعدادات فايربيس المرفقة الخاصة بك
+        const firebaseConfig = {
+          apiKey: "AIzaSyDvJBtIwf1__iRVIuKG7GMef8BlLNdIOog",
+          authDomain: "md-recruitment.firebaseapp.com",
+          projectId: "md-recruitment",
+          storageBucket: "md-recruitment.firebasestorage.app",
+          messagingSenderId: "737652908081",
+          appId: "1:737652908081:web:3a92df570c60e86d50b510",
+          measurementId: "G-25HSRWMW7N"
+        };
 
-        onSnapshot(q, (snapshot) => {
-            const container = document.getElementById('jobsContainer');
-            const adminList = document.getElementById('adminJobsList');
-            container.innerHTML = '';
-            adminList.innerHTML = '';
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const docRef = doc(db, "platform", "siteConfig");
 
-            snapshot.forEach((docSnapshot) => {
-                const job = docSnapshot.data();
-                
-                // إضافة للزوار
-                container.innerHTML += `
-                    <div class="job-card">
-                        <h2>${job.title}</h2>
-                        <a href="${job.link}" target="_blank">التقديم الفوري</a>
-                    </div>`;
+        // حالة الموقع المحلية
+        let siteData = {};
+        let currentLang = localStorage.getItem('site_lang') || 'ar';
 
-                // إضافة للوحة التحكم
-                adminList.innerHTML += `
-                    <div style="margin:10px; border-bottom:1px solid #ccc;">
-                        <span>${job.title}</span>
-                        <button class="delete-btn" onclick="deleteJob('${docSnapshot.id}')">حذف</button>
-                    </div>`;
-            });
+        // قيم افتراضية متناسقة وراقية لتأسيس الموقع لأول مرة إذا كانت قاعدة البيانات فارغة
+        const defaultData = {
+            img_header_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
+            img_about_url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070",
+            ar_heroSub: "مرحباً بكم في منصة التوظيف الرسمية",
+            en_heroSub: "Welcome to the Official Recruitment Platform",
+            ar_heroMain: "مجموعة م د للتوظيف والحلول الذكية",
+            en_heroMain: "MD Recruitment & Smart Solutions Group",
+            ar_heroDesc: "نحن نفتح لك آفاقاً جديدة لبناء مسيرة مهنية استثنائية في بيئة عمل محفزة ومبتكرة تلبي تطلعاتك.",
+            en_heroDesc: "We open new horizons for you to build an exceptional career in an inspiring and innovative environment.",
+            ar_heroCities: "الرياض ، جدة ، الدمام ، نيوم",
+            en_heroCities: "Riyadh , Jeddah , Dammam , NEOM",
+            ar_aboutTitle: "عن المجموعة وتوجه العمل",
+            en_aboutTitle: "About The Group & Work Culture",
+            ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريقنا الاستراتيجي؟",
+            en_aboutSubtitle: "Why choose to join our strategic team?",
+            ar_aboutTxt: "رواتب ومزايا تنافسية ومكافآت دورية مجزية\nتأمين طبي شامل وفئات ممتازة للموظف وعائلته\nمسارات مهنية واضحة ودورات تدريبية مستمرة\nبيئة عمل مرنة تدعم الابتكار والإبداع الفردي",
+            en_aboutTxt: "Competitive salaries, rich benefits, and period rewards\nComprehensive premium medical insurance for employees & families\nClear professional growth paths and ongoing training courses\nFlexible work ecosystem supporting innovation & excellence",
+            jobs: [
+                {
+                    ar_title: "أخصائي تقنية معلومات عالي الخبرة",
+                    en_title: "Senior Information Technology Specialist",
+                    ar_tasks: "إدارة وتطوير البنية التحتية الرقمية، حماية الخوادم، وتقديم الحلول التقنية الفورية للموظفين.",
+                    en_tasks: "Managing and scaling digital infrastructure, protecting servers, and delivering urgent technical solutions.",
+                    form_url: "https://google.com"
+                }
+            ]
+        };
+
+        // 🟢 الاستماع اللحظي لقاعدة البيانات (onSnapshot) لبث البيانات فوراً
+        onSnapshot(docRef, (snapshot) => {
+            if (snapshot.exists()) {
+                siteData = snapshot.data();
+            } else {
+                siteData = defaultData;
+            }
+            renderInterface();
         });
 
-        // 2. دوال الإدارة
-        window.addNewJob = async () => {
-            const title = document.getElementById('jobTitle').value;
-            const link = document.getElementById('jobLink').value;
-            await addDoc(jobsRef, { title, link, timestamp: serverTimestamp() });
-            alert("تمت الإضافة!");
-        };
+        // دالة بناء الواجهة والعرض العام للمستخدمين بناءً على اللغة والبيانات الحية
+        function renderInterface() {
+            // ضبط اتجاه الصفحة واللغة
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('footerYear').innerText = new Date().getFullYear();
 
-        window.deleteJob = async (id) => {
-            await deleteDoc(doc(db, "jobs", id));
-        };
+            // تطبيق الصور الديناميكية
+            document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url || defaultData.img_header_url}')`;
+            document.getElementById('aboutImage').src = siteData.img_about_url || defaultData.img_about_url;
 
-        window.handleSecretClick = () => {
-            const pass = prompt("كلمة المرور:");
-            if (pass === "1425") document.getElementById('adminPanel').style.display = 'block';
-        };
+            // بث النصوص حسب اللغة المختارة لـ الموظف والزائر
+            if (currentLang === 'ar') {
+                document.getElementById('heroSub').innerText = siteData.ar_heroSub || '';
+                document.getElementById('heroMain').innerText = siteData.ar_heroMain || '';
+                document.getElementById('heroDesc').innerText = siteData.ar_heroDesc || '';
+                document.getElementById('aboutTitle').innerText = siteData.ar_aboutTitle || '';
+                document.getElementById('aboutSubtitle').innerText = siteData.ar_aboutSubtitle || '';
+                
+                // المدن
+                const cities = (siteData.ar_heroCities || '').split('،');
+                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">${c.trim()}</span>` : '').join('');
+                
+                // نقاط بيئة العمل
+                const points = (siteData.ar_aboutTxt || '').split('\n');
+                document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
+            } else {
+                document.getElementById('heroSub').innerText = siteData.en_heroSub || '';
+                document.getElementById('heroMain').innerText = siteData.en_heroMain || '';
+                document.getElementById('heroDesc').innerText = siteData.en_heroDesc || '';
+                document.getElementById('aboutTitle').innerText = siteData.en_aboutTitle || '';
+                document.getElementById('aboutSubtitle').innerText = siteData.en_aboutSubtitle || '';
+                
+                // المدن
+                const cities = (siteData.en_heroCities || '').split(',');
+                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">${c.trim()}</span>` : '').join('');
+                
+                // نقاط بيئة العمل
+                const points = (siteData.en_aboutTxt || '').split('\n');
+                document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
+            }
+
+            // بناء كروت الوظائف حياً للزوار
+            const jobsContainer = document.getElementById('jobsContainer');
+            const jobsList = siteData.jobs || [];
+            
+            if(jobsList.length === 0) {
+                jobsContainer.innerHTML = currentLang === 'ar' ? '<p style="text-align:center; grid-column:1/-1; color:#7f8c8d;">لا توجد وظائف شاغرة حالياً.</p>' : '<p style="text-align:center; grid-column:1/-1; color:#7f8c8d;">No vacancies available at the moment.</p>';
+            } else {
+                jobsContainer.innerHTML = jobsList.map(job => `
+                    <div class="job-card">
+                        <div>
+                            <h3>${currentLang === 'ar' ? (job.ar_title || 'بدون عنوان') : (job.en_title || 'No Title')}</h3>
+                            <p>${currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || '')}</p>
+                        </div>
+                        <a href="${job.form_url || '#'}" target="_blank" class="btn-apply">
+                            ${currentLang === 'ar' ? 'التقديم الفوري' : 'Apply Now'}
+                        </a>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // تبديل اللغة حياً فوراً دون إعادة تحميل الصفحة
+        window.toggleLanguage = function() {
+            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+            localStorage.setItem('site_lang', currentLang);
+            renderInterface();
+            if(document.getElementById('adminPanel').style.display === 'block') {
+                loadPanelInputs(); // تحديث حقول المدخلات لتواكب الاختيارات
+            }
+        }
+
+        // تفجير وفتح لوحة التحكم السرية
+        window.handleSecretClick = function() {
+            let pass = prompt("🛡️ النظام مشفر آمن برزم.\nالرجاء إدخال الرقم السري لفتح لوحة التحكم الإدارية للمنصة:");
+            if (pass === "1425") {
+                document.getElementById('adminPanel').style.display = 'block';
+                document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
+                loadPanelInputs();
+            } else if (pass !== null) {
+                alert("❌ عذراً، الرقم السري الذي أدخلته غير صحيح!");
+            }
+        }
+
+        // تعبئة حقول لوحة الإدارة بناءً على قيم الفايربيس الحالية
+        function loadPanelInputs() {
+            document.getElementById('input_img_header_url').value = siteData.img_header_url || '';
+            document.getElementById('input_img_about_url').value = siteData.img_about_url || '';
+            
+            document.getElementById('input_ar_heroSub').value = siteData.ar_heroSub || '';
+            document.getElementById('input_ar_heroMain').value = siteData.ar_heroMain || '';
+            document.getElementById('input_ar_heroDesc').value = siteData.ar_heroDesc || '';
+            document.getElementById('input_ar_heroCities').value = siteData.ar_heroCities || '';
+            document.getElementById('input_ar_aboutTitle').value = siteData.ar_aboutTitle || '';
+            document.getElementById('input_ar_aboutSubtitle').value = siteData.ar_aboutSubtitle || '';
+            document.getElementById('input_ar_aboutTxt').value = siteData.ar_aboutTxt || '';
+
+            document.getElementById('input_en_heroSub').value = siteData.en_heroSub || '';
+            document.getElementById('input_en_heroMain').value = siteData.en_heroMain || '';
+            document.getElementById('input_en_heroDesc').value = siteData.en_heroDesc || '';
+            document.getElementById('input_en_heroCities').value = siteData.en_heroCities || '';
+            document.getElementById('input_en_aboutTitle').value = siteData.en_aboutTitle || '';
+            document.getElementById('input_en_aboutSubtitle').value = siteData.en_aboutSubtitle || '';
+            document.getElementById('input_en_aboutTxt').value = siteData.en_aboutTxt || '';
+
+            renderAdminJobs();
+        }
+
+        // رسم قائمة الوظائف داخل لوحة التحكم لتعديلها أو حذفها
+        function renderAdminJobs() {
+            const listContainer = document.getElementById('adminJobsList');
+            const jobs = siteData.jobs || [];
+            
+            listContainer.innerHTML = jobs.map((job, index) => `
+                <div class="admin-job-item">
+                    <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
+                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية رقم #${index + 1}</h4>
+                    
+                    <div class="admin-grid" style="margin-top:10px;">
+                        <div>
+                            <label>المسمى الوظيفي (بالعربي):</label>
+                            <input type="text" value="${job.ar_title || ''}" onchange="siteData.jobs[${index}].ar_title = this.value">
+                            <label>المهام والمتطلبات (بالعربي):</label>
+                            <textarea rows="2" onchange="siteData.jobs[${index}].ar_tasks = this.value">${job.ar_tasks || ''}</textarea>
+                        </div>
+                        <div>
+                            <label>Job Title (English):</label>
+                            <input type="text" value="${job.en_title || ''}" onchange="siteData.jobs[${index}].en_title = this.value">
+                            <label>Tasks & Description (English):</label>
+                            <textarea rows="2" onchange="siteData.jobs[${index}].en_tasks = this.value">${job.en_tasks || ''}</textarea>
+                        </div>
+                    </div>
+                    <label style="margin-top:10px;">رابط نموذج التقديم الفوري (Form or URL):</label>
+                    <input type="text" value="${job.form_url || ''}" onchange="siteData.jobs[${index}].form_url = this.value" style="border-color:var(--accent-color);">
+                </div>
+            `).join('');
+        }
+
+        // إضافة وظيفة جديدة مؤقتاً في مصفوفة الواجهة قبل الحفظ والرفع
+        window.addNewJobField = function() {
+            if (!siteData.jobs) siteData.jobs = [];
+            siteData.jobs.push({
+                ar_title: '',
+                en_title: '',
+                ar_tasks: '',
+                en_tasks: '',
+                form_url: ''
+            });
+            renderAdminJobs();
+        }
+
+        // حذف وظيفة فورياً من مصفوفة التحكم قبل الحفظ النهائي
+        window.deleteJobField = function(index) {
+            if(confirm("هل أنت متأكد تماماً من رغبتك في حذف هذا الإعلان الوظيفي نهائياً؟")) {
+                siteData.jobs.splice(index, 1);
+                renderAdminJobs();
+            }
+        }
+
+        // 🔵 جمع كل المدخلات وحفظها في مستند الفايربيس السحابي لتحديثها فوراً للجميع حياً ومباشرة
+        window.saveAllPlatformData = async function() {
+            try {
+                // تجميع بيانات الحقول النصية والصور
+                siteData.img_header_url = document.getElementById('input_img_header_url').value;
+                siteData.img_about_url = document.getElementById('input_img_about_url').value;
+                
+                siteData.ar_heroSub = document.getElementById('input_ar_heroSub').value;
+                siteData.ar_heroMain = document.getElementById('input_ar_heroMain').value;
+                siteData.ar_heroDesc = document.getElementById('input_ar_heroDesc').value;
+                siteData.ar_heroCities = document.getElementById('input_ar_heroCities').value;
+                siteData.ar_aboutTitle = document.getElementById('input_ar_aboutTitle').value;
+                siteData.ar_aboutSubtitle = document.getElementById('input_ar_aboutSubtitle').value;
+                siteData.ar_aboutTxt = document.getElementById('input_ar_aboutTxt').value;
+
+                siteData.en_heroSub = document.getElementById('input_en_heroSub').value;
+                siteData.en_heroMain = document.getElementById('input_en_heroMain').value;
+                siteData.en_heroDesc = document.getElementById('input_en_heroDesc').value;
+                siteData.en_heroCities = document.getElementById('input_en_heroCities').value;
+                siteData.en_aboutTitle = document.getElementById('input_en_aboutTitle').value;
+                siteData.en_aboutSubtitle = document.getElementById('input_en_aboutSubtitle').value;
+                siteData.en_aboutTxt = document.getElementById('input_en_aboutTxt').value;
+
+                // الرفع المباشر والسحابي لـ Firebase Firestore
+                await setDoc(docRef, siteData);
+                alert("✅ تم حفظ التعديلات ونشرها سحابياً وتحديث مظهر الموقع والوظائف فوراً لجميع الزوار والموظفين بنجاح!");
+                document.getElementById('adminPanel').style.display = 'none';
+            } catch (error) {
+                console.error(error);
+                alert("❌ عذراً، حدث خطأ أثناء محاولة الاتصال بـ Firebase ومزامنة البيانات.");
+            }
+        }
     </script>
 </body>
 </html>
