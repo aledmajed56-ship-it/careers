@@ -502,7 +502,7 @@
         let siteData = {};
         let currentLang = localStorage.getItem('site_lang') || 'ar';
 
-        // التعبئة والوصف الوظيفي متصل تلقائياً برابط Google Forms الخاص بك
+        // البيانات الافتراضية المحقونة بكامل تفاصيلها ورابط الـ Google Form الخاص بك
         const defaultData = {
             img_header_url: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070",
             img_about_url: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=2070",
@@ -522,7 +522,7 @@
             ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريق اتحاد ميار؟",
             en_aboutSubtitle: "Why choose to join the Mayyar United team?",
             ar_aboutTxt: "تطبيق أعلى معايير الجودة والسلامة الغذائية العالمية\nبيئة عمل محفزة تدعم التطوير المهني والتدريب المستمر\nمزايا وظيفية تنافسية ومكافآت للمتميزين\nتأمين طبي شامل للموظفين وعائلاتهم",
-            en_aboutTxt: "Applying the highest international food safety and quality standards\nAn inspiring work environment supporting career growth and ongoing training\nCompetitive job benefits and rewards for outstanding performance\nComprehensive medical insurance for employees and their families",
+            en_aboutTxt: "Applying the highest international food safety and quality standards\nAn inspiring work environment supporting career growth and ongoing training\nCompetitive job benefits and rewards for outstanding performance\nComprehensive medical insurance for employees and families",
             jobs: [
                 {
                     ar_title: "مدير مشروع ضيافة (فنادق ومطاعم)",
@@ -555,12 +555,16 @@
             ]
         };
 
-        // الاستماع اللحظي للبيانات من الفايربيس
+        // الاستماع اللحظي وحماية العرض من الجداول الفارغة
         onSnapshot(docRef, (snapshot) => {
             if (snapshot.exists()) {
                 siteData = snapshot.data();
+                // حماية: إذا كانت مصفوفة الوظائف فارغة تماماً في السحابة، استدعي الافتراضيات فوراً لتعرض للمستخدم
+                if (!siteData.jobs || siteData.jobs.length === 0) {
+                    siteData.jobs = [...defaultData.jobs];
+                }
             } else {
-                siteData = defaultData;
+                siteData = JSON.parse(JSON.stringify(defaultData));
             }
             renderInterface();
         });
@@ -571,7 +575,6 @@
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('footerYear').innerText = new Date().getFullYear();
 
-            // تطبيق درجة تعتيم الهيدر والترتيب (فوق / تحت) ديناميكياً عبر CSS
             const opacityVal = siteData.header_opacity !== undefined ? siteData.header_opacity : defaultData.header_opacity;
             document.documentElement.style.setProperty('--header-overlay-opacity', opacityVal);
 
@@ -580,59 +583,52 @@
             document.getElementById('aboutSection').style.order = orderAbout;
             document.getElementById('jobsSection').style.order = orderJobs;
 
-            // تطبيق الصور
             document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url || defaultData.img_header_url}')`;
             document.getElementById('aboutImage').src = siteData.img_about_url || defaultData.img_about_url;
 
-            // بث النصوص
             if (currentLang === 'ar') {
-                document.getElementById('heroSub').innerText = siteData.ar_heroSub || '';
-                document.getElementById('heroMain').innerText = siteData.ar_heroMain || '';
-                document.getElementById('heroDesc').innerText = siteData.ar_heroDesc || '';
-                document.getElementById('aboutTitle').innerText = siteData.ar_aboutTitle || '';
-                document.getElementById('aboutSubtitle').innerText = siteData.ar_aboutSubtitle || '';
+                document.getElementById('heroSub').innerText = siteData.ar_heroSub || defaultData.ar_heroSub;
+                document.getElementById('heroMain').innerText = siteData.ar_heroMain || defaultData.ar_heroMain;
+                document.getElementById('heroDesc').innerText = siteData.ar_heroDesc || defaultData.ar_heroDesc;
+                document.getElementById('aboutTitle').innerText = siteData.ar_aboutTitle || defaultData.ar_aboutTitle;
+                document.getElementById('aboutSubtitle').innerText = siteData.ar_aboutSubtitle || defaultData.ar_aboutSubtitle;
                 
-                const cities = (siteData.ar_heroCities || '').split('،');
+                const cities = (siteData.ar_heroCities || defaultData.ar_heroCities).split('،');
                 document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${c.trim()}</span>` : '').join('');
                 
-                const points = (siteData.ar_aboutTxt || '').split('\n');
+                const points = (siteData.ar_aboutTxt || defaultData.ar_aboutTxt).split('\n');
                 document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
             } else {
-                document.getElementById('heroSub').innerText = siteData.en_heroSub || '';
-                document.getElementById('heroMain').innerText = siteData.en_heroMain || '';
-                document.getElementById('heroDesc').innerText = siteData.en_heroDesc || '';
-                document.getElementById('aboutTitle').innerText = siteData.en_aboutTitle || '';
-                document.getElementById('aboutSubtitle').innerText = siteData.en_aboutSubtitle || '';
+                document.getElementById('heroSub').innerText = siteData.en_heroSub || defaultData.en_heroSub;
+                document.getElementById('heroMain').innerText = siteData.en_heroMain || defaultData.en_heroMain;
+                document.getElementById('heroDesc').innerText = siteData.en_heroDesc || defaultData.en_heroDesc;
+                document.getElementById('aboutTitle').innerText = siteData.en_aboutTitle || defaultData.en_aboutTitle;
+                document.getElementById('aboutSubtitle').innerText = siteData.en_aboutSubtitle || defaultData.en_aboutSubtitle;
                 
-                const cities = (siteData.en_heroCities || '').split(',');
+                const cities = (siteData.en_heroCities || defaultData.en_heroCities).split(',');
                 document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${c.trim()}</span>` : '').join('');
                 
-                const points = (siteData.en_aboutTxt || '').split('\n');
+                const points = (siteData.en_aboutTxt || defaultData.en_aboutTxt).split('\n');
                 document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
             }
 
-            // بناء كروت الوظائف حياً للزوار
+            // بناء كروت الوظائف حياً للزوار والأزرار المباشرة لنموذجك
             const jobsContainer = document.getElementById('jobsContainer');
-            const jobsList = siteData.jobs || [];
+            const jobsList = siteData.jobs || defaultData.jobs;
             
-            if(jobsList.length === 0) {
-                jobsContainer.innerHTML = currentLang === 'ar' ? '<p style="text-align:center; grid-column:1/-1; color:#7f8c8d;">لا توجد وظائف شاغرة حالياً.</p>' : '<p style="text-align:center; grid-column:1/-1; color:#7f8c8d;">No vacancies available at the moment.</p>';
-            } else {
-                jobsContainer.innerHTML = jobsList.map(job => `
-                    <div class="job-card">
-                        <div>
-                            <h3>${currentLang === 'ar' ? (job.ar_title || 'وظيفة غير مسمية') : (job.en_title || 'No Title')}</h3>
-                            <p>${currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || '')}</p>
-                        </div>
-                        <a href="${job.form_url || '#'}" target="_blank" class="btn-apply">
-                            ${currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position'}
-                        </a>
+            jobsContainer.innerHTML = jobsList.map(job => `
+                <div class="job-card">
+                    <div>
+                        <h3>${currentLang === 'ar' ? (job.ar_title || 'منصب شاغر') : (job.en_title || 'Vacancy')}</h3>
+                        <p>${currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || '')}</p>
                     </div>
-                `).join('');
-            }
+                    <a href="${job.form_url || 'https://forms.gle/ehN8LLqto8BtXaC96'}" target="_blank" class="btn-apply">
+                        ${currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position'}
+                    </a>
+                </div>
+            `).join('');
         }
 
-        // تبديل اللغة حياً فوراً
         window.toggleLanguage = function() {
             currentLang = (currentLang === 'ar') ? 'en' : 'ar';
             localStorage.setItem('site_lang', currentLang);
@@ -642,70 +638,68 @@
             }
         }
 
-        // فتح لوحة التحكم السرية برقم سري (1425)
         window.handleSecretClick = function() {
-            let pass = prompt("🛡️ النظام مشفر آمن برزم.\nالرجاء إدخال الرقم السري لفتح خيارات الإدارة والتعديل العلوي والسفلي للواجهة:");
+            let pass = prompt("🛡️ أدخل الرقم السري لفتح خيارات الإدارة والتحديث:");
             if (pass === "1425") {
                 document.getElementById('adminPanel').style.display = 'block';
                 document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
                 loadPanelInputs();
             } else if (pass !== null) {
-                alert("❌ عذراً، الرقم السري الذي أدخلته غير صحيح!");
+                alert("❌ عذراً، الرقم السري غير صحيح!");
             }
         }
 
-        // تعبئة حقول المدخلات في لوحة التحكم
         function loadPanelInputs() {
-            document.getElementById('input_img_header_url').value = siteData.img_header_url || '';
-            document.getElementById('input_img_about_url').value = siteData.img_about_url || '';
+            document.getElementById('input_img_header_url').value = siteData.img_header_url || defaultData.img_header_url;
+            document.getElementById('input_img_about_url').value = siteData.img_about_url || defaultData.img_about_url;
             document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.75;
             document.getElementById('input_order_about').value = siteData.order_about !== undefined ? siteData.order_about : 1;
             document.getElementById('input_order_jobs').value = siteData.order_jobs !== undefined ? siteData.order_jobs : 2;
             
-            document.getElementById('input_ar_heroSub').value = siteData.ar_heroSub || '';
-            document.getElementById('input_ar_heroMain').value = siteData.ar_heroMain || '';
-            document.getElementById('input_ar_heroDesc').value = siteData.ar_heroDesc || '';
-            document.getElementById('input_ar_heroCities').value = siteData.ar_heroCities || '';
-            document.getElementById('input_ar_aboutTitle').value = siteData.ar_aboutTitle || '';
-            document.getElementById('input_ar_aboutSubtitle').value = siteData.ar_aboutSubtitle || '';
-            document.getElementById('input_ar_aboutTxt').value = siteData.ar_aboutTxt || '';
+            document.getElementById('input_ar_heroSub').value = siteData.ar_heroSub || defaultData.ar_heroSub;
+            document.getElementById('input_ar_heroMain').value = siteData.ar_heroMain || defaultData.ar_heroMain;
+            document.getElementById('input_ar_heroDesc').value = siteData.ar_heroDesc || defaultData.ar_heroDesc;
+            document.getElementById('input_ar_heroCities').value = siteData.ar_heroCities || defaultData.ar_heroCities;
+            document.getElementById('input_ar_aboutTitle').value = siteData.ar_aboutTitle || defaultData.ar_aboutTitle;
+            document.getElementById('input_ar_aboutSubtitle').value = siteData.ar_aboutSubtitle || defaultData.ar_aboutSubtitle;
+            document.getElementById('input_ar_aboutTxt').value = siteData.ar_aboutTxt || defaultData.ar_aboutTxt;
 
-            document.getElementById('input_en_heroSub').value = siteData.en_heroSub || '';
-            document.getElementById('input_en_heroMain').value = siteData.en_heroMain || '';
-            document.getElementById('input_en_heroDesc').value = siteData.en_heroDesc || '';
-            document.getElementById('input_en_heroCities').value = siteData.en_heroCities || '';
-            document.getElementById('input_en_aboutTitle').value = siteData.en_aboutTitle || '';
-            document.getElementById('input_en_aboutSubtitle').value = siteData.en_aboutSubtitle || '';
-            document.getElementById('input_en_aboutTxt').value = siteData.en_aboutTxt || '';
+            document.getElementById('input_en_heroSub').value = siteData.en_heroSub || defaultData.en_heroSub;
+            document.getElementById('input_en_heroMain').value = siteData.en_heroMain || defaultData.en_heroMain;
+            document.getElementById('input_en_heroDesc').value = siteData.en_heroDesc || defaultData.en_heroDesc;
+            document.getElementById('input_en_heroCities').value = siteData.en_heroCities || defaultData.en_heroCities;
+            document.getElementById('input_en_aboutTitle').value = siteData.en_aboutTitle || defaultData.en_aboutTitle;
+            document.getElementById('input_en_aboutSubtitle').value = siteData.en_aboutSubtitle || defaultData.en_aboutSubtitle;
+            document.getElementById('input_en_aboutTxt').value = siteData.en_aboutTxt || defaultData.en_aboutTxt;
 
             renderAdminJobs();
         }
 
         function renderAdminJobs() {
             const listContainer = document.getElementById('adminJobsList');
-            const jobs = siteData.jobs || [];
+            const jobs = siteData.jobs || defaultData.jobs;
             
             listContainer.innerHTML = jobs.map((job, index) => `
                 <div class="admin-job-item">
                     <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
-                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية مخصصة رقم #${index + 1}</h4>
+                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية رقم #${index + 1}</h4>
                     
                     <div class="admin-grid" style="margin-top:10px;">
                         <div>
                             <label>المسمى الوظيفي (العربية):</label>
                             <input type="text" value="${job.ar_title || ''}" onchange="siteData.jobs[${index}].ar_title = this.value">
-                            <label>الوصف المميز وجذب المرشحين (العربية):</label>
+                            <label>الوصف (العربية):</label>
                             <textarea rows="4" onchange="siteData.jobs[${index}].ar_tasks = this.value">${job.ar_tasks || ''}</textarea>
                         </div>
                         <div>
                             <label>Job Title (English):</label>
                             <input type="text" value="${job.en_title || ''}" onchange="siteData.jobs[${index}].en_title = this.value">
-                            <label>Description & Incentives (English):</label>
+                            <label>Description (English):</label>
                             <textarea rows="4" onchange="siteData.jobs[${index}].en_tasks = this.value">${job.en_tasks || ''}</textarea>
                         </div>
                     </div>
                     <label style="margin-top:10px;">رابط التقديم الفوري لهذه الوظيفة:</label>
-                    <input type="text" value="${job.form_url || ''}" onchange="siteData.jobs[${index}].form_url = this.value" style="border-color:var(--accent-color);">
+                    <input type="text" value="${job.form_url || 'https://forms.gle/ehN8LLqto8BtXaC96'}" onchange="siteData.jobs[${index}].form_url = this.value" style="border-color:var(--accent-color);">
                 </div>
             `).join('');
         }
@@ -717,13 +711,12 @@
         }
 
         window.deleteJobField = function(index) {
-            if(confirm("هل أنت متأكد من رغبتك في حذف هذا المنصب الوظيفي؟")) {
+            if(confirm("هل أنت متأكد من حذف هذا المنصب؟")) {
                 siteData.jobs.splice(index, 1);
                 renderAdminJobs();
             }
         }
 
-        // حفظ التحديثات سحابياً بالكامل ونشرها فوراً
         window.saveAllPlatformData = async function() {
             try {
                 siteData.img_header_url = document.getElementById('input_img_header_url').value;
@@ -749,11 +742,11 @@
                 siteData.en_aboutTxt = document.getElementById('input_en_aboutTxt').value;
 
                 await setDoc(docRef, siteData);
-                alert("✅ تم الحفظ السحابي وتحديث روابط نموذج التقديم بنجاح! التغييرات حية الآن لجميع المتقدمين.");
+                alert("✅ رائع! تم رفع الوظائف وتحديث الروابط سحابياً بنظامك فوراً.");
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 console.error(error);
-                alert("❌ حدث خطأ أثناء الحفظ في Firebase.");
+                alert("❌ حدث خطأ أثناء الحفظ.");
             }
         }
     </script>
