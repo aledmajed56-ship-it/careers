@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="siteHtmlTitle">م د للتوظيف | MD Recruitment</title>
+    <title id="siteHtmlTitle">م د للتوظيف | اتحاد ميار للخدمات المتكاملة</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             --bg-light: #f8f9fa;
             --success-color: #27ae60;
             --danger-color: #e74c3c;
+            --header-overlay-opacity: 0.75;
         }
         
         body {
@@ -77,8 +78,9 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.95));
+            background: rgba(26, 37, 47, var(--header-overlay-opacity));
             z-index: 1;
+            transition: background 0.3s ease;
         }
         .header-content {
             position: relative;
@@ -120,6 +122,12 @@
             backdrop-filter: blur(5px);
         }
 
+        /* حاوية مرنة للتحكم في ترتيب الأقسام فوق وتحت */
+        .main-content-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
         /* قسـم عن الشركة وبيئة العمل */
         .about-section {
             padding: 80px 20px;
@@ -142,7 +150,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             object-fit: cover;
             height: 380px;
-            transition: src 0.5s ease;
         }
         .about-content h3 {
             color: var(--primary-color);
@@ -235,6 +242,7 @@
             color: #555;
             font-size: 1.05rem;
             margin: 0 0 25px 0;
+            white-space: pre-line;
             flex-grow: 1;
         }
         .btn-apply {
@@ -297,7 +305,7 @@
             color: #444;
             margin-top: 10px;
         }
-        input[type="text"], textarea {
+        input[type="text"], input[type="number"], select, textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -306,7 +314,7 @@
             font-family: 'Tajawal', sans-serif;
             font-size: 1rem;
         }
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: var(--accent-color);
             outline: none;
             box-shadow: 0 0 5px rgba(181, 148, 16, 0.3);
@@ -360,10 +368,12 @@
 </head>
 <body>
 
+    <!-- أزرار التحكم واللغة -->
     <div class="top-controls">
         <button class="control-btn" onclick="toggleLanguage()">English / العربية</button>
     </div>
 
+    <!-- الهيدر البصري للموقع -->
     <header id="mainHeader">
         <div class="header-content">
             <h2 id="heroSub"></h2>
@@ -373,39 +383,61 @@
         </div>
     </header>
 
-    <section class="about-section">
-        <div class="about-container">
-            <img id="aboutImage" src="" alt="About Company" class="about-img">
-            <div class="about-content">
-                <h3 id="aboutTitle"></h3>
-                <h4 id="aboutSubtitle"></h4>
-                <ul class="environment-list" id="aboutPointsContainer"></ul>
+    <!-- حاوية مرنة للتحكم في المواقع فوق وتحت -->
+    <div class="main-content-wrapper">
+        
+        <!-- قسم عن الشركة وبيئة العمل -->
+        <section class="about-section" id="aboutSection">
+            <div class="about-container">
+                <img id="aboutImage" src="" alt="About Company" class="about-img">
+                <div class="about-content">
+                    <h3 id="aboutTitle"></h3>
+                    <h4 id="aboutSubtitle"></h4>
+                    <ul class="environment-list" id="aboutPointsContainer"></ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="jobs-section">
-        <div class="section-title">
-            <h2 class="ar-only">الفرص الوظيفية المتاحة حياً</h2>
-            <h2 class="en-only">Live Available Careers</h2>
-            <p class="ar-only">انضم إلينا اليوم وابدأ رحلتك المهنية المتميزة معنا</p>
-            <p class="en-only">Join us today and kickstart your outstanding career journey</p>
-        </div>
-        <div class="jobs-grid" id="jobsContainer">
+        <!-- قسم عرض الوظائف الحية -->
+        <section class="jobs-section" id="jobsSection">
+            <div class="section-title">
+                <h2 class="ar-only">الفرص الوظيفية الحالية بمشاريع الضيافة</h2>
+                <h2 class="en-only">Current Hospitality Project Careers</h2>
+                <p class="ar-only">كن جزءاً من قصة نجاح اتحاد ميار في أرقى الفنادق والمشاريع السياحية بالمملكة</p>
+                <p class="en-only">Be part of Mayyar United success story across premium hospitality projects</p>
             </div>
-    </section>
+            <div class="jobs-grid" id="jobsContainer"></div>
+        </section>
+        
+    </div>
 
+    <!-- لوحة التحكم الاحترافية المدمجة -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
             <h2>🛡️ لوحة التحكم وإدارة المنصة المتكاملة</h2>
             <button class="control-btn" style="background:#7f8c8d" onclick="document.getElementById('adminPanel').style.display='none'">إغلاق اللوحة</button>
         </div>
 
-        <label>رابط صورة الخلفية للهيدر الرئيسي (Header Image URL):</label>
-        <input type="text" id="input_img_header_url">
-        
-        <label>رابط الصورة الجانبية لقسم "عن الشركة" (About Image URL):</label>
-        <input type="text" id="input_img_about_url">
+        <div class="admin-section-title">🎨 التحكم في المظهر والصور والترتيب (فوق / تحت)</div>
+        <div class="admin-grid">
+            <div>
+                <label>رابط صورة الخلفية للهيدر الرئيسي (Header Image URL):</label>
+                <input type="text" id="input_img_header_url">
+                
+                <label>درجة عتامة/ظهور خلفية الهيدر لبروز النصوص (من 0.1 شفاف إلى 0.95 غامق):</label>
+                <input type="range" id="input_header_opacity" min="0.1" max="0.95" step="0.05" style="width:100%">
+            </div>
+            <div>
+                <label>رابط الصورة الجانبية لقسم "عن الشركة" (About Image URL):</label>
+                <input type="text" id="input_img_about_url">
+
+                <label>ترتيب ظهور قسم "عن الشركة" (أدخل رقم 1 ليكون فوق، أو 2 ليكون تحت):</label>
+                <input type="number" id="input_order_about" min="1" max="2">
+
+                <label>ترتيب ظهور قسم "الوظائف المتاحة" (أدخل رقم 1 ليكون فوق، أو 2 ليكون تحت):</label>
+                <input type="number" id="input_order_jobs" min="1" max="2">
+            </div>
+        </div>
 
         <div class="admin-section-title">🏢 إدارة نصوص الواجهات بالكامل</div>
         <div class="admin-grid">
@@ -413,7 +445,7 @@
                 <strong style="color:var(--accent-color)">النسخة العربية (Arabic View)</strong>
                 <label>العنوان الفرعي للهيدر:</label> <input type="text" id="input_ar_heroSub">
                 <label>العنوان الرئيسي للهيدر:</label> <input type="text" id="input_ar_heroMain">
-                <label>وصف الهيدر الترحيبي:</label> <textarea id="input_ar_heroDesc" rows="2"></textarea>
+                <label>وصف الهيدر الترحيبي:</label> <textarea id="input_ar_heroDesc" rows="3"></textarea>
                 <label>المدن المتوفرة (افصل بينها بـ ،):</label> <input type="text" id="input_ar_heroCities">
                 <label>عنوان قسم عن الشركة:</label> <input type="text" id="input_ar_aboutTitle">
                 <label>العنوان الفرعي لقسم الشركة:</label> <input type="text" id="input_ar_aboutSubtitle">
@@ -423,7 +455,7 @@
                 <strong style="color:var(--accent-color)">English Version (النسخة الإنجليزية)</strong>
                 <label>Hero Sub-title:</label> <input type="text" id="input_en_heroSub">
                 <label>Hero Main-title:</label> <input type="text" id="input_en_heroMain">
-                <label>Hero Description:</label> <textarea id="input_en_heroDesc" rows="2"></textarea>
+                <label>Hero Description:</label> <textarea id="input_en_heroDesc" rows="3"></textarea>
                 <label>Available Cities (Separate with ,):</label> <input type="text" id="input_en_heroCities">
                 <label>About Section Title:</label> <input type="text" id="input_en_aboutTitle">
                 <label>About Section Subtitle:</label> <input type="text" id="input_en_aboutSubtitle">
@@ -431,7 +463,7 @@
             </div>
         </div>
 
-        <div class="admin-section-title">💼 إدارة الإعلانات والوظائف الشاغرة حياً</div>
+        <div class="admin-section-title">💼 إدارة الإعلانات والوظائف الشاغرة حياً (مكة، جدة، أبها، جازان)</div>
         <div id="adminJobsList"></div>
         
         <div class="admin-actions">
@@ -440,18 +472,19 @@
         </div>
     </div>
 
+    <!-- الفوتر الرسمي -->
     <footer>
         <p>
-            &copy; <span id="footerYear"></span> مجموعة م د للتوظيف والحلول الذكية. جميع الحقوق محفوظة برمجياً برزم.
+            &copy; <span id="footerYear"></span> شركة اتحاد ميار للخدمات المتكاملة - بوابة التوظيف الذكية برعاية م د.
             <span class="secret-lock" onclick="handleSecretClick()">🔒</span>
         </p>
     </footer>
 
+    <!-- سكربت جلب وإدارة البيانات السحابية الحية -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // إعدادات فايربيس المرفقة الخاصة بك
         const firebaseConfig = {
           apiKey: "AIzaSyDvJBtIwf1__iRVIuKG7GMef8BlLNdIOog",
           authDomain: "md-recruitment.firebaseapp.com",
@@ -466,40 +499,63 @@
         const db = getFirestore(app);
         const docRef = doc(db, "platform", "siteConfig");
 
-        // حالة الموقع المحلية
         let siteData = {};
         let currentLang = localStorage.getItem('site_lang') || 'ar';
 
-        // قيم افتراضية متناسقة وراقية لتأسيس الموقع لأول مرة إذا كانت قاعدة البيانات فارغة
+        // التعبئة والوصف الوظيفي متصل تلقائياً برابط Google Forms الخاص بك
         const defaultData = {
-            img_header_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
-            img_about_url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070",
-            ar_heroSub: "مرحباً بكم في منصة التوظيف الرسمية",
-            en_heroSub: "Welcome to the Official Recruitment Platform",
-            ar_heroMain: "مجموعة م د للتوظيف والحلول الذكية",
-            en_heroMain: "MD Recruitment & Smart Solutions Group",
-            ar_heroDesc: "نحن نفتح لك آفاقاً جديدة لبناء مسيرة مهنية استثنائية في بيئة عمل محفزة ومبتكرة تلبي تطلعاتك.",
-            en_heroDesc: "We open new horizons for you to build an exceptional career in an inspiring and innovative environment.",
-            ar_heroCities: "الرياض ، جدة ، الدمام ، نيوم",
-            en_heroCities: "Riyadh , Jeddah , Dammam , NEOM",
-            ar_aboutTitle: "عن المجموعة وتوجه العمل",
-            en_aboutTitle: "About The Group & Work Culture",
-            ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريقنا الاستراتيجي؟",
-            en_aboutSubtitle: "Why choose to join our strategic team?",
-            ar_aboutTxt: "رواتب ومزايا تنافسية ومكافآت دورية مجزية\nتأمين طبي شامل وفئات ممتازة للموظف وعائلته\nمسارات مهنية واضحة ودورات تدريبية مستمرة\nبيئة عمل مرنة تدعم الابتكار والإبداع الفردي",
-            en_aboutTxt: "Competitive salaries, rich benefits, and period rewards\nComprehensive premium medical insurance for employees & families\nClear professional growth paths and ongoing training courses\nFlexible work ecosystem supporting innovation & excellence",
+            img_header_url: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070",
+            img_about_url: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=2070",
+            header_opacity: 0.75,
+            order_about: 1,
+            order_jobs: 2,
+            ar_heroSub: "بوابة التوظيف الرسمية لقطاع الضيافة والتموين والخدمات المساندة",
+            en_heroSub: "Official Recruitment Portal for Hospitality, Catering & Support Services",
+            ar_heroMain: "شركة اتحاد ميار للخدمات المتكاملة",
+            en_heroMain: "Mayyar United for Integrated Services",
+            ar_heroDesc: "نفتح لك أبواب المستقبل للانضمام إلى رواد قطاع التموين والضيافة الفاخرة في المملكة. نسعى لبناء مجتمع عمل متميز وتطوير بيئة الإنتاج عبر استقطاب أفضل الكفاءات الطموحة وتطبيق أعلى معايير الجودة الدولية.",
+            en_heroDesc: "We open the doors to the future for you to join the industry leaders in catering and luxury hospitality in Saudi Arabia. We aim to build an outstanding corporate community by attracting top talents and applying global quality standards.",
+            ar_heroCities: "مكة المكرمة ، جدة ، أبها ، جازان",
+            en_heroCities: "Makkah , Jeddah , Abha , Jazan",
+            ar_aboutTitle: "رؤيتنا في ريادة خدمات الضيافة والتموين بالمملكة",
+            en_aboutTitle: "Our Vision in Leading Hospitality & Support Services",
+            ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريق اتحاد ميار؟",
+            en_aboutSubtitle: "Why choose to join the Mayyar United team?",
+            ar_aboutTxt: "تطبيق أعلى معايير الجودة والسلامة الغذائية العالمية\nبيئة عمل محفزة تدعم التطوير المهني والتدريب المستمر\nمزايا وظيفية تنافسية ومكافآت للمتميزين\nتأمين طبي شامل للموظفين وعائلاتهم",
+            en_aboutTxt: "Applying the highest international food safety and quality standards\nAn inspiring work environment supporting career growth and ongoing training\nCompetitive job benefits and rewards for outstanding performance\nComprehensive medical insurance for employees and their families",
             jobs: [
                 {
-                    ar_title: "أخصائي تقنية معلومات عالي الخبرة",
-                    en_title: "Senior Information Technology Specialist",
-                    ar_tasks: "إدارة وتطوير البنية التحتية الرقمية، حماية الخوادم، وتقديم الحلول التقنية الفورية للموظفين.",
-                    en_tasks: "Managing and scaling digital infrastructure, protecting servers, and delivering urgent technical solutions.",
-                    form_url: "https://google.com"
+                    ar_title: "مدير مشروع ضيافة (فنادق ومطاعم)",
+                    en_title: "Hospitality Project Manager (Hotels & Restaurants)",
+                    ar_tasks: "المهام والوصف:\n• قيادة وإدارة العمليات التشغيلية اليومية للمشروع الفندقي والغذائي الفخم لضمان تطبيق معايير فئة الـ 5 نجوم.\n• الإشراف المباشر على جودة تقديم الأطعمة والمشروبات وتجارب الضيوف والنزلاء.\n• متابعة الميزانيات التشغيلية وتقليل الهدر مع قيادة وتدريب الكوادر البشرية.\n💡 ما يميزنا: رواتب أساسية ضخمة وبدلات سكن وانتقال متميزة، وحوافز ربع سنوية مرتبطة بمعدل رضا الضيوف.",
+                    en_tasks: "Tasks & Description:\n• Leading daily operational aspects of luxury hotel and F&B projects ensuring 5-star service delivery.\n• Supervising catering quality, guest relations, and culinary standards.\n• Monitoring operational budgets, minimizing wastage, and training staff.\n💡 Incentives: High basic salary, premium housing & transportation allowances, and lucrative quarterly bonuses based on guest satisfaction scores.",
+                    form_url: "https://forms.gle/ehN8LLqto8BtXaC96"
+                },
+                {
+                    ar_title: "مدير مبيعات قطاع الضيافة والتموين",
+                    en_title: "Hospitality & Catering Sales Manager",
+                    ar_tasks: "المهام والوصف:\n• دراسة السوق واقتناص العقود والمشاريع الجديدة الكبرى لخدمات التموين والضيافة في المنطقة.\n• بناء علاقات استراتيجية متينة طويلة الأمد مع الشركات والمؤسسات الحكومية والخاصة.\n• إعداد العروض الفنية والمالية ومتابعة تحقيق المستهدف البيعي للمجموعة.\n💡 ما يميزنا: نظام عمولات تصاعدي ومكافآت شهرية مجزية جداً لا تضع سقفاً لطموحك المالي.",
+                    en_tasks: "Tasks & Description:\n• Studying market trends and acquiring large catering and hospitality commercial contracts.\n• Building long-term corporate relationships with public and private sector clients.\n• Preparing technical and financial sales proposals.\n💡 Incentives: Highly aggressive commission models and financial monthly perks with uncapped potential.",
+                    form_url: "https://forms.gle/ehN8LLqto8BtXaC96"
+                },
+                {
+                    ar_title: "مساعد مدير مشروع ضيافة",
+                    en_title: "Assistant Hospitality Project Manager",
+                    ar_tasks: "المهام والوصف:\n• مساندة مدير المشروع في تنظيم جداول العمل اللوجستية ومتابعة سلاسل التوريد والتموين اليومية.\n• مراقبة أداء الموظفين والعمال وضمان الالتزام بالزي الرسمي ومعايير المظهر الراقي الفندقي.\n• حل المشكلات التشغيلية الطارئة ورفع تقارير الأداء الدورية.\n💡 ما يميزنا: مسار ترقية مهني سريع لدرجة مدير مشروع خلال 18 شهراً للمثبتين لكفاءتهم الحقيقية.",
+                    en_tasks: "Tasks & Description:\n• Supporting the Project Manager in streamlining logistical workflows and daily supply chains.\n• Monitoring staff attendance, hospitality grooming, and performance standards.\n• Resolving urgent site complaints and drafting periodic reports.\n💡 Incentives: Fast-track career ladder promotion to Project Manager position within 18 months for top achievers.",
+                    form_url: "https://forms.gle/ehN8LLqto8BtXaC96"
+                },
+                {
+                    ar_title: "مشرف ضيافة وفندقة داخلي",
+                    en_title: "Hospitality & Catering Supervisor",
+                    ar_tasks: "المهام والوصف:\n• التواجد الميداني المباشر لتوجيه طاقم مقدمي الخدمة (Waiters) والمشرفين الميدانيين.\n• ضمان الالتزام التام بتدابير السلامة والهايجين وصحة البيئة الغذائية (HACCP).\n• استقبال الضيوف والتعامل اللبق الفوري مع أي ملاحظات في صالة تقديم الخدمة.\n💡 ما يميزنا: تأمين طبي شامل من فئات ممتازة للموظف وأسرته، ودورات معتمدة في قيادة العمليات الفندقية.",
+                    en_tasks: "Tasks & Description:\n• Direct floor presence to guide and supervise waitstaff and hostesses.\n• Enforcing strict compliance with global food safety, hygiene, and HACCP rules.\n• Welcoming guests politely and handling any immediate constructive feedback seamlessly.\n💡 Incentives: Comprehensive premium medical insurance coverage for employees and families, alongside fully funded certified hospitality courses.",
+                    form_url: "https://forms.gle/ehN8LLqto8BtXaC96"
                 }
             ]
         };
 
-        // 🟢 الاستماع اللحظي لقاعدة البيانات (onSnapshot) لبث البيانات فوراً
+        // الاستماع اللحظي للبيانات من الفايربيس
         onSnapshot(docRef, (snapshot) => {
             if (snapshot.exists()) {
                 siteData = snapshot.data();
@@ -509,18 +565,26 @@
             renderInterface();
         });
 
-        // دالة بناء الواجهة والعرض العام للمستخدمين بناءً على اللغة والبيانات الحية
+        // دالة بناء وعرض الواجهة بالكامل للمستخدمين
         function renderInterface() {
-            // ضبط اتجاه الصفحة واللغة
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('footerYear').innerText = new Date().getFullYear();
 
-            // تطبيق الصور الديناميكية
+            // تطبيق درجة تعتيم الهيدر والترتيب (فوق / تحت) ديناميكياً عبر CSS
+            const opacityVal = siteData.header_opacity !== undefined ? siteData.header_opacity : defaultData.header_opacity;
+            document.documentElement.style.setProperty('--header-overlay-opacity', opacityVal);
+
+            const orderAbout = siteData.order_about !== undefined ? siteData.order_about : defaultData.order_about;
+            const orderJobs = siteData.order_jobs !== undefined ? siteData.order_jobs : defaultData.order_jobs;
+            document.getElementById('aboutSection').style.order = orderAbout;
+            document.getElementById('jobsSection').style.order = orderJobs;
+
+            // تطبيق الصور
             document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url || defaultData.img_header_url}')`;
             document.getElementById('aboutImage').src = siteData.img_about_url || defaultData.img_about_url;
 
-            // بث النصوص حسب اللغة المختارة لـ الموظف والزائر
+            // بث النصوص
             if (currentLang === 'ar') {
                 document.getElementById('heroSub').innerText = siteData.ar_heroSub || '';
                 document.getElementById('heroMain').innerText = siteData.ar_heroMain || '';
@@ -528,11 +592,9 @@
                 document.getElementById('aboutTitle').innerText = siteData.ar_aboutTitle || '';
                 document.getElementById('aboutSubtitle').innerText = siteData.ar_aboutSubtitle || '';
                 
-                // المدن
                 const cities = (siteData.ar_heroCities || '').split('،');
-                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">${c.trim()}</span>` : '').join('');
+                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${c.trim()}</span>` : '').join('');
                 
-                // نقاط بيئة العمل
                 const points = (siteData.ar_aboutTxt || '').split('\n');
                 document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
             } else {
@@ -542,11 +604,9 @@
                 document.getElementById('aboutTitle').innerText = siteData.en_aboutTitle || '';
                 document.getElementById('aboutSubtitle').innerText = siteData.en_aboutSubtitle || '';
                 
-                // المدن
                 const cities = (siteData.en_heroCities || '').split(',');
-                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">${c.trim()}</span>` : '').join('');
+                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${c.trim()}</span>` : '').join('');
                 
-                // نقاط بيئة العمل
                 const points = (siteData.en_aboutTxt || '').split('\n');
                 document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
             }
@@ -561,30 +621,30 @@
                 jobsContainer.innerHTML = jobsList.map(job => `
                     <div class="job-card">
                         <div>
-                            <h3>${currentLang === 'ar' ? (job.ar_title || 'بدون عنوان') : (job.en_title || 'No Title')}</h3>
+                            <h3>${currentLang === 'ar' ? (job.ar_title || 'وظيفة غير مسمية') : (job.en_title || 'No Title')}</h3>
                             <p>${currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || '')}</p>
                         </div>
                         <a href="${job.form_url || '#'}" target="_blank" class="btn-apply">
-                            ${currentLang === 'ar' ? 'التقديم الفوري' : 'Apply Now'}
+                            ${currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position'}
                         </a>
                     </div>
                 `).join('');
             }
         }
 
-        // تبديل اللغة حياً فوراً دون إعادة تحميل الصفحة
+        // تبديل اللغة حياً فوراً
         window.toggleLanguage = function() {
             currentLang = (currentLang === 'ar') ? 'en' : 'ar';
             localStorage.setItem('site_lang', currentLang);
             renderInterface();
             if(document.getElementById('adminPanel').style.display === 'block') {
-                loadPanelInputs(); // تحديث حقول المدخلات لتواكب الاختيارات
+                loadPanelInputs();
             }
         }
 
-        // تفجير وفتح لوحة التحكم السرية
+        // فتح لوحة التحكم السرية برقم سري (1425)
         window.handleSecretClick = function() {
-            let pass = prompt("🛡️ النظام مشفر آمن برزم.\nالرجاء إدخال الرقم السري لفتح لوحة التحكم الإدارية للمنصة:");
+            let pass = prompt("🛡️ النظام مشفر آمن برزم.\nالرجاء إدخال الرقم السري لفتح خيارات الإدارة والتعديل العلوي والسفلي للواجهة:");
             if (pass === "1425") {
                 document.getElementById('adminPanel').style.display = 'block';
                 document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
@@ -594,10 +654,13 @@
             }
         }
 
-        // تعبئة حقول لوحة الإدارة بناءً على قيم الفايربيس الحالية
+        // تعبئة حقول المدخلات في لوحة التحكم
         function loadPanelInputs() {
             document.getElementById('input_img_header_url').value = siteData.img_header_url || '';
             document.getElementById('input_img_about_url').value = siteData.img_about_url || '';
+            document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.75;
+            document.getElementById('input_order_about').value = siteData.order_about !== undefined ? siteData.order_about : 1;
+            document.getElementById('input_order_jobs').value = siteData.order_jobs !== undefined ? siteData.order_jobs : 2;
             
             document.getElementById('input_ar_heroSub').value = siteData.ar_heroSub || '';
             document.getElementById('input_ar_heroMain').value = siteData.ar_heroMain || '';
@@ -618,7 +681,6 @@
             renderAdminJobs();
         }
 
-        // رسم قائمة الوظائف داخل لوحة التحكم لتعديلها أو حذفها
         function renderAdminJobs() {
             const listContainer = document.getElementById('adminJobsList');
             const jobs = siteData.jobs || [];
@@ -626,55 +688,49 @@
             listContainer.innerHTML = jobs.map((job, index) => `
                 <div class="admin-job-item">
                     <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
-                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية رقم #${index + 1}</h4>
+                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية مخصصة رقم #${index + 1}</h4>
                     
                     <div class="admin-grid" style="margin-top:10px;">
                         <div>
-                            <label>المسمى الوظيفي (بالعربي):</label>
+                            <label>المسمى الوظيفي (العربية):</label>
                             <input type="text" value="${job.ar_title || ''}" onchange="siteData.jobs[${index}].ar_title = this.value">
-                            <label>المهام والمتطلبات (بالعربي):</label>
-                            <textarea rows="2" onchange="siteData.jobs[${index}].ar_tasks = this.value">${job.ar_tasks || ''}</textarea>
+                            <label>الوصف المميز وجذب المرشحين (العربية):</label>
+                            <textarea rows="4" onchange="siteData.jobs[${index}].ar_tasks = this.value">${job.ar_tasks || ''}</textarea>
                         </div>
                         <div>
                             <label>Job Title (English):</label>
                             <input type="text" value="${job.en_title || ''}" onchange="siteData.jobs[${index}].en_title = this.value">
-                            <label>Tasks & Description (English):</label>
-                            <textarea rows="2" onchange="siteData.jobs[${index}].en_tasks = this.value">${job.en_tasks || ''}</textarea>
+                            <label>Description & Incentives (English):</label>
+                            <textarea rows="4" onchange="siteData.jobs[${index}].en_tasks = this.value">${job.en_tasks || ''}</textarea>
                         </div>
                     </div>
-                    <label style="margin-top:10px;">رابط نموذج التقديم الفوري (Form or URL):</label>
+                    <label style="margin-top:10px;">رابط التقديم الفوري لهذه الوظيفة:</label>
                     <input type="text" value="${job.form_url || ''}" onchange="siteData.jobs[${index}].form_url = this.value" style="border-color:var(--accent-color);">
                 </div>
             `).join('');
         }
 
-        // إضافة وظيفة جديدة مؤقتاً في مصفوفة الواجهة قبل الحفظ والرفع
         window.addNewJobField = function() {
             if (!siteData.jobs) siteData.jobs = [];
-            siteData.jobs.push({
-                ar_title: '',
-                en_title: '',
-                ar_tasks: '',
-                en_tasks: '',
-                form_url: ''
-            });
+            siteData.jobs.push({ ar_title: '', en_title: '', ar_tasks: '', en_tasks: '', form_url: 'https://forms.gle/ehN8LLqto8BtXaC96' });
             renderAdminJobs();
         }
 
-        // حذف وظيفة فورياً من مصفوفة التحكم قبل الحفظ النهائي
         window.deleteJobField = function(index) {
-            if(confirm("هل أنت متأكد تماماً من رغبتك في حذف هذا الإعلان الوظيفي نهائياً؟")) {
+            if(confirm("هل أنت متأكد من رغبتك في حذف هذا المنصب الوظيفي؟")) {
                 siteData.jobs.splice(index, 1);
                 renderAdminJobs();
             }
         }
 
-        // 🔵 جمع كل المدخلات وحفظها في مستند الفايربيس السحابي لتحديثها فوراً للجميع حياً ومباشرة
+        // حفظ التحديثات سحابياً بالكامل ونشرها فوراً
         window.saveAllPlatformData = async function() {
             try {
-                // تجميع بيانات الحقول النصية والصور
                 siteData.img_header_url = document.getElementById('input_img_header_url').value;
                 siteData.img_about_url = document.getElementById('input_img_about_url').value;
+                siteData.header_opacity = parseFloat(document.getElementById('input_header_opacity').value);
+                siteData.order_about = parseInt(document.getElementById('input_order_about').value) || 1;
+                siteData.order_jobs = parseInt(document.getElementById('input_order_jobs').value) || 2;
                 
                 siteData.ar_heroSub = document.getElementById('input_ar_heroSub').value;
                 siteData.ar_heroMain = document.getElementById('input_ar_heroMain').value;
@@ -692,13 +748,12 @@
                 siteData.en_aboutSubtitle = document.getElementById('input_en_aboutSubtitle').value;
                 siteData.en_aboutTxt = document.getElementById('input_en_aboutTxt').value;
 
-                // الرفع المباشر والسحابي لـ Firebase Firestore
                 await setDoc(docRef, siteData);
-                alert("✅ تم حفظ التعديلات ونشرها سحابياً وتحديث مظهر الموقع والوظائف فوراً لجميع الزوار والموظفين بنجاح!");
+                alert("✅ تم الحفظ السحابي وتحديث روابط نموذج التقديم بنجاح! التغييرات حية الآن لجميع المتقدمين.");
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 console.error(error);
-                alert("❌ عذراً، حدث خطأ أثناء محاولة الاتصال بـ Firebase ومزامنة البيانات.");
+                alert("❌ حدث خطأ أثناء الحفظ في Firebase.");
             }
         }
     </script>
