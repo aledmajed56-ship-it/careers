@@ -99,18 +99,19 @@
         .border-gold { border-radius: 8px; border: 4px solid var(--accent-color); box-shadow: 0 0 20px rgba(181, 148, 16, 0.5); }
 
         .job-block { margin-bottom: 60px; padding-bottom: 40px; border-bottom: 2px dashed #eee; }
-        .job-main-img { width: 100%; height: 340px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .job-main-img { width: 100%; height: 380px; overflow: hidden; margin-bottom: 25px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
         .job-main-img img { width: 100%; height: 100%; object-fit: cover; }
         
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
         .card { background: var(--bg-light); padding: 25px; border-radius: 8px; margin-bottom: 20px; border-right: 5px solid var(--accent-color); }
         html[dir="rtl"] .card { border-right: none; border-left: 5px solid var(--accent-color); }
-        ul { padding-right: 20px; padding-left: 20px; }
+        ul { padding-right: 20px; padding-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
 
-        .btn-job-container { text-align: center; margin-top: 20px; }
+        .btn-job-container { text-align: center; margin-top: 25px; }
         .btn-job-form {
-            display: inline-block; background: linear-gradient(135deg, var(--accent-color), #d4af37); color: white; text-decoration: none; padding: 12px 35px; font-size: 1.1rem; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(181, 148, 16, 0.3); transition: all 0.3s ease;
+            display: inline-block; background: linear-gradient(135deg, var(--accent-color), #d4af37); color: white; text-decoration: none; padding: 14px 40px; font-size: 1.15rem; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(181, 148, 16, 0.3); transition: all 0.3s ease;
         }
         .btn-job-form:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(181, 148, 16, 0.5); }
 
@@ -393,11 +394,11 @@
             en_ctaDesc: "Click the apply button below your preferred job position and our HR team will reach out.",
             jobs: [
                 {
-                    img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600",
-                    ar_title: "مدير مشروع ضيافة", 
-                    en_title: "Hospitality Project Manager",
-                    ar_reqs: "* خبرة في إدارة مشاريع الفنادق والضيافة الفاخرة\n* mهارات قيادية وتخطيطية عالية لتوجيه فرق العمل\n* القدرة على ضبط الجودة وتحقيق أعلى معايير رضا العملاء",
-                    en_reqs: "* Experience in managing luxury hospitality and hotel projects\n* Strong leadership and strategic planning skills\n* Ability to control quality and maintain top guest satisfaction standards",
+                    img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800",
+                    ar_title: "مدير مشاريع تموين وضيافة فاخرة (VVVIP)", 
+                    en_title: "VVVIP Hospitality & Catering Project Manager",
+                    ar_reqs: "* الهدف الوظيفي: تولي التخطيط والتنفيذ الكامل لمشاريع الضيافة بالقصور الملكية والفنادق الفاخرة والمطاعم العالمية (Fine Dining).\n* خبرة عملية لا تقل عن 7 إلى 10 سنوات في قطاع الضيافة والتموين الفاخر الفندقي وقصور الأفراح الـ VVVIP.\n* معرفة تامة ودقيقة ببروتوكولات وإتيكيت التعامل الدبلوماسي والملكي للشخصيات الهامة (VIP/VVVIP Protocol).\n* التنسيق المستمر مع كبار الطهاة لهندسة وتصميم قوائم طعام مبتكرة ومخصصة للأذواق الرفيعة.\n* مهارات قيادية وتواصلية استثنائية باللغتين العربية والإنجليزية مع الحفاظ المطلق على السرية والخصوصية.",
+                    en_reqs: "* Purpose: Ownership of planning and executing luxury catering projects for Royal Palaces, 5-star Hotels, and Fine Dining.\n* Experience: 7-10 years of solid background in ultra-luxury hospitality, high-end catering, and VVVIP wedding halls.\n* Protocol: Deep understanding of VIP/VVVIP diplomatic etiquette and royal service protocols.\n* Menu Engineering: Collaborate with Executive Chefs to design bespoke, sophisticated, and tailored menus.\n* Core Skills: Exceptional leadership, fluent in English & Arabic, sharp attention to details, and absolute confidentiality.",
                     link: "https://forms.google.com/7uCz16Rz7EUpXZLr7"
                 }
             ]
@@ -405,7 +406,7 @@
 
         let siteData = JSON.parse(localStorage.getItem('recruitment_portal_data')) || defaultData;
 
-        // إجبار المتصفح على تطبيق الصور والبيانات المتناسقة الجديدة فوراً بدلاً من الكاش
+        // تحديث البيانات لإلغاء أي كاش قديم وإجبار ظهور الشاغر الفخم الجديد
         siteData.img_header_url = defaultData.img_header_url;
         siteData.img_about_url = defaultData.img_about_url;
         siteData.galleryImages = defaultData.galleryImages;
@@ -518,11 +519,11 @@
                         ${job.img ? `<div class="job-main-img ${siteData.frameStyle}"><img src="${job.img}"></div>` : ''}
                         <h3>${isAr ? job.ar_title : job.en_title}</h3>
                         <div class="card">
-                            <strong>${isAr ? 'المتطلبات والشروط:' : 'Requirements & Qualifications:'}</strong>
+                            <strong>${isAr ? 'المتطلبات والشروط والمهام:' : 'Requirements, Duties & Qualifications:'}</strong>
                             <ul>${reqsHtml}</ul>
                         </div>
                         <div class="btn-job-container">
-                            <a href="${job.link}" target="_blank" class="btn-job-form">${isAr ? 'التقديم على هذه الوظيفة المخصصة' : 'Apply For This Position'}</a>
+                            <a href="${job.link}" target="_blank" class="btn-job-form">${isAr ? 'التقديم على هذه الوظيفة' : 'Apply For This Position'}</a>
                         </div>
                     </div>
                 `;
@@ -608,11 +609,11 @@
                     <div class="admin-grid">
                         <div>
                             <label>المسمى الوظيفي (العربية):</label><input type="text" value="${job.ar_title}" id="job_artitle_${i}">
-                            <label>الشروط (العربية فصل بنجمة *):</label><textarea id="job_arreqs_${i}" rows="3">${job.ar_reqs}</textarea>
+                            <label>الشروط (العربية فصل بنجمة *):</label><textarea id="job_arreqs_${i}" rows="5">${job.ar_reqs}</textarea>
                         </div>
                         <div>
                             <label>Job Title (English):</label><input type="text" value="${job.en_title}" id="job_entitle_${i}">
-                            <label>Requirements (English with *):</label><textarea id="job_enreqs_${i}" rows="3">${job.en_reqs}</textarea>
+                            <label>Requirements (English with *):</label><textarea id="job_enreqs_${i}" rows="5">${job.en_reqs}</textarea>
                         </div>
                     </div>
                     <label>رابط تقديم طلب التوظيف (مثل نموذج Google Form):</label>
