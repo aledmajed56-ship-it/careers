@@ -2,105 +2,91 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة توظيف اتحاد ميار | MUC Recruitment</title>
+    <title>بوابة التوظيف - التميز في الضيافة</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #1a252f;
-            --accent-color: #b59410;
-            --text-color: #333;
-        }
-        
-        body {
-            font-family: 'Tajawal', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-color);
-            background-color: #fff;
-            line-height: 1.6;
-        }
-
-        /* الهيدر العلوي */
-        header {
-            background-color: var(--primary-color);
-            background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            padding: 140px 20px;
-            position: relative;
-        }
-        header .overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(26, 37, 47, 0.85);
-        }
-        header .header-content {
-            position: relative;
-            z-index: 2;
-        }
-        header p { color: var(--accent-color); font-weight: bold; margin-bottom: 10px; }
-        header h1 { font-size: 2.5rem; margin: 10px 0 20px; }
-
-        /* قسم الأهداف */
-        section {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 20px;
-        }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .desc-text {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 15px;
-            padding-right: 25px;
-            position: relative;
-        }
-        li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            position: absolute;
-            right: 0;
-        }
+        :root { --primary: #1a252f; --gold: #b59410; }
+        body { font-family: 'Tajawal', sans-serif; margin: 0; background: #fff; line-height: 1.8; }
+        header { background: var(--primary); padding: 60px 20px; text-align: center; color: white; }
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
+        .job-card { background: #fdfdfd; padding: 30px; border-radius: 12px; border-right: 5px solid var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--gold); }
+        canvas { border: 1px solid #ccc; background: #fafafa; cursor: crosshair; }
+        .admin-panel { display: none; background: #eee; padding: 20px; border-radius: 10px; margin: 20px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="overlay"></div>
-        <div class="header-content">
-            <p>استقطاب قيادي</p>
-            <h1>فرص قيادية في إدارة المشاريع</h1>
-            <p>تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة</p>
-        </div>
-    </header>
+<header>
+    <h1>بوابة استقطاب القادة في قطاع الضيافة</h1>
+    <p>نصنع تجارب استثنائية في أرقى القصور والفنادق والمطاعم العالمية</p>
+</header>
 
+<div class="container">
     <section>
-        <h2>أهدافنا للتوظيف في قطاع الضيافة</h2>
-        <p class="desc-text">نستهدف استقطاب وتطوير أفضل الكفاءات الوطنية</p>
-        <ul>
-            <li>الارتقاء بمعايير الضيافة الفاخرة من خلال كوادر متميزة.</li>
-            <li>بناء جسور مستدامة بين الشغوفين بالخدمة والفرص القيادية.</li>
-            <li>تعزيز تجربة ضيوفنا عبر خبرات مهنية عالمية الطراز.</li>
-        </ul>
+        <h2>هدفنا الوظيفي</h2>
+        <p id="about-text">نحن لا نبحث عن موظفين، بل عن "سفراء" للتميز. هدفنا هو رفد القصور الملكية، الفنادق الفاخرة، والمطاعم الراقية بكفاءات وطنية قادرة على تحويل الخدمة إلى تجربة فنية لا تُنسى، مع الحفاظ على أعلى معايير الخصوصية والاحترافية.</p>
     </section>
 
+    <div id="jobs-container">
+        <div class="job-card">
+            <h2 id="j1-title">مدير مشروع ضيافة</h2>
+            <p><strong>المواقع: مكة، أبها</strong></p>
+            <p id="j1-desc">قُد دفة العمليات التشغيلية في أرقى المواقع. مهمتك هي الموازنة بين الكفاءة الاستراتيجية واللمسة الفنية في تقديم الخدمة، لضمان أعلى مستويات الرضا في القصور والمنشآت المرموقة.</p>
+        </div>
+        <div class="job-card">
+            <h2 id="j2-title">أخصائي مبيعات فاخرة</h2>
+            <p><strong>المواقع: جدة، جازان</strong></p>
+            <p id="j2-desc">كن المحرك الأساسي لتوسعنا في المناطق الحيوية. مهمتك هي بناء جسور الثقة مع النخبة، وتحويل الفرص التجارية إلى شراكات نجاح مستدامة بأسلوب يجمع بين الذكاء العملي والرقي الاجتماعي.</p>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <h3>اعتماد التوقيع الرسمي</h3>
+        <canvas id="sig" width="300" height="150"></canvas><br>
+        <button onclick="clearSig()">مسح</button>
+        <button onclick="saveSig()">اعتماد التوقيع</button>
+        <div id="sig-output"></div>
+    </div>
+</div>
+
+<footer style="text-align:center; padding:20px; cursor:pointer;" onclick="showAdmin()">
+    <p>المملكة العربية السعودية</p>
+</footer>
+
+<div id="admin" class="admin-panel">
+    <h3>لوحة تحكم المدير</h3>
+    <label>تعديل هدفنا:</label><textarea id="admin-about" style="width:100%"></textarea><br>
+    <label>تعديل وصف مدير المشروع:</label><textarea id="admin-j1" style="width:100%"></textarea><br>
+    <button onclick="saveChanges()">حفظ كل التعديلات</button>
+</div>
+
+<script>
+    // رسم التوقيع
+    const canvas = document.getElementById('sig');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    canvas.onmousedown = () => drawing = true;
+    canvas.onmouseup = () => drawing = false;
+    canvas.onmousemove = (e) => {
+        if(!drawing) return;
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+    };
+    function clearSig() { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.beginPath(); }
+    function saveSig() { localStorage.setItem('sig', canvas.toDataURL()); alert("تم اعتماد التوقيع!"); }
+
+    // لوحة التحكم
+    function showAdmin() {
+        if(prompt("كلمة المرور:") === "1425") document.getElementById('admin').style.display = 'block';
+    }
+    function saveChanges() {
+        localStorage.setItem('about', document.getElementById('admin-about').value);
+        localStorage.setItem('j1', document.getElementById('admin-j1').value);
+        location.reload();
+    }
+    // تحميل البيانات المحفوظة
+    if(localStorage.getItem('about')) document.getElementById('about-text').innerText = localStorage.getItem('about');
+</script>
 </body>
 </html>
