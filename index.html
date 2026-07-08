@@ -171,7 +171,7 @@
 
     <section class="grid-2">
         <div class="img-container id-frame-style" id="aboutImgContainer">
-            <img id="aboutImg" alt="Company Core Image" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" class="img-fluid">
+            <img id="aboutImg" alt="Company Core Image" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000" class="img-fluid">
         </div>
         <div>
             <h2 id="about-title"></h2>
@@ -314,10 +314,10 @@
             <input type="text" id="inputMainWebsite" value="https://www.google.com">
             
             <label id="panel-lbl-himg">رابط صورة غلاف الهيدر العلوي (بهو الفندق الفخم):</label>
-            <input type="text" id="img_header_url" value="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200">
+            <input type="text" id="img_header_url" value="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200">
             
             <label id="panel-lbl-aimg">رابط صورة قسم "توجه الشركة" الجانبية الثابتة:</label>
-            <input type="text" id="img_about_url" value="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000">
+            <input type="text" id="img_about_url" value="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000">
 
             <div class="admin-section-title" style="background: #1a252f; color: #fff;" id="panel-sec3-title">💼 إدارة الوظائف وصور المسميات المخصصة</div>
             <div id="adminJobsList"></div>
@@ -334,7 +334,7 @@
                     <label id="lbl-ar-atitle">عنوان عن الشركة:</label> <input type="text" id="ar_aboutTitle" value="من نحن">
                     <label id="lbl-ar-asub">العنوان الفرعي للتعريف:</label> <input type="text" id="ar_aboutSubtitle" value="نصنع المستقبل بكفاءات وطنية">
                     <label id="lbl-ar-adesc">النقاط التعريفية (فصل بنجمة *):</label> <textarea id="ar_aboutDesc" rows="4">* بيئة عمل محفزة للإبداع والابتكار\n* فرص تدريب وتطوير مستمرة\n* مزايا ومكافآت تنافسية للمتميزين</textarea>
-                    <label id="lbl-ar-ctatitle">عنوان التقديم:</label> <input type="text" id="ar_ctaTitle" value="هل أنت مستعد لمشاركتنا النجاح؟">
+                    <label id="lbl-ar-ctatitle">عنوان التقديم:</label> <input type="text" id="ar_ctaTitle" value="هل أنت مستعد لمشاركتنا النجاح？">
                     <label id="lbl-ar-ctadesc">وصف التقديم:</label> <input type="text" id="ar_ctaDesc" value="اضغط على زر التقديم الخاص بالوظيفة المناسبة لك وسيتواصل معك فريق الموارد البشرية.">
                 </div>
                 <div>
@@ -356,7 +356,6 @@
     </section>
 
     <script>
-        // البيانات الافتراضية للموقع لضمان العمل الفوري
         let defaultData = {
             lang: 'ar',
             companyNameAr: "بوابة توظيف MD - ",
@@ -373,14 +372,14 @@
             en_flexText: "",
             flex_image_url: "",
             galleryImages: [
-                "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=500",
-                "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=500"
+                "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=500",
+                "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=500"
             ],
             frameStyle: "border-rounded",
             opacity: "85",
             mainWebsite: "https://www.google.com",
-            img_header_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200",
-            img_about_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
+            img_header_url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200",
+            img_about_url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000",
             ar_heroSub: "فرص وظيفية واعدة", en_heroSub: "Career Opportunities",
             ar_heroMain: "بوابة التوظيف الرسمية", en_heroMain: "Official Recruitment Portal",
             ar_heroDesc: "انضم إلى فريق عملنا المتميز وابدأ رحلتك المهنية معنا اليوم", en_heroDesc: "Join our outstanding team and start your professional career with us today.",
@@ -394,41 +393,45 @@
             en_ctaDesc: "Click the apply button below your preferred job position and our HR team will reach out.",
             jobs: [
                 {
-                    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600",
-                    ar_title: "مهندس برمجيات متقدم", en_title: "Senior Software Engineer",
-                    ar_reqs: "* خبرة لا تقل عن 4 سنوات في تطوير الويب\n* إتقان JavaScript و واجهات الويب الحليفة\n* القدرة على العمل الجماعي وحل المشكلات",
-                    en_reqs: "* Dynamic 4+ years of web development experience\n* Professional JavaScript skillsets\n* Team player & advanced problem solver",
-                    link: "https://forms.google.com"
+                    img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600",
+                    ar_title: "مدير مشروع ضيافة", 
+                    en_title: "Hospitality Project Manager",
+                    ar_reqs: "* خبرة في إدارة مشاريع الفنادق والضيافة الفاخرة\n* mهارات قيادية وتخطيطية عالية لتوجيه فرق العمل\n* القدرة على ضبط الجودة وتحقيق أعلى معايير رضا العملاء",
+                    en_reqs: "* Experience in managing luxury hospitality and hotel projects\n* Strong leadership and strategic planning skills\n* Ability to control quality and maintain top guest satisfaction standards",
+                    link: "https://forms.google.com/7uCz16Rz7EUpXZLr7"
                 }
             ]
         };
 
         let siteData = JSON.parse(localStorage.getItem('recruitment_portal_data')) || defaultData;
 
+        // إجبار المتصفح على تطبيق الصور والبيانات المتناسقة الجديدة فوراً بدلاً من الكاش
+        siteData.img_header_url = defaultData.img_header_url;
+        siteData.img_about_url = defaultData.img_about_url;
+        siteData.galleryImages = defaultData.galleryImages;
+        siteData.jobs = defaultData.jobs;
+        localStorage.setItem('recruitment_portal_data', JSON.stringify(siteData));
+
         function initSite() {
             document.documentElement.dir = siteData.lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = siteData.lang;
             document.getElementById('langBtn').innerText = siteData.lang === 'ar' ? 'English' : 'العربية';
             
-            // تحديث الهيدر والصور
             document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url}')`;
             document.getElementById('headerOverlay').style.backgroundColor = `rgba(26, 37, 47, ${siteData.opacity / 100})`;
             document.getElementById('aboutImg').src = siteData.img_about_url;
             document.getElementById('mainWebBtn').href = siteData.mainWebsite;
 
-            // تطبيق الإطارات
             let containers = document.querySelectorAll('.img-container, .gallery-item, .job-main-img');
             containers.forEach(c => {
                 c.className = c.className.replace(/border-\w+/g, '').trim() + ' ' + siteData.frameStyle;
             });
 
-            // التوقيع
             document.getElementById('admin-sig-name').innerText = siteData.sigName;
             document.getElementById('admin-sig-name').style.fontSize = siteData.sigSize + 'rem';
             document.getElementById('admin-sig-name').style.fontFamily = siteData.sigStyle;
             document.getElementById('admin-sig-auth-title').innerText = siteData.sigTitle;
 
-            // النصوص حسب اللغة المعروضة
             let isAr = siteData.lang === 'ar';
             document.getElementById('sub-title').innerText = isAr ? siteData.ar_heroSub : siteData.en_heroSub;
             document.getElementById('main-title').innerText = isAr ? siteData.ar_heroMain : siteData.en_heroMain;
@@ -440,7 +443,6 @@
             document.getElementById('cta-desc').innerText = isAr ? siteData.ar_ctaDesc : siteData.en_ctaDesc;
             document.getElementById('footer-company-text').innerText = isAr ? siteData.companyNameAr : siteData.companyNameEn;
 
-            // قائمة من نحن
             let descText = isAr ? siteData.ar_aboutDesc : siteData.en_aboutDesc;
             let listHtml = descText.split('\n').map(line => line.trim() ? `<li>${line.replace(/^\*\s*/, '')}</li>` : '').join('');
             document.getElementById('about-list').innerHTML = listHtml;
@@ -492,7 +494,6 @@
                 contentPlace.innerHTML = `<div class="gallery-grid">${imgsHtml}</div>`;
             }
 
-            // تعديل الترتيب التلقائي
             let mainContainer = document.getElementById('dynamicSectionsContainer');
             if (siteData.flexPosition === 'below') {
                 mainContainer.appendChild(container); 
@@ -661,7 +662,6 @@
             siteData.ar_ctaDesc = document.getElementById('ar_ctaDesc').value;
             siteData.en_ctaDesc = document.getElementById('en_ctaDesc').value;
 
-            // تحديث مصفوفة الوظائف من الحقول
             siteData.jobs.forEach((job, i) => {
                 job.img = document.getElementById(`job_img_${i}`).value;
                 job.ar_title = document.getElementById(`job_artitle_${i}`).value;
