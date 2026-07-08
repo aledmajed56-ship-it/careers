@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>م د للتوظيف | اتحاد ميار للضيافة</title>
+    <title>م د للتوظيف | MD Recruitment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Reenie+Beanie&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
@@ -81,7 +81,6 @@
         .img-container { width: 100%; height: 380px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; }
         .img-fluid { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ستايلات الأحجام والإطارات المطلوبة */
         .border-rounded { border-radius: 12px; transform: scale(1); }
         .border-circle { border-radius: 50%; max-width: 380px; margin: 0 auto; transform: scale(0.95); }
         .border-sharp { border-radius: 0px; transform: scale(1); }
@@ -94,6 +93,7 @@
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
         
         .card { background: var(--bg-light); padding: 25px; border-radius: 8px; margin-bottom: 20px; border-right: 5px solid var(--accent-color); }
+        html[dir="rtl"] .card { border-right: 5px solid var(--accent-color); }
         html[dir="ltr"] .card { border-right: none; border-left: 5px solid var(--accent-color); }
         ul { padding-right: 20px; padding-left: 20px; }
 
@@ -136,9 +136,9 @@
 <body>
 
     <div class="top-controls">
-        <a href="https://www.mayyarunited.com/ar" target="_blank" class="control-btn" id="mainWebBtn">
-            <span class="ar-only">الموقع الرئيسي</span>
-            <span class="en-only">Main Website</span>
+        <a href="#" class="control-btn" id="mainWebBtn">
+            <span class="ar-only">م د للتوظيف</span>
+            <span class="en-only">MD Recruitment</span>
         </a>
         <button class="control-btn" id="langBtn" onclick="toggleLanguage()">English</button>
     </div>
@@ -152,7 +152,7 @@
 
     <section class="grid-2">
         <div class="img-container" id="aboutImgContainer">
-            <img id="aboutImg" alt="Mayyar United" src="" class="img-fluid">
+            <img id="aboutImg" alt="MD Recruitment" src="" class="img-fluid">
         </div>
         <div>
             <h2 id="about-title"></h2>
@@ -165,7 +165,7 @@
 
     <div id="dynamicSectionsContainer">
         <section id="flexibleSection">
-            <h2 id="flexibleTitle">📸 معرض أعمالنا ومشاريعنا الفاخرة</h2>
+            <h2 id="flexibleTitle">📸 معرض أعمالنا ومشاريعنا التوظيفية</h2>
             <div id="flexibleContentPlace"></div>
         </section>
 
@@ -179,32 +179,30 @@
         <p id="cta-desc"></p>
         
         <div style="margin-top: 40px; text-align:center; font-size: 0.95rem; opacity: 0.85;">
-            <span class="ar-only">شركة اتحاد ميار للضيافة - </span>
-            <span class="en-only">Mayyar United Hospitality - </span>
+            <span class="ar-only">م د للتوظيف - </span>
+            <span class="en-only">MD Recruitment - </span>
             <span class="secret-word-trigger" onclick="handleSecretClick()">المملكة العربية السعودية / KSA</span>
         </div>
 
-        <!-- صندوق التوقيع التنفيذي الديناميكي -->
         <div class="executive-signature-box">
             <div class="sig-block">
                 <div class="sig-title">AUTHORIZED SIGNATURE</div>
-                <div class="handwritten-signature" id="signatureDisplay">Majed AlDajani</div>
+                <div class="handwritten-signature" id="signatureDisplay">MD Recruitment</div>
                 <div class="sig-line"></div>
                 <div style="font-size:0.75rem; opacity:0.7;">CHIEF TECHNOLOGY DEVELOPER • ALL RIGHTS RESERVED ©</div>
             </div>
         </div>
         
-        <!-- لوحة التحكم الأمنية المتطورة -->
+        <!-- لوحة التحكم الأمنية -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
             <h3>🎛️ لوحة التحكم الأمنية المتقدمة: إدارة الخانات والمحتوى</h3>
 
-            <!-- الخانة المطلوبة: تعديل الصفحة والتوقيع والدرجة الشفافة والحجم -->
             <div class="admin-section-title" style="background: #6c5ce7; color: white;">🎨 خانة تعديل مظهر الصفحة، التوقيع والشفافية والحجم</div>
             
             <div class="admin-grid">
                 <div>
                     <label>✍️ نص التوقيع الخطّي (Signature Text):</label>
-                    <input type="text" id="inputSignature" value="Majed AlDajani" placeholder="اكتب الاسم المعتمد للتوقيع هنا...">
+                    <input type="text" id="inputSignature" value="MD Recruitment" placeholder="اكتب الاسم المعتمد للتوقيع هنا...">
                 </div>
                 <div>
                     <label>🖼️ شكل وحجم إطارات الصور في الموقع (Frame & Size Style):</label>
@@ -276,8 +274,8 @@
             </div>
 
             <div class="admin-section-title">🎨 الروابط الثابتة والصور الأساسية</div>
-            <label>رابط موقع اتحاد ميار الرئيسي للزر العلوي:</label>
-            <input type="text" id="inputMainWebsite" value="https://www.mayyarunited.com/ar">
+            <label>رابط موقع م د للتوظيف الرئيسي للزر العلوي:</label>
+            <input type="text" id="inputMainWebsite" value="#">
 
             <label>رابط صورة غلاف الهيدر العلوي:</label>
             <input type="text" id="img_header_url">
@@ -343,55 +341,55 @@
         const defaults = {
             ar_heroSub: "شراكة متميزة للارتقاء بفرص التوظيف",
             en_heroSub: "An Outstanding Partnership to Enhance Employment Opportunities",
-            ar_heroMain: "فرص قيادية في إدارة المشاريع",
-            en_heroMain: "Leadership Opportunities in Project Management",
-            ar_heroDesc: "تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة",
-            en_heroDesc: "Mayyar United Company announces the opening of leadership recruitment for the luxury hospitality sector",
-            ar_heroCities: "المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها",
-            en_heroCities: "Target Cities: Jeddah | Makkah | Jazan | Abha",
-            ar_aboutTitle: "البيئة والتوجه العام للشركة",
+            ar_heroMain: "م د للتوظيف | قيادة الكفاءات المستقبلية",
+            en_heroMain: "MD Recruitment | Leading Future Talents",
+            ar_heroDesc: "تعلن منصة م د للتوظيف عن فتح باب الاستقطاب القيادي والمهني لكبرى الشركات والمشاريع الريادية",
+            en_heroDesc: "MD Recruitment announces the opening of leadership and professional recruitment for major corporations",
+            ar_heroCities: "المدن المستهدفة: جدة | مكة المكرمة | الرياض | المنطقة الشرقية",
+            en_heroCities: "Target Cities: Jeddah | Makkah | Riyadh | Eastern Province",
+            ar_aboutTitle: "البيئة والتوجه العام للمنصة",
             en_aboutTitle: "Company Culture & Core Direction",
-            ar_aboutSubtitle: "الريادة في تشغيل المشاريع الراقية",
-            en_aboutSubtitle: "Leadership in Operating High-End Projects",
-            ar_aboutTxt: "نهدف في اتحاد ميار لاستقطاب كفاءات شغوفة للانضمام إلى فريقنا النخبوي لإدارة وتشغيل أحد مشاريعنا بقطاع الفنادق الفاخرة.\nفرصة للمساهمة في تقديم بروتوكولات خدمة الـ VIP وتحقيق أعلى مستويات الفخامة.\nنلتزم بتقديم بيئة عمل احترافية، حوافز استثنائية، ومسار مهني واضح.",
-            en_aboutTxt: "We aim at Mayyar United to attract passionate talents to join our elite team for managing high-end hotel projects.\nAn opportunity to contribute to VIP service protocols and achieve maximum luxury.\nWe commit to providing a professional workspace, exceptional incentives, and a clear career path.",
-            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة?",
+            ar_aboutSubtitle: "الريادة في استقطاب الكفاءات الراقية",
+            en_aboutSubtitle: "Leadership in Recruiting High-End Talents",
+            ar_aboutTxt: "نهدف في م د للتوظيف لاستقطاب كفاءات شغوفة للانضمام إلى فرق نُخبوية متميزة.\nفرصة للمساهمة في تقديم أفضل الخدمات الاحترافية وتحقيق أعلى مستويات النجاح.\nنلتزم بتقديم بيئة عمل احترافية، حوافز استثنائية، ومسار مهني واضح ومستدام.",
+            en_aboutTxt: "We aim at MD Recruitment to attract passionate talents to join elite professional teams.\nAn opportunity to contribute to premium services and achieve top performance.\nWe commit to providing a professional workspace, exceptional incentives, and a clear career path.",
+            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة؟",
             en_ctaTitle: "Do You Possess Passion and Leadership?",
-            ar_ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريق اتحاد ميار النخبوي في منطقتك",
-            en_ctaDesc: "We are pleased to receive your immediate application to join Mayyar elite team",
-            ar_flexTitle: "📸 معرض أعمالنا ومشاريعنا الفاخرة",
-            en_flexTitle: "📸 Our Luxury Portfolio & Gallery",
-            ar_flexText: "هذا النص تعريفي خاص بالخانة الجديدة، يمكنك صياغته ليعكس أهداف المشروع الرائد.",
+            ar_ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى م د للتوظيف في منطقتك",
+            en_ctaDesc: "We are pleased to receive your immediate application to join MD Recruitment elite team",
+            ar_flexTitle: "📸 معرض أعمالنا ومشاريعنا التوظيفية",
+            en_flexTitle: "📸 Our Recruitment Portfolio & Gallery",
+            ar_flexText: "هذا النص تعريفي خاص بالخانة الجديدة، يمكنك صياغته ليعكس أهداف م د للتوظيف الرائدة.",
             en_flexText: "This is a custom descriptive text for the new section, you can fully edit it."
         };
 
         const defaultImages = {
-            img_header: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80", 
-            img_about: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&h=600&q=80",
+            img_header: "https://images.pexels.com/photos/2507007/pexels-photo-2507007.jpeg?auto=compress&cs=tinysrgb&w=1920", 
+            img_about: "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=800",
             flex_img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80"
         };
 
         const defaultGallery = [
-            { url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
-            { url: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=80" }
+            { url: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { url: "https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg?auto=compress&cs=tinysrgb&w=800" }
         ];
 
         const defaultJobs = [
             {
-                ar_title: "المسمى الوظيفي: مدير مشروع (Project Manager)",
-                en_title: "Job Title: Project Manager (PM)",
-                job_img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+                ar_title: "المسمى الوظيفي: مدير مشروع قطاع الضيافة والفنادق الفاخرة (Project Manager)",
+                en_title: "Job Title: Hospitality Project Manager (Luxury Sector)",
+                job_img: "https://images.pexels.com/photos/2901581/pexels-photo-2901581.jpeg?auto=compress&cs=tinysrgb&w=800",
                 ar_tasksHead: "المهام والمسؤوليات التشغيلية",
                 en_tasksHead: "Operational Duties & Responsibilities",
-                ar_tasks: "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة.",
-                en_tasks: "Comprehensive operational planning and on-site field supervision.\nPreparing operational budgets and ensuring higher standard productivity.",
+                ar_tasks: "القيادة والإشراف الميداني الكامل على تشغيل وإدارة المشروع الفندقي.\nتوجيه ومتابعة رؤساء الأقسام التشغيلية لتقديم تجربة VIP استثنائية.\nإدارة الميزانيات التشغيلية للمشروع وتقليل التكاليف مع رفع الكفاءة والإنتاجية.",
+                en_tasks: "Provide full on-site leadership and operational management.\nSupervise department heads to deliver an exceptional VIP guest experience.\nManage operational budgets and optimize costs while maximizing productivity.",
                 ar_reqsHead: "الشروط والمؤهلات المطلوبة",
                 en_reqsHead: "Required Conditions & Qualifications",
-                ar_reqs: "مؤهل تعليمي بكالوريوس في إدارة الفنادق أو إدارة الأعمال.\nخبرة عملية لا تقل عن 5 سنوات في تشغيل الفنادق الفاخرة.",
-                en_reqs: "Bachelor's degree in Hotel Management or Business Administration.\nMinimum 5 years of experience in luxury hospitality operations.",
+                ar_reqs: "مؤهل تعليمي بكالوريوس في إدارة الفنادق أو إدارة الأعمال.\nخبرة عملية لا تقل عن 5 سنوات في تشغيل الفنادق الفاخرة (5 نجوم).\nإجادة تامة للغتين العربية والإنجليزية تحدثاً وكتابة.",
+                en_reqs: "Bachelor's degree in Hotel Management or Business Administration.\nMinimum 5 years of experience in 5-star luxury hospitality operations.\nProfessional fluency in both Arabic and English.",
                 form_url: "https://forms.gle/YwYyPx9LJXbnnz1MA",
-                ar_btnText: "التقديم على وظيفة مدير مشروع",
-                en_btnText: "Apply for Project Manager Position"
+                ar_btnText: "التقديم الفوري لطلب وظيفة مدير مشروع",
+                en_btnText: "Apply Now for Project Manager Position"
             }
         ];
 
@@ -438,7 +436,7 @@
 
             document.getElementById('cta-title').innerText = localStorage.getItem('cfg_' + pfx + 'ctaTitle') || defaults[pfx + 'ctaTitle'];
             document.getElementById('cta-desc').innerText = localStorage.getItem('cfg_' + pfx + 'ctaDesc') || defaults[pfx + 'ctaDesc'];
-            document.getElementById('mainWebBtn').href = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
+            document.getElementById('mainWebBtn').href = localStorage.getItem('cfg_mainWeb') || "#";
 
             let imgHeader = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
@@ -446,8 +444,7 @@
             let opacityVal = localStorage.getItem('cfg_opacity') || "85";
             let opacityDecimal = parseFloat(opacityVal) / 100;
             
-            // جلب وعرض نص التوقيع
-            let signatureText = localStorage.getItem('cfg_signature_text') || "Majed AlDajani";
+            let signatureText = localStorage.getItem('cfg_signature_text') || "MD Recruitment";
             document.getElementById('signatureDisplay').innerText = signatureText;
 
             document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
@@ -589,8 +586,8 @@
             document.getElementById('inputFlexType').value = flexType;
             document.getElementById('inputFlexPosition').value = localStorage.getItem('cfg_flex_position') || "above";
             document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
-            document.getElementById('inputMainWebsite').value = localStorage.getItem('cfg_mainWeb') || "https://www.mayyarunited.com/ar";
-            document.getElementById('inputSignature').value = localStorage.getItem('cfg_signature_text') || "Majed AlDajani";
+            document.getElementById('inputMainWebsite').value = localStorage.getItem('cfg_mainWeb') || "#";
+            document.getElementById('inputSignature').value = localStorage.getItem('cfg_signature_text') || "MD Recruitment";
             
             document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
             document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
@@ -638,7 +635,7 @@
                 if (input && !key.includes('flex')) localStorage.setItem('cfg_' + key, input.value);
             }
 
-            alert("🛡️ تم حفظ ونشر التعديلات والخيارات الجديدة للخانة والمظهر فوراً وبنجاح!");
+            alert("🛡️ تم حفظ ونشر التعديلات والخيارات الجديدة للمنصة والمظهر فوراً وبنجاح!");
             renderInterface();
         }
 
@@ -660,7 +657,13 @@
             } else if (userPass !== null) { alert("❌ عذراً، الرقم السري غير صحيح!"); }
         }
 
-        window.onload = function() { renderInterface(); };
+        window.onload = function() {
+            // تنظيف أي قيم سابقة مخزنة بالمتصفح تخص الهوية القديمة عند التشغيل لأول مرة
+            if(!localStorage.getItem('cfg_signature_text')){
+                localStorage.clear();
+            }
+            renderInterface(); 
+        };
     </script>
 </body>
 </html>
