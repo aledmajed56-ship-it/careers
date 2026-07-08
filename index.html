@@ -2,70 +2,75 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة MD للتوظيف | MD Recruitment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1a252f; --gold: #b59410; }
-        body { font-family: 'Tajawal', sans-serif; margin: 0; background: #fff; line-height: 1.8; }
-        .header { background: var(--primary); color: white; padding: 100px 20px; text-align: center; }
-        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
-        .job-card { background: #fdfdfd; padding: 30px; border-radius: 12px; border-right: 5px solid var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        .admin-panel { display: none; background: #f4f4f4; padding: 30px; border-radius: 10px; margin: 20px; border: 2px solid var(--gold); }
-        .btn { background: var(--gold); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+        body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+        .job-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; border-right: 5px solid var(--gold); }
+        .admin-panel { display: none; background: #fff; padding: 20px; border: 2px solid var(--gold); margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1 id="main-title">بوابة استقطاب الكفاءات - MD Recruitment</h1>
-</div>
+<h1>بوابة MD للتوظيف</h1>
+<div id="jobs-container"></div>
+<button onclick="openAdmin()">لوحة التحكم (1425)</button>
 
-<div class="container" id="jobs-list">
-    </div>
-
-<div style="text-align:center; padding:50px;">
-    <button class="btn" onclick="openAdmin()">لوحة التحكم (1425)</button>
-</div>
-
-<div id="admin" class="admin-panel">
-    <h3>⚙️ لوحة الإدارة (MD Recruitment)</h3>
-    <label>عنوان الوظيفة الأولى:</label><input type="text" id="j1-title" style="width:100%">
-    <label>شرح الوظيفة الأولى:</label><textarea id="j1-desc" style="width:100%"></textarea>
-    <label>رابط التقديم:</label><input type="text" id="j1-link" style="width:100%">
-    <br><br>
-    <button class="btn" onclick="saveData()">حفظ التعديلات</button>
+<div id="admin-panel" class="admin-panel">
+    <h3>إدارة الوظائف</h3>
+    <div id="admin-jobs"></div>
+    <button onclick="addJobField()">+ إضافة وظيفة جديدة</button>
+    <button onclick="saveAll()">حفظ كل شيء</button>
 </div>
 
 <script>
-    // تحميل البيانات
-    function loadData() {
-        const data = JSON.parse(localStorage.getItem('md_data')) || { j1t: "مدير مشروع", j1d: "شرح الوظيفة هنا...", j1l: "#" };
-        document.getElementById('jobs-list').innerHTML = `
+    let jobs = JSON.parse(localStorage.getItem('md_jobs')) || [];
+
+    function render() {
+        const container = document.getElementById('jobs-container');
+        container.innerHTML = jobs.map(j => `
             <div class="job-card">
-                <h2>${data.j1t}</h2>
-                <p>${data.j1d}</p>
-                <a href="${data.j1l}" class="btn">قدم الآن</a>
+                <h2>${j.title}</h2>
+                <p>${j.desc}</p>
+                <a href="${j.link}" target="_blank">رابط التقديم</a>
             </div>
-        `;
+        `).join('');
     }
 
     function openAdmin() {
-        if(prompt("أدخل الرمز السري:") === "1425") document.getElementById('admin').style.display = 'block';
+        if(prompt("كلمة المرور:") === "1425") {
+            document.getElementById('admin-panel').style.display = 'block';
+            renderAdmin();
+        }
     }
 
-    function saveData() {
-        const newData = {
-            j1t: document.getElementById('j1-title').value,
-            j1d: document.getElementById('j1-desc').value,
-            j1l: document.getElementById('j1-link').value
-        };
-        localStorage.setItem('md_data', JSON.stringify(newData));
-        alert("تم الحفظ بنجاح!");
+    function renderAdmin() {
+        const adminDiv = document.getElementById('admin-jobs');
+        adminDiv.innerHTML = jobs.map((j, i) => `
+            <div>
+                <input value="${j.title}" placeholder="العنوان" id="t${i}">
+                <textarea placeholder="الوصف" id="d${i}">${j.desc}</textarea>
+                <input value="${j.link}" placeholder="رابط التقديم" id="l${i}">
+            </div><hr>
+        `).join('');
+    }
+
+    function addJobField() {
+        jobs.push({title: "وظيفة جديدة", desc: "وصف", link: "#"});
+        renderAdmin();
+    }
+
+    function saveAll() {
+        jobs = jobs.map((j, i) => ({
+            title: document.getElementById('t'+i).value,
+            desc: document.getElementById('d'+i).value,
+            link: document.getElementById('l'+i).value
+        }));
+        localStorage.setItem('md_jobs', JSON.stringify(jobs));
         location.reload();
     }
 
-    loadData();
+    render();
 </script>
 </body>
 </html>
