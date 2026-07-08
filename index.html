@@ -4,67 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة توظيف اتحاد ميار | MUC Recruitment</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Reenie+Beanie&family=Alex+Brush&family=Montserrat:ital,wght@1,300&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #1a252f; --accent-color: #b59410; --text-color: #333; --bg-light: #f8f9fa; }
-        body { font-family: 'Tajawal', sans-serif; margin: 0; color: var(--text-color); background-color: #fff; line-height: 1.6; }
-        header { background-color: var(--primary-color); color: white; text-align: center; padding: 140px 20px; position: relative; }
-        .overlay { position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(26, 37, 47, 0.85); }
-        .header-content { position: relative; z-index: 2; }
-        h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; }
-        .card { background: var(--bg-light); padding: 25px; border-radius: 8px; border-right: 5px solid var(--accent-color); }
-        .btn-job-form { display: inline-block; background: var(--accent-color); color: white; padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+        :root {
+            --primary-color: #1a252f;
+            --accent-color: #b59410;
+            --text-color: #333;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* الهيدر العلوي */
+        header {
+            background-color: var(--primary-color);
+            background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 140px 20px;
+            position: relative;
+        }
+        header .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26, 37, 47, 0.85);
+        }
+        header .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        header p { color: var(--accent-color); font-weight: bold; margin-bottom: 10px; }
+        header h1 { font-size: 2.5rem; margin: 10px 0 20px; }
+
+        /* قسم الأهداف */
+        section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .desc-text {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+            padding-right: 25px;
+            position: relative;
+        }
+        li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
     </style>
 </head>
 <body>
 
-<header id="mainHeader">
-    <div class="overlay"></div>
-    <div class="header-content">
-        <p style="color:var(--accent-color); font-weight:bold;" id="sub-title"></p>
-        <h1 id="main-title"></h1>
-        <div id="hero-desc"></div>
-    </div>
-</header>
+    <header>
+        <div class="overlay"></div>
+        <div class="header-content">
+            <p>استقطاب قيادي</p>
+            <h1>فرص قيادية في إدارة المشاريع</h1>
+            <p>تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة</p>
+        </div>
+    </header>
 
-<section style="max-width: 1000px; margin: 40px auto; padding: 20px;">
-    <h2 id="about-title"></h2>
-    <h3 id="about-subtitle"></h3>
-    <div id="about-desc-box">
-        <ul id="about-list"></ul>
-    </div>
-</section>
+    <section>
+        <h2>أهدافنا للتوظيف في قطاع الضيافة</h2>
+        <p class="desc-text">نستهدف استقطاب وتطوير أفضل الكفاءات الوطنية</p>
+        <ul>
+            <li>الارتقاء بمعايير الضيافة الفاخرة من خلال كوادر متميزة.</li>
+            <li>بناء جسور مستدامة بين الشغوفين بالخدمة والفرص القيادية.</li>
+            <li>تعزيز تجربة ضيوفنا عبر خبرات مهنية عالمية الطراز.</li>
+        </ul>
+    </section>
 
-<script>
-    // تم تحديث النصوص الافتراضية هنا لتناسب "أهداف التوظيف في الضيافة"
-    let siteData = {
-        lang: 'ar',
-        ar_heroSub: "استقطاب قيادي",
-        ar_heroMain: "فرص قيادية في إدارة المشاريع",
-        ar_heroDesc: "تعلن شركة اتحاد ميار عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة",
-        
-        // التعديل هنا:
-        ar_aboutTitle: "أهدافنا للتوظيف في قطاع الضيافة",
-        ar_aboutSubtitle: "نستهدف استقطاب وتطوير أفضل الكفاءات الوطنية",
-        ar_aboutDesc: "* الارتقاء بمعايير الضيافة الفاخرة من خلال كوادر متميزة.\n* بناء جسور مستدامة بين الشغوفين بالخدمة والفرص القيادية.\n* تعزيز تجربة ضيوفنا عبر خبرات مهنية عالمية الطراز.",
-        
-        img_header_url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200"
-    };
-
-    function init() {
-        document.getElementById('sub-title').innerText = siteData.ar_heroSub;
-        document.getElementById('main-title').innerText = siteData.ar_heroMain;
-        document.getElementById('hero-desc').innerText = siteData.ar_heroDesc;
-        document.getElementById('about-title').innerText = siteData.ar_aboutTitle;
-        document.getElementById('about-subtitle').innerText = siteData.ar_aboutSubtitle;
-        
-        let listHtml = siteData.ar_aboutDesc.split('\n').map(line => `<li>${line.replace(/^\*\s*/, '')}</li>`).join('');
-        document.getElementById('about-list').innerHTML = listHtml;
-        document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url}')`;
-    }
-    window.onload = init;
-</script>
 </body>
 </html>
