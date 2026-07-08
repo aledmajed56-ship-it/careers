@@ -130,6 +130,7 @@
         html[dir="ltr"] .remove-btn { left: auto; right: 15px; }
 
         .admin-panel .main-save-btn { background: #2ecc71; color: white; border: none; padding: 16px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; }
+        .admin-panel .export-code-btn { background: #e67e22; color: white; border: none; padding: 16px; margin-top: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; }
         .admin-panel .add-btn { background: var(--primary-color); color: white; border: none; padding: 10px 15px; margin-top: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
@@ -193,9 +194,12 @@
             </div>
         </div>
         
-        <!-- لوحة التحكم الأمنية -->
+        <!-- لوحة التحكم الأمنية المحدثة -->
         <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
             <h3>🎛️ لوحة التحكم الأمنية المتقدمة: إدارة الخانات والمحتوى</h3>
+
+            <!-- زر التصدير الجديد لـ GitHub في قمة اللوحة لتسهيل الوصول -->
+            <button class="export-code-btn" onclick="exportFullCodeForGithub()">📋 نسخ كود الصفحة الكامل المحدث (للتحديث الدائم على GitHub)</button>
 
             <div class="admin-section-title" style="background: #6c5ce7; color: white;">🎨 خانة تعديل مظهر الصفحة، التوقيع والشفافية والحجم</div>
             
@@ -338,6 +342,7 @@
             return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
         }
 
+        // --- هذه هي القيم الافتراضية المركزية للموقع بالكامل ---
         const defaults = {
             ar_heroSub: "شراكة متميزة للارتقاء بفرص التوظيف",
             en_heroSub: "An Outstanding Partnership to Enhance Employment Opportunities",
@@ -408,9 +413,9 @@
             let txtSec = document.getElementById('adminFlexTextSection');
             let imgSec = document.getElementById('adminFlexImageSection');
 
-            galSec.style.display = (type === 'gallery') ? 'block' : 'none';
-            txtSec.style.display = (type === 'text' || type === 'mixed') ? 'block' : 'none';
-            imgSec.style.display = (type === 'mixed') ? 'block' : 'none';
+            if(galSec) galSec.style.display = (type === 'gallery') ? 'block' : 'none';
+            if(txtSec) txtSec.style.display = (type === 'text' || type === 'mixed') ? 'block' : 'none';
+            if(imgSec) imgSec.style.display = (type === 'mixed') ? 'block' : 'none';
         }
 
         function renderInterface() {
@@ -524,45 +529,49 @@
 
         function renderAdminLists() {
             let galContainer = document.getElementById('adminGalleryList');
-            galContainer.innerHTML = "";
-            galleryData.forEach((img, index) => {
-                galContainer.innerHTML += `
-                    <div class="admin-item-card">
-                        <button class="remove-btn" onclick="removeGalleryField(${index})">🗑️ حذف الصورة</button>
-                        <label>رابط صورة المعرض رقم #${index + 1}:</label>
-                        <input type="text" value="${img.url || ''}" onchange="updateGalleryData(${index}, this.value)">
-                    </div>`;
-            });
+            if (galContainer) {
+                galContainer.innerHTML = "";
+                galleryData.forEach((img, index) => {
+                    galContainer.innerHTML += `
+                        <div class="admin-item-card">
+                            <button class="remove-btn" onclick="removeGalleryField(${index})">🗑️ حذف الصورة</button>
+                            <label>رابط صورة المعرض رقم #${index + 1}:</label>
+                            <input type="text" value="${img.url || ''}" onchange="updateGalleryData(${index}, this.value)">
+                        </div>`;
+                });
+            }
 
             let jobsContainer = document.getElementById('adminJobsList');
-            jobsContainer.innerHTML = "";
-            jobsData.forEach((job, index) => {
-                jobsContainer.innerHTML += `
-                    <div class="admin-item-card">
-                        <button class="remove-btn" onclick="removeJobField(${index})">🗑️ حذف الوظيفة</button>
-                        <h4 style="margin:0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
-                        <label>رابط صورة الوظيفة لإبراز المسمى (اختياري):</label>
-                        <input type="text" value="${job.job_img || ''}" onchange="updateJobData(${index}, 'job_img', this.value)">
-                        <label>رابط التقديم للوظيفة (Google Form):</label>
-                        <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
-                        <div class="admin-grid">
-                            <div>
-                                <strong>العربية</strong>
-                                <label>مسمى الوظيفة:</label><input type="text" value="${job.ar_title || ''}" onchange="updateJobData(${index}, 'ar_title', this.value)">
-                                <label>المهام:</label><textarea onchange="updateJobData(${index}, 'ar_tasks', this.value)">${job.ar_tasks || ''}</textarea>
-                                <label>الشروط:</label><textarea onchange="updateJobData(${index}, 'ar_reqs', this.value)">${job.ar_reqs || ''}</textarea>
-                                <label>نص الزر:</label><input type="text" value="${job.ar_btnText || ''}" onchange="updateJobData(${index}, 'ar_btnText', this.value)">
+            if (jobsContainer) {
+                jobsContainer.innerHTML = "";
+                jobsData.forEach((job, index) => {
+                    jobsContainer.innerHTML += `
+                        <div class="admin-item-card">
+                            <button class="remove-btn" onclick="removeJobField(${index})">🗑️ حذف الوظيفة</button>
+                            <h4 style="margin:0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
+                            <label>رابط صورة الوظيفة لإبراز المسمى (اختياري):</label>
+                            <input type="text" value="${job.job_img || ''}" onchange="updateJobData(${index}, 'job_img', this.value)">
+                            <label>رابط التقديم للوظيفة (Google Form):</label>
+                            <input type="text" value="${job.form_url || ''}" onchange="updateJobData(${index}, 'form_url', this.value)">
+                            <div class="admin-grid">
+                                <div>
+                                    <strong>العربية</strong>
+                                    <label>مسمى الوظيفة:</label><input type="text" value="${job.ar_title || ''}" onchange="updateJobData(${index}, 'ar_title', this.value)">
+                                    <label>المهام:</label><textarea onchange="updateJobData(${index}, 'ar_tasks', this.value)">${job.ar_tasks || ''}</textarea>
+                                    <label>الشروط:</label><textarea onchange="updateJobData(${index}, 'ar_reqs', this.value)">${job.ar_reqs || ''}</textarea>
+                                    <label>نص الزر:</label><input type="text" value="${job.ar_btnText || ''}" onchange="updateJobData(${index}, 'ar_btnText', this.value)">
+                                </div>
+                                <div dir="ltr" style="text-align:left;">
+                                    <strong>English</strong>
+                                    <label>Job Title:</label><input type="text" value="${job.en_title || ''}" onchange="updateJobData(${index}, 'en_title', this.value)">
+                                    <label>Tasks:</label><textarea onchange="updateJobData(${index}, 'en_tasks', this.value)">${job.en_tasks || ''}</textarea>
+                                    <label>Requirements:</label><textarea onchange="updateJobData(${index}, 'en_reqs', this.value)">${job.en_reqs || ''}</textarea>
+                                    <label>Btn Text:</label><input type="text" value="${job.en_btnText || ''}" onchange="updateJobData(${index}, 'en_btnText', this.value)">
+                                </div>
                             </div>
-                            <div dir="ltr" style="text-align:left;">
-                                <strong>English</strong>
-                                <label>Job Title:</label><input type="text" value="${job.en_title || ''}" onchange="updateJobData(${index}, 'en_title', this.value)">
-                                <label>Tasks:</label><textarea onchange="updateJobData(${index}, 'en_tasks', this.value)">${job.en_tasks || ''}</textarea>
-                                <label>Requirements:</label><textarea onchange="updateJobData(${index}, 'en_reqs', this.value)">${job.en_reqs || ''}</textarea>
-                                <label>Btn Text:</label><input type="text" value="${job.en_btnText || ''}" onchange="updateJobData(${index}, 'en_btnText', this.value)">
-                            </div>
-                        </div>
-                    </div>`;
-            });
+                        </div>`;
+                });
+            }
         }
 
         function updateGalleryData(index, value) { galleryData[index].url = value; }
@@ -573,8 +582,8 @@
         function addNewJobField() {
             jobsData.push({
                 ar_title: "وظيفة جديدة", en_title: "New Job", job_img: "",
-                ar_tasksHead: "المهام", en_tasksHead: "Tasks", ar_tasks: "", en_tasks: "",
-                ar_reqsHead: "الشروط", en_reqsHead: "Requirements", ar_reqs: "", en_reqs: "",
+                ar_tasksHead: "المهام والمسؤوليات", en_tasksHead: "Duties & Responsibilities", ar_tasks: "", en_tasks: "",
+                ar_reqsHead: "الشروط والمؤهلات", en_reqsHead: "Required Qualifications", ar_reqs: "", en_reqs: "",
                 form_url: "", ar_btnText: "تقديم الآن", en_btnText: "Apply Now"
             });
             renderAdminLists();
@@ -635,8 +644,75 @@
                 if (input && !key.includes('flex')) localStorage.setItem('cfg_' + key, input.value);
             }
 
-            alert("🛡️ تم حفظ ونشر التعديلات والخيارات الجديدة للمنصة والمظهر فوراً وبنجاح!");
+            alert("💾 تم حفظ التعديلات محلياً بمتصفحك الحالي بنجاح! لكي تنشرها للموظفين والجميع، اضغط الآن على زر البرتقالي بالأعلى لتوليد الكود الجديد ونشره على الـ GitHub.");
             renderInterface();
+        }
+
+        // --- الدالة السحرية الجديدة لتوليد الكود الكامل الجاهز للنشر على GitHub ---
+        function exportFullCodeForGithub() {
+            // جلب كامل القيم الحالية المحدثة من المدخلات
+            let currentFlexType = document.getElementById('inputFlexType').value;
+            let currentFlexPos = document.getElementById('inputFlexPosition').value;
+            let currentFrameStyle = document.getElementById('inputFrameStyle').value;
+            let currentMainWeb = document.getElementById('inputMainWebsite').value;
+            let currentSigText = document.getElementById('inputSignature').value;
+            let currentImgHeader = document.getElementById('img_header_url').value;
+            let currentImgAbout = document.getElementById('img_about_url').value;
+            let currentFlexImg = document.getElementById('flex_image_url').value;
+            let currentOpacity = document.getElementById('inputOpacity').value;
+
+            let exportDefaults = {};
+            exportDefaults.ar_flexTitle = document.getElementById('ar_flexTitle').value;
+            exportDefaults.en_flexTitle = document.getElementById('en_flexTitle').value;
+            exportDefaults.ar_flexText = document.getElementById('ar_flexText').value;
+            exportDefaults.en_flexText = document.getElementById('en_flexText').value;
+
+            for (let key in defaults) {
+                if(!key.includes('flex')) {
+                    let input = document.getElementById(key);
+                    exportDefaults[key] = input ? input.value : defaults[key];
+                }
+            }
+
+            // قراءة الكود الحالي كـ نصوص واستبدال كتل البيانات الافتراضية
+            let pageSource = document.documentElement.outerHTML;
+            
+            // صياغة نصوص التبديل بدقة
+            let newDefaultsBlock = `const defaults = ${JSON.stringify(exportDefaults, null, 12).replace(/\n\s*}/, '\n        }')};`;
+            let newImagesBlock = `const defaultImages = {\n            img_header: "${currentImgHeader}", \n            img_about: "${currentImgAbout}",\n            flex_img: "${currentFlexImg}"\n        };`;
+            let newGalleryBlock = `const defaultGallery = ${JSON.stringify(galleryData, null, 12).replace(/\n\s*}/, '\n        }')};`;
+            let newJobsBlock = `const defaultJobs = ${JSON.stringify(jobsData, null, 12).replace(/\n\s*}/, '\n        }')};`;
+
+            // جلب النص البرمجي الكامل للصفحة وإعادة صياغته ديناميكياً ليكون ثابتاً ومحدثاً
+            let rawScript = document.getElementsByTagName('script')[0].innerHTML;
+            
+            // حقن التحديثات في قيم الـ localStorage الافتراضية أيضاً لضمان عدم حدوث تضارب
+            let updatedScript = rawScript
+                .replace(/const defaults = \{[\s\S]*?\};/, newDefaultsBlock)
+                .replace(/const defaultImages = \{[\s\S]*?\};/, newImagesBlock)
+                .replace(/const defaultGallery = \[[\s\S]*?\];/, newGalleryBlock)
+                .replace(/const defaultJobs = \[[\s\S]*?\];/, newJobsBlock)
+                .replace(/localStorage\.getItem\('cfg_flex_type'\) \|\| "gallery"/, `localStorage.getItem('cfg_flex_type') || "${currentFlexType}"`)
+                .replace(/localStorage\.getItem\('cfg_flex_position'\) \|\| "above"/, `localStorage.getItem('cfg_flex_position') || "${currentFlexPos}"`)
+                .replace(/localStorage\.getItem\('cfg_frameStyle'\) \|\| "border-rounded"/, `localStorage.getItem('cfg_frameStyle') || "${currentFrameStyle}"`)
+                .replace(/localStorage\.getItem\('cfg_mainWeb'\) \|\| "#"/, `localStorage.getItem('cfg_mainWeb') || "${currentMainWeb}"`)
+                .replace(/localStorage\.getItem\('cfg_signature_text'\) \|\| "MD Recruitment"/, `localStorage.getItem('cfg_signature_text') || "${currentSigText}"`)
+                .replace(/localStorage\.getItem\('cfg_img_header'\) \|\| defaultImages\.img_header/, `localStorage.getItem('cfg_img_header') || "${currentImgHeader}"`)
+                .replace(/localStorage\.getItem\('cfg_img_about'\) \|\| defaultImages\.img_about/, `localStorage.getItem('cfg_img_about') || "${currentImgAbout}"`)
+                .replace(/localStorage\.getItem\('cfg_opacity'\) \|\| "85"/, `localStorage.getItem('cfg_opacity') || "${currentOpacity}"`);
+
+            // إنشاء مستند HTML متكامل ومحدث بالكامل
+            let completeHTML = `<!DOCTYPE html>\n<html lang="ar" dir="rtl">\n` + document.head.outerHTML + `\n<body>\n` + document.body.outerHTML.replace(/<script>[\s\S]*?<\/script>/, `<script>${updatedScript}<\/script>`) + `\n</body>\n</html>`;
+
+            // تنظيف الأكواد من قيم المدخلات الحية لمنع تكرار الأزرار
+            completeHTML = completeHTML.replace(/<div class="admin-panel"[\s\S]*?<\/div>/, document.getElementById('adminPanel').outerHTML);
+
+            // نسخ الكود المحدث تلقائياً للحافظة
+            navigator.clipboard.writeText(completeHTML).then(() => {
+                alert("📋 رائع جداً! تم توليد ونسخ كود الصفحة المحدث بالكامل إلى حافظة جهازك فوراً.\n\nالآن كل ما عليك فعله هو:\n1. الذهاب لموقع GitHub لملف الوظائف الخاص بك.\n2. امسح الكود القديم بالكامل والـصق هذا الكود المحدث.\n3. اضغط Commit وسيتحدث الموقع رسمياً لكل الناس والموظفين ولن يختفي أبداً حتى لو قاموا بتحديث الصفحة!");
+            }).catch(err => {
+                alert("تعذر النسخ التلقائي، يرجى نسخ الكود يدوياً.");
+            });
         }
 
         function toggleLanguage() {
@@ -658,10 +734,6 @@
         }
 
         window.onload = function() {
-            // تنظيف أي قيم سابقة مخزنة بالمتصفح تخص الهوية القديمة عند التشغيل لأول مرة
-            if(!localStorage.getItem('cfg_signature_text')){
-                localStorage.clear();
-            }
             renderInterface(); 
         };
     </script>
