@@ -56,6 +56,7 @@
         .control-btn:hover { background-color: var(--primary-color); transform: scale(1.05); }
 
         header {
+            background-color: var(--primary-color);
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -63,6 +64,17 @@
             text-align: center;
             padding: 140px 20px;
             transition: background 0.3s ease;
+            position: relative;
+        }
+        header .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26, 37, 47, 0.85);
+            z-index: 1;
+        }
+        header .header-content {
+            position: relative;
+            z-index: 2;
         }
         header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; font-weight: bold; }
         header h1 { font-size: 2.9rem; margin: 10px 0 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
@@ -114,9 +126,10 @@
             font-size: 2.3rem; 
             color: #ffffff; 
             transition: font-size 0.2s ease, font-family 0.2s ease;
+            font-family: 'Caveat', cursive;
         }
 
-        .admin-panel { display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3); }
+        .admin-panel { display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3); text-align: right; }
         .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
         @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
         
@@ -147,15 +160,18 @@
     </div>
 
     <header id="mainHeader">
-        <p id="sub-title"></p>
-        <h1 id="main-title"></h1>
-        <div id="hero-desc"></div>
-        <div style="margin-top:15px; font-weight:bold;" id="cities-target"></div>
+        <div class="overlay" id="headerOverlay"></div>
+        <div class="header-content">
+            <p id="sub-title"></p>
+            <h1 id="main-title"></h1>
+            <div id="hero-desc"></div>
+            <div style="margin-top:15px; font-weight:bold;" id="cities-target"></div>
+        </div>
     </header>
 
     <section class="grid-2">
-        <div class="img-container" id="aboutImgContainer">
-            <img id="aboutImg" alt="Company Core Image" src="" class="img-fluid">
+        <div class="img-container id-frame-style" id="aboutImgContainer">
+            <img id="aboutImg" alt="Company Core Image" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" class="img-fluid">
         </div>
         <div>
             <h2 id="about-title"></h2>
@@ -248,11 +264,11 @@
             <div class="admin-grid">
                 <div>
                     <strong id="panel-str-flex-ar">عنوان الخانة (العربية):</strong>
-                    <input type="text" id="ar_flexTitle" value="">
+                    <input type="text" id="ar_flexTitle" value="ألبوم صور الشركة">
                 </div>
                 <div>
                     <strong id="panel-str-flex-en">Section Title (English):</strong>
-                    <input type="text" id="en_flexTitle" value="">
+                    <input type="text" id="en_flexTitle" value="Our Gallery">
                 </div>
             </div>
 
@@ -273,7 +289,7 @@
                 </div>
             </div>
 
-            <div id="adminFlexGallerySection" style="display:none; background: #e3f2fd; padding: 15px; border-radius: 6px; margin-top:15px;">
+            <div id="adminFlexGallerySection" style="display:block; background: #e3f2fd; padding: 15px; border-radius: 6px; margin-top:15px;">
                 <label style="font-weight: bold; color: #1565c0;" id="panel-lbl-gal-manage">📸 إدارة صور المعرض التابع للخانة:</label>
                 <div id="adminGalleryList"></div>
                 <button class="add-btn" type="button" style="background:#1565c0" id="panel-btn-add-gal" onclick="addNewGalleryField()">➕ إضافة صورة جديدة للمعرض</button>
@@ -295,13 +311,13 @@
             </div>
 
             <label id="panel-lbl-link">رابط الموقع الرئيسي للزر العلوي:</label>
-            <input type="text" id="inputMainWebsite" value="">
+            <input type="text" id="inputMainWebsite" value="https://www.google.com">
             
             <label id="panel-lbl-himg">رابط صورة غلاف الهيدر العلوي (بهو الفندق الفخم):</label>
-            <input type="text" id="img_header_url">
+            <input type="text" id="img_header_url" value="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200">
             
             <label id="panel-lbl-aimg">رابط صورة قسم "توجه الشركة" الجانبية الثابتة:</label>
-            <input type="text" id="img_about_url">
+            <input type="text" id="img_about_url" value="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000">
 
             <div class="admin-section-title" style="background: #1a252f; color: #fff;" id="panel-sec3-title">💼 إدارة الوظائف وصور المسميات المخصصة</div>
             <div id="adminJobsList"></div>
@@ -311,9 +327,357 @@
             <div class="admin-grid">
                 <div>
                     <strong id="panel-str-ver-ar">النسخة العربية</strong>
-                    <label id="lbl-ar-hsub">العنوان الفرعي للهيدر:</label> <input type="text" id="ar_heroSub">
-                    <label id="lbl-ar-hmain">العنوان الرئيسي للهيدر:</label> <input type="text" id="ar_heroMain">
-                    <label id="lbl-ar-hdesc">الوصف:</label> <input type="text" id="ar_heroDesc">
-                    <label id="lbl-ar-hcities">المدن:</label> <input type="text" id="ar_heroCities">
-                    <label id="lbl-ar-atitle">عنوان عن الشركة:</label> <input type="text" id="ar_aboutTitle">
-                    <label id="lbl-ar-asub">العنوان الفرعي:</label> <input type
+                    <label id="lbl-ar-hsub">العنوان الفرعي للهيدر:</label> <input type="text" id="ar_heroSub" value="فرص وظيفية واعدة">
+                    <label id="lbl-ar-hmain">العنوان الرئيسي للهيدر:</label> <input type="text" id="ar_heroMain" value="بوابة التوظيف الرسمية">
+                    <label id="lbl-ar-hdesc">الوصف:</label> <input type="text" id="ar_heroDesc" value="انضم إلى فريق عملنا المتميز وابدأ رحلتك المهنية معنا اليوم">
+                    <label id="lbl-ar-hcities">المدن:</label> <input type="text" id="ar_heroCities" value="الرياض • جدة • الدمام">
+                    <label id="lbl-ar-atitle">عنوان عن الشركة:</label> <input type="text" id="ar_aboutTitle" value="من نحن">
+                    <label id="lbl-ar-asub">العنوان الفرعي للتعريف:</label> <input type="text" id="ar_aboutSubtitle" value="نصنع المستقبل بكفاءات وطنية">
+                    <label id="lbl-ar-adesc">النقاط التعريفية (فصل بنجمة *):</label> <textarea id="ar_aboutDesc" rows="4">* بيئة عمل محفزة للإبداع والابتكار\n* فرص تدريب وتطوير مستمرة\n* مزايا ومكافآت تنافسية للمتميزين</textarea>
+                    <label id="lbl-ar-ctatitle">عنوان التقديم:</label> <input type="text" id="ar_ctaTitle" value="هل أنت مستعد لمشاركتنا النجاح؟">
+                    <label id="lbl-ar-ctadesc">وصف التقديم:</label> <input type="text" id="ar_ctaDesc" value="اضغط على زر التقديم الخاص بالوظيفة المناسبة لك وسيتواصل معك فريق الموارد البشرية.">
+                </div>
+                <div>
+                    <strong id="panel-str-ver-en">English Version</strong>
+                    <label id="lbl-en-hsub">Header Subtitle:</label> <input type="text" id="en_heroSub" value="Career Opportunities">
+                    <label id="lbl-en-hmain">Header Main Title:</label> <input type="text" id="en_heroMain" value="Official Recruitment Portal">
+                    <label id="lbl-en-hdesc">Description:</label> <input type="text" id="en_heroDesc" value="Join our outstanding team and start your professional career with us today.">
+                    <label id="lbl-en-hcities">Cities:</label> <input type="text" id="en_heroCities" value="Riyadh • Jeddah • Dammam">
+                    <label id="lbl-en-atitle">About Title:</label> <input type="text" id="en_aboutTitle" value="About Us">
+                    <label id="lbl-en-asub">About Subtitle:</label> <input type="text" id="en_aboutSubtitle" value="Shaping the future with top talents">
+                    <label id="lbl-en-adesc">About Bullet Points (separate with *):</label> <textarea id="en_aboutDesc" rows="4">* Innovative and motivating work environment\n* Continuous learning and growth opportunities\n* Competitive packages and rewards</textarea>
+                    <label id="lbl-en-ctatitle">CTA Title:</label> <input type="text" id="en_ctaTitle" value="Ready to join us?">
+                    <label id="lbl-en-ctadesc">CTA Description:</label> <input type="text" id="en_ctaDesc" value="Click the apply button below your preferred job position and our HR team will reach out.">
+                </div>
+            </div>
+
+            <button class="main-save-btn" type="button" onclick="saveAdminData()">💾 حفظ وإغلاق التعديلات وتحديث الموقع</button>
+        </div>
+    </section>
+
+    <script>
+        // البيانات الافتراضية للموقع لضمان العمل الفوري
+        let defaultData = {
+            lang: 'ar',
+            companyNameAr: "بوابة توظيف MD - ",
+            companyNameEn: "MD Recruitment - ",
+            sigName: "Majed AlDajani",
+            sigSize: "2.3",
+            sigStyle: "'Caveat', cursive",
+            sigTitle: "AUTHORIZED SIGNATURE",
+            flexType: "gallery",
+            flexPosition: "above",
+            ar_flexTitle: "ألبوم صور الشركة",
+            en_flexTitle: "Our Gallery",
+            ar_flexText: "",
+            en_flexText: "",
+            flex_image_url: "",
+            galleryImages: [
+                "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=500",
+                "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=500"
+            ],
+            frameStyle: "border-rounded",
+            opacity: "85",
+            mainWebsite: "https://www.google.com",
+            img_header_url: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200",
+            img_about_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000",
+            ar_heroSub: "فرص وظيفية واعدة", en_heroSub: "Career Opportunities",
+            ar_heroMain: "بوابة التوظيف الرسمية", en_heroMain: "Official Recruitment Portal",
+            ar_heroDesc: "انضم إلى فريق عملنا المتميز وابدأ رحلتك المهنية معنا اليوم", en_heroDesc: "Join our outstanding team and start your professional career with us today.",
+            ar_heroCities: "الرياض • جدة • الدمام", en_heroCities: "Riyadh • Jeddah • Dammam",
+            ar_aboutTitle: "من نحن", en_aboutTitle: "About Us",
+            ar_aboutSubtitle: "نصنع المستقبل بكفاءات وطنية", en_aboutSubtitle: "Shaping the future with top talents",
+            ar_aboutDesc: "* بيئة عمل محفزة للإبداع والابتكار\n* فرص تدريب وتطوير مستمرة\n* مزايا ومكافآت تنافسية للمتميزين", 
+            en_aboutDesc: "* Innovative and motivating work environment\n* Continuous learning and growth opportunities\n* Competitive packages and rewards",
+            ar_ctaTitle: "هل أنت مستعد لمشاركتنا النجاح؟", en_ctaTitle: "Ready to join us?",
+            ar_ctaDesc: "اضغط على زر التقديم الخاص بالوظيفة المناسبة لك وسيتواصل معك فريق الموارد البشرية.",
+            en_ctaDesc: "Click the apply button below your preferred job position and our HR team will reach out.",
+            jobs: [
+                {
+                    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600",
+                    ar_title: "مهندس برمجيات متقدم", en_title: "Senior Software Engineer",
+                    ar_reqs: "* خبرة لا تقل عن 4 سنوات في تطوير الويب\n* إتقان JavaScript و واجهات الويب الحليفة\n* القدرة على العمل الجماعي وحل المشكلات",
+                    en_reqs: "* Dynamic 4+ years of web development experience\n* Professional JavaScript skillsets\n* Team player & advanced problem solver",
+                    link: "https://forms.google.com"
+                }
+            ]
+        };
+
+        let siteData = JSON.parse(localStorage.getItem('recruitment_portal_data')) || defaultData;
+
+        function initSite() {
+            document.documentElement.dir = siteData.lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = siteData.lang;
+            document.getElementById('langBtn').innerText = siteData.lang === 'ar' ? 'English' : 'العربية';
+            
+            // تحديث الهيدر والصور
+            document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url}')`;
+            document.getElementById('headerOverlay').style.backgroundColor = `rgba(26, 37, 47, ${siteData.opacity / 100})`;
+            document.getElementById('aboutImg').src = siteData.img_about_url;
+            document.getElementById('mainWebBtn').href = siteData.mainWebsite;
+
+            // تطبيق الإطارات
+            let containers = document.querySelectorAll('.img-container, .gallery-item, .job-main-img');
+            containers.forEach(c => {
+                c.className = c.className.replace(/border-\w+/g, '').trim() + ' ' + siteData.frameStyle;
+            });
+
+            // التوقيع
+            document.getElementById('admin-sig-name').innerText = siteData.sigName;
+            document.getElementById('admin-sig-name').style.fontSize = siteData.sigSize + 'rem';
+            document.getElementById('admin-sig-name').style.fontFamily = siteData.sigStyle;
+            document.getElementById('admin-sig-auth-title').innerText = siteData.sigTitle;
+
+            // النصوص حسب اللغة المعروضة
+            let isAr = siteData.lang === 'ar';
+            document.getElementById('sub-title').innerText = isAr ? siteData.ar_heroSub : siteData.en_heroSub;
+            document.getElementById('main-title').innerText = isAr ? siteData.ar_heroMain : siteData.en_heroMain;
+            document.getElementById('hero-desc').innerText = isAr ? siteData.ar_heroDesc : siteData.en_heroDesc;
+            document.getElementById('cities-target').innerText = isAr ? siteData.ar_heroCities : siteData.en_heroCities;
+            document.getElementById('about-title').innerText = isAr ? siteData.ar_aboutTitle : siteData.en_aboutTitle;
+            document.getElementById('about-subtitle').innerText = isAr ? siteData.ar_aboutSubtitle : siteData.en_aboutSubtitle;
+            document.getElementById('cta-title').innerText = isAr ? siteData.ar_ctaTitle : siteData.en_ctaTitle;
+            document.getElementById('cta-desc').innerText = isAr ? siteData.ar_ctaDesc : siteData.en_ctaDesc;
+            document.getElementById('footer-company-text').innerText = isAr ? siteData.companyNameAr : siteData.companyNameEn;
+
+            // قائمة من نحن
+            let descText = isAr ? siteData.ar_aboutDesc : siteData.en_aboutDesc;
+            let listHtml = descText.split('\n').map(line => line.trim() ? `<li>${line.replace(/^\*\s*/, '')}</li>` : '').join('');
+            document.getElementById('about-list').innerHTML = listHtml;
+
+            renderFlexibleSection();
+            renderJobs();
+            loadAdminValues();
+        }
+
+        function toggleLanguage() {
+            siteData.lang = siteData.lang === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('recruitment_portal_data', JSON.stringify(siteData));
+            initSite();
+        }
+
+        function handleSecretClick() {
+            let pass = prompt(siteData.lang === 'ar' ? "الرجاء إدخال الرمز السري للوحة التحكم:" : "Enter Admin Password:");
+            if(pass === "1425") {
+                document.getElementById('adminPanel').style.display = 'block';
+                document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert(siteData.lang === 'ar' ? "رمز خاطئ!" : "Incorrect Code!");
+            }
+        }
+
+        function renderFlexibleSection() {
+            let container = document.getElementById('flexibleSection');
+            let contentPlace = document.getElementById('flexibleContentPlace');
+            let titlePlace = document.getElementById('flexibleTitle');
+            let isAr = siteData.lang === 'ar';
+
+            if (siteData.flexType === 'hidden') {
+                container.style.display = 'none';
+                return;
+            }
+            container.style.display = 'block';
+            titlePlace.innerText = isAr ? siteData.ar_flexTitle : siteData.en_flexTitle;
+
+            if (siteData.flexType === 'text') {
+                contentPlace.innerHTML = `<div class="custom-text-block"><p>${isAr ? siteData.ar_flexText : siteData.en_flexText}</p></div>`;
+            } else if (siteData.flexType === 'mixed') {
+                contentPlace.innerHTML = `
+                    <div class="grid-2" style="margin-top:20px;">
+                        <div class="custom-text-block"><p>${isAr ? siteData.ar_flexText : siteData.en_flexText}</p></div>
+                        <div class="img-container ${siteData.frameStyle}"><img src="${siteData.flex_image_url || 'https://via.placeholder.com/400'}" class="img-fluid"></div>
+                    </div>`;
+            } else if (siteData.flexType === 'gallery') {
+                let imgsHtml = siteData.galleryImages.map(img => `<div class="gallery-item ${siteData.frameStyle}"><img src="${img}"></div>`).join('');
+                contentPlace.innerHTML = `<div class="gallery-grid">${imgsHtml}</div>`;
+            }
+
+            // تعديل الترتيب التلقائي
+            let mainContainer = document.getElementById('dynamicSectionsContainer');
+            if (siteData.flexPosition === 'below') {
+                mainContainer.appendChild(container); 
+            } else {
+                mainContainer.insertBefore(container, document.getElementById('jobsSection'));
+            }
+        }
+
+        function renderJobs() {
+            let container = document.getElementById('jobsContainer');
+            let isAr = siteData.lang === 'ar';
+            if(!siteData.jobs || siteData.jobs.length === 0) {
+                container.innerHTML = '<h3>No Jobs advertised currently</h3>';
+                return;
+            }
+
+            container.innerHTML = `<h2>${isAr ? 'الفرص الوظيفية المتاحة حالياً' : 'Available Job Opportunities'}</h2>` + 
+            siteData.jobs.map(job => {
+                let reqsHtml = job[`${siteData.lang}_reqs`].split('\n').map(line => line.trim() ? `<li>${line.replace(/^\*\s*/, '')}</li>` : '').join('');
+                return `
+                    <div class="job-block">
+                        ${job.img ? `<div class="job-main-img ${siteData.frameStyle}"><img src="${job.img}"></div>` : ''}
+                        <h3>${isAr ? job.ar_title : job.en_title}</h3>
+                        <div class="card">
+                            <strong>${isAr ? 'المتطلبات والشروط:' : 'Requirements & Qualifications:'}</strong>
+                            <ul>${reqsHtml}</ul>
+                        </div>
+                        <div class="btn-job-container">
+                            <a href="${job.link}" target="_blank" class="btn-job-form">${isAr ? 'التقديم على هذه الوظيفة المخصصة' : 'Apply For This Position'}</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function loadAdminValues() {
+            document.getElementById('inputCompanyNameAr').value = siteData.companyNameAr;
+            document.getElementById('inputCompanyNameEn').value = siteData.companyNameEn;
+            document.getElementById('inputSigName').value = siteData.sigName;
+            document.getElementById('inputSigSize').value = siteData.sigSize;
+            document.getElementById('sigSizeValLabel').innerText = siteData.sigSize + 'rem';
+            document.getElementById('inputSigStyle').value = siteData.sigStyle;
+            document.getElementById('inputSigTitle').value = siteData.sigTitle;
+            document.getElementById('inputFlexType').value = siteData.flexType;
+            document.getElementById('inputFlexPosition').value = siteData.flexPosition;
+            document.getElementById('ar_flexTitle').value = siteData.ar_flexTitle;
+            document.getElementById('en_flexTitle').value = siteData.en_flexTitle;
+            document.getElementById('ar_flexText').value = siteData.ar_flexText;
+            document.getElementById('en_flexText').value = siteData.en_flexText;
+            document.getElementById('flex_image_url').value = siteData.flex_image_url;
+            document.getElementById('inputFrameStyle').value = siteData.frameStyle;
+            document.getElementById('inputOpacity').value = siteData.opacity;
+            document.getElementById('opacityValLabel').innerText = siteData.opacity + '%';
+            document.getElementById('inputMainWebsite').value = siteData.mainWebsite;
+            document.getElementById('img_header_url').value = siteData.img_header_url;
+            document.getElementById('img_about_url').value = siteData.img_about_url;
+
+            document.getElementById('ar_heroSub').value = siteData.ar_heroSub;
+            document.getElementById('en_heroSub').value = siteData.en_heroSub;
+            document.getElementById('ar_heroMain').value = siteData.ar_heroMain;
+            document.getElementById('en_heroMain').value = siteData.en_heroMain;
+            document.getElementById('ar_heroDesc').value = siteData.ar_heroDesc;
+            document.getElementById('en_heroDesc').value = siteData.en_heroDesc;
+            document.getElementById('ar_heroCities').value = siteData.ar_heroCities;
+            document.getElementById('en_heroCities').value = siteData.en_heroCities;
+            document.getElementById('ar_aboutTitle').value = siteData.ar_aboutTitle;
+            document.getElementById('en_aboutTitle').value = siteData.en_aboutTitle;
+            document.getElementById('ar_aboutSubtitle').value = siteData.ar_aboutSubtitle;
+            document.getElementById('en_aboutSubtitle').value = siteData.en_aboutSubtitle;
+            document.getElementById('ar_aboutDesc').value = siteData.ar_aboutDesc;
+            document.getElementById('en_aboutDesc').value = siteData.en_aboutDesc;
+            document.getElementById('ar_ctaTitle').value = siteData.ar_ctaTitle;
+            document.getElementById('en_ctaTitle').value = siteData.en_ctaTitle;
+            document.getElementById('ar_ctaDesc').value = siteData.ar_ctaDesc;
+            document.getElementById('en_ctaDesc').value = siteData.en_ctaDesc;
+
+            toggleAdminFlexSections(siteData.flexType);
+            renderAdminGalleryList();
+            renderAdminJobsList();
+        }
+
+        function updateSigSizeLabel(val) { document.getElementById('sigSizeValLabel').innerText = val + 'rem'; }
+        function updateOpacityLabel(val) { document.getElementById('opacityValLabel').innerText = val + '%'; }
+        function updateSigStylePreview(val) { document.getElementById('admin-sig-name').style.fontFamily = val; }
+
+        function toggleAdminFlexSections(type) {
+            document.getElementById('adminFlexTextSection').style.display = (type === 'text' || type === 'mixed') ? 'block' : 'none';
+            document.getElementById('adminFlexImageSection').style.display = (type === 'mixed') ? 'block' : 'none';
+            document.getElementById('adminFlexGallerySection').style.display = (type === 'gallery') ? 'block' : 'none';
+        }
+
+        function renderAdminGalleryList() {
+            let container = document.getElementById('adminGalleryList');
+            container.innerHTML = siteData.galleryImages.map((img, i) => `
+                <div class="admin-item-card">
+                    <button class="remove-btn" onclick="removeGalleryImage(${i})">🗑️ حذف</button>
+                    <label>رابط الصورة المرفوعة رقم (${i+1}):</label>
+                    <input type="text" value="${img}" onchange="siteData.galleryImages[${i}] = this.value">
+                </div>
+            `).join('');
+        }
+        function addNewGalleryField() { siteData.galleryImages.push(''); renderAdminGalleryList(); }
+        function removeGalleryImage(i) { siteData.galleryImages.splice(i, 1); renderAdminGalleryList(); }
+
+        function renderAdminJobsList() {
+            let container = document.getElementById('adminJobsList');
+            container.innerHTML = siteData.jobs.map((job, i) => `
+                <div class="admin-item-card" style="border-color:#1a252f">
+                    <button class="remove-btn" onclick="removeJobField(${i})">🗑️ حذف الإعلان بالكامل</button>
+                    <label>رابط صورة الإعلان (اختياري):</label>
+                    <input type="text" value="${job.img}" id="job_img_${i}">
+                    <div class="admin-grid">
+                        <div>
+                            <label>المسمى الوظيفي (العربية):</label><input type="text" value="${job.ar_title}" id="job_artitle_${i}">
+                            <label>الشروط (العربية فصل بنجمة *):</label><textarea id="job_arreqs_${i}" rows="3">${job.ar_reqs}</textarea>
+                        </div>
+                        <div>
+                            <label>Job Title (English):</label><input type="text" value="${job.en_title}" id="job_entitle_${i}">
+                            <label>Requirements (English with *):</label><textarea id="job_enreqs_${i}" rows="3">${job.en_reqs}</textarea>
+                        </div>
+                    </div>
+                    <label>رابط تقديم طلب التوظيف (مثل نموذج Google Form):</label>
+                    <input type="text" value="${job.link}" id="job_link_${i}">
+                </div>
+            `).join('');
+        }
+        function addNewJobField() { siteData.jobs.push({img:'', ar_title:'', en_title:'', ar_reqs:'', en_reqs:'', link:''}); renderAdminJobsList(); }
+        function removeJobField(i) { siteData.jobs.splice(i, 1); renderAdminJobsList(); }
+
+        function saveAdminData() {
+            siteData.companyNameAr = document.getElementById('inputCompanyNameAr').value;
+            siteData.companyNameEn = document.getElementById('inputCompanyNameEn').value;
+            siteData.sigName = document.getElementById('inputSigName').value;
+            siteData.sigSize = document.getElementById('inputSigSize').value;
+            siteData.sigStyle = document.getElementById('inputSigStyle').value;
+            siteData.sigTitle = document.getElementById('inputSigTitle').value;
+            siteData.flexType = document.getElementById('inputFlexType').value;
+            siteData.flexPosition = document.getElementById('inputFlexPosition').value;
+            siteData.ar_flexTitle = document.getElementById('ar_flexTitle').value;
+            siteData.en_flexTitle = document.getElementById('en_flexTitle').value;
+            siteData.ar_flexText = document.getElementById('ar_flexText').value;
+            siteData.en_flexText = document.getElementById('en_flexText').value;
+            siteData.flex_image_url = document.getElementById('flex_image_url').value;
+            siteData.frameStyle = document.getElementById('inputFrameStyle').value;
+            siteData.opacity = document.getElementById('inputOpacity').value;
+            siteData.mainWebsite = document.getElementById('inputMainWebsite').value;
+            siteData.img_header_url = document.getElementById('img_header_url').value;
+            siteData.img_about_url = document.getElementById('img_about_url').value;
+
+            siteData.ar_heroSub = document.getElementById('ar_heroSub').value;
+            siteData.en_heroSub = document.getElementById('en_heroSub').value;
+            siteData.ar_heroMain = document.getElementById('ar_heroMain').value;
+            siteData.en_heroMain = document.getElementById('en_heroMain').value;
+            siteData.ar_heroDesc = document.getElementById('ar_heroDesc').value;
+            siteData.en_heroDesc = document.getElementById('en_heroDesc').value;
+            siteData.ar_heroCities = document.getElementById('ar_heroCities').value;
+            siteData.en_heroCities = document.getElementById('en_heroCities').value;
+            siteData.ar_aboutTitle = document.getElementById('ar_aboutTitle').value;
+            siteData.en_aboutTitle = document.getElementById('en_aboutTitle').value;
+            siteData.ar_aboutSubtitle = document.getElementById('ar_aboutSubtitle').value;
+            siteData.en_aboutSubtitle = document.getElementById('en_aboutSubtitle').value;
+            siteData.ar_aboutDesc = document.getElementById('ar_aboutDesc').value;
+            siteData.en_aboutDesc = document.getElementById('en_aboutDesc').value;
+            siteData.ar_ctaTitle = document.getElementById('ar_ctaTitle').value;
+            siteData.en_ctaTitle = document.getElementById('en_ctaTitle').value;
+            siteData.ar_ctaDesc = document.getElementById('ar_ctaDesc').value;
+            siteData.en_ctaDesc = document.getElementById('en_ctaDesc').value;
+
+            // تحديث مصفوفة الوظائف من الحقول
+            siteData.jobs.forEach((job, i) => {
+                job.img = document.getElementById(`job_img_${i}`).value;
+                job.ar_title = document.getElementById(`job_artitle_${i}`).value;
+                job.en_title = document.getElementById(`job_entitle_${i}`).value;
+                job.ar_reqs = document.getElementById(`job_arreqs_${i}`).value;
+                job.en_reqs = document.getElementById(`job_enreqs_${i}`).value;
+                job.link = document.getElementById(`job_link_${i}`).value;
+            });
+
+            localStorage.setItem('recruitment_portal_data', JSON.stringify(siteData));
+            document.getElementById('adminPanel').style.display = 'none';
+            initSite();
+            alert(siteData.lang === 'ar' ? "تم حفظ البيانات بنجاح وتحديث الموقع المباشر!" : "Data Saved Successfully!");
+        }
+
+        window.onload = initSite;
+    </script>
+</body>
+</html>
