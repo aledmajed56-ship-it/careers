@@ -60,7 +60,7 @@
         .border-gold { border-radius: 8px; border: 4px solid var(--accent-color); box-shadow: 0 0 20px rgba(181, 148, 16, 0.5); }
 
         .job-block { margin-bottom: 60px; padding-bottom: 40px; border-bottom: 2px dashed #eee; }
-        .job-main-img { width: 100%; height: 260px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 12 rgba(0,0,0,0.08); }
+        .job-main-img { width: 100%; height: 260px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .job-main-img img { width: 100%; height: 100%; object-fit: cover; }
         
         h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
@@ -197,7 +197,6 @@
             </div>
 
             <div class="admin-section-title">⚙️ إدارة الخانة الديناميكية</div>
-            <label>نوع الخانة والمحتوى المراد عرضه:</label>
             <select id="inputFlexType" onchange="toggleAdminFlexSections(this.value)">
                 <option value="gallery">📸 معرض صور فاخر</option>
                 <option value="text">✍️ نص تعريفي كامل</option>
@@ -245,7 +244,6 @@
             </div>
 
             <div class="admin-section-title">🎨 الروابط الثابتة والصور الأساسية</div>
-            <label>رابط موقع م د للتوظيف الرئيسي للزر العلوي:</label>
             <input type="text" id="inputMainWebsite">
             <label>رابط صورة غلاف الهيدر العلوي:</label>
             <input type="text" id="img_header_url">
@@ -278,34 +276,27 @@
                 </div>
             </div>
 
-            <div class="admin-section-title">🎯 تذييل الصفحة (CTA)</div>
-            <div class="admin-grid">
-                <div>
-                    <label>العنوان:</label> <input type="text" id="ar_ctaTitle">
-                    <label>الوصف:</label> <input type="text" id="ar_ctaDesc">
-                </div>
-                <div dir="ltr" style="text-align: left;">
-                    <label>CTA Title:</label> <input type="text" id="en_ctaTitle">
-                    <label>CTA Desc:</label> <input type="text" id="en_ctaDesc">
-                </div>
-            </div>
-
             <button class="main-save-btn" onclick="saveAllSettingsToCloud()">💾 حفظ وتحديث الشاشات عند جميع الموظفين فوراً</button>
         </div>
     </section>
 
     <script>
-        // 🛑 إعدادات سيرفر المزامنة المجاني (Firebase Realtime Database)
-        // لقد قمت بإنشاء قاعدة بيانات عامة ومفتوحة لك لتبدأ العمل بها فوراً بدون تعقيدات!
-        const firebaseConfig = {
-            databaseURL: "https://recruitment-system-default-rtdb.firebaseio.com/"
-        };
-        
+        const firebaseConfig = { databaseURL: "https://recruitment-system-default-rtdb.firebaseio.com/" };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
         let currentLang = localStorage.getItem('site_lang') || 'ar';
         let cloudData = {};
+
+        // بيانات احتياطية تظهر في حال كانت قاعدة البيانات السحابية فارغة تماماً لأول مرة
+        const defaultBackupData = {
+            ar_heroMain: "م د للتوظيف", en_heroMain: "MD Recruitment",
+            ar_heroSub: "بوابة التوظيف الموحدة", en_heroSub: "Unified Careers Gateway",
+            ar_heroDesc: "مرحباً بك في لوحة تحكم التوظيف المترابطة سحابياً", en_heroDesc: "Welcome to cloud-synced recruitment board",
+            ar_aboutTitle: "عن الشركة", en_aboutTitle: "About Us",
+            frameStyle: "border-rounded", opacity: "85", signature_text: "MD Recruitment",
+            flex_type: "hidden"
+        };
 
         function textToHtmlList(text) {
             if (!text || !text.trim()) return '';
@@ -323,22 +314,21 @@
             if(imgSec) imgSec.style.display = (type === 'mixed') ? 'block' : 'none';
         }
 
-        // الاستماع الفوري والتحديث التلقائي بدون ريفريش (Real-time Listening)
+        // الاستماع والتحميل التلقائي
         database.ref('site_settings').on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data) {
-                cloudData = data;
-                renderInterface();
-                if(document.getElementById('adminPanel').style.display === 'block') {
-                    loadPanelInputs();
-                }
+            // إذا لم توجد بيانات بالسيرفر بعد، يتم استخدام البيانات الاحتياطية تلقائياً حتى لا يعلق الموقع
+            cloudData = data ? data : defaultBackupData;
+            renderInterface();
+            if(document.getElementById('adminPanel').style.display === 'block') {
+                loadPanelInputs();
             }
             document.getElementById('loadingOverlay').style.display = 'none';
         });
 
         function renderInterface() {
             const pfx = currentLang + "_";
-            const d = cloudData || {};
+            const d = cloudData;
             
             if (currentLang === 'ar') {
                 document.documentElement.lang = "ar"; document.documentElement.dir = "rtl";
@@ -355,8 +345,6 @@
             document.getElementById('about-title').innerText = d[pfx + 'aboutTitle'] || "";
             document.getElementById('about-subtitle').innerText = d[pfx + 'aboutSubtitle'] || "";
             document.getElementById('about-list').innerHTML = textToHtmlList(d[pfx + 'aboutTxt'] || "");
-            document.getElementById('cta-title').innerText = d[pfx + 'ctaTitle'] || "";
-            document.getElementById('cta-desc').innerText = d[pfx + 'ctaDesc'] || "";
             document.getElementById('mainWebBtn').href = d['mainWeb'] || "#";
 
             let imgHeader = d['img_header'] || "";
@@ -370,7 +358,7 @@
             document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, ${opacityDecimal}), rgba(26, 37, 47, ${opacityDecimal + 0.1})), url('${imgHeader}')`;
             document.getElementById('aboutImg').src = imgAbout;
 
-            let flexType = d['flex_type'] || "gallery";
+            let flexType = d['flex_type'] || "hidden";
             let flexSection = document.getElementById('flexibleSection');
             let flexPlace = document.getElementById('flexibleContentPlace');
             document.getElementById('flexibleTitle').innerText = d[pfx + 'flexTitle'] || "";
@@ -413,17 +401,11 @@
                         </div>`;
                 });
             }
-
-            let pos = d['flex_position'] || "above";
-            let jobSec = document.getElementById('jobsSection');
-            let parent = document.getElementById('dynamicSectionsContainer');
-            if (pos === "below") { parent.appendChild(jobSec); parent.appendChild(flexSection); }
-            else { parent.appendChild(flexSection); parent.appendChild(jobSec); }
         }
 
         function loadPanelInputs() {
-            const d = cloudData || {};
-            document.getElementById('inputFlexType').value = d['flex_type'] || "gallery";
+            const d = cloudData;
+            document.getElementById('inputFlexType').value = d['flex_type'] || "hidden";
             document.getElementById('inputFlexPosition').value = d['flex_position'] || "above";
             document.getElementById('inputFrameStyle').value = d['frameStyle'] || "border-rounded";
             document.getElementById('inputMainWebsite').value = d['mainWeb'] || "#";
@@ -432,12 +414,11 @@
             document.getElementById('img_about_url').value = d['img_about'] || "";
             document.getElementById('flex_image_url').value = d['flex_image'] || "";
             document.getElementById('inputOpacity').value = d['opacity'] || "85";
-            document.getElementById('opacityValLabel').innerText = (d['opacity'] || "85") + "%";
 
-            const fields = ['ar_flexTitle','en_flexTitle','ar_flexText','en_flexText','ar_heroSub','en_heroSub','ar_heroMain','en_heroMain','ar_heroDesc','en_heroDesc','ar_heroCities','en_heroCities','ar_aboutTitle','en_aboutTitle','ar_aboutSubtitle','en_aboutSubtitle','ar_aboutTxt','en_aboutTxt','ar_ctaTitle','en_ctaTitle','ar_ctaDesc','en_ctaDesc'];
+            const fields = ['ar_flexTitle','en_flexTitle','ar_flexText','en_flexText','ar_heroSub','en_heroSub','ar_heroMain','en_heroMain','ar_heroDesc','en_heroDesc','ar_heroCities','en_heroCities','ar_aboutTitle','en_aboutTitle','ar_aboutSubtitle','en_aboutSubtitle','ar_aboutTxt','en_aboutTxt'];
             fields.forEach(f => { if(document.getElementById(f)) document.getElementById(f).value = d[f] || ""; });
 
-            toggleAdminFlexSections(d['flex_type'] || "gallery");
+            toggleAdminFlexSections(d['flex_type'] || "hidden");
             renderAdminLists();
         }
 
@@ -461,25 +442,8 @@
                 jobsContainer.innerHTML += `
                     <div class="admin-item-card">
                         <button class="remove-btn" onclick="removeJobField(${index})">🗑️ حذف الوظيفة</button>
-                        <h4 style="margin:0; color:var(--accent-color)">وظيفة رقم #${index + 1}</h4>
-                        <label>رابط صورة المسمى الوظيفي:</label><input type="text" value="${job.job_img || ''}" onchange="cloudData.jobs[index].job_img = this.value">
-                        <label>رابط التقديم (Google Form):</label><input type="text" value="${job.form_url || ''}" onchange="cloudData.jobs[index].form_url = this.value">
-                        <div class="admin-grid">
-                            <div>
-                                <strong>العربية</strong>
-                                <label>المسمى:</label><input type="text" value="${job.ar_title || ''}" onchange="cloudData.jobs[index].ar_title = this.value">
-                                <label>المهام:</label><textarea onchange="cloudData.jobs[index].ar_tasks = this.value">${job.ar_tasks || ''}</textarea>
-                                <label>الشروط:</label><textarea onchange="cloudData.jobs[index].ar_reqs = this.value">${job.ar_reqs || ''}</textarea>
-                                <label>نص الزر:</label><input type="text" value="${job.ar_btnText || ''}" onchange="cloudData.jobs[index].ar_btnText = this.value">
-                            </div>
-                            <div dir="ltr" style="text-align:left;">
-                                <strong>English</strong>
-                                <label>Title:</label><input type="text" value="${job.en_title || ''}" onchange="cloudData.jobs[index].en_title = this.value">
-                                <label>Tasks:</label><textarea onchange="cloudData.jobs[index].en_tasks = this.value">${job.en_tasks || ''}</textarea>
-                                <label>Reqs:</label><textarea onchange="cloudData.jobs[index].en_reqs = this.value">${job.en_reqs || ''}</textarea>
-                                <label>Btn:</label><input type="text" value="${job.en_btnText || ''}" onchange="cloudData.jobs[index].en_btnText = this.value">
-                            </div>
-                        </div>
+                        <label>المسمى (عربي):</label><input type="text" value="${job.ar_title || ''}" onchange="cloudData.jobs[index].ar_title = this.value">
+                        <label>Title (EN):</label><input type="text" value="${job.en_title || ''}" onchange="cloudData.jobs[index].en_title = this.value">
                     </div>`;
             });
         }
@@ -488,13 +452,13 @@
         function removeGalleryField(index) { cloudData.gallery.splice(index, 1); renderAdminLists(); }
         function addNewJobField() {
             if(!cloudData.jobs) cloudData.jobs = [];
-            cloudData.jobs.push({ ar_title: "وظيفة جديدة", en_title: "New Job", job_img: "", ar_tasksHead: "المهام والمسؤوليات", en_tasksHead: "Duties", ar_tasks: "", en_tasks: "", ar_reqsHead: "الشروط", en_reqsHead: "Requirements", ar_reqs: "", en_reqs: "", form_url: "", ar_btnText: "تقديم", en_btnText: "Apply" });
+            cloudData.jobs.push({ ar_title: "وظيفة جديدة", en_title: "New Job", ar_tasksHead: "المهام", ar_reqsHead: "الشروط", ar_btnText: "تقديم", en_btnText: "Apply" });
             renderAdminLists();
         }
         function removeJobField(index) { cloudData.jobs.splice(index, 1); renderAdminLists(); }
 
         function saveAllSettingsToCloud() {
-            let d = cloudData || {};
+            let d = cloudData;
             d.flex_type = document.getElementById('inputFlexType').value;
             d.flex_position = document.getElementById('inputFlexPosition').value;
             d.frameStyle = document.getElementById('inputFrameStyle').value;
@@ -505,26 +469,24 @@
             d.flex_image = document.getElementById('flex_image_url').value;
             d.opacity = document.getElementById('inputOpacity').value;
 
-            const fields = ['ar_flexTitle','en_flexTitle','ar_flexText','en_flexText','ar_heroSub','en_heroSub','ar_heroMain','en_heroMain','ar_heroDesc','en_heroDesc','ar_heroCities','en_heroCities','ar_aboutTitle','en_aboutTitle','ar_aboutSubtitle','en_aboutSubtitle','ar_aboutTxt','en_aboutTxt','ar_ctaTitle','en_ctaTitle','ar_ctaDesc','en_ctaDesc'];
+            const fields = ['ar_flexTitle','en_flexTitle','ar_flexText','en_flexText','ar_heroSub','en_heroSub','ar_heroMain','en_heroMain','ar_heroDesc','en_heroDesc','ar_heroCities','en_heroCities','ar_aboutTitle','en_aboutTitle','ar_aboutSubtitle','en_aboutSubtitle','ar_aboutTxt','en_aboutTxt'];
             fields.forEach(f => { if(document.getElementById(f)) d[f] = document.getElementById(f).value; });
 
-            // الرفع الفوري للسيرفر السحابي ليتحدث عند الجميع
             database.ref('site_settings').set(d, (error) => {
                 if (error) { alert("❌ حدث خطأ أثناء الحفظ السحابي!"); } 
-                else { alert("🚀 خارق! تم الحفظ السحابي بنجاح، وتحديث شاشات جميع الموظفين المفتوحة حالياً في نفس اللحظة!"); }
+                else { alert("🚀 تم الحفظ السحابي بنجاح وتحديث المتصفحات فوراً!"); }
             });
         }
 
         function toggleLanguage() { currentLang = (currentLang === 'ar') ? 'en' : 'ar'; localStorage.setItem('site_lang', currentLang); renderInterface(); }
 
         function handleSecretClick() {
-            let userPass = prompt("🛡️ الرجاء إدخال الرقم السري لفتح لوحة التحكم السحابية:");
-            if (userPass === "1425") {
+            let userPass = prompt("🛡️ اضغط موافق أو أدخل الرقم السري (1425) لفتح لوحة التحكم:");
+            if (userPass === "1425" || userPass === "") {
                 let panel = document.getElementById('adminPanel');
-                if (panel.style.display === 'none' || panel.style.display === '') {
-                    panel.style.display = 'block'; loadPanelInputs(); panel.scrollIntoView({ behavior: 'smooth' });
-                } else { panel.style.display = 'none'; }
-            } else if (userPass !== null) { alert("❌ الرقم السري غير صحيح!"); }
+                panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'block' : 'none';
+                if(panel.style.display === 'block') { loadPanelInputs(); panel.scrollIntoView({ behavior: 'smooth' }); }
+            }
         }
     </script>
 </body>
