@@ -1,17 +1,11 @@
-<!--  
-    =============================================================
-    DEVELOPED & SIGNED BY: MAJED ALDAJANI (ALL RIGHTS RESERVED) ©
-    =============================================================
--->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتحاد الضيافة الفاخرة | United Hospitality</title>
+    <title>بوابة توظيف MD | MD Recruitment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- خطوط فنية للتوقيع وخط تجول الرئيسي للواجهة -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Reenie+Beanie&family=Alex+Brush&family=Montserrat:ital,wght@1,300&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -201,19 +195,17 @@
             </div>
         </div>
         
-        <!-- لوحة التحكم الأمنية المتطورة والشاملة -->
         <div class="admin-panel" id="adminPanel">
             <h3 id="panel-main-heading">🎛️ لوحة التحكم الأمنية المتقدمة: إدارة الواجهة بالكامل</h3>
 
-            <!-- التحكم باسم الشركة وتصميم التوقيع -->
             <div class="admin-section-title" id="panel-sec-sig-title">✒️ تخصيص اسم الشركة والاسم المكتوب بالتوقيع ومقاسه</div>
             <div class="admin-grid">
                 <div>
                     <label id="lbl-company-name-ar">اسم الشركة (العربية):</label>
-                    <input type="text" id="inputCompanyNameAr" value="شركة اتحاد الضيافة الفاخرة - ">
+                    <input type="text" id="inputCompanyNameAr" value="بوابة توظيف MD - ">
                     
                     <label id="lbl-company-name-en">Company Name (English):</label>
-                    <input type="text" id="inputCompanyNameEn" value="United Hospitality - ">
+                    <input type="text" id="inputCompanyNameEn" value="MD Recruitment - ">
 
                     <label id="lbl-sig-name-input">الاسم المكتوب بالتوقيع:</label>
                     <input type="text" id="inputSigName" value="Majed AlDajani" oninput="document.getElementById('admin-sig-name').innerText = this.value">
@@ -238,7 +230,6 @@
                 </div>
             </div>
 
-            <!-- إدارة الخانة الديناميكية -->
             <div class="admin-section-title" id="panel-sec1-title">⚙️ إدارة الخانة الديناميكية (إضافة، تغيير، أو حذف)</div>
             <label id="panel-lbl-flex-type">نوع الخانة والمحتوى المراد عرضه:</label>
             <select id="inputFlexType" onchange="toggleAdminFlexSections(this.value)">
@@ -288,7 +279,6 @@
                 <button class="add-btn" type="button" style="background:#1565c0" id="panel-btn-add-gal" onclick="addNewGalleryField()">➕ إضافة صورة جديدة للمعرض</button>
             </div>
 
-            <!-- المظهر العام والروابط الثابتة والصور -->
             <div class="admin-section-title" id="panel-sec2-title">🎨 المظهر العام، الروابط، والصور المرفوعة</div>
             <label id="panel-lbl-frame">نوع وشكل إطارات الصور في الموقع:</label>
             <select id="inputFrameStyle">
@@ -313,12 +303,10 @@
             <label id="panel-lbl-aimg">رابط صورة قسم "توجه الشركة" الجانبية الثابتة:</label>
             <input type="text" id="img_about_url">
 
-            <!-- إدارة قسم الوظائف -->
             <div class="admin-section-title" style="background: #1a252f; color: #fff;" id="panel-sec3-title">💼 إدارة الوظائف وصور المسميات المخصصة</div>
             <div id="adminJobsList"></div>
             <button class="add-btn" type="button" id="panel-btn-add-job" onclick="addNewJobField()">➕ إضافة إعلان وظيفي جديد</button>
 
-            <!-- نصوص الواجهة والترتيب العام -->
             <div class="admin-section-title" id="panel-sec4-title">🏢 نصوص الواجهة والترتيب العام بالكامل</div>
             <div class="admin-grid">
                 <div>
@@ -343,7 +331,6 @@
                 </div>
             </div>
 
-            <!-- تذييل الصفحة -->
             <div class="admin-section-title" id="panel-sec5-title">🎯 تذييل الصفحة (CTA)</div>
             <div class="admin-grid">
                 <div>
@@ -458,476 +445,3 @@
                 lblArCtatitle: "Title:", lblArCtadesc: "Description:",
                 lblEnCtatitle: "CTA Title:", lblEnCtadesc: "CTA Desc:",
                 btnSave: "💾 Save and Publish All Content Changes Immediately",
-                panelTextAlign: "left", panelDir: "ltr"
-            }
-        };
-
-        function textToHtmlList(text) {
-            if (!text || !text.trim()) return '';
-            return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
-        }
-
-        const defaults = {
-            ar_heroSub: "شراكة متميزة للارتقاء بفرص التوظيف",
-            en_heroSub: "An Outstanding Partnership to Enhance Employment Opportunities",
-            ar_heroMain: "فرص قيادية في إدارة المشاريع",
-            en_heroMain: "Leadership Opportunities in Project Management",
-            ar_heroDesc: "تعلن الشركة عن فتح باب الاستقطاب القيادي لقطاع مشاريع الضيافة الفاخرة",
-            en_heroDesc: "The Company announces the opening of leadership recruitment for the luxury hospitality sector",
-            ar_heroCities: "المدن المستهدفة: جدة | مكة المكرمة | جازان | أبها",
-            en_heroCities: "Target Cities: Jeddah | Makkah | Jazan | Abha",
-            ar_aboutTitle: "البيئة والتوجه العام للشركة",
-            en_aboutTitle: "Company Culture & Core Direction",
-            ar_aboutSubtitle: "الريادة في تشغيل المشاريع الراقية",
-            en_aboutSubtitle: "Leadership in Operating High-End Projects",
-            ar_aboutTxt: "نهدف لاستقطاب كفاءات شغوفة للانضمام إلى فريقنا النخبوي لإدارة وتشغيل أحد مشاريعنا بقطاع الفنادق الفاخرة.\nفرصة للمساهمة في تقديم بروتوكولات خدمة الـ VIP وتحقيق أعلى مستويات الفخامة.\nنلتزم بتقديم بيئة عمل احترافية، حوافز استثنائية، ومسار مهني واضح.",
-            en_aboutTxt: "We aim to attract passionate talents to join our elite team for managing high-end hotel projects.\nAn opportunity to contribute to VIP service protocols and achieve maximum luxury.\nWe commit to providing a professional workspace, exceptional incentives, and a clear career path.",
-            ar_ctaTitle: "هل تجد في نفسك الشغف والريادة?",
-            en_ctaTitle: "Do You Possess Passion and Leadership?",
-            ar_ctaDesc: "يسعدنا تقديمك الفوري للانضمام إلى فريقنا النخبوي في منطقتك",
-            en_ctaDesc: "We are pleased to receive your immediate application to join our elite team",
-            ar_flexTitle: "📸 معرض أعمالنا ومشاريعنا الفاخرة",
-            en_flexTitle: "📸 Our Luxury Portfolio & Gallery",
-            ar_flexText: "هذا النص تعريفي خاص بالخانة الجديدة، يمكنك صياغته ليعكس أهداف المشروع الرائد.",
-            en_flexText: "This is a custom descriptive text for the new section, you can fully edit it."
-        };
-
-        const defaultImages = {
-            img_header: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1920&q=80", 
-            img_about: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&h=600&q=80",
-            flex_img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80"
-        };
-
-        const defaultGallery = [
-            { url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
-            { url: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=80" }
-        ];
-
-        const defaultJobs = [
-            {
-                ar_title: "المسمى الوظيفي: مدير مشروع (Project Manager)",
-                en_title: "Job Title: Project Manager (PM)",
-                job_img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-                ar_tasksHead: "المهام والمسؤوليات التشغيلية",
-                en_tasksHead: "Operational Duties & Responsibilities",
-                ar_tasks: "التخطيط والإشراف الميداني الشامل لمسار تشغيل المشروع الفندقي.\nإعداد الميزانيات التشغيلية وضمان رفع الإنتاجية والكفاءة.",
-                en_tasks: "Comprehensive operational planning and on-site field supervision.\nPreparing operational budgets and ensuring higher standard productivity.",
-                ar_reqsHead: "الشروط والمؤهلات المطلوبة",
-                en_reqsHead: "Required Conditions & Qualifications",
-                ar_reqs: "مؤهل تعليمي بكالوريوس في إدارة الفنادق أو إدارة الأعمال.\nخبرة عملية لا تقل عن 5 سنوات في تشغيل الفنادق الفاخرة.",
-                en_reqs: "Bachelor's degree in Hotel Management or Business Administration.\nMinimum 5 years of experience in luxury hospitality operations.",
-                form_url: "https://forms.gle/YwYyPx9LJXbnnz1MA",
-                ar_btnText: "التقديم على وظيفة مدير مشروع",
-                en_btnText: "Apply for Project Manager Position"
-            }
-        ];
-
-        function loadData() {
-            let savedJobs = localStorage.getItem('cfg_dynamic_jobs');
-            jobsData = savedJobs ? JSON.parse(savedJobs) : JSON.parse(JSON.stringify(defaultJobs));
-
-            let savedGallery = localStorage.getItem('cfg_dynamic_gallery');
-            galleryData = savedGallery ? JSON.parse(savedGallery) : JSON.parse(JSON.stringify(defaultGallery));
-        }
-
-        function updateSigSizeLabel(val) { 
-            document.getElementById('sigSizeValLabel').innerText = val + "rem"; 
-            document.getElementById('admin-sig-name').style.fontSize = val + "rem";
-        }
-
-        function updateSigStylePreview(val) {
-            document.getElementById('admin-sig-name').style.fontFamily = val;
-        }
-
-        function updateOpacityLabel(val) { document.getElementById('opacityValLabel').innerText = val + "%"; }
-
-        function toggleAdminFlexSections(type) {
-            let galSec = document.getElementById('adminFlexGallerySection');
-            let txtSec = document.getElementById('adminFlexTextSection');
-            let imgSec = document.getElementById('adminFlexImageSection');
-
-            if(galSec && txtSec && imgSec) {
-                galSec.style.display = (type === 'gallery') ? 'block' : 'none';
-                txtSec.style.display = (type === 'text' || type === 'mixed') ? 'block' : 'none';
-                imgSec.style.display = (type === 'mixed') ? 'block' : 'none';
-            }
-        }
-
-        function translateAdminPanelElements(lang) {
-            const trans = adminPanelTranslations[lang];
-            const panel = document.getElementById('adminPanel');
-            if (!panel) return;
-            
-            panel.style.textAlign = trans.panelTextAlign;
-            panel.setAttribute('dir', trans.panelDir);
-
-            document.getElementById('panel-main-heading').innerText = trans.panelHeading;
-            document.getElementById('panel-sec-sig-title').innerText = trans.secSigTitle;
-            document.getElementById('lbl-sig-name-input').innerText = trans.lblSigName;
-            document.getElementById('lbl-sig-size').innerText = trans.lblSigSize;
-            document.getElementById('lbl-sig-style-select').innerText = trans.lblSigStyle;
-            document.getElementById('lbl-sig-title-input').innerText = trans.lblSigTitle;
-
-            document.getElementById('panel-sec1-title').innerText = trans.sec1Title;
-            document.getElementById('panel-lbl-flex-type').innerText = trans.lblFlexType;
-            document.getElementById('opt-gal').innerText = trans.optGal;
-            document.getElementById('opt-txt').innerText = trans.optTxt;
-            document.getElementById('opt-mix').innerText = trans.optMix;
-            document.getElementById('opt-hid').innerText = trans.optHid;
-            document.getElementById('panel-lbl-flex-pos').innerText = trans.lblFlexPos;
-            document.getElementById('opt-abv').innerText = trans.optAbv;
-            document.getElementById('opt-blw').innerText = trans.optBlw;
-            document.getElementById('panel-str-flex-ar').innerText = trans.strFlexAr;
-            document.getElementById('panel-str-flex-en').innerText = trans.strFlexEn;
-            document.getElementById('panel-str-txt-ar').innerText = trans.strTxtAr;
-            document.getElementById('panel-str-txt-en').innerText = trans.strTxtEn;
-            document.getElementById('panel-lbl-flex-img').innerText = trans.lblFlexImg;
-            document.getElementById('panel-lbl-gal-manage').innerText = trans.lblGalManage;
-            document.getElementById('panel-btn-add-gal').innerText = trans.btnAddGal;
-            document.getElementById('panel-sec2-title').innerText = trans.sec2Title;
-            document.getElementById('panel-lbl-frame').innerText = trans.lblFrame;
-            document.getElementById('opt-frm-rnd').innerText = trans.optFrmRnd;
-            document.getElementById('opt-frm-crc').innerText = trans.optFrmCrc;
-            document.getElementById('opt-frm-shp').innerText = trans.optFrmShp;
-            document.getElementById('opt-frm-gld').innerText = trans.optFrmGld;
-            document.getElementById('panel-lbl-opacity').innerText = trans.lblOpacity;
-            document.getElementById('panel-lbl-link').innerText = trans.lblLink;
-            document.getElementById('panel-lbl-himg').innerText = trans.lblHimg;
-            document.getElementById('panel-lbl-aimg').innerText = trans.lblAimg;
-            document.getElementById('panel-sec3-title').innerText = trans.sec3Title;
-            document.getElementById('panel-btn-add-job').innerText = trans.btnAddJob;
-            document.getElementById('panel-sec4-title').innerText = trans.sec4Title;
-            document.getElementById('panel-str-ver-ar').innerText = trans.strVerAr;
-            document.getElementById('panel-str-ver-en').innerText = trans.strVerEn;
-            
-            document.getElementById('panel-sec5-title').innerText = trans.sec5Title;
-            document.getElementById('panel-btn-save').innerText = trans.btnSave;
-        }
-
-        function renderInterface() {
-            loadData();
-            const pfx = currentLang + "_";
-            
-            if (currentLang === 'ar') {
-                document.documentElement.lang = "ar"; document.documentElement.dir = "rtl";
-                document.getElementById('langBtn').innerText = "English";
-            } else {
-                document.documentElement.lang = "en"; document.documentElement.dir = "ltr";
-                document.getElementById('langBtn').innerText = "العربية";
-            }
-
-            translateAdminPanelElements(currentLang);
-
-            // جلب اسم الشركة المخزن أو الافتراضي المنقح
-            let companyNameAr = localStorage.getItem('cfg_ar_companyName') || "شركة اتحاد الضيافة الفاخرة - ";
-            let companyNameEn = localStorage.getItem('cfg_en_companyName') || "United Hospitality - ";
-            document.getElementById('footer-company-text').innerText = (currentLang === 'ar') ? companyNameAr : companyNameEn;
-
-            let signatureName = localStorage.getItem('cfg_signature_name') || "Majed AlDajani";
-            let signatureTitle = localStorage.getItem('cfg_signature_title') || "AUTHORIZED SIGNATURE";
-            let signatureSize = localStorage.getItem('cfg_signature_size') || "2.3";
-            let signatureStyle = localStorage.getItem('cfg_signature_style') || "'Caveat', cursive";
-            let signatureRights = localStorage.getItem('cfg_signature_rights') || "CHIEF TECHNOLOGY DEVELOPER • ALL RIGHTS RESERVED ©";
-            
-            const sigElement = document.getElementById('admin-sig-name');
-            sigElement.innerText = signatureName;
-            sigElement.style.fontSize = signatureSize + "rem";
-            sigElement.style.fontFamily = signatureStyle;
-
-            document.getElementById('admin-sig-auth-title').innerText = signatureTitle;
-            document.getElementById('admin-sig-rights').innerText = signatureRights;
-
-            document.getElementById('sub-title').innerText = localStorage.getItem('cfg_' + pfx + 'heroSub') || defaults[pfx + 'heroSub'];
-            document.getElementById('main-title').innerText = localStorage.getItem('cfg_' + pfx + 'heroMain') || defaults[pfx + 'heroMain'];
-            document.getElementById('hero-desc').innerText = localStorage.getItem('cfg_' + pfx + 'heroDesc') || defaults[pfx + 'heroDesc'];
-            document.getElementById('cities-target').innerText = localStorage.getItem('cfg_' + pfx + 'heroCities') || defaults[pfx + 'heroCities'];
-            
-            document.getElementById('about-title').innerText = localStorage.getItem('cfg_' + pfx + 'aboutTitle') || defaults[pfx + 'aboutTitle'];
-            document.getElementById('about-subtitle').innerText = localStorage.getItem('cfg_' + pfx + 'aboutSubtitle') || defaults[pfx + 'aboutSubtitle'];
-            document.getElementById('about-list').innerHTML = textToHtmlList(localStorage.getItem('cfg_' + pfx + 'aboutTxt') || defaults[pfx + 'aboutTxt']);
-
-            document.getElementById('cta-title').innerText = localStorage.getItem('cfg_' + pfx + 'ctaTitle') || defaults[pfx + 'ctaTitle'];
-            document.getElementById('cta-desc').innerText = localStorage.getItem('cfg_' + pfx + 'ctaDesc') || defaults[pfx + 'ctaDesc'];
-            document.getElementById('mainWebBtn').href = localStorage.getItem('cfg_mainWeb') || "https://www.google.com";
-
-            let imgHeader = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
-            let imgAbout = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
-            let frameStyle = localStorage.getItem('cfg_frameStyle') || "border-rounded";
-            let opacityVal = localStorage.getItem('cfg_opacity') || "85";
-            let opacityDecimal = parseFloat(opacityVal) / 100;
-
-            document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
-            document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, ${opacityDecimal}), rgba(26, 37, 47, ${opacityDecimal + 0.1})), url('${imgHeader}')`;
-            document.getElementById('aboutImg').src = imgAbout;
-
-            let flexType = localStorage.getItem('cfg_flex_type') || "gallery";
-            let flexSection = document.getElementById('flexibleSection');
-            let flexPlace = document.getElementById('flexibleContentPlace');
-            
-            document.getElementById('flexibleTitle').innerText = localStorage.getItem('cfg_' + pfx + 'flexTitle') || defaults[pfx + 'flexTitle'];
-
-            if (flexType === "hidden") {
-                flexSection.style.display = "none";
-            } else {
-                flexSection.style.display = "block";
-                flexPlace.innerHTML = "";
-
-                if (flexType === "gallery") {
-                    let gridHtml = `<div class="gallery-grid">`;
-                    galleryData.forEach(img => {
-                        if(img.url && img.url.trim() !== "") {
-                            gridHtml += `<div class="gallery-item ${frameStyle}"><img src="${img.url}"></div>`;
-                        }
-                    });
-                    gridHtml += `</div>`;
-                    flexPlace.innerHTML = gridHtml;
-                } 
-                else if (flexType === "text") {
-                    let textContent = localStorage.getItem('cfg_' + pfx + 'flexText') || defaults[pfx + 'flexText'];
-                    flexPlace.innerHTML = `<div class="custom-text-block"><p>${textContent}</p></div>`;
-                } 
-                else if (flexType === "mixed") {
-                    let textContent = localStorage.getItem('cfg_' + pfx + 'flexText') || defaults[pfx + 'flexText'];
-                    let flexImg = localStorage.getItem('cfg_flex_image') || defaultImages.flex_img;
-                    flexPlace.innerHTML = `
-                        <div class="grid-2" style="margin-top:20px;">
-                            <div class="img-container ${frameStyle}"><img src="${flexImg}" class="img-fluid"></div>
-                            <div class="custom-text-block" style="margin:0;"><p>${textContent}</p></div>
-                        </div>`;
-                }
-            }
-
-            let container = document.getElementById('jobsContainer');
-            container.innerHTML = "";
-            jobsData.forEach((job) => {
-                let jobImgHtml = (job.job_img && job.job_img.trim() !== "") ? `<div class="job-main-img ${frameStyle}"><img src="${job.job_img}"></div>` : '';
-                container.innerHTML += `
-                    <div class="job-block">
-                        <h2>${job[pfx + 'title'] || ''}</h2>
-                        ${jobImgHtml}
-                        <div class="grid-2">
-                            <div class="card">
-                                <h3>${job[pfx + 'tasksHead'] || ''}</h3>
-                                <ul>${textToHtmlList(job[pfx + 'tasks'])}</ul>
-                            </div>
-                            <div class="card">
-                                <h3>${job[pfx + 'reqsHead'] || ''}</h3>
-                                <ul>${textToHtmlList(job[pfx + 'reqs'])}</ul>
-                            </div>
-                        </div>
-                        <div class="btn-job-container">
-                            <a href="${job.form_url || '#'}" target="_blank" class="btn-job-form">${job[pfx + 'btnText'] || 'Apply'}</a>
-                        </div>
-                    </div>`;
-            });
-
-            let pos = localStorage.getItem('cfg_flex_position') || "above";
-            let jobSec = document.getElementById('jobsSection');
-            let parent = document.getElementById('dynamicSectionsContainer');
-            if (pos === "below") {
-                parent.appendChild(jobSec); parent.appendChild(flexSection);
-            } else {
-                parent.appendChild(flexSection); parent.appendChild(jobSec);
-            }
-        }
-
-        function renderAdminLists() {
-            let galContainer = document.getElementById('adminGalleryList');
-            galContainer.innerHTML = "";
-            galleryData.forEach((img, index) => {
-                galContainer.innerHTML += `
-                    <div class="admin-item-card">
-                        <button class="remove-btn" onclick="removeGalleryField(${index})">🗑️ ${currentLang === 'ar' ? 'حذف الصورة' : 'Delete Image'}</button>
-                        <label>${currentLang === 'ar' ? 'رابط صورة المعرض رقم' : 'Gallery Image URL #'} #${index + 1}:</label>
-                        <input type="text" value="${img.url || ''}" onchange="updateGalleryData(${index}, this.value)">
-                    </div>`;
-            });
-
-            let jobsContainer = document.getElementById('adminJobsList');
-            jobsContainer.innerHTML = "";
-            jobsData.forEach((job, index) => {
-                jobsContainer.innerHTML += `
-                    <div class="admin-item-card">
-                        <button class="remove-btn" onclick="removeJobField(${index})">🗑️ ${currentLang === 'ar' ? 'حذف الوظيفة' : 'Delete Job'}</button>
-                        <h4 style="margin:0; color:var(--accent-color)">${currentLang === 'ar' ? 'وظيفة رقم' : 'Job ad #'} #${index + 1}</h4>
-                        <label>${currentLang === 'ar' ? 'رابط صورة الوظيفة لإبراز المسمى والضيافة:' : 'Job image Title URL:'}</label>
-                        <input type="text" value="${job.job_img || ''}" id="job_img_${index}">
-                        
-                        <div class="admin-grid">
-                            <div>
-                                <strong>[AR] المسمى الإعلاني:</strong>
-                                <input type="text" value="${job.ar_title || ''}" id="job_ar_title_${index}">
-                                <strong>[AR] عنوان المهام:</strong>
-                                <input type="text" value="${job.ar_tasksHead || ''}" id="job_ar_tasksh_${index}">
-                                <strong>[AR] قائمة المهام (سطر جديد):</strong>
-                                <textarea id="job_ar_tasks_${index}" rows="3">${job.ar_tasks || ''}</textarea>
-                                <strong>[AR] عنوان الشروط:</strong>
-                                <input type="text" value="${job.ar_reqsHead || ''}" id="job_ar_reqsh_${index}">
-                                <strong>[AR] قائمة الشروط (سطر جديد):</strong>
-                                <textarea id="job_ar_reqs_${index}" rows="3">${job.ar_reqs || ''}</textarea>
-                                <strong>[AR] نص زر التقديم:</strong>
-                                <input type="text" value="${job.ar_btnText || ''}" id="job_ar_btn_${index}">
-                            </div>
-                            <div>
-                                <strong>[EN] Job Title:</strong>
-                                <input type="text" value="${job.en_title || ''}" id="job_en_title_${index}">
-                                <strong>[EN] Duties Heading:</strong>
-                                <input type="text" value="${job.en_tasksHead || ''}" id="job_en_tasksh_${index}">
-                                <strong>[EN] Duties List (New line):</strong>
-                                <textarea id="job_en_tasks_${index}" rows="3">${job.en_tasks || ''}</textarea>
-                                <strong>[EN] Requirements Heading:</strong>
-                                <input type="text" value="${job.en_reqsHead || ''}" id="job_en_reqsh_${index}">
-                                <strong>[EN] Requirements List (New line):</strong>
-                                <textarea id="job_en_reqs_${index}" rows="3">${job.en_reqs || ''}</textarea>
-                                <strong>[EN] Button Text:</strong>
-                                <input type="text" value="${job.en_btnText || ''}" id="job_en_btn_${index}">
-                            </div>
-                        </div>
-                        <label>رابط نموذج التقديم (Google Form URL):</label>
-                        <input type="text" value="${job.form_url || ''}" id="job_form_url_${index}">
-                    </div>`;
-            });
-        }
-
-        function updateGalleryData(index, value) { galleryData[index].url = value; }
-        function addNewGalleryField() { galleryData.push({ url: "" }); renderAdminLists(); }
-        function removeGalleryField(index) { galleryData.splice(index, 1); renderAdminLists(); }
-
-        function addNewJobField() {
-            jobsData.push({
-                ar_title: "المسمى الوظيفي: اكتب هنا المسمى", en_title: "Job Title: Type here",
-                job_img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-                ar_tasksHead: "المهام والمسؤوليات", en_tasksHead: "Duties & Responsibilities",
-                ar_tasks: "", en_tasks: "",
-                ar_reqsHead: "الشروط والمؤهلات", en_reqsHead: "Requirements",
-                ar_reqs: "", en_reqs: "",
-                form_url: "",
-                ar_btnText: "تقديم الآن", en_btnText: "Apply Now"
-            });
-            renderAdminLists();
-        }
-
-        function removeJobField(index) { jobsData.splice(index, 1); renderAdminLists(); }
-
-        function fillAdminInputs() {
-            document.getElementById('inputCompanyNameAr').value = localStorage.getItem('cfg_ar_companyName') || "شركة اتحاد الضيافة الفاخرة - ";
-            document.getElementById('inputCompanyNameEn').value = localStorage.getItem('cfg_en_companyName') || "United Hospitality - ";
-
-            document.getElementById('inputSigName').value = localStorage.getItem('cfg_signature_name') || "Majed AlDajani";
-            document.getElementById('inputSigTitle').value = localStorage.getItem('cfg_signature_title') || "AUTHORIZED SIGNATURE";
-            
-            let sigSize = localStorage.getItem('cfg_signature_size') || "2.3";
-            document.getElementById('inputSigSize').value = sigSize;
-            document.getElementById('sigSizeValLabel').innerText = sigSize + "rem";
-            document.getElementById('inputSigStyle').value = localStorage.getItem('cfg_signature_style') || "'Caveat', cursive";
-
-            document.getElementById('inputFlexType').value = localStorage.getItem('cfg_flex_type') || "gallery";
-            document.getElementById('inputFlexPosition').value = localStorage.getItem('cfg_flex_position') || "above";
-            document.getElementById('inputFrameStyle').value = localStorage.getItem('cfg_frameStyle') || "border-rounded";
-            
-            let op = localStorage.getItem('cfg_opacity') || "85";
-            document.getElementById('inputOpacity').value = op;
-            document.getElementById('opacityValLabel').innerText = op + "%";
-
-            document.getElementById('inputMainWebsite').value = localStorage.getItem('cfg_mainWeb') || "https://www.google.com";
-            document.getElementById('img_header_url').value = localStorage.getItem('cfg_img_header') || defaultImages.img_header;
-            document.getElementById('img_about_url').value = localStorage.getItem('cfg_img_about') || defaultImages.img_about;
-            document.getElementById('flex_image_url').value = localStorage.getItem('cfg_flex_image') || defaultImages.flex_img;
-
-            document.getElementById('ar_flexTitle').value = localStorage.getItem('cfg_ar_flexTitle') || defaults.ar_flexTitle;
-            document.getElementById('en_flexTitle').value = localStorage.getItem('cfg_en_flexTitle') || defaults.en_flexTitle;
-            document.getElementById('ar_flexText').value = localStorage.getItem('cfg_ar_flexText') || defaults.ar_flexText;
-            document.getElementById('en_flexText').value = localStorage.getItem('cfg_en_flexText') || defaults.en_flexText;
-
-            const fields = ['heroSub', 'heroMain', 'heroDesc', 'heroCities', 'aboutTitle', 'aboutSubtitle', 'aboutTxt', 'ctaTitle', 'ctaDesc'];
-            fields.forEach(f => {
-                document.getElementById('ar_' + f).value = localStorage.getItem('cfg_ar_' + f) || defaults['ar_' + f];
-                document.getElementById('en_' + f).value = localStorage.getItem('cfg_en_' + f) || defaults['en_' + f];
-            });
-
-            toggleAdminFlexSections(document.getElementById('inputFlexType').value);
-            renderAdminLists();
-        }
-
-        function saveAllSettings() {
-            localStorage.setItem('cfg_ar_companyName', document.getElementById('inputCompanyNameAr').value);
-            localStorage.setItem('cfg_en_companyName', document.getElementById('inputCompanyNameEn').value);
-
-            localStorage.setItem('cfg_signature_name', document.getElementById('inputSigName').value);
-            localStorage.setItem('cfg_signature_title', document.getElementById('inputSigTitle').value);
-            localStorage.setItem('cfg_signature_size', document.getElementById('inputSigSize').value);
-            localStorage.setItem('cfg_signature_style', document.getElementById('inputSigStyle').value);
-
-            localStorage.setItem('cfg_flex_type', document.getElementById('inputFlexType').value);
-            localStorage.setItem('cfg_flex_position', document.getElementById('inputFlexPosition').value);
-            localStorage.setItem('cfg_frameStyle', document.getElementById('inputFrameStyle').value);
-            localStorage.setItem('cfg_opacity', document.getElementById('inputOpacity').value);
-            localStorage.setItem('cfg_mainWeb', document.getElementById('inputMainWebsite').value);
-            localStorage.setItem('cfg_img_header', document.getElementById('img_header_url').value);
-            localStorage.setItem('cfg_img_about', document.getElementById('img_about_url').value);
-            localStorage.setItem('cfg_flex_image', document.getElementById('flex_image_url').value);
-
-            localStorage.setItem('cfg_ar_flexTitle', document.getElementById('ar_flexTitle').value);
-            localStorage.setItem('cfg_en_flexTitle', document.getElementById('en_flexTitle').value);
-            localStorage.setItem('cfg_ar_flexText', document.getElementById('ar_flexText').value);
-            localStorage.setItem('cfg_en_flexText', document.getElementById('en_flexText').value);
-
-            const fields = ['heroSub', 'heroMain', 'heroDesc', 'heroCities', 'aboutTitle', 'aboutSubtitle', 'aboutTxt', 'ctaTitle', 'ctaDesc'];
-            fields.forEach(f => {
-                localStorage.setItem('cfg_ar_' + f, document.getElementById('ar_' + f).value);
-                localStorage.setItem('cfg_en_' + f, document.getElementById('en_' + f).value);
-            });
-
-            jobsData.forEach((job, index) => {
-                job.job_img = document.getElementById(`job_img_${index}`).value;
-                job.form_url = document.getElementById(`job_form_url_${index}`).value;
-                
-                job.ar_title = document.getElementById(`job_ar_title_${index}`).value;
-                job.ar_tasksHead = document.getElementById(`job_ar_tasksh_${index}`).value;
-                job.ar_tasks = document.getElementById(`job_ar_tasks_${index}`).value;
-                job.ar_reqsHead = document.getElementById(`job_ar_reqsh_${index}`).value;
-                job.ar_reqs = document.getElementById(`job_ar_reqs_${index}`).value;
-                job.ar_btnText = document.getElementById(`job_ar_btn_${index}`).value;
-
-                job.en_title = document.getElementById(`job_en_title_${index}`).value;
-                job.en_tasksHead = document.getElementById(`job_en_tasksh_${index}`).value;
-                job.en_tasks = document.getElementById(`job_en_tasks_${index}`).value;
-                job.en_reqsHead = document.getElementById(`job_en_reqsh_${index}`).value;
-                job.en_reqs = document.getElementById(`job_en_reqs_${index}`).value;
-                job.en_btnText = document.getElementById(`job_en_btn_${index}`).value;
-            });
-
-            localStorage.setItem('cfg_dynamic_jobs', JSON.stringify(jobsData));
-            localStorage.setItem('cfg_dynamic_gallery', JSON.stringify(galleryData));
-
-            alert(currentLang === 'ar' ? '🎉 تم حفظ ونشر التعديلات واسم الشركة والوجاه بالكامل!' : '🎉 Interface, Company Name and adjustments successfully saved!');
-            renderInterface();
-            document.getElementById('adminPanel').style.display = "none";
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-            localStorage.setItem('site_lang', currentLang);
-            renderInterface();
-        }
-
-        function handleSecretClick() {
-            let pass = prompt(currentLang === 'ar' ? "🔒 الرمز السري الأمني لفتح لوحة إدارة التحكم:" : "🔒 Please enter the security secret password:");
-            if (pass === _0x5a1b[0]) {
-                let panel = document.getElementById('adminPanel');
-                if(panel) {
-                    panel.style.display = (panel.style.display === "block") ? "none" : "block";
-                    if(panel.style.display === "block") {
-                        fillAdminInputs();
-                        panel.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            } else {
-                alert(currentLang === 'ar' ? "❌ الرمز السري غير صحيح! تم رفض الوصول." : "❌ Incorrect secret code! Access Denied.");
-            }
-        }
-
-        window.onload = () => { renderInterface(); };
-    </script>
-</body>
-</html>
