@@ -2,91 +2,70 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>بوابة التوظيف - التميز في الضيافة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة MD للتوظيف | MD Recruitment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1a252f; --gold: #b59410; }
         body { font-family: 'Tajawal', sans-serif; margin: 0; background: #fff; line-height: 1.8; }
-        header { background: var(--primary); padding: 60px 20px; text-align: center; color: white; }
+        .header { background: var(--primary); color: white; padding: 100px 20px; text-align: center; }
         .container { max-width: 900px; margin: 30px auto; padding: 20px; }
         .job-card { background: #fdfdfd; padding: 30px; border-radius: 12px; border-right: 5px solid var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        h2 { color: var(--primary); border-bottom: 2px solid var(--gold); }
-        canvas { border: 1px solid #ccc; background: #fafafa; cursor: crosshair; }
-        .admin-panel { display: none; background: #eee; padding: 20px; border-radius: 10px; margin: 20px; }
+        .admin-panel { display: none; background: #f4f4f4; padding: 30px; border-radius: 10px; margin: 20px; border: 2px solid var(--gold); }
+        .btn { background: var(--gold); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>بوابة استقطاب القادة في قطاع الضيافة</h1>
-    <p>نصنع تجارب استثنائية في أرقى القصور والفنادق والمطاعم العالمية</p>
-</header>
-
-<div class="container">
-    <section>
-        <h2>هدفنا الوظيفي</h2>
-        <p id="about-text">نحن لا نبحث عن موظفين، بل عن "سفراء" للتميز. هدفنا هو رفد القصور الملكية، الفنادق الفاخرة، والمطاعم الراقية بكفاءات وطنية قادرة على تحويل الخدمة إلى تجربة فنية لا تُنسى، مع الحفاظ على أعلى معايير الخصوصية والاحترافية.</p>
-    </section>
-
-    <div id="jobs-container">
-        <div class="job-card">
-            <h2 id="j1-title">مدير مشروع ضيافة</h2>
-            <p><strong>المواقع: مكة، أبها</strong></p>
-            <p id="j1-desc">قُد دفة العمليات التشغيلية في أرقى المواقع. مهمتك هي الموازنة بين الكفاءة الاستراتيجية واللمسة الفنية في تقديم الخدمة، لضمان أعلى مستويات الرضا في القصور والمنشآت المرموقة.</p>
-        </div>
-        <div class="job-card">
-            <h2 id="j2-title">أخصائي مبيعات فاخرة</h2>
-            <p><strong>المواقع: جدة، جازان</strong></p>
-            <p id="j2-desc">كن المحرك الأساسي لتوسعنا في المناطق الحيوية. مهمتك هي بناء جسور الثقة مع النخبة، وتحويل الفرص التجارية إلى شراكات نجاح مستدامة بأسلوب يجمع بين الذكاء العملي والرقي الاجتماعي.</p>
-        </div>
-    </div>
-
-    <div style="text-align:center;">
-        <h3>اعتماد التوقيع الرسمي</h3>
-        <canvas id="sig" width="300" height="150"></canvas><br>
-        <button onclick="clearSig()">مسح</button>
-        <button onclick="saveSig()">اعتماد التوقيع</button>
-        <div id="sig-output"></div>
-    </div>
+<div class="header">
+    <h1 id="main-title">بوابة استقطاب الكفاءات - MD Recruitment</h1>
 </div>
 
-<footer style="text-align:center; padding:20px; cursor:pointer;" onclick="showAdmin()">
-    <p>المملكة العربية السعودية</p>
-</footer>
+<div class="container" id="jobs-list">
+    </div>
+
+<div style="text-align:center; padding:50px;">
+    <button class="btn" onclick="openAdmin()">لوحة التحكم (1425)</button>
+</div>
 
 <div id="admin" class="admin-panel">
-    <h3>لوحة تحكم المدير</h3>
-    <label>تعديل هدفنا:</label><textarea id="admin-about" style="width:100%"></textarea><br>
-    <label>تعديل وصف مدير المشروع:</label><textarea id="admin-j1" style="width:100%"></textarea><br>
-    <button onclick="saveChanges()">حفظ كل التعديلات</button>
+    <h3>⚙️ لوحة الإدارة (MD Recruitment)</h3>
+    <label>عنوان الوظيفة الأولى:</label><input type="text" id="j1-title" style="width:100%">
+    <label>شرح الوظيفة الأولى:</label><textarea id="j1-desc" style="width:100%"></textarea>
+    <label>رابط التقديم:</label><input type="text" id="j1-link" style="width:100%">
+    <br><br>
+    <button class="btn" onclick="saveData()">حفظ التعديلات</button>
 </div>
 
 <script>
-    // رسم التوقيع
-    const canvas = document.getElementById('sig');
-    const ctx = canvas.getContext('2d');
-    let drawing = false;
-    canvas.onmousedown = () => drawing = true;
-    canvas.onmouseup = () => drawing = false;
-    canvas.onmousemove = (e) => {
-        if(!drawing) return;
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-    };
-    function clearSig() { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.beginPath(); }
-    function saveSig() { localStorage.setItem('sig', canvas.toDataURL()); alert("تم اعتماد التوقيع!"); }
-
-    // لوحة التحكم
-    function showAdmin() {
-        if(prompt("كلمة المرور:") === "1425") document.getElementById('admin').style.display = 'block';
+    // تحميل البيانات
+    function loadData() {
+        const data = JSON.parse(localStorage.getItem('md_data')) || { j1t: "مدير مشروع", j1d: "شرح الوظيفة هنا...", j1l: "#" };
+        document.getElementById('jobs-list').innerHTML = `
+            <div class="job-card">
+                <h2>${data.j1t}</h2>
+                <p>${data.j1d}</p>
+                <a href="${data.j1l}" class="btn">قدم الآن</a>
+            </div>
+        `;
     }
-    function saveChanges() {
-        localStorage.setItem('about', document.getElementById('admin-about').value);
-        localStorage.setItem('j1', document.getElementById('admin-j1').value);
+
+    function openAdmin() {
+        if(prompt("أدخل الرمز السري:") === "1425") document.getElementById('admin').style.display = 'block';
+    }
+
+    function saveData() {
+        const newData = {
+            j1t: document.getElementById('j1-title').value,
+            j1d: document.getElementById('j1-desc').value,
+            j1l: document.getElementById('j1-link').value
+        };
+        localStorage.setItem('md_data', JSON.stringify(newData));
+        alert("تم الحفظ بنجاح!");
         location.reload();
     }
-    // تحميل البيانات المحفوظة
-    if(localStorage.getItem('about')) document.getElementById('about-text').innerText = localStorage.getItem('about');
+
+    loadData();
 </script>
 </body>
 </html>
