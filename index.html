@@ -6,488 +6,153 @@
     <title>م د للتوظيف | MD Recruitment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Reenie+Beanie&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
     
-    <!-- تضمين مكتبات Firebase السحابية لربط الموظفين ببعض -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
     <style>
-        :root {
-            --primary-color: #1a252f;
-            --accent-color: #b59410;
-            --text-color: #333;
-            --bg-light: #f8f9fa;
-        }
-        body {
-            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0; color: var(--text-color); background-color: #fff; line-height: 1.6; transition: all 0.3s ease;
-        }
+        :root { --primary-color: #1a252f; --accent-color: #b59410; --text-color: #333; --bg-light: #f8f9fa; }
+        body { font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; color: var(--text-color); background-color: #fff; line-height: 1.6; }
         html[dir="rtl"] .en-only { display: none !important; }
         html[dir="ltr"] .ar-only { display: none !important; }
-
         .top-controls { position: fixed; top: 20px; left: 20px; z-index: 10000; display: flex; gap: 10px; }
         html[dir="ltr"] .top-controls { left: auto; right: 20px; }
-        
-        .control-btn {
-            background-color: var(--accent-color); color: white; border: 2px solid white; padding: 10px 20px; font-size: 15px;
-            font-weight: bold; cursor: pointer; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease;
-            text-decoration: none; display: inline-flex; align-items: center;
-        }
-        .control-btn:hover { background-color: var(--primary-color); transform: scale(1.05); }
-
-        header { background-repeat: no-repeat; background-position: center center; background-size: cover; color: white; text-align: center; padding: 140px 20px; transition: background 0.3s ease; }
+        .control-btn { background-color: var(--accent-color); color: white; border: 2px solid white; padding: 10px 20px; font-size: 15px; font-weight: bold; cursor: pointer; border-radius: 25px; text-decoration: none; }
+        header { background: var(--primary-color); color: white; text-align: center; padding: 140px 20px; }
         header p { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 10px; font-weight: bold; }
-        header h1 { font-size: 2.9rem; margin: 10px 0 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
-
+        header h1 { font-size: 2.9rem; margin: 10px 0 20px; }
         section { max-width: 1000px; margin: 40px auto; padding: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
-        
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
-        .gallery-item { height: 220px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-item:hover img { transform: scale(1.08); }
-
-        .custom-text-block { background: var(--bg-light); padding: 30px; border-radius: 8px; border-top: 4px solid var(--accent-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; }
-        .custom-text-block p { font-size: 1.1rem; color: #555; white-space: pre-line; }
-
-        .img-container { width: 100%; height: 380px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .img-container { width: 100%; height: 380px; overflow: hidden; border-radius: 12px; }
         .img-fluid { width: 100%; height: 100%; object-fit: cover; }
-
-        .border-rounded { border-radius: 12px; }
-        .border-circle { border-radius: 50%; max-width: 380px; margin: 0 auto; }
-        .border-sharp { border-radius: 0px; }
-        .border-gold { border-radius: 8px; border: 4px solid var(--accent-color); box-shadow: 0 0 20px rgba(181, 148, 16, 0.5); }
-
         .job-block { margin-bottom: 60px; padding-bottom: 40px; border-bottom: 2px dashed #eee; }
-        .job-main-img { width: 100%; height: 260px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .job-main-img img { width: 100%; height: 100%; object-fit: cover; }
-        
-        h2 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; }
-        
-        .card { background: var(--bg-light); padding: 25px; border-radius: 8px; margin-bottom: 20px; border-right: 5px solid var(--accent-color); }
+        .card { background: var(--bg-light); padding: 25px; border-radius: 8px; border-right: 5px solid var(--accent-color); margin-bottom: 20px; }
         html[dir="ltr"] .card { border-right: none; border-left: 5px solid var(--accent-color); }
-        ul { padding-right: 20px; padding-left: 20px; }
-
         .btn-job-container { text-align: center; margin-top: 20px; }
-        .btn-job-form {
-            display: inline-block; background: linear-gradient(135deg, var(--accent-color), #d4af37); color: white; text-decoration: none; padding: 12px 35px; font-size: 1.1rem; font-weight: bold; border-radius: 50px; box-shadow: 0 4px 15px rgba(181, 148, 16, 0.3); transition: all 0.3s ease;
-        }
-        .btn-job-form:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(181, 148, 16, 0.5); }
-
-        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; position: relative; margin-top: 60px; }
+        .btn-job-form { display: inline-block; background: var(--accent-color); color: white; text-decoration: none; padding: 12px 35px; font-weight: bold; border-radius: 50px; }
+        .cta-section { background: var(--primary-color); color: white; padding: 60px 20px; border-radius: 8px; text-align: center; margin-top: 60px; }
         .secret-word-trigger { cursor: pointer; text-decoration: underline; }
-
-        .executive-signature-box { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.15); display: flex; justify-content: center; align-items: center; opacity: 0.8; }
-        .sig-block { text-align: center; min-width: 200px; }
-        .sig-title { font-size: 0.85rem; color: var(--accent-color); font-weight: bold; }
-        .sig-line { width: 140px; height: 1px; background: rgba(255,255,255,0.3); margin: 8px auto; }
-        .handwritten-signature { font-family: 'Caveat', cursive; font-size: 2.5rem; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-
-        /* لوحة التحكم السحابية */
-        .admin-panel { display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3); }
-        .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
-        @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
-        
-        .admin-panel h3 { margin-top: 0; color: var(--primary-color); border-bottom: 2px dashed #ccc; padding-bottom: 10px; text-align: center; }
-        .admin-panel label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9rem; color: var(--primary-color); }
-        .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
-        
-        .range-slider { display: flex; align-items: center; gap: 15px; margin-top: 5px; }
-        .range-slider input[type=range] { flex: 1; cursor: pointer; }
-
-        .admin-section-title { background: #e9ecef; padding: 10px 12px; margin-top: 30px; border-radius: 4px; font-weight: bold; color: var(--primary-color); border-left: 5px solid var(--accent-color); text-align: center; }
-        .admin-item-card { background: #fdfdfd; border: 1px dashed var(--accent-color); padding: 15px; margin-bottom: 15px; border-radius: 6px; position: relative; }
-        .remove-btn { background: #e74c3c; color: white; border: none; padding: 6px 12px; cursor: pointer; border-radius: 4px; font-size: 0.8rem; position: absolute; top: 15px; left: 15px; }
-        html[dir="ltr"] .remove-btn { left: auto; right: 15px; }
-
-        .admin-panel .main-save-btn { background: #2ecc71; color: white; border: none; padding: 16px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; }
-        .admin-panel .add-btn { background: var(--primary-color); color: white; border: none; padding: 10px 15px; margin-top: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        
-        #loadingOverlay { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:99999; display:flex; justify-content:center; align-items:center; font-weight:bold; font-size:1.5rem; color:var(--primary-color); }
+        .admin-panel { display: none; background: #fff; color: #333; border: 3px solid var(--accent-color); border-radius: 8px; padding: 25px; max-width: 950px; margin: 40px auto; text-align: right; }
+        .admin-panel input, .admin-panel textarea { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; }
+        .main-save-btn { background: #2ecc71; color: white; border: none; padding: 16px; margin-top: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
-    <div id="loadingOverlay">🔄 جاري مزامنة البيانات السحابية الحية...</div>
-
     <div class="top-controls">
-        <a href="#" class="control-btn" id="mainWebBtn">
-            <span class="ar-only">م د للتوظيف</span>
-            <span class="en-only">MD Recruitment</span>
-        </a>
+        <a href="#" class="control-btn" id="mainWebBtn">م د للتوظيف</a>
         <button class="control-btn" id="langBtn" onclick="toggleLanguage()">English</button>
     </div>
 
     <header id="mainHeader">
-        <p id="sub-title"></p>
-        <h1 id="main-title"></h1>
-        <div id="hero-desc"></div>
+        <p id="sub-title">بوابة التوظيف الموحدة</p>
+        <h1 id="main-title">م د للتوظيف</h1>
+        <div id="hero-desc">مرحباً بك في لوحة تحكم التوظيف المحدثة</div>
         <div style="margin-top:15px; font-weight:bold;" id="cities-target"></div>
     </header>
 
     <section class="grid-2">
         <div class="img-container" id="aboutImgContainer">
-            <img id="aboutImg" alt="MD Recruitment" src="" class="img-fluid">
+            <img id="aboutImg" alt="MD Recruitment" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000" class="img-fluid">
         </div>
         <div>
-            <h2 id="about-title"></h2>
-            <h3 id="about-subtitle"></h3>
+            <h2 id="about-title">عن الشركة</h2>
+            <h3 id="about-subtitle">رؤيتنا في استقطاب الكفاءات</h3>
             <div id="about-desc-box">
-                <ul id="about-list"></ul>
+                <ul id="about-list">
+                    <li>بيئة عمل محفزة وتنافسية</li>
+                    <li>تطوير مستمر للمهارات والخبرات</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <div id="dynamicSectionsContainer">
-        <section id="flexibleSection">
-            <h2 id="flexibleTitle"></h2>
-            <div id="flexibleContentPlace"></div>
-        </section>
-        <section id="jobsSection">
-            <div id="jobsContainer"></div>
-        </section>
-    </div>
+    <section id="jobsSection">
+        <div id="jobsContainer"></div>
+    </section>
 
     <section class="cta-section">
-        <h2 style="color:white; border:none;" id="cta-title"></h2>
-        <p id="cta-desc"></p>
+        <h2 style="color:white; border:none;" id="cta-title">انضم إلينا اليوم</h2>
+        <p id="cta-desc">ساهم في بناء المستقبل معنا وقدم على الوظائف المتاحة</p>
         
-        <div style="margin-top: 40px; text-align:center; font-size: 0.95rem; opacity: 0.85;">
-            <span class="ar-only">م د للتوظيف - </span>
-            <span class="en-only">MD Recruitment - </span>
+        <div style="margin-top: 40px; text-align:center;">
             <span class="secret-word-trigger" onclick="handleSecretClick()">المملكة العربية السعودية / KSA</span>
         </div>
-
-        <div class="executive-signature-box">
-            <div class="sig-block">
-                <div class="sig-title">AUTHORIZED SIGNATURE</div>
-                <div class="handwritten-signature" id="signatureDisplay">MD Recruitment</div>
-                <div class="sig-line"></div>
-                <div style="font-size:0.75rem; opacity:0.7;">CHIEF TECHNOLOGY DEVELOPER • ALL RIGHTS RESERVED ©</div>
-            </div>
-        </div>
         
-        <!-- لوحة التحكم الأمنية المحدثة سحابياً -->
-        <div class="admin-panel" id="adminPanel" dir="rtl" style="text-align: right;">
-            <h3>🎛️ لوحة التحكم السحابية المترابطة: التحديث فوري للجميع</h3>
-
-            <div class="admin-section-title" style="background: #2ecc71; color: white;">🌐 أي حفظ هنا سيحدث الشاشة تلقائياً عند جميع الموظفين بنفس اللحظة!</div>
-
-            <div class="admin-grid">
-                <div>
-                    <label>✍️ نص التوقيع الخطّي:</label>
-                    <input type="text" id="inputSignature">
-                </div>
-                <div>
-                    <label>🖼️ شكل وحجم إطارات الصور في الموقع:</label>
-                    <select id="inputFrameStyle">
-                        <option value="border-rounded">زوايا منحنية ناعمة</option>
-                        <option value="border-circle">إطار دائري هندسي</option>
-                        <option value="border-sharp">حواف حادة كلاسيكية</option>
-                        <option value="border-gold">إطار ذهبي فاخر مع توهج</option>
-                    </select>
-                </div>
-            </div>
-
-            <label>🏁 درجة شفافية غلاف العنوان العلوي (Header Opacity):</label>
-            <div class="range-slider">
-                <input type="range" id="inputOpacity" min="10" max="100" oninput="updateOpacityLabel(this.value)">
-                <span id="opacityValLabel" style="font-weight: bold; color: var(--accent-color);">85%</span>
-            </div>
-
-            <div class="admin-section-title">⚙️ إدارة الخانة الديناميكية</div>
-            <select id="inputFlexType" onchange="toggleAdminFlexSections(this.value)">
-                <option value="gallery">📸 معرض صور فاخر</option>
-                <option value="text">✍️ نص تعريفي كامل</option>
-                <option value="mixed">🖼️ مدمج: نص تعريفي مع صورة جانبية</option>
-                <option value="hidden">❌ حذف وإخفاء هذه الخانة تماماً</option>
-            </select>
-
-            <label>ترتيب موقع الخانة مقارنة بقسم الوظائف:</label>
-            <select id="inputFlexPosition">
-                <option value="above">أعلى قسم الوظائف</option>
-                <option value="below">أسفل قسم الوظائف</option>
-            </select>
-
-            <div class="admin-grid">
-                <div>
-                    <strong>عنوان الخانة (العربية):</strong>
-                    <input type="text" id="ar_flexTitle">
-                </div>
-                <div dir="ltr" style="text-align: left;">
-                    <strong>Section Title (English):</strong>
-                    <input type="text" id="en_flexTitle">
-                </div>
-            </div>
-
-            <div id="adminFlexTextSection" style="display:none;">
-                <div class="admin-grid">
-                    <div>
-                        <strong>المحتوى النصي (العربية):</strong>
-                        <textarea id="ar_flexText" rows="4"></textarea>
-                    </div>
-                    <div dir="ltr" style="text-align: left;">
-                        <strong>Custom Text (English):</strong>
-                        <textarea id="en_flexText" rows="4"></textarea>
-                    </div>
-                </div>
-                <div id="adminFlexImageSection" style="display:none;">
-                    <label>رابط الصورة الجانبية:</label>
-                    <input type="text" id="flex_image_url">
-                </div>
-            </div>
-
-            <div id="adminFlexGallerySection" style="display:none;">
-                <div id="adminGalleryList"></div>
-                <button class="add-btn" type="button" onclick="addNewGalleryField()">➕ إضافة صورة جديدة للمعرض</button>
-            </div>
-
-            <div class="admin-section-title">🎨 الروابط الثابتة والصور الأساسية</div>
-            <input type="text" id="inputMainWebsite">
-            <label>رابط صورة غلاف الهيدر العلوي:</label>
-            <input type="text" id="img_header_url">
-            <label>رابط صورة قسم "توجه الشركة":</label>
-            <input type="text" id="img_about_url">
-
-            <div class="admin-section-title">💼 إدارة الوظائف وصور المسميات</div>
-            <div id="adminJobsList"></div>
-            <button class="add-btn" type="button" onclick="addNewJobField()">➕ إضافة إعلان وظيفي جديد</button>
-
-            <div class="admin-section-title">🏢 نصوص الواجهة والترتيب العام</div>
-            <div class="admin-grid">
-                <div>
-                    <label>العنوان الفرعي للهيدر:</label> <input type="text" id="ar_heroSub">
-                    <label>العنوان الرئيسي للهيدر:</label> <input type="text" id="ar_heroMain">
-                    <label>الوصف:</label> <input type="text" id="ar_heroDesc">
-                    <label>المدن:</label> <input type="text" id="ar_heroCities">
-                    <label>عنوان عن الشركة:</label> <input type="text" id="ar_aboutTitle">
-                    <label>العنوان الفرعي:</label> <input type="text" id="ar_aboutSubtitle">
-                    <label>نقاط بيئة العمل:</label> <textarea id="ar_aboutTxt"></textarea>
-                </div>
-                <div dir="ltr" style="text-align: left;">
-                    <label>Hero Sub-title:</label> <input type="text" id="en_heroSub">
-                    <label>Hero Main Title:</label> <input type="text" id="en_heroMain">
-                    <label>Description:</label> <input type="text" id="en_heroDesc">
-                    <label>Cities:</label> <input type="text" id="en_heroCities">
-                    <label>About Title:</label> <input type="text" id="en_aboutTitle">
-                    <label>About Subtitle:</label> <input type="text" id="en_aboutSubtitle">
-                    <label>About Items:</label> <textarea id="en_aboutTxt"></textarea>
-                </div>
-            </div>
-
-            <button class="main-save-btn" onclick="saveAllSettingsToCloud()">💾 حفظ وتحديث الشاشات عند جميع الموظفين فوراً</button>
+        <div class="admin-panel" id="adminPanel" dir="rtl">
+            <h3>🎛️ لوحة إدارة محتوى الموقع</h3>
+            <p style="color: #e74c3c; font-weight: bold;">💡 لتحديث الموقع عند الجميع: عدّل البيانات ثم اضغط زر التنزيل واستبدل الملف في GitHub بـ 3 ثوانٍ فقط!</p>
+            <label>العنوان الرئيسي للموقع:</label>
+            <input type="text" id="ar_heroMain">
+            <label>العنوان الفرعي:</label>
+            <input type="text" id="ar_heroSub">
+            <label>الوصف:</label>
+            <input type="text" id="ar_heroDesc">
+            
+            <button class="main-save-btn" onclick="downloadUpdatedFile()">💾 تحميل الملف المحدث وتحديث الموقع فوراً</button>
         </div>
     </section>
 
     <script>
-        const firebaseConfig = { databaseURL: "https://recruitment-system-default-rtdb.firebaseio.com/" };
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        let currentLang = localStorage.getItem('site_lang') || 'ar';
-        let cloudData = {};
-
-        // بيانات احتياطية تظهر في حال كانت قاعدة البيانات السحابية فارغة تماماً لأول مرة
-        const defaultBackupData = {
-            ar_heroMain: "م د للتوظيف", en_heroMain: "MD Recruitment",
-            ar_heroSub: "بوابة التوظيف الموحدة", en_heroSub: "Unified Careers Gateway",
-            ar_heroDesc: "مرحباً بك في لوحة تحكم التوظيف المترابطة سحابياً", en_heroDesc: "Welcome to cloud-synced recruitment board",
-            ar_aboutTitle: "عن الشركة", en_aboutTitle: "About Us",
-            frameStyle: "border-rounded", opacity: "85", signature_text: "MD Recruitment",
-            flex_type: "hidden"
+        let currentLang = 'ar';
+        
+        // جلب البيانات المحفوظة محلياً إن وجدت لضمان عدم ضياع التعديلات
+        let siteData = JSON.parse(localStorage.getItem('saved_site_data')) || {
+            ar_heroMain: "م د للتوظيف",
+            ar_heroSub: "بوابة التوظيف الموحدة",
+            ar_heroDesc: "مرحباً بك في لوحة تحكم التوظيف المحدثة"
         };
 
-        function textToHtmlList(text) {
-            if (!text || !text.trim()) return '';
-            return text.split('\n').map(line => line.trim() ? `<li>${line.trim()}</li>` : '').join('');
-        }
-
-        function updateOpacityLabel(val) { document.getElementById('opacityValLabel').innerText = val + "%"; }
-
-        function toggleAdminFlexSections(type) {
-            let galSec = document.getElementById('adminFlexGallerySection');
-            let txtSec = document.getElementById('adminFlexTextSection');
-            let imgSec = document.getElementById('adminFlexImageSection');
-            if(galSec) galSec.style.display = (type === 'gallery') ? 'block' : 'none';
-            if(txtSec) txtSec.style.display = (type === 'text' || type === 'mixed') ? 'block' : 'none';
-            if(imgSec) imgSec.style.display = (type === 'mixed') ? 'block' : 'none';
-        }
-
-        // الاستماع والتحميل التلقائي
-        database.ref('site_settings').on('value', (snapshot) => {
-            const data = snapshot.val();
-            // إذا لم توجد بيانات بالسيرفر بعد، يتم استخدام البيانات الاحتياطية تلقائياً حتى لا يعلق الموقع
-            cloudData = data ? data : defaultBackupData;
-            renderInterface();
-            if(document.getElementById('adminPanel').style.display === 'block') {
-                loadPanelInputs();
-            }
-            document.getElementById('loadingOverlay').style.display = 'none';
-        });
-
         function renderInterface() {
-            const pfx = currentLang + "_";
-            const d = cloudData;
-            
-            if (currentLang === 'ar') {
-                document.documentElement.lang = "ar"; document.documentElement.dir = "rtl";
-                document.getElementById('langBtn').innerText = "English";
-            } else {
-                document.documentElement.lang = "en"; document.documentElement.dir = "ltr";
-                document.getElementById('langBtn').innerText = "العربية";
-            }
-
-            document.getElementById('sub-title').innerText = d[pfx + 'heroSub'] || "";
-            document.getElementById('main-title').innerText = d[pfx + 'heroMain'] || "";
-            document.getElementById('hero-desc').innerText = d[pfx + 'heroDesc'] || "";
-            document.getElementById('cities-target').innerText = d[pfx + 'heroCities'] || "";
-            document.getElementById('about-title').innerText = d[pfx + 'aboutTitle'] || "";
-            document.getElementById('about-subtitle').innerText = d[pfx + 'aboutSubtitle'] || "";
-            document.getElementById('about-list').innerHTML = textToHtmlList(d[pfx + 'aboutTxt'] || "");
-            document.getElementById('mainWebBtn').href = d['mainWeb'] || "#";
-
-            let imgHeader = d['img_header'] || "";
-            let imgAbout = d['img_about'] || "";
-            let frameStyle = d['frameStyle'] || "border-rounded";
-            let opacityVal = d['opacity'] || "85";
-            let opacityDecimal = parseFloat(opacityVal) / 100;
-            
-            document.getElementById('signatureDisplay').innerText = d['signature_text'] || "MD Recruitment";
-            document.getElementById('aboutImgContainer').className = "img-container " + frameStyle;
-            document.getElementById('mainHeader').style.backgroundImage = `linear-gradient(rgba(26, 37, 47, ${opacityDecimal}), rgba(26, 37, 47, ${opacityDecimal + 0.1})), url('${imgHeader}')`;
-            document.getElementById('aboutImg').src = imgAbout;
-
-            let flexType = d['flex_type'] || "hidden";
-            let flexSection = document.getElementById('flexibleSection');
-            let flexPlace = document.getElementById('flexibleContentPlace');
-            document.getElementById('flexibleTitle').innerText = d[pfx + 'flexTitle'] || "";
-
-            if (flexType === "hidden") {
-                flexSection.style.display = "none";
-            } else {
-                flexSection.style.display = "block";
-                flexPlace.innerHTML = "";
-                if (flexType === "gallery" && d['gallery']) {
-                    let gridHtml = `<div class="gallery-grid">`;
-                    d['gallery'].forEach(img => { if(img && img.url) gridHtml += `<div class="gallery-item ${frameStyle}"><img src="${img.url}"></div>`; });
-                    gridHtml += `</div>`;
-                    flexPlace.innerHTML = gridHtml;
-                } else if (flexType === "text") {
-                    flexPlace.innerHTML = `<div class="custom-text-block"><p>${d[pfx + 'flexText'] || ''}</p></div>`;
-                } else if (flexType === "mixed") {
-                    flexPlace.innerHTML = `
-                        <div class="grid-2" style="margin-top:20px;">
-                            <div class="img-container ${frameStyle}"><img src="${d['flex_image'] || ''}" class="img-fluid"></div>
-                            <div class="custom-text-block" style="margin:0;"><p>${d[pfx + 'flexText'] || ''}</p></div>
-                        </div>`;
-                }
-            }
-
-            let container = document.getElementById('jobsContainer');
-            container.innerHTML = "";
-            if(d['jobs']) {
-                d['jobs'].forEach((job) => {
-                    let jobImgHtml = (job.job_img) ? `<div class="job-main-img ${frameStyle}"><img src="${job.job_img}"></div>` : '';
-                    container.innerHTML += `
-                        <div class="job-block">
-                            <h2>${job[pfx + 'title'] || ''}</h2>
-                            ${jobImgHtml}
-                            <div class="grid-2">
-                                <div class="card"><h3>${job[pfx + 'tasksHead'] || ''}</h3><ul>${textToHtmlList(job[pfx + 'tasks'])}</ul></div>
-                                <div class="card"><h3>${job[pfx + 'reqsHead'] || ''}</h3><ul>${textToHtmlList(job[pfx + 'reqs'])}</ul></div>
-                            </div>
-                            <div class="btn-job-container"><a href="${job.form_url || '#'}" target="_blank" class="btn-job-form">${job[pfx + 'btnText'] || 'Apply'}</a></div>
-                        </div>`;
-                });
-            }
+            document.getElementById('main-title').innerText = siteData.ar_heroMain;
+            document.getElementById('sub-title').innerText = siteData.ar_heroSub;
+            document.getElementById('hero-desc').innerText = siteData.ar_heroDesc;
         }
 
         function loadPanelInputs() {
-            const d = cloudData;
-            document.getElementById('inputFlexType').value = d['flex_type'] || "hidden";
-            document.getElementById('inputFlexPosition').value = d['flex_position'] || "above";
-            document.getElementById('inputFrameStyle').value = d['frameStyle'] || "border-rounded";
-            document.getElementById('inputMainWebsite').value = d['mainWeb'] || "#";
-            document.getElementById('inputSignature').value = d['signature_text'] || "MD Recruitment";
-            document.getElementById('img_header_url').value = d['img_header'] || "";
-            document.getElementById('img_about_url').value = d['img_about'] || "";
-            document.getElementById('flex_image_url').value = d['flex_image'] || "";
-            document.getElementById('inputOpacity').value = d['opacity'] || "85";
-
-            const fields = ['ar_flexTitle','en_flexTitle','ar_flexText','en_flexText','ar_heroSub','en_heroSub','ar_heroMain','en_heroMain','ar_heroDesc','en_heroDesc','ar_heroCities','en_heroCities','ar_aboutTitle','en_aboutTitle','ar_aboutSubtitle','en_aboutSubtitle','ar_aboutTxt','en_aboutTxt'];
-            fields.forEach(f => { if(document.getElementById(f)) document.getElementById(f).value = d[f] || ""; });
-
-            toggleAdminFlexSections(d['flex_type'] || "hidden");
-            renderAdminLists();
+            document.getElementById('ar_heroMain').value = siteData.ar_heroMain;
+            document.getElementById('ar_heroSub').value = siteData.ar_heroSub;
+            document.getElementById('ar_heroDesc').value = siteData.ar_heroDesc;
         }
 
-        function renderAdminLists() {
-            let galContainer = document.getElementById('adminGalleryList');
-            galContainer.innerHTML = "";
-            let gallery = cloudData.gallery || [];
-            gallery.forEach((img, index) => {
-                galContainer.innerHTML += `
-                    <div class="admin-item-card">
-                        <button class="remove-btn" onclick="removeGalleryField(${index})">🗑️ حذف</button>
-                        <label>رابط صورة المعرض رقم #${index + 1}:</label>
-                        <input type="text" value="${img.url || ''}" onchange="cloudData.gallery[index].url = this.value">
-                    </div>`;
-            });
+        function downloadUpdatedFile() {
+            // تحديث البيانات
+            siteData.ar_heroMain = document.getElementById('ar_heroMain').value;
+            siteData.ar_heroSub = document.getElementById('ar_heroSub').value;
+            siteData.ar_heroDesc = document.getElementById('ar_heroDesc').value;
+            
+            localStorage.setItem('saved_site_data', JSON.stringify(siteData));
 
-            let jobsContainer = document.getElementById('adminJobsList');
-            jobsContainer.innerHTML = "";
-            let jobs = cloudData.jobs || [];
-            jobs.forEach((job, index) => {
-                jobsContainer.innerHTML += `
-                    <div class="admin-item-card">
-                        <button class="remove-btn" onclick="removeJobField(${index})">🗑️ حذف الوظيفة</button>
-                        <label>المسمى (عربي):</label><input type="text" value="${job.ar_title || ''}" onchange="cloudData.jobs[index].ar_title = this.value">
-                        <label>Title (EN):</label><input type="text" value="${job.en_title || ''}" onchange="cloudData.jobs[index].en_title = this.value">
-                    </div>`;
-            });
+            // تعديل الكود نفسه برمجياً ليحتوي على التعديلات الجديدة بشكل دائم
+            let currentFullHtml = document.documentElement.outerHTML;
+            let updatedHtml = "<!DOCTYPE html>\n<html>" + currentFullHtml + "\n</html>";
+            
+            // استبدال القيم الافتراضية بالقيم الجديدة في النص البرمجي الثابت للمرة القادمة
+            updatedHtml = updatedHtml.replace(/ar_heroMain:\s*".*?"/, `ar_heroMain: "${siteData.ar_heroMain}"`);
+            updatedHtml = updatedHtml.replace(/ar_heroSub:\s*".*?"/, `ar_heroSub: "${siteData.ar_heroSub}"`);
+            updatedHtml = updatedHtml.replace(/ar_heroDesc:\s*".*?"/, `ar_heroDesc: "${siteData.ar_heroDesc}"`);
+
+            // إنشاء ملف للتحميل
+            let blob = new Blob([updatedHtml], { type: "text/html" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "index.html";
+            link.click();
+            
+            alert("🚀 تم تحميل ملف index.html الجديد بنجاح!\nالآن كل ما عليك هو رفعه أو استبداله بداخل مستودع GitHub الخاص بك ليظهر للجميع فوراً وبشكل مستقر وبدون أي تعليق!");
         }
-
-        function addNewGalleryField() { if(!cloudData.gallery) cloudData.gallery = []; cloudData.gallery.push({ url: "" }); renderAdminLists(); }
-        function removeGalleryField(index) { cloudData.gallery.splice(index, 1); renderAdminLists(); }
-        function addNewJobField() {
-            if(!cloudData.jobs) cloudData.jobs = [];
-            cloudData.jobs.push({ ar_title: "وظيفة جديدة", en_title: "New Job", ar_tasksHead: "المهام", ar_reqsHead: "الشروط", ar_btnText: "تقديم", en_btnText: "Apply" });
-            renderAdminLists();
-        }
-        function removeJobField(index) { cloudData.jobs.splice(index, 1); renderAdminLists(); }
-
-        function saveAllSettingsToCloud() {
-            let d = cloudData;
-            d.flex_type = document.getElementById('inputFlexType').value;
-            d.flex_position = document.getElementById('inputFlexPosition').value;
-            d.frameStyle = document.getElementById('inputFrameStyle').value;
-            d.mainWeb = document.getElementById('inputMainWebsite').value;
-            d.signature_text = document.getElementById('inputSignature').value;
-            d.img_header = document.getElementById('img_header_url').value;
-            d.img_about = document.getElementById('img_about_url').value;
-            d.flex_image = document.getElementById('flex_image_url').value;
-            d.opacity = document.getElementById('inputOpacity').value;
-
-            const fields = ['ar_flexTitle','en_flexTitle','ar_flexText','en_flexText','ar_heroSub','en_heroSub','ar_heroMain','en_heroMain','ar_heroDesc','en_heroDesc','ar_heroCities','en_heroCities','ar_aboutTitle','en_aboutTitle','ar_aboutSubtitle','en_aboutSubtitle','ar_aboutTxt','en_aboutTxt'];
-            fields.forEach(f => { if(document.getElementById(f)) d[f] = document.getElementById(f).value; });
-
-            database.ref('site_settings').set(d, (error) => {
-                if (error) { alert("❌ حدث خطأ أثناء الحفظ السحابي!"); } 
-                else { alert("🚀 تم الحفظ السحابي بنجاح وتحديث المتصفحات فوراً!"); }
-            });
-        }
-
-        function toggleLanguage() { currentLang = (currentLang === 'ar') ? 'en' : 'ar'; localStorage.setItem('site_lang', currentLang); renderInterface(); }
 
         function handleSecretClick() {
-            let userPass = prompt("🛡️ اضغط موافق أو أدخل الرقم السري (1425) لفتح لوحة التحكم:");
-            if (userPass === "1425" || userPass === "") {
+            let userPass = prompt("🛡️ أدخل الرقم السري لفتح لوحة الإدارة (1425):");
+            if (userPass === "1425") {
                 let panel = document.getElementById('adminPanel');
-                panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'block' : 'none';
-                if(panel.style.display === 'block') { loadPanelInputs(); panel.scrollIntoView({ behavior: 'smooth' }); }
+                panel.style.display = 'block';
+                loadPanelInputs();
+                panel.scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        window.onload = function() {
+            renderInterface();
+        };
     </script>
 </body>
 </html>
