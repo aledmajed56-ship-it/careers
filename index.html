@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="siteHtmlTitle">بوابة التوظيف الحصرية | MAJED ALDJAIN</title>
+    <title>MD Recruitment | Mayyar United Support Services</title>
+    
+    <!-- 🔒 Security Headers / Firewall Layer -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://firestore.googleapis.com https://*.googleapis.com; img-src 'self' https://images.unsplash.com https://*.googleusercontent.com data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.google.com;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=600&family=Tajawal:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-color: #1a252f;
@@ -17,7 +26,6 @@
             --danger-color: #e74c3c;
             --header-overlay-opacity: 0.75;
         }
-        
         body {
             font-family: 'Tajawal', sans-serif;
             margin: 0;
@@ -27,11 +35,10 @@
             line-height: 1.6;
             transition: all 0.3s ease;
         }
-
         html[dir="rtl"] .en-only { display: none !important; }
         html[dir="ltr"] .ar-only { display: none !important; }
 
-        /* أزرار التحكم العلوية */
+        /* Top Controls */
         .top-controls {
             position: fixed;
             top: 20px;
@@ -40,10 +47,7 @@
             display: flex;
             gap: 10px;
         }
-        html[dir="ltr"] .top-controls {
-            left: auto;
-            right: 20px;
-        }
+        html[dir="ltr"] .top-controls { left: auto; right: 20px; }
         .control-btn {
             background-color: var(--accent-color);
             color: white;
@@ -57,12 +61,9 @@
             transition: transform 0.2s, background 0.2s;
             font-family: 'Tajawal', sans-serif;
         }
-        .control-btn:hover {
-            transform: scale(1.05);
-            background-color: #94790d;
-        }
+        .control-btn:hover { transform: scale(1.05); background-color: #94790d; }
 
-        /* الهيدر الرئيسي */
+        /* Header */
         header {
             position: relative;
             background-size: cover;
@@ -121,13 +122,26 @@
             font-size: 0.95rem;
             backdrop-filter: blur(5px);
         }
-
-        .main-content-wrapper {
-            display: flex;
-            flex-direction: column;
+        .company-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+            padding: 8px 24px;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        .company-link:hover {
+            background: var(--accent-color);
+            color: white;
         }
 
-        /* قسم عن الشركة */
+        /* Main Content */
+        .main-content-wrapper { display: flex; flex-direction: column; }
+
+        /* About */
         .about-section {
             padding: 80px 20px;
             background-color: var(--bg-light);
@@ -172,10 +186,7 @@
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
-        html[dir="ltr"] .environment-list li {
-            padding-right: 0;
-            padding-left: 30px;
-        }
+        html[dir="ltr"] .environment-list li { padding-right: 0; padding-left: 30px; }
         .environment-list li::before {
             content: '✦';
             position: absolute;
@@ -184,12 +195,9 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
-        html[dir="ltr"] .environment-list li::before {
-            right: auto;
-            left: 0;
-        }
+        html[dir="ltr"] .environment-list li::before { right: auto; left: 0; }
 
-        /* قسم الوظائف */
+        /* Jobs */
         .jobs-section {
             padding: 80px 20px;
             max-width: 1200px;
@@ -224,10 +232,7 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        html[dir="ltr"] .job-card {
-            border-right: none;
-            border-left: 5px solid var(--accent-color);
-        }
+        html[dir="ltr"] .job-card { border-right: none; border-left: 5px solid var(--accent-color); }
         .job-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
@@ -255,11 +260,9 @@
             font-weight: bold;
             transition: background 0.2s;
         }
-        .btn-apply:hover {
-            background-color: var(--accent-color);
-        }
+        .btn-apply:hover { background-color: var(--accent-color); }
 
-        /* لوحة التحكم المدمجة */
+        /* Admin Panel */
         .admin-panel {
             display: none;
             background: #fff;
@@ -278,10 +281,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .admin-header h2 {
-            margin: 0;
-            color: var(--primary-color);
-        }
+        .admin-header h2 { margin: 0; color: var(--primary-color); }
         .admin-section-title {
             background: var(--primary-color);
             color: white;
@@ -295,8 +295,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 25px;
         }
-        @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
-        
+        @media (max-width: 768px) {
+            .admin-grid { grid-template-columns: 1fr; }
+        }
         label {
             display: block;
             font-weight: bold;
@@ -318,7 +319,6 @@
             outline: none;
             box-shadow: 0 0 5px rgba(181, 148, 16, 0.3);
         }
-        
         .admin-job-item {
             background: #f9f9f9;
             border: 1px dashed #ccc;
@@ -338,15 +338,24 @@
             font-weight: bold;
         }
         html[dir="ltr"] .btn-delete-job { float: right; }
-
         .admin-actions {
             margin-top: 30px;
             display: flex;
             gap: 15px;
         }
-        .btn-save { background-color: var(--success-color); color: white; flex: 2; font-size: 1.2rem; }
-        .btn-add-job { background-color: #2980b9; color: white; flex: 1; }
+        .btn-save {
+            background-color: var(--success-color);
+            color: white;
+            flex: 2;
+            font-size: 1.2rem;
+        }
+        .btn-add-job {
+            background-color: #2980b9;
+            color: white;
+            flex: 1;
+        }
 
+        /* Footer */
         footer {
             background-color: var(--primary-color);
             color: #999;
@@ -355,6 +364,12 @@
             font-size: 0.95rem;
             border-top: 4px solid var(--accent-color);
         }
+        .footer-brand {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
         .secret-lock {
             cursor: pointer;
             opacity: 0.4;
@@ -362,9 +377,52 @@
             transition: opacity 0.2s;
         }
         .secret-lock:hover { opacity: 1; }
+        .signature {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
+
+    <!-- 🔒 Anti-Clickjacking Frame Buster -->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+    </script>
+
+    <!-- 🔒 Input Sanitization Firewall -->
+    <script>
+        const SecurityFirewall = {
+            sanitizeHTML: function(str) {
+                if (!str) return '';
+                return str.replace(/&/g, '&amp;')
+                          .replace(/</g, '&lt;')
+                          .replace(/>/g, '&gt;')
+                          .replace(/"/g, '&quot;')
+                          .replace(/'/g, '&#039;');
+            },
+            sanitizeURL: function(url) {
+                if (!url) return '';
+                const allowed = ['http://', 'https://', 'mailto:'];
+                const safe = url.trim();
+                if (allowed.some(a => safe.toLowerCase().startsWith(a))) return safe;
+                return '';
+            },
+            validateJobData: function(job) {
+                return {
+                    ar_title: this.sanitizeHTML(job.ar_title || '').substring(0, 200),
+                    en_title: this.sanitizeHTML(job.en_title || '').substring(0, 200),
+                    ar_tasks: this.sanitizeHTML(job.ar_tasks || '').substring(0, 5000),
+                    en_tasks: this.sanitizeHTML(job.en_tasks || '').substring(0, 5000),
+                    form_url: this.sanitizeURL(job.form_url || '')
+                };
+            }
+        };
+    </script>
 
     <div class="top-controls">
         <button class="control-btn" onclick="toggleLanguage()">English / العربية</button>
@@ -376,6 +434,8 @@
             <h1 id="heroMain"></h1>
             <p id="heroDesc"></p>
             <div class="cities-tags" id="heroCitiesContainer"></div>
+            <a href="https://www.mayyarunited.com/ar" target="_blank" class="company-link ar-only">زيارة موقع شركة اتحاد ميار</a>
+            <a href="https://www.mayyarunited.com/ar" target="_blank" class="company-link en-only">Visit Mayyar United Website</a>
         </div>
     </header>
 
@@ -393,10 +453,10 @@
 
         <section class="jobs-section" id="jobsSection">
             <div class="section-title">
-                <h2 class="ar-only">الفرص الوظيفية الحالية بمشاريع الضيافة</h2>
-                <h2 class="en-only">Current Hospitality Project Careers</h2>
+                <h2 class="ar-only">الفرص الوظيفية الحالية في شركة اتحاد ميار للخدمات المساندة</h2>
+                <h2 class="en-only">Current Career Opportunities at Mayyar United Support Services</h2>
                 <p class="ar-only">كن جزءاً من قصة نجاح مشاريعنا في أرقى الفنادق والمشاريع السياحية بالمملكة</p>
-                <p class="en-only">Be part of our success story across premium hospitality projects</p>
+                <p class="en-only">Be part of our success story across premium hospitality and support projects</p>
             </div>
             <div class="jobs-grid" id="jobsContainer"></div>
         </section>
@@ -430,29 +490,42 @@
         <div class="admin-grid">
             <div>
                 <strong style="color:var(--accent-color)">النسخة العربية</strong>
-                <label>العنوان الفرعي للهيدر:</label> <input type="text" id="input_ar_heroSub">
-                <label>العنوان الرئيسي للهيدر:</label> <input type="text" id="input_ar_heroMain">
-                <label>وصف الهيدر الترحيبي:</label> <textarea id="input_ar_heroDesc" rows="3"></textarea>
-                <label>المدن المتوفرة (افصل بينها بـ ،):</label> <input type="text" id="input_ar_heroCities">
-                <label>عنوان قسم التعريف:</label> <input type="text" id="input_ar_aboutTitle">
-                <label>العنوان الفرعي لقسم التعريف:</label> <input type="text" id="input_ar_aboutSubtitle">
-                <label>مزايا بيئة العمل (كل نقطة في سطر):</label> <textarea id="input_ar_aboutTxt" rows="4"></textarea>
+                <label>العنوان الفرعي للهيدر:</label>
+                <input type="text" id="input_ar_heroSub">
+                <label>العنوان الرئيسي للهيدر:</label>
+                <input type="text" id="input_ar_heroMain">
+                <label>وصف الهيدر الترحيبي:</label>
+                <textarea id="input_ar_heroDesc" rows="3"></textarea>
+                <label>المدن المتوفرة (افصل بينها بـ ،):</label>
+                <input type="text" id="input_ar_heroCities">
+                <label>عنوان قسم التعريف:</label>
+                <input type="text" id="input_ar_aboutTitle">
+                <label>العنوان الفرعي لقسم التعريف:</label>
+                <input type="text" id="input_ar_aboutSubtitle">
+                <label>مزايا بيئة العمل (كل نقطة في سطر):</label>
+                <textarea id="input_ar_aboutTxt" rows="4"></textarea>
             </div>
             <div>
                 <strong style="color:var(--accent-color)">English Version</strong>
-                <label>Hero Sub-title:</label> <input type="text" id="input_en_heroSub">
-                <label>Hero Main-title:</label> <input type="text" id="input_en_heroMain">
-                <label>Hero Description:</label> <textarea id="input_en_heroDesc" rows="3"></textarea>
-                <label>Available Cities (Separate with ,):</label> <input type="text" id="input_en_heroCities">
-                <label>About Section Title:</label> <input type="text" id="input_en_aboutTitle">
-                <label>About Section Subtitle:</label> <input type="text" id="input_en_aboutSubtitle">
-                <label>Work Culture Points (Each point in a line):</label> <textarea id="input_en_aboutTxt" rows="4"></textarea>
+                <label>Hero Sub-title:</label>
+                <input type="text" id="input_en_heroSub">
+                <label>Hero Main-title:</label>
+                <input type="text" id="input_en_heroMain">
+                <label>Hero Description:</label>
+                <textarea id="input_en_heroDesc" rows="3"></textarea>
+                <label>Available Cities (Separate with ,):</label>
+                <input type="text" id="input_en_heroCities">
+                <label>About Section Title:</label>
+                <input type="text" id="input_en_aboutTitle">
+                <label>About Section Subtitle:</label>
+                <input type="text" id="input_en_aboutSubtitle">
+                <label>Work Culture Points (Each point in a line):</label>
+                <textarea id="input_en_aboutTxt" rows="4"></textarea>
             </div>
         </div>
 
         <div class="admin-section-title">💼 إدارة الإعلانات والروابط الحية لكل وظيفة على حدة</div>
         <div id="adminJobsList"></div>
-        
         <div class="admin-actions">
             <button class="control-btn btn-add-job" type="button" onclick="addNewJobField()">➕ إضافة وظيفة شاغرة جديدة</button>
             <button class="control-btn btn-save" type="button" onclick="saveAllPlatformData()">💾 حفظ ونشر التحديثات للموقع فوراً</button>
@@ -460,10 +533,13 @@
     </div>
 
     <footer>
+        <div class="footer-brand ar-only">بوابة التوظيف الرسمية - شركة اتحاد ميار للخدمات المساندة</div>
+        <div class="footer-brand en-only">Official Recruitment Portal - Mayyar United Support Services</div>
         <p>
-            &copy; <span id="footerYear"></span> MAJED ALDJAIN - جميع الحقوق محفوظة لجهة التوظيف الحصرية المجهولة.
+            © <span id="footerYear"></span> MD Recruitment - All Rights Reserved for Mayyar United.
             <span class="secret-lock" onclick="handleSecretClick()">🔒</span>
         </p>
+        <div class="signature">Developed by Majed AlDajani</div>
     </footer>
 
     <script type="module">
@@ -471,13 +547,13 @@
         import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
-          apiKey: "AIzaSyDvJBtIwf1__iRVIuKG7GMef8BlLNdIOog",
-          authDomain: "md-recruitment.firebaseapp.com",
-          projectId: "md-recruitment",
-          storageBucket: "md-recruitment.firebasestorage.app",
-          messagingSenderId: "737652908081",
-          appId: "1:737652908081:web:3a92df570c60e86d50b510",
-          measurementId: "G-25HSRWMW7N"
+            apiKey: "AIzaSyDvJBtIwf1__iRVIuKG7GMef8BlLNdIOog",
+            authDomain: "md-recruitment.firebaseapp.com",
+            projectId: "md-recruitment",
+            storageBucket: "md-recruitment.firebasestorage.app",
+            messagingSenderId: "737652908081",
+            appId: "1:737652908081:web:3a92df570c60e86d50b510",
+            measurementId: "G-25HSRWMW7N"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -493,18 +569,18 @@
             header_opacity: 0.75,
             order_about: 1,
             order_jobs: 2,
-            ar_heroSub: "بوابة التوظيف الرسمية لقطاع الضيافة والتموين والخدمات المساندة",
-            en_heroSub: "Official Recruitment Portal for Hospitality, Catering & Support Services",
-            ar_heroMain: "منصة التوظيف الفندقية | MAJED ALDJAIN",
-            en_heroMain: "Hospitality Recruitment Portal | MAJED ALDJAIN",
+            ar_heroSub: "بوابة التوظيف الرسمية لشركة اتحاد ميار للخدمات المساندة",
+            en_heroSub: "Official Recruitment Portal for Mayyar United Support Services",
+            ar_heroMain: "منصة التوظيف | MD Recruitment",
+            en_heroMain: "Careers Portal | MD Recruitment",
             ar_heroDesc: "نفتح لك أبواب المستقبل للانضمام إلى رواد قطاع التموين والضيافة الفاخرة في المملكة. نسعى لبناء مجتمع عمل متميز وتطوير بيئة الإنتاج عبر استقطاب أفضل الكفاءات الطموحة وتطبيق أعلى معايير الجودة الدولية.",
             en_heroDesc: "We open the doors to the future for you to join the industry leaders in catering and luxury hospitality in Saudi Arabia. We aim to build an outstanding corporate community by attracting top talents and applying global quality standards.",
             ar_heroCities: "مكة المكرمة ، جدة ، أبها ، جازان",
             en_heroCities: "Makkah , Jeddah , Abha , Jazan",
             ar_aboutTitle: "رؤيتنا في ريادة خدمات الضيافة والتموين بالمملكة",
             en_aboutTitle: "Our Vision in Leading Hospitality & Support Services",
-            ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريقنا المتميز؟",
-            en_aboutSubtitle: "Why choose to join our outstanding team?",
+            ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريقنا المتميز في اتحاد ميار؟",
+            en_aboutSubtitle: "Why choose to join our outstanding team at Mayyar United?",
             ar_aboutTxt: "تطبيق أعلى معايير الجودة والسلامة الغذائية العالمية\nبيئة عمل محفزة تدعم التطوير المهني والتدريب المستمر\nمزايا وظيفية تنافسية ومكافآت للمتميزين\nتأمين طبي شامل للموظفين وعائلاتهم",
             en_aboutTxt: "Applying the highest international food safety and quality standards\nAn inspiring work environment supporting career growth and ongoing training\nCompetitive job benefits and rewards for outstanding performance\nComprehensive medical insurance for employees and families",
             jobs: [
@@ -567,46 +643,32 @@
             document.getElementById('mainHeader').style.backgroundImage = `url('${siteData.img_header_url || defaultData.img_header_url}')`;
             document.getElementById('aboutImage').src = siteData.img_about_url || defaultData.img_about_url;
 
-            if (currentLang === 'ar') {
-                document.getElementById('heroSub').innerText = siteData.ar_heroSub || defaultData.ar_heroSub;
-                document.getElementById('heroMain').innerText = siteData.ar_heroMain || defaultData.ar_heroMain;
-                document.getElementById('heroDesc').innerText = siteData.ar_heroDesc || defaultData.ar_heroDesc;
-                document.getElementById('aboutTitle').innerText = siteData.ar_aboutTitle || defaultData.ar_aboutTitle;
-                document.getElementById('aboutSubtitle').innerText = siteData.ar_aboutSubtitle || defaultData.ar_aboutSubtitle;
-                
-                const cities = (siteData.ar_heroCities || defaultData.ar_heroCities).split('،');
-                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${c.trim()}</span>` : '').join('');
-                
-                const points = (siteData.ar_aboutTxt || defaultData.ar_aboutTxt).split('\n');
-                document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
-            } else {
-                document.getElementById('heroSub').innerText = siteData.en_heroSub || defaultData.en_heroSub;
-                document.getElementById('heroMain').innerText = siteData.en_heroMain || defaultData.en_heroMain;
-                document.getElementById('heroDesc').innerText = siteData.en_heroDesc || defaultData.en_heroDesc;
-                document.getElementById('aboutTitle').innerText = siteData.en_aboutTitle || defaultData.en_aboutTitle;
-                document.getElementById('aboutSubtitle').innerText = siteData.en_aboutSubtitle || defaultData.en_aboutSubtitle;
-                
-                const cities = (siteData.en_heroCities || defaultData.en_heroCities).split(',');
-                document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${c.trim()}</span>` : '').join('');
-                
-                const points = (siteData.en_aboutTxt || defaultData.en_aboutTxt).split('\n');
-                document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
-            }
+            document.getElementById('heroSub').textContent = siteData[`${currentLang}_heroSub`] || defaultData[`${currentLang}_heroSub`];
+            document.getElementById('heroMain').textContent = siteData[`${currentLang}_heroMain`] || defaultData[`${currentLang}_heroMain`];
+            document.getElementById('heroDesc').textContent = siteData[`${currentLang}_heroDesc`] || defaultData[`${currentLang}_heroDesc`];
 
-            const jobsContainer = document.getElementById('jobsContainer');
-            const jobsList = siteData.jobs || defaultData.jobs;
-            
-            jobsContainer.innerHTML = jobsList.map(job => `
-                <div class="job-card">
-                    <div>
-                        <h3>${currentLang === 'ar' ? (job.ar_title || '') : (job.en_title || '')}</h3>
-                        <p>${currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || '')}</p>
+            const cities = (siteData[`${currentLang}_heroCities`] || defaultData[`${currentLang}_heroCities`]).split('،').join(',').split(',');
+            document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => `<span class="city-tag">${c.trim()}</span>`).join('');
+
+            document.getElementById('aboutTitle').textContent = siteData[`${currentLang}_aboutTitle`] || defaultData[`${currentLang}_aboutTitle`];
+            document.getElementById('aboutSubtitle').textContent = siteData[`${currentLang}_aboutSubtitle`] || defaultData[`${currentLang}_aboutSubtitle`];
+
+            const points = (siteData[`${currentLang}_aboutTxt`] || defaultData[`${currentLang}_aboutTxt`]).split('\n');
+            document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${p.trim()}</li>` : '').join('');
+
+            const jobs = siteData.jobs || defaultData.jobs;
+            document.getElementById('jobsContainer').innerHTML = jobs.map(job => {
+                const safeJob = SecurityFirewall.validateJobData(job);
+                return `
+                    <div class="job-card">
+                        <h3>${currentLang === 'ar' ? (safeJob.ar_title || '') : (safeJob.en_title || '')}</h3>
+                        <p>${currentLang === 'ar' ? (safeJob.ar_tasks || '') : (safeJob.en_tasks || '')}</p>
+                        <a href="${safeJob.form_url || 'https://forms.gle/HuVr5ZonvfuSuf3i7'}" target="_blank" class="btn-apply">
+                            ${currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position'}
+                        </a>
                     </div>
-                    <a href="${job.form_url || 'https://forms.gle/HuVr5ZonvfuSuf3i7'}" target="_blank" class="btn-apply">
-                        ${currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position'}
-                    </a>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         window.toggleLanguage = function() {
@@ -616,7 +678,7 @@
             if(document.getElementById('adminPanel').style.display === 'block') {
                 loadPanelInputs();
             }
-        }
+        };
 
         window.handleSecretClick = function() {
             let pass = prompt("🛡️ أدخل الرقم السري لفتح خيارات الإدارة والتحديث:");
@@ -627,7 +689,7 @@
             } else if (pass !== null) {
                 alert("❌ عذراً، الرقم السري غير صحيح!");
             }
-        }
+        };
 
         function loadPanelInputs() {
             document.getElementById('input_img_header_url').value = siteData.img_header_url || defaultData.img_header_url;
@@ -635,7 +697,7 @@
             document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.75;
             document.getElementById('input_order_about').value = siteData.order_about !== undefined ? siteData.order_about : 1;
             document.getElementById('input_order_jobs').value = siteData.order_jobs !== undefined ? siteData.order_jobs : 2;
-            
+
             document.getElementById('input_ar_heroSub').value = siteData.ar_heroSub || defaultData.ar_heroSub;
             document.getElementById('input_ar_heroMain').value = siteData.ar_heroMain || defaultData.ar_heroMain;
             document.getElementById('input_ar_heroDesc').value = siteData.ar_heroDesc || defaultData.ar_heroDesc;
@@ -658,30 +720,31 @@
         function renderAdminJobs() {
             const listContainer = document.getElementById('adminJobsList');
             const jobs = siteData.jobs || defaultData.jobs;
-            
-            listContainer.innerHTML = jobs.map((job, index) => `
-                <div class="admin-job-item">
-                    <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
-                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية رقم #${index + 1}</h4>
-                    
-                    <div class="admin-grid" style="margin-top:10px;">
-                        <div>
-                            <label>المسمى الوظيفي (العربية):</label>
-                            <input type="text" class="job-ar-title" value="${job.ar_title || ''}">
-                            <label>الوصف (العربية):</label>
-                            <textarea rows="4" class="job-ar-tasks">${job.ar_tasks || ''}</textarea>
+            listContainer.innerHTML = jobs.map((job, index) => {
+                const safeJob = SecurityFirewall.validateJobData(job);
+                return `
+                    <div class="admin-job-item">
+                        <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
+                        <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية رقم #${index + 1}</h4>
+                        <div class="admin-grid" style="margin-top:10px;">
+                            <div>
+                                <label>المسمى الوظيفي (العربية):</label>
+                                <input type="text" class="job-ar-title" value="${safeJob.ar_title}">
+                                <label>الوصف والمهام (العربية):</label>
+                                <textarea class="job-ar-tasks" rows="5">${safeJob.ar_tasks}</textarea>
+                            </div>
+                            <div>
+                                <label>Job Title (English):</label>
+                                <input type="text" class="job-en-title" value="${safeJob.en_title}">
+                                <label>Description & Tasks (English):</label>
+                                <textarea class="job-en-tasks" rows="5">${safeJob.en_tasks}</textarea>
+                            </div>
                         </div>
-                        <div>
-                            <label>Job Title (English):</label>
-                            <input type="text" class="job-en-title" value="${job.en_title || ''}">
-                            <label>Description (English):</label>
-                            <textarea rows="4" class="job-en-tasks">${job.en_tasks || ''}</textarea>
-                        </div>
+                        <label style="margin-top:10px;">رابط التقديم الفوري لهذه الوظيفة (Google Form):</label>
+                        <input type="text" class="job-form-url" value="${safeJob.form_url}" style="border-color:var(--accent-color);">
                     </div>
-                    <label style="margin-top:10px;">رابط التقديم الفوري لهذه الوظيفة (Google Form):</label>
-                    <input type="text" class="job-form-url" value="${job.form_url || ''}" style="border-color:var(--accent-color);">
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         window.addNewJobField = function() {
@@ -689,7 +752,7 @@
             if (!siteData.jobs) siteData.jobs = [];
             siteData.jobs.push({ ar_title: '', en_title: '', ar_tasks: '', en_tasks: '', form_url: '' });
             renderAdminJobs();
-        }
+        };
 
         window.deleteJobField = function(index) {
             if(confirm("هل أنت متأكد من حذف هذا المنصب؟")) {
@@ -697,7 +760,7 @@
                 siteData.jobs.splice(index, 1);
                 renderAdminJobs();
             }
-        }
+        };
 
         function syncJobsFromDOM() {
             const jobItems = document.querySelectorAll('.admin-job-item');
@@ -717,13 +780,12 @@
         window.saveAllPlatformData = async function() {
             try {
                 syncJobsFromDOM();
-                
                 siteData.img_header_url = document.getElementById('input_img_header_url').value;
                 siteData.img_about_url = document.getElementById('input_img_about_url').value;
                 siteData.header_opacity = parseFloat(document.getElementById('input_header_opacity').value);
                 siteData.order_about = parseInt(document.getElementById('input_order_about').value) || 1;
                 siteData.order_jobs = parseInt(document.getElementById('input_order_jobs').value) || 2;
-                
+
                 siteData.ar_heroSub = document.getElementById('input_ar_heroSub').value;
                 siteData.ar_heroMain = document.getElementById('input_ar_heroMain').value;
                 siteData.ar_heroDesc = document.getElementById('input_ar_heroDesc').value;
@@ -741,13 +803,13 @@
                 siteData.en_aboutTxt = document.getElementById('input_en_aboutTxt').value;
 
                 await setDoc(docRef, siteData);
-                alert("✅ تم الحفظ والاعتماد بنجاح! تم مسح الاسم القديم وتحديث هويتك الخاصة الحالية.");
+                alert("✅ تم الحفظ والاعتماد بنجاح! تم تحديث بوابة التوظيف الخاصة بـ Mayyar United.");
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 console.error(error);
                 alert("❌ حدث خطأ أثناء الحفظ بالسيرفر.");
             }
-        }
+        };
     </script>
 </body>
 </html>
