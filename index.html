@@ -13,7 +13,7 @@
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://www.gstatic.com https://fonts.googleapis.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-        img-src 'self' https://images.unsplash.com data: blob:;
+        img-src 'self' https://images.unsplash.com data: blob: *;
         font-src 'self' https://fonts.gstatic.com;
         connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://identitytoolkit.googleapis.com;
         frame-src 'none';
@@ -589,18 +589,28 @@
             <h2>🛡️ لوحة التحكم وإدارة المنصة المتكاملة</h2>
             <button class="control-btn" style="background:#7f8c8d" onclick="document.getElementById('adminPanel').style.display='none'">إغلاق اللوحة</button>
         </div>
+        
+        <!-- قسم الأمان الجديد الذي يسمح بتغيير الرقم السري من الموقع -->
+        <div class="admin-section-title">🔒 إدارة الأمان وحساب الدخول</div>
+        <div class="admin-grid">
+            <div>
+                <label>الرقم السري الحالي / الجديد للدخول إلى لوحة التحكم:</label>
+                <input type="text" id="input_admin_password" style="border-color: var(--danger-color); font-weight: bold;" placeholder="أدخل الرقم السري المرغوب هنا">
+                <small style="color: #666; display: block; margin-top: 5px;">* عند تغييرك لهذا الرقم والضغط على "حفظ"، سيصبح هذا هو الرقم المطلوب عند الضغط على القفل في المرات القادمة.</small>
+            </div>
+        </div>
 
         <div class="admin-section-title">🎨 التحكم في المظهر والصور والترتيب</div>
         <div class="admin-grid">
             <div>
                 <label>رابط صورة الخلفية للهيدر الرئيسي:</label>
-                <input type="text" id="input_img_header_url">
+                <input type="text" id="input_img_header_url" placeholder="ضع رابط الصورة هنا">
                 <label>درجة عتامة خلفية الهيدر (0.1 إلى 0.95):</label>
                 <input type="range" id="input_header_opacity" min="0.1" max="0.95" step="0.05" style="width:100%">
             </div>
             <div>
                 <label>رابط الصورة لقسم "عن المشاريع":</label>
-                <input type="text" id="input_img_about_url">
+                <input type="text" id="input_img_about_url" placeholder="ضع رابط الصورة هنا">
                 <label>ترتيب قسم "عن المشاريع" (1 أو 2):</label>
                 <input type="number" id="input_order_about" min="1" max="2">
                 <label>ترتيب قسم "الوظائف المتاحة" (1 أو 2):</label>
@@ -757,11 +767,12 @@
         function isSafeURL(url) {
             if (!url) return false;
             try {
+                // للسماح بجميع الروابط الخاصة بالصور بما فيها التي من مواقع عامة مثل جوجل وغيرها
+                if(url.startsWith('http')) return true; 
                 const parsed = new URL(url, window.location.href);
                 const allowedProtocols = ['http:', 'https:', 'mailto:'];
                 if (!allowedProtocols.includes(parsed.protocol)) return false;
-                const blockedDomains = ['evil.com', 'phishing.net', 'malware.org'];
-                return !blockedDomains.some(domain => parsed.hostname.includes(domain));
+                return true;
             } catch (e) {
                 return false;
             }
@@ -772,6 +783,7 @@
 
         // ===================== DEFAULT DATA =====================
         const defaultData = {
+            admin_password: "1425", // الرقم السري الافتراضي للنظام
             img_header_url: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070",
             img_about_url: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=2070",
             header_opacity: 0.75,
@@ -806,27 +818,6 @@
                     ar_tasks: "المهام والوصف:\n• قيادة وإدارة العمليات التشغيلية اليومية للمشروع الفندقي والغذائي الفخم لضمان تطبيق معايير فئة الـ 5 نجوم.\n• الإشراف المباشر على جودة تقديم الأطعمة والمشروبات وتجارب الضيوف والنزلاء.\n• متابعة الميزانيات التشغيلية وتقليل الهدر مع قيادة وتدريب الكوادر البشرية.\n💡 ما يميزنا: رواتب أساسية ضخمة وبدلات سكن وانتقال متميزة، وحوافز ربع سنوية مرتبطة بمعدل رضا الضيوف.",
                     en_tasks: "Tasks & Description:\n• Leading daily operational aspects of luxury hotel and F&B projects ensuring 5-star service delivery.\n• Supervising catering quality, guest relations, and culinary standards.\n• Monitoring operational budgets, minimizing wastage, and training staff.\n💡 Incentives: High basic salary, premium housing & transportation allowances, and lucrative quarterly bonuses based on guest satisfaction scores.",
                     form_url: "https://forms.gle/HuVr5ZonvfuSuf3i7"
-                },
-                {
-                    ar_title: "مدير مبيعات قطاع الضيافة والتموين",
-                    en_title: "Hospitality & Catering Sales Manager",
-                    ar_tasks: "المهام والوصف:\n• دراسة السوق واقتناص العقود والمشاريع الجديدة الكبرى لخدمات التموين والضيافة في المنطقة.\n• بناء علاقات استراتيجية متينة طويلة الأمد مع الشركات والمؤسسات الحكومية والخاصة.\n• إعداد العروض الفنية والمالية ومتابعة تحقيق المستهدف البيعي للمجموعة.\n💡 ما يميزنا: نظام عمولات تصاعدي ومكافآت شهرية مجزية جداً لا تضع سقفاً لطموحك المالي.",
-                    en_tasks: "Tasks & Description:\n• Studying market trends and acquiring large catering and hospitality commercial contracts.\n• Building long-term corporate relationships with public and private sector clients.\n• Preparing technical and financial sales proposals.\n💡 Incentives: Highly aggressive commission models and financial monthly perks with uncapped potential.",
-                    form_url: "https://forms.gle/K599yiX5rfrZ9yQPA"
-                },
-                {
-                    ar_title: "مساعد مدير مشروع ضيافة",
-                    en_title: "Assistant Hospitality Project Manager",
-                    ar_tasks: "المهام والوصف:\n• مساندة مدير المشروع في تنظيم جداول العمل اللوجستية ومتابعة سلاسل التوريد والتموين اليومية.\n• مراقبة أداء الموظفين والعمال وضمان الالتزام بالزي الرسمي ومعايير المظهر الراقي الفندقي.\n• حل المشكلات التشغيلية الطارئة ورفع تقارير الأداء الدورية.\n💡 ما يميزنا: مسار ترقية مهني سريع لدرجة مدير مشروع خلال 18 شهراً للمثبتين لكفاءتهم الحقيقية.",
-                    en_tasks: "Tasks & Description:\n• Supporting the Project Manager in streamlining logistical workflows and daily supply chains.\n• Monitoring staff attendance, hospitality grooming, and performance standards.\n• Resolving urgent site complaints and drafting periodic reports.\n💡 Incentives: Fast-track career ladder promotion to Project Manager position within 18 months for top achievers.",
-                    form_url: "https://forms.gle/VXMj2LjBjRHwmAcC9"
-                },
-                {
-                    ar_title: "مشرف ضيافة وفندقة داخلي",
-                    en_title: "Hospitality & Catering Supervisor",
-                    ar_tasks: "المهام والوصف:\n• التواجد الميداني المباشر لتوجيه طاقم مقدمي الخدمة (Waiters) والمشرفين الميدانيين.\n• ضمان الالتزام التام بتدابير السلامة والهايجين وصحة البيئة الغذائية (HACCP).\n• استقبال الضيوف والتعامل اللبق الفوري مع أي ملاحظات في صالة تقديم الخدمة.\n💡 ما يميزنا: تأمين طبي شامل من فئات ممتازة للموظف وأسرته، ودورات معتمدة في قيادة العمليات الفندقية.",
-                    en_tasks: "Tasks & Description:\n• Direct floor presence to guide and supervise waitstaff and hostesses.\n• Enforcing strict compliance with global food safety, hygiene, and HACCP rules.\n• Welcoming guests politely and handling any immediate constructive feedback seamlessly.\n💡 Incentives: Comprehensive premium medical insurance coverage for employees and families, alongside fully funded certified hospitality courses.",
-                    form_url: "https://forms.gle/rCFZGs32H7vSQBiSA"
                 }
             ]
         };
@@ -861,30 +852,18 @@
             document.getElementById('mainHeader').style.backgroundImage = `url('${sanitizeHTML(siteData.img_header_url || defaultData.img_header_url)}')`;
             document.getElementById('aboutImage').src = sanitizeHTML(siteData.img_about_url || defaultData.img_about_url);
 
-            // Brand bar
-            document.getElementById('brandName').innerText = currentLang === 'ar' ? 
-                (siteData.ar_brandName || defaultData.ar_brandName) : 
-                (siteData.en_brandName || defaultData.en_brandName);
-            document.getElementById('brandSub').innerText = currentLang === 'ar' ? 
-                (siteData.ar_brandSub || defaultData.ar_brandSub) : 
-                (siteData.en_brandSub || defaultData.en_brandSub);
+            document.getElementById('brandName').innerText = currentLang === 'ar' ? (siteData.ar_brandName || defaultData.ar_brandName) : (siteData.en_brandName || defaultData.en_brandName);
+            document.getElementById('brandSub').innerText = currentLang === 'ar' ? (siteData.ar_brandSub || defaultData.ar_brandSub) : (siteData.en_brandSub || defaultData.en_brandSub);
+            document.getElementById('headerCompanyBrand').innerText = currentLang === 'ar' ? (siteData.ar_brandName || defaultData.ar_brandName) : (siteData.en_brandName || defaultData.en_brandName);
 
-            // Header company brand
-            document.getElementById('headerCompanyBrand').innerText = currentLang === 'ar' ? 
-                (siteData.ar_brandName || defaultData.ar_brandName) : 
-                (siteData.en_brandName || defaultData.en_brandName);
-
-            // Hero content
             if (currentLang === 'ar') {
                 document.getElementById('heroSub').innerText = siteData.ar_heroSub || defaultData.ar_heroSub;
                 document.getElementById('heroMain').innerText = siteData.ar_heroMain || defaultData.ar_heroMain;
                 document.getElementById('heroDesc').innerText = siteData.ar_heroDesc || defaultData.ar_heroDesc;
                 document.getElementById('aboutTitle').innerText = siteData.ar_aboutTitle || defaultData.ar_aboutTitle;
                 document.getElementById('aboutSubtitle').innerText = siteData.ar_aboutSubtitle || defaultData.ar_aboutSubtitle;
-                
                 const cities = (siteData.ar_heroCities || defaultData.ar_heroCities).split('،');
                 document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${sanitizeHTML(c.trim())}</span>` : '').join('');
-                
                 const points = (siteData.ar_aboutTxt || defaultData.ar_aboutTxt).split('\n');
                 document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${sanitizeHTML(p.trim())}</li>` : '').join('');
             } else {
@@ -893,37 +872,25 @@
                 document.getElementById('heroDesc').innerText = siteData.en_heroDesc || defaultData.en_heroDesc;
                 document.getElementById('aboutTitle').innerText = siteData.en_aboutTitle || defaultData.en_aboutTitle;
                 document.getElementById('aboutSubtitle').innerText = siteData.en_aboutSubtitle || defaultData.en_aboutSubtitle;
-                
                 const cities = (siteData.en_heroCities || defaultData.en_heroCities).split(',');
                 document.getElementById('heroCitiesContainer').innerHTML = cities.map(c => c.trim() ? `<span class="city-tag">📍 ${sanitizeHTML(c.trim())}</span>` : '').join('');
-                
                 const points = (siteData.en_aboutTxt || defaultData.en_aboutTxt).split('\n');
                 document.getElementById('aboutPointsContainer').innerHTML = points.map(p => p.trim() ? `<li>${sanitizeHTML(p.trim())}</li>` : '').join('');
             }
 
-            // Footer
-            document.getElementById('footerBrand').innerText = currentLang === 'ar' ? 
-                (siteData.ar_brandName || defaultData.ar_brandName) : 
-                (siteData.en_brandName || defaultData.en_brandName);
-            document.getElementById('footerTagline').innerText = currentLang === 'ar' ? 
-                (siteData.ar_footerTagline || defaultData.ar_footerTagline) : 
-                (siteData.en_footerTagline || defaultData.en_footerTagline);
+            document.getElementById('footerBrand').innerText = currentLang === 'ar' ? (siteData.ar_brandName || defaultData.ar_brandName) : (siteData.en_brandName || defaultData.en_brandName);
+            document.getElementById('footerTagline').innerText = currentLang === 'ar' ? (siteData.ar_footerTagline || defaultData.ar_footerTagline) : (siteData.en_footerTagline || defaultData.en_footerTagline);
             
-            const footerMainText = currentLang === 'ar' ? 
-                (siteData.ar_footerMain || defaultData.ar_footerMain) : 
-                (siteData.en_footerMain || defaultData.en_footerMain);
-            document.getElementById('footerMain').innerHTML = 
-                `&copy; <span id="footerYear">${new Date().getFullYear()}</span> — ${sanitizeHTML(footerMainText)}` +
-                `<span class="secret-lock" onclick="handleSecretClick()">🔒</span>`;
+            const footerMainText = currentLang === 'ar' ? (siteData.ar_footerMain || defaultData.ar_footerMain) : (siteData.en_footerMain || defaultData.en_footerMain);
+            document.getElementById('footerMain').innerHTML = `&copy; <span id="footerYear">${new Date().getFullYear()}</span> — ${sanitizeHTML(footerMainText)}<span class="secret-lock" onclick="handleSecretClick()">🔒</span>`;
 
-            // Jobs
             const jobsContainer = document.getElementById('jobsContainer');
             const jobsList = siteData.jobs || defaultData.jobs;
             
             jobsContainer.innerHTML = jobsList.map(job => {
                 const title = sanitizeHTML(currentLang === 'ar' ? (job.ar_title || '') : (job.en_title || ''));
                 const desc = sanitizeHTML(currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || ''));
-                const formUrl = isSafeURL(job.form_url) ? job.form_url : 'https://forms.gle/HuVr5ZonvfuSuf3i7';
+                const formUrl = job.form_url ? job.form_url : 'https://forms.gle/HuVr5ZonvfuSuf3i7';
                 const btnText = currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position';
                 return `
                 <div class="job-card">
@@ -949,27 +916,26 @@
             }
         }
 
-        // ===================== ADMIN ACCESS =====================
+        // ===================== ADMIN ACCESS (تم التحديث) =====================
         window.handleSecretClick = function() {
-            // Rate limit check
             if (!rateLimit.check('admin_access', 5, 60000)) {
-                alert('❌ Too many attempts. Please try again in 1 minute.');
+                alert('❌ تجاوزت الحد المسموح من المحاولات. الرجاء الانتظار دقيقة.');
                 return;
             }
             let pass = prompt("🛡️ أدخل الرقم السري لفتح خيارات الإدارة والتحديث:");
             if (pass === null) return;
             
-            // Validate password input (no XSS)
             if (!validateInput(pass)) {
                 suspiciousAttempts++;
-                alert('❌ Invalid input detected.');
-                if (suspiciousAttempts >= 3) {
-                    document.getElementById('securityOverlay').classList.add('active');
-                }
+                alert('❌ مدخلات غير صالحة.');
+                if (suspiciousAttempts >= 3) document.getElementById('securityOverlay').classList.add('active');
                 return;
             }
             
-            if (pass === "1425") {
+            // قراءة الرقم السري الديناميكي من قاعدة البيانات بدلاً من الكود الثابت
+            const correctPassword = siteData.admin_password || defaultData.admin_password;
+
+            if (pass === correctPassword) {
                 document.getElementById('adminPanel').style.display = 'block';
                 document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
                 loadPanelInputs();
@@ -988,6 +954,9 @@
 
         // ===================== ADMIN PANEL LOAD =====================
         function loadPanelInputs() {
+            // تحميل الرقم السري وعرضه
+            document.getElementById('input_admin_password').value = siteData.admin_password || defaultData.admin_password;
+            
             document.getElementById('input_img_header_url').value = siteData.img_header_url || defaultData.img_header_url;
             document.getElementById('input_img_about_url').value = siteData.img_about_url || defaultData.img_about_url;
             document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.75;
@@ -1080,13 +1049,14 @@
             siteData.jobs = updatedJobs;
         }
 
-        // ===================== SAVE WITH VALIDATION =====================
+        // ===================== SAVE WITH VALIDATION (تم التحديث) =====================
         window.saveAllPlatformData = async function() {
             try {
                 syncJobsFromDOM();
                 
                 // Validate all inputs before saving
                 const inputsToValidate = [
+                    document.getElementById('input_admin_password').value,
                     document.getElementById('input_img_header_url').value,
                     document.getElementById('input_img_about_url').value,
                     document.getElementById('input_ar_heroSub').value,
@@ -1103,20 +1073,25 @@
                         return;
                     }
                 }
+
+                // التأكد من أن الرقم السري ليس فارغاً
+                const newPassword = document.getElementById('input_admin_password').value;
+                if (!newPassword || newPassword.trim() === "") {
+                    alert('❌ لا يمكن ترك حقل الرقم السري فارغاً.');
+                    return;
+                }
                 
-                // Validate job fields
                 for (const job of siteData.jobs) {
                     if (!validateInput(job.ar_title) || !validateInput(job.ar_tasks) || 
                         !validateInput(job.en_title) || !validateInput(job.en_tasks)) {
                         alert('❌ تم اكتشاف محتوى غير آمن في بيانات الوظيفة.');
                         return;
                     }
-                    if (job.form_url && !isSafeURL(job.form_url)) {
-                        alert('❌ رابط التقديم غير آمن.');
-                        return;
-                    }
                 }
                 
+                // حفظ الرقم السري الجديد
+                siteData.admin_password = newPassword;
+
                 siteData.img_header_url = document.getElementById('input_img_header_url').value;
                 siteData.img_about_url = document.getElementById('input_img_about_url').value;
                 siteData.header_opacity = parseFloat(document.getElementById('input_header_opacity').value);
@@ -1148,7 +1123,7 @@
                 siteData.en_footerTagline = document.getElementById('input_en_footerTagline').value;
 
                 await setDoc(docRef, siteData);
-                alert("✅ تم الحفظ والاعتماد بنجاح! تم تحديث هوية Mayyar United و MD Recruitment.");
+                alert("✅ تم الحفظ والاعتماد بنجاح! تم تحديث هوية المنصة وحفظ الرقم السري الجديد بنجاح.");
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 console.error(error);
