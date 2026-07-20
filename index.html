@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ===================== SEO & LINK PREVIEW METADATA ===================== -->
     <meta name="description" content="MD Recruitment Portal. Official recruitment gateway for professional talents.">
     <meta name="keywords" content="MD Recruitment, Jobs, Careers, Hiring, Saudi Arabia">
     <meta name="author" content="MD Recruitment">
     
-    <!-- أكواد مخصصة لتجميل شكل الرابط عند إرساله في الواتساب وغيرها -->
     <meta property="og:title" content="MD Recruitment Portal">
     <meta property="og:description" content="بوابة التوظيف الرسمية لاستقطاب الكفاءات - Official Recruitment Gateway">
     <meta property="og:type" content="website">
@@ -23,8 +21,8 @@
     <style>
         :root {
             --primary-color: #1a252f;
-            --accent-color: #3498db; /* لون أزرق احترافي بدلاً من الذهبي */
-            --text-color: #333;
+            --accent-color: #3498db;
+            --text-color: #333333;
             --bg-light: #f8f9fa;
             --success-color: #27ae60;
             --danger-color: #e74c3c;
@@ -45,7 +43,6 @@
         html[dir="rtl"] .en-only { display: none !important; }
         html[dir="ltr"] .ar-only { display: none !important; }
 
-        /* ===================== TOP BAR / BRAND ===================== */
         .top-brand-bar {
             background: linear-gradient(90deg, var(--primary-color) 0%, #2c3e50 100%);
             color: white;
@@ -72,6 +69,7 @@
         .top-brand-bar .brand-sub {
             font-size: 0.85rem;
             opacity: 0.8;
+            color: var(--text-color);
         }
         .top-brand-bar .brand-badge {
             background: var(--accent-color);
@@ -82,14 +80,9 @@
             font-weight: bold;
             text-transform: uppercase;
         }
-        html[dir="ltr"] .top-brand-bar {
-            flex-direction: row-reverse;
-        }
-        html[dir="ltr"] .top-brand-bar .brand-left {
-            flex-direction: row-reverse;
-        }
+        html[dir="ltr"] .top-brand-bar { flex-direction: row-reverse; }
+        html[dir="ltr"] .top-brand-bar .brand-left { flex-direction: row-reverse; }
 
-        /* أزرار التحكم العلوية */
         .top-controls {
             position: fixed;
             top: 60px;
@@ -98,10 +91,8 @@
             display: flex;
             gap: 10px;
         }
-        html[dir="ltr"] .top-controls {
-            left: auto;
-            right: 20px;
-        }
+        html[dir="ltr"] .top-controls { left: auto; right: 20px; }
+        
         .control-btn {
             background-color: var(--accent-color);
             color: white;
@@ -116,12 +107,8 @@
             font-family: 'Tajawal', sans-serif;
             font-size: 0.95rem;
         }
-        .control-btn:hover {
-            transform: scale(1.05);
-            background-color: #2980b9;
-        }
+        .control-btn:hover { transform: scale(1.05); }
 
-        /* الهيدر الرئيسي */
         header {
             position: relative;
             background-size: cover;
@@ -131,7 +118,6 @@
             text-align: center;
             padding: 120px 20px 100px 20px;
             overflow: hidden;
-            transition: background-image 0.5s ease;
         }
         header::before {
             content: '';
@@ -139,7 +125,6 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(26, 37, 47, var(--header-overlay-opacity));
             z-index: 1;
-            transition: background 0.3s ease;
         }
         .header-content {
             position: relative;
@@ -155,29 +140,11 @@
             font-weight: bold;
             letter-spacing: 2px;
         }
-        .header-content h2 {
-            font-size: 2.2rem;
-            margin: 0 0 10px 0;
-            letter-spacing: 1px;
-        }
-        .header-content h1 {
-            font-size: 3rem;
-            margin: 0 0 20px 0;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .header-content p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin: 0 auto 30px auto;
-            max-width: 700px;
-        }
-        .cities-tags {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .header-content h2 { font-size: 2.2rem; margin: 0 0 10px 0; letter-spacing: 1px; }
+        .header-content h1 { font-size: 3rem; margin: 0 0 20px 0; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .header-content p { font-size: 1.25rem; opacity: 0.9; margin: 0 auto 30px auto; max-width: 700px; }
+        
+        .cities-tags { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .city-tag {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -187,16 +154,9 @@
             backdrop-filter: blur(5px);
         }
 
-        .main-content-wrapper {
-            display: flex;
-            flex-direction: column;
-        }
+        .main-content-wrapper { display: flex; flex-direction: column; }
 
-        /* قسم عن الشركة */
-        .about-section {
-            padding: 80px 20px;
-            background-color: var(--bg-light);
-        }
+        .about-section { padding: 80px 20px; background-color: var(--bg-light); }
         .about-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -205,42 +165,27 @@
             gap: 50px;
             align-items: center;
         }
-        @media (max-width: 768px) {
-            .about-container { grid-template-columns: 1fr; gap: 30px; }
-        }
+        @media (max-width: 768px) { .about-container { grid-template-columns: 1fr; gap: 30px; } }
+        
         .about-img {
             width: 100%;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             object-fit: cover;
             height: 380px;
+            border: 2px solid var(--accent-color);
         }
-        .about-content h3 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin: 0 0 10px 0;
-        }
-        .about-content h4 {
-            color: var(--accent-color);
-            font-size: 1.3rem;
-            margin: 0 0 25px 0;
-            font-weight: normal;
-        }
-        .environment-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .about-content h3 { color: var(--primary-color); font-size: 2.2rem; margin: 0 0 10px 0; }
+        .about-content h4 { color: var(--accent-color); font-size: 1.3rem; margin: 0 0 25px 0; font-weight: normal; }
+        
+        .environment-list { list-style: none; padding: 0; margin: 0; }
         .environment-list li {
             position: relative;
             padding-right: 30px;
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
-        html[dir="ltr"] .environment-list li {
-            padding-right: 0;
-            padding-left: 30px;
-        }
+        html[dir="ltr"] .environment-list li { padding-right: 0; padding-left: 30px; }
         .environment-list li::before {
             content: '✦';
             position: absolute;
@@ -249,30 +194,13 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
-        html[dir="ltr"] .environment-list li::before {
-            right: auto;
-            left: 0;
-        }
+        html[dir="ltr"] .environment-list li::before { right: auto; left: 0; }
 
-        /* قسم الوظائف */
-        .jobs-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin: 0 0 10px 0;
-        }
-        .section-title p {
-            color: #666;
-            font-size: 1.1rem;
-        }
+        .jobs-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin: 0 0 10px 0; }
+        .section-title p { color: var(--text-color); opacity: 0.8; font-size: 1.1rem; }
+        
         .jobs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -281,34 +209,41 @@
         .job-card {
             background: white;
             border-radius: 12px;
-            padding: 30px;
+            overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-right: 5px solid var(--accent-color);
+            border: 2px solid var(--accent-color);
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        html[dir="ltr"] .job-card {
-            border-right: none;
-            border-left: 5px solid var(--accent-color);
+        .job-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+        
+        .job-card-img-wrapper {
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background: #eee;
+            border-bottom: 2px solid var(--accent-color);
         }
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        .job-card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
-        .job-card h3 {
-            margin: 0 0 15px 0;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-        }
-        .job-card p {
-            color: #555;
-            font-size: 1.05rem;
-            margin: 0 0 25px 0;
-            white-space: pre-line;
+        .job-card:hover .job-card-img-wrapper img { transform: scale(1.05); }
+
+        .job-card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
             flex-grow: 1;
+            justify-content: space-between;
         }
+        .job-card h3 { margin: 0 0 15px 0; color: var(--primary-color); font-size: 1.4rem; }
+        .job-card p { color: var(--text-color); font-size: 1.05rem; margin: 0 0 25px 0; white-space: pre-line; flex-grow: 1; }
+        
         .btn-apply {
             display: block;
             text-align: center;
@@ -324,11 +259,8 @@
             font-family: 'Tajawal', sans-serif;
             font-size: 1rem;
         }
-        .btn-apply:hover {
-            background-color: var(--accent-color);
-        }
+        .btn-apply:hover { background-color: var(--accent-color); }
 
-        /* لوحة التحكم المدمجة */
         .admin-panel {
             display: none;
             background: #fff;
@@ -347,10 +279,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .admin-header h2 {
-            margin: 0;
-            color: var(--primary-color);
-        }
+        .admin-header h2 { margin: 0; color: var(--primary-color); }
         .admin-section-title {
             background: var(--primary-color);
             color: white;
@@ -366,14 +295,8 @@
         }
         @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
         
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #444;
-            margin-top: 10px;
-        }
-        input[type="text"], input[type="number"], input[type="range"], select, textarea {
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #444; margin-top: 10px; }
+        input[type="text"], input[type="number"], input[type="range"], input[type="color"], select, textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -382,14 +305,11 @@
             font-family: 'Tajawal', sans-serif;
             font-size: 1rem;
         }
-        input:focus, textarea:focus, select:focus {
-            border-color: var(--accent-color);
-            outline: none;
-        }
+        input:focus, textarea:focus, select:focus { border-color: var(--accent-color); outline: none; }
         
         .admin-job-item {
             background: #f9f9f9;
-            border: 1px dashed #ccc;
+            border: 1px dashed var(--accent-color);
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
@@ -407,61 +327,28 @@
         }
         html[dir="ltr"] .btn-delete-job { float: right; }
 
-        .admin-actions {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-        }
+        .admin-actions { margin-top: 30px; display: flex; gap: 15px; }
         .btn-save { background-color: var(--success-color); color: white; flex: 2; font-size: 1.2rem; }
         .btn-add-job { background-color: #2980b9; color: white; flex: 1; }
 
-        /* ===================== FOOTER ===================== */
         footer {
             background: linear-gradient(180deg, var(--primary-color) 0%, #0f161c 100%);
-            color: #aaa;
+            color: #ccc;
             text-align: center;
             padding: 50px 20px 30px 20px;
             font-size: 0.95rem;
             border-top: 4px solid var(--accent-color);
         }
-        .footer-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            font-family: 'Arial', sans-serif;
-        }
-        .footer-tagline {
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 20px;
-        }
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--accent-color);
-            margin: 0 auto 20px auto;
-            border-radius: 2px;
-        }
-        .footer-main {
-            color: #ccc;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        .secret-lock {
-            cursor: pointer;
-            opacity: 0.3;
-            margin-right: 8px;
-            transition: opacity 0.2s;
-            user-select: none;
-        }
+        .footer-brand { font-size: 1.5rem; font-weight: bold; color: var(--accent-color); margin-bottom: 10px; letter-spacing: 1px; font-family: 'Arial', sans-serif; }
+        .footer-tagline { font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px; }
+        .footer-divider { width: 60px; height: 2px; background: var(--accent-color); margin: 0 auto 20px auto; border-radius: 2px; }
+        .footer-main { margin-bottom: 15px; line-height: 1.8; }
+        .secret-lock { cursor: pointer; opacity: 0.3; margin-right: 8px; transition: opacity 0.2s; user-select: none; }
         .secret-lock:hover { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <!-- ===================== TOP BRAND BAR ===================== -->
     <div class="top-brand-bar" id="topBrandBar">
         <div class="brand-left">
             <span class="brand-logo" id="brandName">MD Recruitment</span>
@@ -521,7 +408,22 @@
             </div>
         </div>
 
-        <div class="admin-section-title">🎨 التحكم في المظهر والصور والترتيب</div>
+        <div class="admin-section-title">🎨 تخصيص الألوان الكاملة للموقع</div>
+        <div class="admin-grid">
+            <div>
+                <label>اللون الأساسي (Primary Color - الهيدر والخلفيات الرئيسية):</label>
+                <input type="color" id="input_color_primary" value="#1a252f">
+                
+                <label>لون الكتابات والنصوص (Text Color):</label>
+                <input type="color" id="input_color_text" value="#333333">
+            </div>
+            <div>
+                <label>لون الإطارات والخطوط البارزة (Accent / Border Color):</label>
+                <input type="color" id="input_color_accent" value="#3498db">
+            </div>
+        </div>
+
+        <div class="admin-section-title">🖼️ التحكم في الصور والترتيب العام</div>
         <div class="admin-grid">
             <div>
                 <label>رابط صورة الخلفية للهيدر الرئيسي:</label>
@@ -581,7 +483,8 @@
             </div>
         </div>
 
-        <div class="admin-section-title">💼 إدارة الإعلانات والوظائف الحالية</div>
+        <div class="admin-section-title">💼 إدارة الوظائف وصورها وترتيب ظهورها</div>
+        <p style="font-size: 0.9rem; color: #666;">* يمكنك إضافة رابط صورة خاصة بكل وظيفة تمثل طبيعة العمل فيها، وتحديد رقم الترتيب.</p>
         <div id="adminJobsList"></div>
         
         <div class="admin-actions">
@@ -630,6 +533,9 @@
 
         const defaultData = {
             admin_password: "1425",
+            color_primary: "#1a252f",
+            color_accent: "#3498db",
+            color_text: "#333333",
             img_header_url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084",
             img_about_url: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
             header_opacity: 0.80,
@@ -675,8 +581,13 @@
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('footerYear').innerText = new Date().getFullYear();
 
+            const rootStyle = document.documentElement.style;
+            rootStyle.setProperty('--primary-color', siteData.color_primary || defaultData.color_primary);
+            rootStyle.setProperty('--accent-color', siteData.color_accent || defaultData.color_accent);
+            rootStyle.setProperty('--text-color', siteData.color_text || defaultData.color_text);
+
             const opacityVal = siteData.header_opacity !== undefined ? siteData.header_opacity : defaultData.header_opacity;
-            document.documentElement.style.setProperty('--header-overlay-opacity', opacityVal);
+            rootStyle.setProperty('--header-overlay-opacity', opacityVal);
 
             const orderAbout = siteData.order_about !== undefined ? siteData.order_about : defaultData.order_about;
             const orderJobs = siteData.order_jobs !== undefined ? siteData.order_jobs : defaultData.order_jobs;
@@ -719,20 +630,29 @@
             document.getElementById('footerMain').innerHTML = `&copy; <span id="footerYear">${new Date().getFullYear()}</span> — ${sanitizeHTML(footerMainText)} <span class="secret-lock" onclick="handleSecretClick()">🔒</span>`;
 
             const jobsContainer = document.getElementById('jobsContainer');
-            const jobsList = siteData.jobs || defaultData.jobs;
+            let jobsList = [...(siteData.jobs || defaultData.jobs)];
+            
+            jobsList.sort((a, b) => (parseInt(a.order) || 0) - (parseInt(b.order) || 0));
             
             jobsContainer.innerHTML = jobsList.map(job => {
                 const title = sanitizeHTML(currentLang === 'ar' ? (job.ar_title || '') : (job.en_title || ''));
                 const desc = sanitizeHTML(currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || ''));
                 const formUrl = job.form_url || '#';
+                const jobImg = job.job_img || 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000';
                 const btnText = currentLang === 'ar' ? 'التقديم لهذه الوظيفة' : 'Apply Now';
+                
                 return `
                 <div class="job-card">
-                    <div>
-                        <h3>${title}</h3>
-                        <p>${desc}</p>
+                    <div class="job-card-img-wrapper">
+                        <img src="${sanitizeHTML(jobImg)}" alt="${title}">
                     </div>
-                    <a href="${sanitizeHTML(formUrl)}" target="_blank" rel="noopener noreferrer" class="btn-apply">${btnText}</a>
+                    <div class="job-card-body">
+                        <div>
+                            <h3>${title}</h3>
+                            <p>${desc}</p>
+                        </div>
+                        <a href="${sanitizeHTML(formUrl)}" target="_blank" rel="noopener noreferrer" class="btn-apply">${btnText}</a>
+                    </div>
                 </div>
                 `;
             }).join('');
@@ -761,6 +681,9 @@
 
         function loadPanelInputs() {
             document.getElementById('input_admin_password').value = siteData.admin_password || defaultData.admin_password;
+            document.getElementById('input_color_primary').value = siteData.color_primary || defaultData.color_primary;
+            document.getElementById('input_color_accent').value = siteData.color_accent || defaultData.color_accent;
+            document.getElementById('input_color_text').value = siteData.color_text || defaultData.color_text;
             document.getElementById('input_img_header_url').value = siteData.img_header_url || defaultData.img_header_url;
             document.getElementById('input_img_about_url').value = siteData.img_about_url || defaultData.img_about_url;
             document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.8;
@@ -803,6 +726,17 @@
                     <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
                     <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 وظيفة رقم #${index + 1}</h4>
                     
+                    <div class="admin-grid" style="margin-bottom:10px;">
+                        <div>
+                            <label>رقم ترتيب ظهور الوظيفة بالموقع:</label>
+                            <input type="number" class="job-order" value="${job.order !== undefined ? job.order : (index + 1)}">
+                        </div>
+                        <div>
+                            <label>رابط صورة توضيحية تمثل الوظيفة:</label>
+                            <input type="text" class="job-img" value="${sanitizeHTML(job.job_img || '')}" placeholder="ضع رابط الصورة هنا">
+                        </div>
+                    </div>
+
                     <div class="admin-grid" style="margin-top:10px;">
                         <div>
                             <label>المسمى الوظيفي (العربية):</label>
@@ -826,7 +760,8 @@
         window.addNewJobField = function() {
             syncJobsFromDOM();
             if (!siteData.jobs) siteData.jobs = [];
-            siteData.jobs.push({ ar_title: '', en_title: '', ar_tasks: '', en_tasks: '', form_url: '' });
+            const nextOrder = siteData.jobs.length + 1;
+            siteData.jobs.push({ order: nextOrder, job_img: '', ar_title: '', en_title: '', ar_tasks: '', en_tasks: '', form_url: '' });
             renderAdminJobs();
         }
 
@@ -843,6 +778,8 @@
             const updatedJobs = [];
             jobItems.forEach((item) => {
                 updatedJobs.push({
+                    order: parseInt(item.querySelector('.job-order').value) || 1,
+                    job_img: item.querySelector('.job-img').value,
                     ar_title: item.querySelector('.job-ar-title').value,
                     ar_tasks: item.querySelector('.job-ar-tasks').value,
                     en_title: item.querySelector('.job-en-title').value,
@@ -863,6 +800,9 @@
                 }
                 
                 siteData.admin_password = newPassword;
+                siteData.color_primary = document.getElementById('input_color_primary').value;
+                siteData.color_accent = document.getElementById('input_color_accent').value;
+                siteData.color_text = document.getElementById('input_color_text').value;
                 siteData.img_header_url = document.getElementById('input_img_header_url').value;
                 siteData.img_about_url = document.getElementById('input_img_about_url').value;
                 siteData.header_opacity = parseFloat(document.getElementById('input_header_opacity').value);
@@ -894,7 +834,7 @@
                 siteData.en_footerTagline = document.getElementById('input_en_footerTagline').value;
 
                 await setDoc(docRef, siteData);
-                alert("✅ تم الحفظ والاعتماد بنجاح! هويتك الجديدة محفوظة الآن.");
+                alert("✅ تم الحفظ والاعتماد بنجاح! تم تحديث الصور والترتيب والألوان وتطبيقها فوراً.");
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 console.error(error);
