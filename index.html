@@ -1,47 +1,34 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <!-- ===================== SECURITY HEADERS (WAF) ===================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), midi=()">
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self' 'unsafe-inline' https://www.gstatic.com https://fonts.googleapis.com;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-        img-src 'self' https://images.unsplash.com data: blob: *;
-        font-src 'self' https://fonts.gstatic.com;
-        connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://identitytoolkit.googleapis.com;
-        frame-src 'none';
-        frame-ancestors 'none';
-        base-uri 'self';
-        form-action 'self';
-        upgrade-insecure-requests;
-    ">
-    <meta name="description" content="Mayyar United Recruitment Portal - MD Careers. Official recruitment gateway for hospitality, catering & support services. Managed by Majed Al-Dajani.">
-    <meta name="keywords" content="Mayyar United, MD Recruitment, Majed Al-Dajani, Hospitality Jobs, Catering Careers, Saudi Arabia">
-    <meta name="author" content="Majed Al-Dajani - MD Recruitment">
-    <meta name="robots" content="index, follow">
-    <!-- ===================== END SECURITY HEADERS ===================== -->
-
-    <title id="siteHtmlTitle">Mayyar United | MD Recruitment Portal</title>
+    
+    <!-- ===================== SEO & LINK PREVIEW METADATA ===================== -->
+    <meta name="description" content="MD Recruitment Portal. Official recruitment gateway for professional talents.">
+    <meta name="keywords" content="MD Recruitment, Jobs, Careers, Hiring, Saudi Arabia">
+    <meta name="author" content="MD Recruitment">
+    
+    <!-- أكواد مخصصة لتجميل شكل الرابط عند إرساله في الواتساب وغيرها -->
+    <meta property="og:title" content="MD Recruitment Portal">
+    <meta property="og:description" content="بوابة التوظيف الرسمية لاستقطاب الكفاءات - Official Recruitment Gateway">
+    <meta property="og:type" content="website">
+    
+    <title id="siteHtmlTitle">MD Recruitment</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-color: #1a252f;
-            --accent-color: #b59410;
+            --accent-color: #3498db; /* لون أزرق احترافي بدلاً من الذهبي */
             --text-color: #333;
             --bg-light: #f8f9fa;
             --success-color: #27ae60;
             --danger-color: #e74c3c;
             --header-overlay-opacity: 0.75;
-            --mayyar-gold: #d4af37;
         }
         
         body {
@@ -76,10 +63,11 @@
             gap: 12px;
         }
         .top-brand-bar .brand-logo {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--accent-color);
             letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
         }
         .top-brand-bar .brand-sub {
             font-size: 0.85rem;
@@ -87,7 +75,7 @@
         }
         .top-brand-bar .brand-badge {
             background: var(--accent-color);
-            color: var(--primary-color);
+            color: white;
             padding: 4px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -130,7 +118,7 @@
         }
         .control-btn:hover {
             transform: scale(1.05);
-            background-color: #94790d;
+            background-color: #2980b9;
         }
 
         /* الهيدر الرئيسي */
@@ -160,15 +148,14 @@
             margin: 0 auto;
         }
         .header-content .company-brand {
-            font-family: 'Caveat', cursive;
+            font-family: 'Arial', sans-serif;
             color: var(--accent-color);
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin: 0 0 5px 0;
+            font-weight: bold;
             letter-spacing: 2px;
         }
         .header-content h2 {
-            font-family: 'Caveat', cursive;
-            color: var(--accent-color);
             font-size: 2.2rem;
             margin: 0 0 10px 0;
             letter-spacing: 1px;
@@ -398,7 +385,6 @@
         input:focus, textarea:focus, select:focus {
             border-color: var(--accent-color);
             outline: none;
-            box-shadow: 0 0 5px rgba(181, 148, 16, 0.3);
         }
         
         .admin-job-item {
@@ -407,7 +393,6 @@
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
-            position: relative;
         }
         .btn-delete-job {
             background: var(--danger-color);
@@ -438,14 +423,14 @@
             padding: 50px 20px 30px 20px;
             font-size: 0.95rem;
             border-top: 4px solid var(--accent-color);
-            position: relative;
         }
         .footer-brand {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: bold;
             color: var(--accent-color);
             margin-bottom: 10px;
             letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
         }
         .footer-tagline {
             font-size: 0.9rem;
@@ -464,87 +449,25 @@
             margin-bottom: 15px;
             line-height: 1.8;
         }
-        .footer-signature {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .footer-signature .sig-name {
-            font-family: 'Caveat', cursive;
-            font-size: 1.6rem;
-            color: var(--accent-color);
-            letter-spacing: 2px;
-        }
-        .footer-signature .sig-title {
-            font-size: 0.8rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 5px;
-        }
         .secret-lock {
             cursor: pointer;
-            opacity: 0.4;
+            opacity: 0.3;
             margin-right: 8px;
             transition: opacity 0.2s;
             user-select: none;
         }
         .secret-lock:hover { opacity: 1; }
-        .security-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(39, 174, 96, 0.15);
-            color: var(--success-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 15px;
-            border: 1px solid rgba(39, 174, 96, 0.3);
-        }
-
-        /* ===================== SECURITY OVERLAY ===================== */
-        .security-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 99999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .security-overlay.active { display: flex; }
-        .security-overlay h3 {
-            color: var(--danger-color);
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        .security-overlay p {
-            max-width: 500px;
-            line-height: 1.8;
-            opacity: 0.9;
-        }
     </style>
 </head>
 <body>
 
-    <!-- ===================== SECURITY OVERLAY ===================== -->
-    <div class="security-overlay" id="securityOverlay">
-        <h3>🛡️ Security Alert</h3>
-        <p>Suspicious activity detected. Your session has been blocked for security reasons.</p>
-    </div>
-
     <!-- ===================== TOP BRAND BAR ===================== -->
     <div class="top-brand-bar" id="topBrandBar">
         <div class="brand-left">
-            <span class="brand-logo" id="brandName">Mayyar United</span>
-            <span class="brand-sub" id="brandSub">Mayyar United Support Services</span>
+            <span class="brand-logo" id="brandName">MD Recruitment</span>
+            <span class="brand-sub" id="brandSub">Professional Talent Acquisition</span>
         </div>
-        <span class="brand-badge" id="brandBadge">MD Recruitment</span>
+        <span class="brand-badge" id="brandBadge">Hiring Portal</span>
     </div>
 
     <div class="top-controls">
@@ -553,7 +476,7 @@
 
     <header id="mainHeader">
         <div class="header-content">
-            <div class="company-brand" id="headerCompanyBrand">Mayyar United</div>
+            <div class="company-brand" id="headerCompanyBrand">MD Recruitment</div>
             <h2 id="heroSub"></h2>
             <h1 id="heroMain"></h1>
             <p id="heroDesc"></p>
@@ -575,10 +498,10 @@
 
         <section class="jobs-section" id="jobsSection">
             <div class="section-title">
-                <h2 class="ar-only">الفرص الوظيفية الحالية بمشاريع الضيافة</h2>
-                <h2 class="en-only">Current Hospitality Project Careers</h2>
-                <p class="ar-only">كن جزءاً من قصة نجاح مشاريعنا في أرقى الفنادق والمشاريع السياحية بالمملكة</p>
-                <p class="en-only">Be part of our success story across premium hospitality projects</p>
+                <h2 class="ar-only">الفرص الوظيفية الحالية</h2>
+                <h2 class="en-only">Current Available Careers</h2>
+                <p class="ar-only">كن جزءاً من قصة نجاح مشاريعنا وانضم إلى أفضل بيئات العمل</p>
+                <p class="en-only">Be part of our success story and join top work environments</p>
             </div>
             <div class="jobs-grid" id="jobsContainer"></div>
         </section>
@@ -590,13 +513,11 @@
             <button class="control-btn" style="background:#7f8c8d" onclick="document.getElementById('adminPanel').style.display='none'">إغلاق اللوحة</button>
         </div>
         
-        <!-- قسم الأمان الجديد الذي يسمح بتغيير الرقم السري من الموقع -->
         <div class="admin-section-title">🔒 إدارة الأمان وحساب الدخول</div>
         <div class="admin-grid">
             <div>
                 <label>الرقم السري الحالي / الجديد للدخول إلى لوحة التحكم:</label>
-                <input type="text" id="input_admin_password" style="border-color: var(--danger-color); font-weight: bold;" placeholder="أدخل الرقم السري المرغوب هنا">
-                <small style="color: #666; display: block; margin-top: 5px;">* عند تغييرك لهذا الرقم والضغط على "حفظ"، سيصبح هذا هو الرقم المطلوب عند الضغط على القفل في المرات القادمة.</small>
+                <input type="text" id="input_admin_password" style="border-color: var(--danger-color); font-weight: bold;">
             </div>
         </div>
 
@@ -611,7 +532,7 @@
             <div>
                 <label>رابط الصورة لقسم "عن المشاريع":</label>
                 <input type="text" id="input_img_about_url" placeholder="ضع رابط الصورة هنا">
-                <label>ترتيب قسم "عن المشاريع" (1 أو 2):</label>
+                <label>ترتيب قسم "التعريف" (1 أو 2):</label>
                 <input type="number" id="input_order_about" min="1" max="2">
                 <label>ترتيب قسم "الوظائف المتاحة" (1 أو 2):</label>
                 <input type="number" id="input_order_jobs" min="1" max="2">
@@ -646,7 +567,7 @@
             </div>
         </div>
 
-        <div class="admin-section-title">📝 إدارة نصوص الهيدر والفوتر</div>
+        <div class="admin-section-title">📝 إدارة نصوص الفوتر</div>
         <div class="admin-grid">
             <div>
                 <strong style="color:var(--accent-color)">النسخة العربية</strong>
@@ -660,7 +581,7 @@
             </div>
         </div>
 
-        <div class="admin-section-title">💼 إدارة الإعلانات والروابط الحية لكل وظيفة على حدة</div>
+        <div class="admin-section-title">💼 إدارة الإعلانات والوظائف الحالية</div>
         <div id="adminJobsList"></div>
         
         <div class="admin-actions">
@@ -670,24 +591,16 @@
     </div>
 
     <footer>
-        <div class="footer-brand" id="footerBrand">Mayyar United</div>
-        <div class="footer-tagline" id="footerTagline">Mayyar United Support Services</div>
+        <div class="footer-brand" id="footerBrand">MD Recruitment</div>
+        <div class="footer-tagline" id="footerTagline">Professional Talent Acquisition</div>
         <div class="footer-divider"></div>
         <p class="footer-main" id="footerMain">
-            <span id="footerYear"></span> — MD Recruitment Portal. All rights reserved for the exclusive recruitment entity.
+            <span id="footerYear"></span> — MD Recruitment Portal. All rights reserved.
             <span class="secret-lock" onclick="handleSecretClick()">🔒</span>
         </p>
-        <div class="security-badge">
-            <span>🔒</span> Protected by Cloudflare WAF & Internal Firewall
-        </div>
-        <div class="footer-signature">
-            <div class="sig-name">Majed Al-Dajani</div>
-            <div class="sig-title">MD Recruitment — Mayyar United</div>
-        </div>
     </footer>
 
     <script type="module">
-        // ===================== FIREBASE SDK =====================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -707,135 +620,56 @@
 
         let siteData = {};
         let currentLang = localStorage.getItem('site_lang') || 'ar';
-        let suspiciousAttempts = 0;
 
-        // ===================== SECURITY / WAF FUNCTIONS =====================
-        
         function sanitizeHTML(str) {
             if (!str || typeof str !== 'string') return '';
             const temp = document.createElement('div');
             temp.textContent = str;
-            return temp.innerHTML
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#x27;');
+            return temp.innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
-        function validateInput(value) {
-            if (!value || typeof value !== 'string') return true;
-            const dangerousPatterns = [
-                /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-                /javascript:/gi,
-                /on\w+\s*=/gi,
-                /data:text\/html/gi,
-                /eval\s*\(/gi,
-                /expression\s*\(/gi
-            ];
-            return !dangerousPatterns.some(pattern => pattern.test(value));
-        }
-
-        function antiClickjack() {
-            if (window.top !== window.self) {
-                document.body.innerHTML = '<h1 style="text-align:center;padding:50px;">🛡️ This site cannot be displayed in an iframe for security reasons.</h1>';
-                throw new Error('Clickjacking attempt blocked');
-            }
-        }
-
-        function monitorSuspiciousActivity() {
-            const suspiciousKeys = ['<script', 'javascript:', 'onerror=', 'onload=', 'eval(', 'document.cookie'];
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-                    console.log('Dev tools shortcut detected');
-                }
-            });
-        }
-
-        const rateLimit = {
-            attempts: {},
-            check: function(key, maxAttempts = 5, windowMs = 60000) {
-                const now = Date.now();
-                if (!this.attempts[key]) this.attempts[key] = [];
-                this.attempts[key] = this.attempts[key].filter(t => now - t < windowMs);
-                if (this.attempts[key].length >= maxAttempts) return false;
-                this.attempts[key].push(now);
-                return true;
-            }
-        };
-
-        function isSafeURL(url) {
-            if (!url) return false;
-            try {
-                // للسماح بجميع الروابط الخاصة بالصور بما فيها التي من مواقع عامة مثل جوجل وغيرها
-                if(url.startsWith('http')) return true; 
-                const parsed = new URL(url, window.location.href);
-                const allowedProtocols = ['http:', 'https:', 'mailto:'];
-                if (!allowedProtocols.includes(parsed.protocol)) return false;
-                return true;
-            } catch (e) {
-                return false;
-            }
-        }
-
-        antiClickjack();
-        monitorSuspiciousActivity();
-
-        // ===================== DEFAULT DATA =====================
         const defaultData = {
-            admin_password: "1425", // الرقم السري الافتراضي للنظام
-            img_header_url: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070",
-            img_about_url: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=2070",
-            header_opacity: 0.75,
+            admin_password: "1425",
+            img_header_url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084",
+            img_about_url: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
+            header_opacity: 0.80,
             order_about: 1,
             order_jobs: 2,
-            ar_brandName: "اتحاد ميار",
-            en_brandName: "Mayyar United",
-            ar_brandSub: "للخدمات المساندة والضيافة",
-            en_brandSub: "Support Services & Hospitality",
-            ar_heroSub: "بوابة التوظيف الرسمية لقطاع الضيافة والتموين والخدمات المساندة",
-            en_heroSub: "Official Recruitment Portal for Hospitality, Catering & Support Services",
-            ar_heroMain: "منصة التوظيف الفندقية | MD Recruitment",
-            en_heroMain: "Hospitality Recruitment Portal | MD Recruitment",
-            ar_heroDesc: "نفتح لك أبواب المستقبل للانضمام إلى رواد قطاع التموين والضيافة الفاخرة في المملكة. نسعى لبناء مجتمع عمل متميز وتطوير بيئة الإنتاج عبر استقطاب أفضل الكفاءات الطموحة وتطبيق أعلى معايير الجودة الدولية.",
-            en_heroDesc: "We open the doors to the future for you to join the industry leaders in catering and luxury hospitality in Saudi Arabia. We aim to build an outstanding corporate community by attracting top talents and applying global quality standards.",
-            ar_heroCities: "مكة المكرمة ، جدة ، أبها ، جازان",
-            en_heroCities: "Makkah , Jeddah , Abha , Jazan",
-            ar_aboutTitle: "رؤيتنا في ريادة خدمات الضيافة والتموين بالمملكة",
-            en_aboutTitle: "Our Vision in Leading Hospitality & Support Services",
-            ar_aboutSubtitle: "لماذا تختار الانضمام إلى فريقنا المتميز؟",
-            en_aboutSubtitle: "Why choose to join our outstanding team?",
-            ar_aboutTxt: "تطبيق أعلى معايير الجودة والسلامة الغذائية العالمية\nبيئة عمل محفزة تدعم التطوير المهني والتدريب المستمر\nمزايا وظيفية تنافسية ومكافآت للمتميزين\nتأمين طبي شامل للموظفين وعائلاتهم",
-            en_aboutTxt: "Applying the highest international food safety and quality standards\nAn inspiring work environment supporting career growth and ongoing training\nCompetitive job benefits and rewards for outstanding performance\nComprehensive medical insurance for employees and families",
-            ar_footerMain: "جميع الحقوق محفوظة لـ اتحاد ميار للخدمات المساندة — بوابة التوظيف الحصرية MD Recruitment",
-            en_footerMain: "All rights reserved for Mayyar United Support Services — MD Recruitment Exclusive Portal",
-            ar_footerTagline: "خدمات الضيافة والتموين والدعم اللوجستي بأعلى معايير الجودة",
-            en_footerTagline: "Hospitality, catering & logistics support with highest quality standards",
-            jobs: [
-                {
-                    ar_title: "مدير مشروع ضيافة (فنادق ومطاعم)",
-                    en_title: "Hospitality Project Manager (Hotels & Restaurants)",
-                    ar_tasks: "المهام والوصف:\n• قيادة وإدارة العمليات التشغيلية اليومية للمشروع الفندقي والغذائي الفخم لضمان تطبيق معايير فئة الـ 5 نجوم.\n• الإشراف المباشر على جودة تقديم الأطعمة والمشروبات وتجارب الضيوف والنزلاء.\n• متابعة الميزانيات التشغيلية وتقليل الهدر مع قيادة وتدريب الكوادر البشرية.\n💡 ما يميزنا: رواتب أساسية ضخمة وبدلات سكن وانتقال متميزة، وحوافز ربع سنوية مرتبطة بمعدل رضا الضيوف.",
-                    en_tasks: "Tasks & Description:\n• Leading daily operational aspects of luxury hotel and F&B projects ensuring 5-star service delivery.\n• Supervising catering quality, guest relations, and culinary standards.\n• Monitoring operational budgets, minimizing wastage, and training staff.\n💡 Incentives: High basic salary, premium housing & transportation allowances, and lucrative quarterly bonuses based on guest satisfaction scores.",
-                    form_url: "https://forms.gle/HuVr5ZonvfuSuf3i7"
-                }
-            ]
+            ar_brandName: "MD Recruitment",
+            en_brandName: "MD Recruitment",
+            ar_brandSub: "لخدمات التوظيف واستقطاب الكفاءات",
+            en_brandSub: "Professional Talent Acquisition",
+            ar_heroSub: "بوابة التوظيف الرسمية",
+            en_heroSub: "Official Recruitment Portal",
+            ar_heroMain: "منصة التوظيف | MD Recruitment",
+            en_heroMain: "Careers Portal | MD Recruitment",
+            ar_heroDesc: "نفتح لك أبواب المستقبل للانضمام إلى أفضل بيئات العمل. نسعى لبناء مجتمع مهني متميز عبر استقطاب وتطوير الكفاءات الطموحة.",
+            en_heroDesc: "We open the doors to the future for you to join the best work environments. We aim to build an outstanding professional community by attracting ambitious talents.",
+            ar_heroCities: "الرياض ، جدة ، الدمام",
+            en_heroCities: "Riyadh , Jeddah , Dammam",
+            ar_aboutTitle: "رؤيتنا في ريادة التوظيف",
+            en_aboutTitle: "Our Vision in Recruitment",
+            ar_aboutSubtitle: "لماذا تختار التقديم عبر منصتنا؟",
+            en_aboutSubtitle: "Why apply through our portal?",
+            ar_aboutTxt: "تطبيق أعلى معايير الشفافية والمهنية\nبيئة عمل محفزة تدعم التطوير المهني والتدريب\nمزايا وظيفية تنافسية\nتواصل مباشر وسريع مع المرشحين",
+            en_aboutTxt: "Applying the highest standards of transparency and professionalism\nAn inspiring work environment supporting career growth\nCompetitive job benefits\nDirect and fast communication with candidates",
+            ar_footerMain: "جميع الحقوق محفوظة — منصة التوظيف MD Recruitment",
+            en_footerMain: "All rights reserved — MD Recruitment Careers Portal",
+            ar_footerTagline: "خدمات التوظيف والاستقطاب بأعلى المعايير",
+            en_footerTagline: "Talent acquisition with the highest standards",
+            jobs: []
         };
 
-        // ===================== FIREBASE LISTENER =====================
         onSnapshot(docRef, (snapshot) => {
             if (snapshot.exists()) {
                 siteData = snapshot.data();
-                if (!siteData.jobs || siteData.jobs.length === 0) {
-                    siteData.jobs = JSON.parse(JSON.stringify(defaultData.jobs));
-                }
+                if (!siteData.jobs) siteData.jobs = [];
             } else {
                 siteData = JSON.parse(JSON.stringify(defaultData));
             }
             renderInterface();
         });
 
-        // ===================== RENDER INTERFACE =====================
         function renderInterface() {
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -882,7 +716,7 @@
             document.getElementById('footerTagline').innerText = currentLang === 'ar' ? (siteData.ar_footerTagline || defaultData.ar_footerTagline) : (siteData.en_footerTagline || defaultData.en_footerTagline);
             
             const footerMainText = currentLang === 'ar' ? (siteData.ar_footerMain || defaultData.ar_footerMain) : (siteData.en_footerMain || defaultData.en_footerMain);
-            document.getElementById('footerMain').innerHTML = `&copy; <span id="footerYear">${new Date().getFullYear()}</span> — ${sanitizeHTML(footerMainText)}<span class="secret-lock" onclick="handleSecretClick()">🔒</span>`;
+            document.getElementById('footerMain').innerHTML = `&copy; <span id="footerYear">${new Date().getFullYear()}</span> — ${sanitizeHTML(footerMainText)} <span class="secret-lock" onclick="handleSecretClick()">🔒</span>`;
 
             const jobsContainer = document.getElementById('jobsContainer');
             const jobsList = siteData.jobs || defaultData.jobs;
@@ -890,49 +724,30 @@
             jobsContainer.innerHTML = jobsList.map(job => {
                 const title = sanitizeHTML(currentLang === 'ar' ? (job.ar_title || '') : (job.en_title || ''));
                 const desc = sanitizeHTML(currentLang === 'ar' ? (job.ar_tasks || '') : (job.en_tasks || ''));
-                const formUrl = job.form_url ? job.form_url : 'https://forms.gle/HuVr5ZonvfuSuf3i7';
-                const btnText = currentLang === 'ar' ? 'التقديم الفوري للمنصب' : 'Apply For Position';
+                const formUrl = job.form_url || '#';
+                const btnText = currentLang === 'ar' ? 'التقديم لهذه الوظيفة' : 'Apply Now';
                 return `
                 <div class="job-card">
                     <div>
                         <h3>${title}</h3>
                         <p>${desc}</p>
                     </div>
-                    <a href="${sanitizeHTML(formUrl)}" target="_blank" rel="noopener noreferrer" class="btn-apply">
-                        ${btnText}
-                    </a>
+                    <a href="${sanitizeHTML(formUrl)}" target="_blank" rel="noopener noreferrer" class="btn-apply">${btnText}</a>
                 </div>
                 `;
             }).join('');
         }
 
-        // ===================== LANGUAGE TOGGLE =====================
         window.toggleLanguage = function() {
             currentLang = (currentLang === 'ar') ? 'en' : 'ar';
             localStorage.setItem('site_lang', currentLang);
             renderInterface();
-            if(document.getElementById('adminPanel').style.display === 'block') {
-                loadPanelInputs();
-            }
+            if(document.getElementById('adminPanel').style.display === 'block') loadPanelInputs();
         }
 
-        // ===================== ADMIN ACCESS (تم التحديث) =====================
         window.handleSecretClick = function() {
-            if (!rateLimit.check('admin_access', 5, 60000)) {
-                alert('❌ تجاوزت الحد المسموح من المحاولات. الرجاء الانتظار دقيقة.');
-                return;
-            }
-            let pass = prompt("🛡️ أدخل الرقم السري لفتح خيارات الإدارة والتحديث:");
+            let pass = prompt("🔒 الرجاء إدخال الرقم السري لإدارة المنصة:");
             if (pass === null) return;
-            
-            if (!validateInput(pass)) {
-                suspiciousAttempts++;
-                alert('❌ مدخلات غير صالحة.');
-                if (suspiciousAttempts >= 3) document.getElementById('securityOverlay').classList.add('active');
-                return;
-            }
-            
-            // قراءة الرقم السري الديناميكي من قاعدة البيانات بدلاً من الكود الثابت
             const correctPassword = siteData.admin_password || defaultData.admin_password;
 
             if (pass === correctPassword) {
@@ -940,26 +755,15 @@
                 document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
                 loadPanelInputs();
             } else {
-                suspiciousAttempts++;
-                alert("❌ عذراً، الرقم السري غير صحيح!");
-                if (suspiciousAttempts >= 3) {
-                    document.getElementById('securityOverlay').classList.add('active');
-                    setTimeout(() => {
-                        document.getElementById('securityOverlay').classList.remove('active');
-                        suspiciousAttempts = 0;
-                    }, 30000);
-                }
+                alert("❌ الرقم السري غير صحيح!");
             }
         }
 
-        // ===================== ADMIN PANEL LOAD =====================
         function loadPanelInputs() {
-            // تحميل الرقم السري وعرضه
             document.getElementById('input_admin_password').value = siteData.admin_password || defaultData.admin_password;
-            
             document.getElementById('input_img_header_url').value = siteData.img_header_url || defaultData.img_header_url;
             document.getElementById('input_img_about_url').value = siteData.img_about_url || defaultData.img_about_url;
-            document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.75;
+            document.getElementById('input_header_opacity').value = siteData.header_opacity !== undefined ? siteData.header_opacity : 0.8;
             document.getElementById('input_order_about').value = siteData.order_about !== undefined ? siteData.order_about : 1;
             document.getElementById('input_order_jobs').value = siteData.order_jobs !== undefined ? siteData.order_jobs : 2;
             
@@ -992,12 +796,12 @@
 
         function renderAdminJobs() {
             const listContainer = document.getElementById('adminJobsList');
-            const jobs = siteData.jobs || defaultData.jobs;
+            const jobs = siteData.jobs || [];
             
             listContainer.innerHTML = jobs.map((job, index) => `
                 <div class="admin-job-item">
                     <button type="button" class="btn-delete-job" onclick="deleteJobField(${index})">🗑️ حذف هذه الوظيفة</button>
-                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 بطاقة وظيفية رقم #${index + 1}</h4>
+                    <h4 style="margin:0 0 15px 0; color:var(--accent-color)">💼 وظيفة رقم #${index + 1}</h4>
                     
                     <div class="admin-grid" style="margin-top:10px;">
                         <div>
@@ -1027,7 +831,7 @@
         }
 
         window.deleteJobField = function(index) {
-            if(confirm("هل أنت متأكد من حذف هذا المنصب؟")) {
+            if(confirm("هل أنت متأكد من حذف هذه الوظيفة؟")) {
                 syncJobsFromDOM();
                 siteData.jobs.splice(index, 1);
                 renderAdminJobs();
@@ -1049,49 +853,16 @@
             siteData.jobs = updatedJobs;
         }
 
-        // ===================== SAVE WITH VALIDATION (تم التحديث) =====================
         window.saveAllPlatformData = async function() {
             try {
                 syncJobsFromDOM();
-                
-                // Validate all inputs before saving
-                const inputsToValidate = [
-                    document.getElementById('input_admin_password').value,
-                    document.getElementById('input_img_header_url').value,
-                    document.getElementById('input_img_about_url').value,
-                    document.getElementById('input_ar_heroSub').value,
-                    document.getElementById('input_ar_heroMain').value,
-                    document.getElementById('input_ar_heroDesc').value,
-                    document.getElementById('input_en_heroSub').value,
-                    document.getElementById('input_en_heroMain').value,
-                    document.getElementById('input_en_heroDesc').value
-                ];
-                
-                for (const val of inputsToValidate) {
-                    if (!validateInput(val)) {
-                        alert('❌ تم اكتشاف محتوى غير آمن. يرجى إزالة أي أكواد أو سكربتات من المدخلات.');
-                        return;
-                    }
-                }
-
-                // التأكد من أن الرقم السري ليس فارغاً
                 const newPassword = document.getElementById('input_admin_password').value;
                 if (!newPassword || newPassword.trim() === "") {
                     alert('❌ لا يمكن ترك حقل الرقم السري فارغاً.');
                     return;
                 }
                 
-                for (const job of siteData.jobs) {
-                    if (!validateInput(job.ar_title) || !validateInput(job.ar_tasks) || 
-                        !validateInput(job.en_title) || !validateInput(job.en_tasks)) {
-                        alert('❌ تم اكتشاف محتوى غير آمن في بيانات الوظيفة.');
-                        return;
-                    }
-                }
-                
-                // حفظ الرقم السري الجديد
                 siteData.admin_password = newPassword;
-
                 siteData.img_header_url = document.getElementById('input_img_header_url').value;
                 siteData.img_about_url = document.getElementById('input_img_about_url').value;
                 siteData.header_opacity = parseFloat(document.getElementById('input_header_opacity').value);
@@ -1123,17 +894,13 @@
                 siteData.en_footerTagline = document.getElementById('input_en_footerTagline').value;
 
                 await setDoc(docRef, siteData);
-                alert("✅ تم الحفظ والاعتماد بنجاح! تم تحديث هوية المنصة وحفظ الرقم السري الجديد بنجاح.");
+                alert("✅ تم الحفظ والاعتماد بنجاح! هويتك الجديدة محفوظة الآن.");
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 console.error(error);
-                alert("❌ حدث خطأ أثناء الحفظ بالسيرفر.");
+                alert("❌ حدث خطأ أثناء الحفظ.");
             }
         }
-
-        // ===================== CONSOLE WARNING =====================
-        console.log('%c🛡️ Mayyar United MD Recruitment Portal', 'color: #b59410; font-size: 16px; font-weight: bold;');
-        console.log('%cThis site is protected by an internal WAF. Any malicious activity will be logged.', 'color: #e74c3c;');
     </script>
 </body>
 </html>
