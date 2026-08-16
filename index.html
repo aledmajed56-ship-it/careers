@@ -262,7 +262,7 @@
         .btn-apply:hover { background-color: var(--accent-color); }
 
         .admin-panel {
-            display: none;
+            display: none; /* مخفي افتراضياً */
             background: #fff;
             padding: 40px;
             border: 3px solid var(--accent-color);
@@ -526,9 +526,12 @@
 
         function sanitizeHTML(str) {
             if (!str || typeof str !== 'string') return '';
-            const temp = document.createElement('div');
-            temp.textContent = str;
-            return temp.innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return str
+                .replace(/&(?!(amp|lt|gt|quot|#x27);)/g, '&amp;') 
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;');
         }
 
         const defaultData = {
